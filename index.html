@@ -3,64 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SVB | Studio & Street</title>
+    <title>SVB | Performance & Lifestyle</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
         body { font-family: 'Inter', sans-serif; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'lulu-red': '#d31334', // Rouge signature sport
+                        'lulu-black': '#000000',
+                        'lulu-gray': '#fafafa',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-white">
+<body class="bg-white text-gray-900 antialiased">
 
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold tracking-[0.2em]">SVB</div>
-            <ul class="hidden md:flex space-x-8 text-xs uppercase tracking-widest font-medium">
-                <li><a href="#" class="hover:text-gray-500">Nouveautés</a></li>
-                <li><a href="#" class="hover:text-gray-500">Femme</a></li>
-                <li><a href="#" class="hover:text-gray-500">Homme</a></li>
-                <li><a href="#" class="hover:text-gray-500">Accessoires</a></li>
-            </ul>
-            <div class="flex space-x-5 items-center">
-                <span class="cursor-pointer">🔍</span>
-                <span class="cursor-pointer relative">
-                    🛒 <span class="absolute -top-2 -right-2 bg-black text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center">0</span>
-                </span>
+    <div class="bg-gray-100 text-center py-2 text-xs font-semibold tracking-wide text-gray-800">
+        LIVRAISON GRATUITE ET RETOURS GRATUITS SUR TOUTES LES COMMANDES.
+    </div>
+
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <div class="flex items-center gap-8">
+                    <a href="#" class="text-3xl font-bold tracking-tighter text-lulu-red">SVB.</a>
+                    <div class="hidden md:flex space-x-8 text-sm font-semibold uppercase tracking-tight">
+                        <a href="#" class="hover:text-lulu-red hover:underline decoration-2 underline-offset-8 transition-all">Femme</a>
+                        <a href="#" class="hover:text-lulu-red hover:underline decoration-2 underline-offset-8 transition-all">Homme</a>
+                        <a href="#" class="hover:text-lulu-red hover:underline decoration-2 underline-offset-8 transition-all">Accessoires</a>
+                        <a href="#" class="text-lulu-red">Nouveautés</a>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-6">
+                    <div class="hidden md:flex bg-gray-100 rounded-full px-4 py-2 items-center w-48">
+                        <i data-lucide="search" class="w-4 h-4 text-gray-500 mr-2"></i>
+                        <input type="text" placeholder="Rechercher" class="bg-transparent text-sm focus:outline-none w-full">
+                    </div>
+                    <a href="#" class="hover:text-gray-600"><i data-lucide="user" class="w-6 h-6"></i></a>
+                    <a href="#" class="hover:text-gray-600 relative">
+                        <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                        <span class="absolute -top-1 -right-1 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                    </a>
+                    <button class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
             </div>
-        </nav>
-    </header>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-white shadow-lg p-6 flex flex-col space-y-4 border-t">
+            <a href="#" class="text-lg font-bold">Femme</a>
+            <a href="#" class="text-lg font-bold">Homme</a>
+            <a href="#" class="text-lg font-bold">Accessoires</a>
+            <a href="#" class="text-lg font-bold text-lulu-red">Soldes</a>
+        </div>
+    </nav>
 
-    <section class="relative h-[90vh] overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?auto=format&fit=crop&q=80&w=2070" 
-             class="w-full h-full object-cover" alt="SVB Collection">
-        <div class="absolute inset-0 bg-black/10 flex flex-col justify-end p-12">
-            <div class="text-white max-w-xl">
-                <h1 class="text-6xl font-light leading-tight mb-6">L'équilibre parfait.<br>Performance & Style.</h1>
-                <button class="bg-white text-black px-10 py-4 uppercase text-xs font-bold tracking-widest hover:bg-black hover:text-white transition-all duration-300">
-                    Découvrir la collection
-                </button>
+    <section class="relative h-[85vh] w-full bg-gray-200 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2070&auto=format&fit=crop" 
+             alt="Hero Yoga" class="w-full h-full object-cover">
+        
+        <div class="absolute inset-0 bg-black/10 flex items-center justify-start px-6 md:px-20">
+            <div class="bg-white p-8 md:p-12 max-w-lg shadow-xl rounded-sm">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">Mouvements fluides.<br>Esprit libre.</h1>
+                <p class="text-gray-700 mb-8 text-lg">La nouvelle collection Align™ est arrivée. Conçue pour une sensation de seconde peau.</p>
+                <div class="flex gap-4">
+                    <button class="bg-black text-white px-8 py-4 font-semibold rounded hover:bg-gray-800 transition w-full md:w-auto">Femme</button>
+                    <button class="border-2 border-black bg-transparent text-black px-8 py-4 font-semibold rounded hover:bg-black hover:text-white transition w-full md:w-auto">Homme</button>
+                </div>
             </div>
         </div>
     </section>
 
-    <main class="max-w-7xl mx-auto px-6 py-20">
-        <h2 class="text-2xl font-light mb-12 tracking-wide text-center">NOS ESSENTIELS</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div class="group cursor-pointer">
-                <div class="relative overflow-hidden bg-gray-100 aspect-[3/4]">
-                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=1000" 
-                         class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Legging">
-                </div>
-                <div class="mt-4 flex justify-between items-start">
-                    <div>
-                        <h3 class="text-sm font-medium uppercase tracking-wider">Legging Signature SVB</h3>
-                        <p class="text-xs text-gray-400">Noir Onyx</p>
-                    </div>
-                    <p class="text-sm font-semibold">95€</p>
-                </div>
-            </div>
-            </div>
-    </main>
+    <section class="max-w-[1400px] mx-auto px-4 py-20">
+        <div class="flex justify-between items-end mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold">Les favoris de la semaine</h2>
+            <a href="#" class="text-sm font-semibold underline hover:text-lulu-red">Voir tout</a>
+        </div>
 
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="group cursor-pointer">
+                <div class="relative overflow-hidden aspect-[3/4] mb-4 bg-gray-100 rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition">
+                        <i data-lucide="plus" class="w-4 h-4"></i>
+                    </div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <h3 class="font-bold text-base md:text-lg">Legging Align™ 25"</h3>
+                    <span class="text-sm font-medium">98 €</span>
+                </div>
+                <p class="text-gray-500 text-sm mt-1">Nulu™ ultra-doux</p>
+                <div class="flex gap-2 mt-3">
+                    <div class="w-4 h-4 rounded-full bg-black border border-gray-300"></div>
+                    <div class="w-4 h-4 rounded-full bg-blue-800 border border-gray-300"></div>
+                    <div class="w-4 h-4 rounded-full bg-red-800 border border-gray-300"></div>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="relative overflow-hidden aspect-[3/4] mb-4 bg-gray-100 rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="flex justify-between items-start">
+                    <h3 class="font-bold text-base md:text-lg">Brassière Energy</h3>
+                    <span class="text-sm font-medium">58 €</span>
+                </div>
+                <p class="text-gray-500 text-sm mt-1">Soutien moyen</p>
+            </div>
+
+             <div class="group cursor-pointer">
+                <div class="relative overflow-hidden aspect-[3/4] mb-4 bg-gray-100 rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="flex justify-between items-start">
+                    <h3 class="font-bold text-base md:text-lg">T-shirt Metal Vent</h3>
+                    <span class="text-sm font-medium">78 €</span>
+                </div>
+                <p class="text-gray-500 text-sm mt-1">Anti-odeur</p>
+            </div>
+
+             <div class="group cursor-pointer">
+                <div class="relative overflow-hidden aspect-[3/4] mb-4 bg-gray-100 rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="flex justify-between items-start">
+                    <h3 class="font-bold text-base md:text-lg">Jogger City Sweat</h3>
+                    <span class="text-sm font-medium">118 €</span>
+                </div>
+                <p class="text-gray-500 text-sm mt-1">Molleton extensible</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-gray-900 text-white">
+        <div class="grid grid-cols-1 md:grid-cols-2">
+            <div class="relative h-[600px]">
+                <img src="https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover opacity-80">
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-8">
+                    <h3 class="text-3xl font-bold mb-4">Collection Running</h3>
+                    <p class="mb-6 max-w-xs">Kilomètre après kilomètre, profitez d'une légèreté absolue.</p>
+                    <button class="bg-white text-black px-6 py-3 font-bold rounded">Acheter pour Elle</button>
+                </div>
+            </div>
+            <div class="relative h-[600px]">
+                <img src="https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=2128&auto=format&fit=crop" class="w-full h-full object-cover opacity-80">
+                <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-8">
+                    <h3 class="text-3xl font-bold mb-4">Entraînement Homme</h3>
+                    <p class="mb-6 max-w-xs">Des équipements robustes pour vos sessions les plus intenses.</p>
+                    <button class="bg-white text-black px-6 py-3 font-bold rounded">Acheter pour Lui</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-[1400px] mx-auto px-4 py-20 bg-lulu-gray my-10 rounded-lg">
+        <div class="md:flex items-center gap-12">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1200&auto=format&fit=crop" class="rounded-lg shadow-lg">
+            </div>
+            <div class="md:w-1/2">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Rejoignez la communauté SVB</h2>
+                <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                    Plus qu'une marque, SVB est un mode de vie. Participez à nos événements de yoga gratuits, nos clubs de course et nos ateliers bien-être.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#" class="inline-block text-center border-2 border-black px-8 py-3 font-bold hover:bg-black hover:text-white transition">Trouver un magasin</a>
+                    <a href="#" class="inline-block text-center bg-black text-white px-8 py-3 font-bold hover:bg-gray-800 transition">S'inscrire aux événements</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-white pt-16 pb-8">
+        <div class="max-w-[1400px] mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+            <div>
+                <h4 class="font-bold mb-4 uppercase text-sm tracking-wider">Mon Compte</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white">Statut de la commande</a></li>
+                    <li><a href="#" class="hover:text-white">Retours</a></li>
+                    <li><a href="#" class="hover:text-white">Mes favoris</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4 uppercase text-sm tracking-wider">Aide</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white">Service Client</a></li>
+                    <li><a href="#" class="hover:text-white">Expédition</a></li>
+                    <li><a href="#" class="hover:text-white">Tailles</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4 uppercase text-sm tracking-wider">À propos</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white">Notre histoire</a></li>
+                    <li><a href="#" class="hover:text-white">Carrières</a></li>
+                    <li><a href="#" class="hover:text-white">Impact Social</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4 uppercase text-sm tracking-wider">Restez informés</h4>
+                <p class="text-sm text-gray-400 mb-4">Inscrivez-vous pour recevoir les nouveautés SVB.</p>
+                <div class="flex">
+                    <input type="email" placeholder="Email" class="bg-gray-800 text-white px-4 py-2 w-full focus:outline-none">
+                    <button class="bg-white text-black px-4 font-bold">OK</button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-[1400px] mx-auto px-4 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+            <p>&copy; 2024 SVB E-commerce. Inspiré par Lululemon.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="#">Confidentialité</a>
+                <a href="#">Conditions d'utilisation</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
