@@ -3,53 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SVB Atelier | Performance & Lifestyle</title>
-
-  <meta name="description" content="SVB Atelier — pièces premium, design couture, confort absolu. Éditions Studio, Signature, Performance." />
-  <meta property="og:title" content="SVB Atelier | Performance & Lifestyle" />
-  <meta property="og:description" content="Pièces premium. Design couture. Confort absolu." />
-  <meta property="og:type" content="website" />
+  <title>SVB | Santé Vous Bien — Le bien-être au quotidien</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Fonts: editorial luxe + sans premium -->
+  <!-- Fonts: script (flyer-like) + clean sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Allura&display=swap" rel="stylesheet">
 
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-    .scrollbar-hide::-webkit-scrollbar { display: none; }
-    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    html { scroll-behavior: smooth; }
 
-    /* Subtle grain (luxury paper feel) */
-    .grain::before{
+    /* Background SVB (comme tes visuels) */
+    .svb-bg {
+      position: relative;
+      background: linear-gradient(135deg, #A1CDAE 0%, #EFEBD7 55%, #E8D5B7 100%);
+      overflow: hidden;
+    }
+    .svb-bg::before{
       content:"";
       position:absolute; inset:-20%;
+      background:
+        radial-gradient(circle at 15% 35%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 55%),
+        radial-gradient(circle at 85% 20%, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 55%),
+        radial-gradient(circle at 80% 85%, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0) 55%);
+      pointer-events:none;
+    }
+    /* very subtle paper grain */
+    .grain::after{
+      content:"";
+      position:absolute; inset:-30%;
       background-image:
         radial-gradient(circle at 20% 20%, rgba(0,0,0,0.06) 0 1px, transparent 1px 100%),
         radial-gradient(circle at 80% 60%, rgba(0,0,0,0.04) 0 1px, transparent 1px 100%);
-      background-size: 140px 140px, 180px 180px;
-      opacity: .25;
+      background-size: 160px 160px, 220px 220px;
+      opacity: .10;
       pointer-events:none;
       transform: rotate(-2deg);
     }
 
-    /* Smooth drawer */
-    .drawer { transform: translateX(100%); }
-    .drawer.open { transform: translateX(0); }
-    .overlay { opacity: 0; pointer-events:none; }
-    .overlay.open { opacity: 1; pointer-events:auto; }
+    /* Script titles */
+    .font-script { font-family: "Allura", cursive; }
 
-    /* Focus ring premium */
-    :focus-visible { outline: 2px solid rgba(11,61,46,0.55); outline-offset: 3px; border-radius: 14px; }
+    /* Flyer-like CAPS tracking */
+    .caps { letter-spacing: .18em; text-transform: uppercase; }
 
-    /* Reduce motion */
+    /* Hide scrollbars (mobile nice) */
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Focus ring SVB */
+    :focus-visible { outline: 2px solid rgba(48,123,115,0.65); outline-offset: 3px; border-radius: 14px; }
+
     @media (prefers-reduced-motion: reduce) {
       * { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
-      video { display: none !important; }
     }
   </style>
 
@@ -57,24 +68,21 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            sans: ["Inter", "system-ui", "sans-serif"],
-            editorial: ["Playfair Display", "serif"]
-          },
           colors: {
-            "svb-cream": "#F6F1E8",
-            "svb-sand":  "#E8DFD2",
-            "svb-ink":   "#0B0B0B",
-            "svb-forest":"#0B3D2E",
-            "svb-moss":  "#1F6A4D",
-            "svb-stone": "#8A857C"
+            /* Palette extraite de tes visuels */
+            svbMint:   "#A1CDAE",
+            svbMint2:  "#C1DFCB",
+            svbSage:   "#7CA990",
+            svbCream:  "#EFEBD7",
+            svbSand:   "#E8D5B7",
+            svbGold:   "#D2BF95",
+            svbPeach:  "#EBD2B3",
+            svbCoral:  "#DE8F6A",
+            svbTeal:   "#307B73",
+            svbInk:    "#20312B"
           },
           boxShadow: {
-            "soft": "0 12px 40px rgba(11,11,11,0.10)",
-            "lift": "0 18px 60px rgba(11,11,11,0.14)"
-          },
-          letterSpacing: {
-            "lux": "0.18em"
+            soft: "0 14px 50px rgba(0,0,0,0.10)"
           }
         }
       }
@@ -82,971 +90,693 @@
   </script>
 </head>
 
-<body class="bg-white text-svb-ink antialiased selection:bg-svb-forest selection:text-white">
-
-  <!-- TOP BAR -->
-  <div class="bg-svb-ink text-white text-center py-2 text-[11px] font-semibold tracking-lux uppercase">
-    Livraison offerte dès 150€ · Retours 30 jours · Service premium
+<body class="svb-bg grain text-white">
+  <!-- TOP STRIP (comme les posters) -->
+  <div class="relative z-10 bg-svbTeal/70 backdrop-blur px-4 py-2 text-center text-[11px] caps font-semibold">
+    Réservations sur l’appli pour les membres SVB · Saint-Ouen
   </div>
 
   <!-- NAV -->
-  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-black/5">
-    <div class="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10">
-      <div class="h-20 flex items-center justify-between">
-        <!-- Brand -->
-        <a href="#" class="flex items-baseline gap-3 group" aria-label="SVB Atelier accueil">
-          <span class="text-2xl md:text-3xl font-semibold tracking-tight">SVB</span>
-          <span class="text-[11px] tracking-lux uppercase text-svb-stone group-hover:text-svb-forest transition">Atelier</span>
+  <header class="relative z-20">
+    <div class="max-w-[1200px] mx-auto px-5 sm:px-8 py-6">
+      <div class="flex items-center justify-between">
+        <a href="#home" class="flex items-center gap-3">
+          <div class="h-10 w-10 rounded-xl bg-white/20 border border-white/25 flex items-center justify-center">
+            <span class="font-semibold tracking-tight">SVB</span>
+          </div>
+          <div class="leading-tight">
+            <div class="text-sm font-semibold caps">SANTÉ VOUS BIEN</div>
+            <div class="text-xs text-white/80 caps">Le bien-être au quotidien</div>
+          </div>
         </a>
 
-        <!-- Links -->
-        <nav class="hidden md:flex items-center gap-10 text-xs font-semibold tracking-lux uppercase text-svb-ink/75">
-          <a href="#collections" class="hover:text-svb-forest transition">Collections</a>
-          <a href="#boutique" class="hover:text-svb-forest transition">Boutique</a>
-          <a href="#lookbook" class="hover:text-svb-forest transition">Lookbook</a>
-          <a href="#maison" class="hover:text-svb-forest transition">Maison</a>
+        <nav class="hidden md:flex items-center gap-7 text-[11px] caps font-semibold text-white/85">
+          <a href="#offres" class="hover:text-white transition">Offres</a>
+          <a href="#abonnements" class="hover:text-white transition">Abonnements</a>
+          <a href="#planner" class="hover:text-white transition">Planner</a>
+          <a href="#parrainage" class="hover:text-white transition">Parrainage</a>
+          <a href="#contact" class="hover:text-white transition">Contact</a>
         </nav>
 
-        <!-- Actions -->
-        <div class="flex items-center gap-3 md:gap-5">
-          <button class="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-black/5 hover:bg-black/10 transition"
-                  onclick="openSearch()" aria-label="Ouvrir la recherche">
-            <i data-lucide="search" class="w-4 h-4"></i>
-            <span class="text-[11px] tracking-lux uppercase text-svb-ink/70">Rechercher</span>
-          </button>
-
-          <button class="p-2 rounded-full hover:bg-black/5 transition" aria-label="Compte">
-            <i data-lucide="user" class="w-6 h-6"></i>
-          </button>
-
-          <button class="relative p-2 rounded-full hover:bg-black/5 transition" onclick="openCart()" aria-label="Ouvrir le panier">
-            <i data-lucide="shopping-bag" class="w-6 h-6"></i>
-            <span id="cart-badge"
-                  class="absolute -top-1 -right-1 bg-svb-ink text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center">
-              0
-            </span>
-          </button>
-
-          <button class="md:hidden p-2 rounded-full hover:bg-black/5 transition" onclick="toggleMobileMenu()" aria-label="Ouvrir le menu">
-            <i data-lucide="menu" class="w-6 h-6"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden md:hidden border-t border-black/5 bg-white">
-      <div class="max-w-[1480px] mx-auto px-6 py-6 flex flex-col gap-4">
-        <button class="flex items-center gap-2 rounded-full bg-black/5 hover:bg-black/10 transition px-4 py-3"
-                onclick="openSearch()">
-          <i data-lucide="search" class="w-4 h-4"></i>
-          <span class="text-[11px] tracking-lux uppercase">Rechercher</span>
+        <button class="md:hidden p-3 rounded-xl bg-white/15 border border-white/20"
+                onclick="document.getElementById('mnav').classList.toggle('hidden')"
+                aria-label="Ouvrir le menu">
+          <i data-lucide="menu" class="w-5 h-5"></i>
         </button>
-        <a href="#collections" class="text-xs font-semibold tracking-lux uppercase hover:text-svb-forest transition">Collections</a>
-        <a href="#boutique" class="text-xs font-semibold tracking-lux uppercase hover:text-svb-forest transition">Boutique</a>
-        <a href="#lookbook" class="text-xs font-semibold tracking-lux uppercase hover:text-svb-forest transition">Lookbook</a>
-        <a href="#maison" class="text-xs font-semibold tracking-lux uppercase hover:text-svb-forest transition">Maison</a>
+      </div>
+
+      <div id="mnav" class="hidden md:hidden mt-4 rounded-2xl bg-white/12 border border-white/20 p-4">
+        <div class="grid grid-cols-2 gap-3 text-[11px] caps font-semibold">
+          <a href="#offres" class="py-3 px-3 rounded-xl bg-white/10">Offres</a>
+          <a href="#abonnements" class="py-3 px-3 rounded-xl bg-white/10">Abonnements</a>
+          <a href="#planner" class="py-3 px-3 rounded-xl bg-white/10">Planner</a>
+          <a href="#parrainage" class="py-3 px-3 rounded-xl bg-white/10">Parrainage</a>
+          <a href="#contact" class="py-3 px-3 rounded-xl bg-white/10 col-span-2">Contact</a>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- SEARCH MODAL -->
-  <div id="search-modal" class="fixed inset-0 z-[60] hidden">
-    <div class="absolute inset-0 bg-black/40" onclick="closeSearch()"></div>
-    <div class="relative max-w-[980px] mx-auto mt-24 bg-white rounded-3xl shadow-lift border border-black/10 overflow-hidden">
-      <div class="p-5 md:p-6 flex items-center gap-3 border-b border-black/5">
-        <i data-lucide="search" class="w-5 h-5 text-svb-ink/60"></i>
-        <input id="global-search"
-               type="text"
-               placeholder="Rechercher une pièce, une matière, une édition…"
-               class="w-full bg-transparent text-sm md:text-base focus:outline-none"
-               oninput="setSearchQuery(this.value)"
-               autofocus />
-        <button class="text-[11px] tracking-lux uppercase text-svb-ink/60 hover:text-svb-forest transition" onclick="closeSearch()">
-          Fermer
-        </button>
-      </div>
-      <div class="p-5 md:p-6">
-        <p class="text-[11px] tracking-lux uppercase text-svb-stone mb-4">Suggestions</p>
-        <div class="flex flex-wrap gap-2">
-          <button class="px-4 py-2 rounded-full border border-black/10 hover:border-svb-forest hover:text-svb-forest transition text-sm"
-                  onclick="quickSearch('legging')">Leggings</button>
-          <button class="px-4 py-2 rounded-full border border-black/10 hover:border-svb-forest hover:text-svb-forest transition text-sm"
-                  onclick="quickSearch('brassière')">Brassières</button>
-          <button class="px-4 py-2 rounded-full border border-black/10 hover:border-svb-forest hover:text-svb-forest transition text-sm"
-                  onclick="quickSearch('signature')">Édition Signature</button>
-          <button class="px-4 py-2 rounded-full border border-black/10 hover:border-svb-forest hover:text-svb-forest transition text-sm"
-                  onclick="quickSearch('performance')">Performance</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CART DRAWER -->
-  <div id="cart-overlay" class="overlay fixed inset-0 z-[70] bg-black/45 transition-opacity duration-300" onclick="closeCart()"></div>
-  <aside id="cart-drawer"
-         class="drawer fixed top-0 right-0 z-[80] h-full w-full max-w-[420px] bg-white border-l border-black/10 shadow-lift transition-transform duration-300 flex flex-col">
-    <div class="p-5 md:p-6 border-b border-black/5 flex items-center justify-between">
-      <div>
-        <p class="text-[11px] tracking-lux uppercase text-svb-stone">Panier</p>
-        <h3 class="font-editorial text-2xl">Sélection</h3>
-      </div>
-      <button class="p-2 rounded-full hover:bg-black/5 transition" onclick="closeCart()" aria-label="Fermer le panier">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-    </div>
-
-    <div class="p-5 md:p-6 flex-1 overflow-auto scrollbar-hide">
-      <div id="cart-items" class="space-y-4"></div>
-
-      <div id="cart-empty" class="hidden mt-10 text-center">
-        <p class="text-sm text-black/60">Votre panier est vide.</p>
-        <button class="mt-4 px-6 py-3 rounded-full bg-svb-ink text-white font-semibold hover:bg-svb-forest transition"
-                onclick="closeCart(); document.getElementById('boutique').scrollIntoView({behavior:'smooth'});">
-          Découvrir la boutique
-        </button>
-      </div>
-    </div>
-
-    <div class="p-5 md:p-6 border-t border-black/5">
-      <div class="flex items-center justify-between text-sm">
-        <span class="text-black/60">Sous-total</span>
-        <span id="cart-subtotal" class="font-semibold">0 €</span>
-      </div>
-      <p class="mt-2 text-xs text-black/50">Livraison offerte dès 150€. Taxes incluses.</p>
-      <button class="mt-4 w-full px-6 py-4 rounded-full bg-svb-ink text-white font-semibold hover:bg-svb-forest transition">
-        Passer au paiement
-      </button>
-    </div>
-  </aside>
-
-  <!-- HERO VIDEO (luxury editorial) -->
-  <section class="relative h-[88vh] overflow-hidden">
-    <!-- Replace this video URL with your own brand video for true luxury -->
-    <video class="absolute inset-0 w-full h-full object-cover"
-           autoplay muted loop playsinline
-           poster="https://images.unsplash.com/photo-1540539234-c14a20fb7c7b?q=80&w=2400&auto=format&fit=crop">
-      <source src="https://cdn.coverr.co/videos/coverr-yoga-in-the-studio-1611/1080p.mp4" type="video/mp4">
-    </video>
-
-    <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-transparent"></div>
-    <div class="absolute inset-0 grain"></div>
-
-    <div class="relative max-w-[1480px] mx-auto px-6 sm:px-10 h-full flex items-center">
-      <div class="max-w-2xl">
-        <p class="text-[11px] tracking-lux uppercase text-white/75 mb-5">
-          Édition limitée · Atelier SVB
-        </p>
-        <h1 class="font-editorial text-4xl md:text-6xl text-white leading-[1.05]">
-          L’élégance du mouvement,<br>
-          <span class="italic">sans effort</span>.
-        </h1>
-        <p class="mt-6 text-white/85 text-base md:text-lg leading-relaxed max-w-xl">
-          Pièces premium, coupes nettes, finitions couture. Conçues pour performer — et vivre.
-        </p>
-
-        <div class="mt-9 flex flex-col sm:flex-row gap-3">
-          <button class="px-7 py-4 rounded-full bg-white text-svb-ink font-semibold hover:translate-y-[-1px] hover:shadow-soft transition"
-                  onclick="scrollToBoutique()">
-            Découvrir la boutique
-          </button>
-          <button class="px-7 py-4 rounded-full border border-white/70 text-white font-semibold hover:bg-white hover:text-svb-ink transition"
-                  onclick="applyCollection('Signature')">
-            Édition Signature
-          </button>
-        </div>
-
-        <div class="mt-10 flex flex-wrap items-center gap-6 text-white/80 text-xs tracking-lux uppercase">
-          <div class="flex items-center gap-2"><i data-lucide="gem" class="w-4 h-4"></i> Matières premium</div>
-          <div class="flex items-center gap-2"><i data-lucide="ruler" class="w-4 h-4"></i> Coupe signature</div>
-          <div class="flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4"></i> Qualité contrôlée</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-white to-transparent"></div>
-  </section>
-
-  <!-- COLLECTIONS -->
-  <section id="collections" class="max-w-[1480px] mx-auto px-6 sm:px-10 py-16">
-    <div class="flex items-end justify-between gap-6">
-      <div>
-        <p class="text-[11px] tracking-lux uppercase text-svb-stone mb-2">Univers</p>
-        <h2 class="font-editorial text-3xl md:text-4xl">Collections</h2>
-      </div>
-      <p class="hidden md:block text-sm text-black/60 max-w-md">
-        Éditions pensées comme des lignes couture : intention, matière, silhouette.
-      </p>
-    </div>
-
-    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-      <button onclick="applyCollection('Signature')"
-              class="group relative rounded-3xl overflow-hidden border border-black/5 shadow-soft hover:shadow-lift transition text-left">
-        <img class="w-full h-[360px] object-cover group-hover:scale-[1.03] transition duration-700"
-             src="https://images.unsplash.com/photo-1518611012118-f0c5f1a3d9f6?q=80&w=2000&auto=format&fit=crop" alt="Édition Signature">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-0 p-7">
-          <p class="text-[11px] tracking-lux uppercase text-white/80">Édition</p>
-          <h3 class="font-editorial text-3xl text-white">Signature</h3>
-          <p class="mt-2 text-white/80 text-sm max-w-sm">Coupe précise. Détails couture. Élégance minimaliste.</p>
-        </div>
-      </button>
-
-      <button onclick="applyCollection('Studio')"
-              class="group relative rounded-3xl overflow-hidden border border-black/5 shadow-soft hover:shadow-lift transition text-left">
-        <img class="w-full h-[360px] object-cover group-hover:scale-[1.03] transition duration-700"
-             src="https://images.unsplash.com/photo-1540539234-c14a20fb7c7b?q=80&w=2000&auto=format&fit=crop" alt="Édition Studio">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-0 p-7">
-          <p class="text-[11px] tracking-lux uppercase text-white/80">Édition</p>
-          <h3 class="font-editorial text-3xl text-white">Studio</h3>
-          <p class="mt-2 text-white/80 text-sm max-w-sm">Seconde peau. Confort. Mouvement fluide.</p>
-        </div>
-      </button>
-
-      <button onclick="applyCollection('Performance')"
-              class="group relative rounded-3xl overflow-hidden border border-black/5 shadow-soft hover:shadow-lift transition text-left">
-        <img class="w-full h-[360px] object-cover group-hover:scale-[1.03] transition duration-700"
-             src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=2000&auto=format&fit=crop" alt="Édition Performance">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-0 p-7">
-          <p class="text-[11px] tracking-lux uppercase text-white/80">Édition</p>
-          <h3 class="font-editorial text-3xl text-white">Performance</h3>
-          <p class="mt-2 text-white/80 text-sm max-w-sm">Respirant. Robuste. Pour les sessions intenses.</p>
-        </div>
-      </button>
-    </div>
-  </section>
-
-  <!-- BOUTIQUE -->
-  <section id="boutique" class="max-w-[1480px] mx-auto px-6 sm:px-10 pb-20">
-    <div class="flex items-end justify-between gap-6">
-      <div>
-        <p class="text-[11px] tracking-lux uppercase text-svb-stone mb-2">Boutique</p>
-        <h2 class="font-editorial text-3xl md:text-4xl">Sélection Atelier</h2>
-      </div>
-      <button class="hidden md:flex items-center gap-2 text-xs tracking-lux uppercase font-semibold border-b border-black/20 hover:border-svb-forest hover:text-svb-forest transition pb-1"
-              onclick="resetFilters()">
-        <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Réinitialiser
-      </button>
-    </div>
-
-    <!-- Filters -->
-    <div class="mt-8 grid grid-cols-1 md:grid-cols-12 gap-3">
-      <div class="md:col-span-4">
-        <div class="flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-3">
-          <i data-lucide="search" class="w-4 h-4 text-black/50"></i>
-          <input id="searchInput" type="text" placeholder="Rechercher (legging, brassière, coton…)"
-                 class="w-full bg-transparent text-sm focus:outline-none"
-                 oninput="setSearchQuery(this.value)">
-        </div>
-      </div>
-
-      <div class="md:col-span-2">
-        <select id="collectionSelect" class="w-full rounded-full border border-black/10 px-4 py-3 text-sm bg-white"
-                onchange="setFilter('collection', this.value)">
-          <option value="">Collection</option>
-          <option value="Signature">Signature</option>
-          <option value="Studio">Studio</option>
-          <option value="Performance">Performance</option>
-          <option value="Essentiels">Essentiels</option>
-        </select>
-      </div>
-
-      <div class="md:col-span-2">
-        <select id="categorySelect" class="w-full rounded-full border border-black/10 px-4 py-3 text-sm bg-white"
-                onchange="setFilter('category', this.value)">
-          <option value="">Catégorie</option>
-          <option value="Legging">Legging</option>
-          <option value="Brassière">Brassière</option>
-          <option value="T-shirt">T-shirt</option>
-          <option value="Jogger">Jogger</option>
-          <option value="Veste">Veste</option>
-        </select>
-      </div>
-
-      <div class="md:col-span-2">
-        <select id="sortSelect" class="w-full rounded-full border border-black/10 px-4 py-3 text-sm bg-white"
-                onchange="setSort(this.value)">
-          <option value="featured">Tri</option>
-          <option value="price-asc">Prix croissant</option>
-          <option value="price-desc">Prix décroissant</option>
-          <option value="name-asc">Nom A→Z</option>
-        </select>
-      </div>
-
-      <div class="md:col-span-2">
-        <button class="w-full rounded-full bg-svb-ink text-white px-4 py-3 text-sm font-semibold hover:bg-svb-forest transition"
-                onclick="resetFilters()">
-          Reset
-        </button>
-      </div>
-    </div>
-
-    <!-- Product grid -->
-    <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-7" id="product-grid"></div>
-
-    <!-- Empty state -->
-    <div id="empty-state" class="hidden mt-10 p-10 rounded-3xl bg-svb-cream border border-black/5 text-center">
-      <p class="text-sm text-black/60">Aucun résultat. Essayez un autre filtre.</p>
-      <button class="mt-4 px-6 py-3 rounded-full bg-svb-ink text-white font-semibold hover:bg-svb-forest transition"
-              onclick="resetFilters()">Réinitialiser</button>
-    </div>
-  </section>
-
-  <!-- QUICK VIEW MODAL -->
-  <div id="qv-modal" class="fixed inset-0 z-[90] hidden">
-    <div class="absolute inset-0 bg-black/45" onclick="closeQV()"></div>
-    <div class="relative max-w-[1080px] mx-auto mt-10 md:mt-16 bg-white rounded-3xl shadow-lift border border-black/10 overflow-hidden">
-      <div class="grid grid-cols-1 md:grid-cols-2">
-        <div class="bg-svb-cream">
-          <img id="qv-image" src="" alt="" class="w-full h-[360px] md:h-[540px] object-cover" />
-        </div>
-        <div class="p-6 md:p-8">
-          <div class="flex items-start justify-between gap-4">
+  <!-- HERO -->
+  <section id="home" class="relative z-10">
+    <div class="max-w-[1200px] mx-auto px-5 sm:px-8 pb-10 pt-4">
+      <div class="rounded-[32px] border border-white/25 bg-white/10 backdrop-blur-md shadow-soft overflow-hidden">
+        <div class="p-7 sm:p-10">
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
             <div>
-              <p id="qv-collection" class="text-[11px] tracking-lux uppercase text-svb-stone"></p>
-              <h3 id="qv-title" class="font-editorial text-3xl mt-2"></h3>
-              <p id="qv-desc" class="text-sm text-black/65 mt-3 leading-relaxed"></p>
+              <div class="font-script text-5xl sm:text-6xl leading-none">
+                Le bien-être<br class="hidden sm:block"> au quotidien
+              </div>
+              <div class="mt-4 text-[12px] caps text-white/85 max-w-xl leading-relaxed">
+                Coaching & small group · Reformer & CrossFormer · Soins bien-être · Kids
+              </div>
+
+              <div class="mt-7 flex flex-col sm:flex-row gap-3">
+                <a href="#abonnements"
+                   class="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-4 bg-svbTeal/80 hover:bg-svbTeal transition border border-white/20 text-[11px] caps font-semibold">
+                  <i data-lucide="sparkles" class="w-4 h-4"></i>
+                  Voir les abonnements
+                </a>
+                <a href="#planner"
+                   class="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-4 bg-white/14 hover:bg-white/18 transition border border-white/20 text-[11px] caps font-semibold">
+                  <i data-lucide="calendar" class="w-4 h-4"></i>
+                  Voir le planner
+                </a>
+              </div>
             </div>
-            <button class="p-2 rounded-full hover:bg-black/5 transition" onclick="closeQV()" aria-label="Fermer">
-              <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-          </div>
 
-          <div class="mt-6 flex items-center justify-between">
-            <span id="qv-price" class="text-lg font-semibold"></span>
-            <span id="qv-badge" class="text-[10px] tracking-lux uppercase px-3 py-1 rounded-full border border-black/10"></span>
-          </div>
+            <div class="w-full md:w-[420px] rounded-3xl bg-white/10 border border-white/20 p-6">
+              <div class="text-[11px] caps font-semibold text-white/85">Nos univers</div>
+              <div class="mt-4 grid grid-cols-2 gap-3">
+                <div class="rounded-2xl p-4 bg-svbMint/35 border border-white/20">
+                  <div class="text-[11px] caps font-semibold">Coaching</div>
+                  <div class="text-xs text-white/80 mt-1">Individuel & Duo</div>
+                </div>
+                <div class="rounded-2xl p-4 bg-svbMint2/30 border border-white/20">
+                  <div class="text-[11px] caps font-semibold">Small Group</div>
+                  <div class="text-xs text-white/80 mt-1">Cross · Focus</div>
+                </div>
+                <div class="rounded-2xl p-4 bg-svbSand/30 border border-white/20">
+                  <div class="text-[11px] caps font-semibold">Reformer</div>
+                  <div class="text-xs text-white/80 mt-1">Pilates & Stretch</div>
+                </div>
+                <div class="rounded-2xl p-4 bg-svbPeach/30 border border-white/20">
+                  <div class="text-[11px] caps font-semibold">Kids</div>
+                  <div class="text-xs text-white/80 mt-1">Hors juil./août</div>
+                </div>
+              </div>
 
-          <div class="mt-6">
-            <p class="text-[11px] tracking-lux uppercase text-svb-stone mb-3">Taille</p>
-            <div id="qv-sizes" class="flex flex-wrap gap-2"></div>
-          </div>
-
-          <div class="mt-6">
-            <p class="text-[11px] tracking-lux uppercase text-svb-stone mb-3">Couleur</p>
-            <div id="qv-colors" class="flex flex-wrap gap-2"></div>
-          </div>
-
-          <button id="qv-add"
-                  class="mt-8 w-full px-6 py-4 rounded-full bg-svb-ink text-white font-semibold hover:bg-svb-forest transition">
-            Ajouter au panier
-          </button>
-
-          <div class="mt-6 grid grid-cols-2 gap-3 text-xs text-black/55">
-            <div class="flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4"></i> Qualité contrôlée</div>
-            <div class="flex items-center gap-2"><i data-lucide="truck" class="w-4 h-4"></i> Livraison rapide</div>
-            <div class="flex items-center gap-2"><i data-lucide="refresh-ccw" class="w-4 h-4"></i> Retours 30 jours</div>
-            <div class="flex items-center gap-2"><i data-lucide="sparkles" class="w-4 h-4"></i> Finition premium</div>
+              <div class="mt-5 text-[11px] caps text-white/75">
+                📍 Saint-Ouen · Réservation sur l’appli
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- LOOKBOOK -->
-  <section id="lookbook" class="bg-svb-ink text-white">
-    <div class="max-w-[1480px] mx-auto px-6 sm:px-10 py-16 md:py-20">
-      <div class="flex items-end justify-between gap-6">
-        <div>
-          <p class="text-[11px] tracking-lux uppercase text-white/60 mb-2">Éditorial</p>
-          <h2 class="font-editorial text-3xl md:text-4xl">Lookbook</h2>
-        </div>
-        <p class="hidden md:block text-sm text-white/65 max-w-md">
-          Une esthétique minimaliste, pensée comme une ligne couture : matière, silence, précision.
-        </p>
-      </div>
-
-      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="rounded-3xl overflow-hidden border border-white/10">
-          <img class="w-full h-[420px] object-cover opacity-90"
-               src="https://images.unsplash.com/photo-1526401485004-2aa7f3e01216?q=80&w=2000&auto=format&fit=crop" alt="Lookbook 1">
-        </div>
-        <div class="rounded-3xl overflow-hidden border border-white/10">
-          <img class="w-full h-[420px] object-cover opacity-90"
-               src="https://images.unsplash.com/photo-1526402460104-55b9aef6a4b0?q=80&w=2000&auto=format&fit=crop" alt="Lookbook 2">
-        </div>
-        <div class="rounded-3xl overflow-hidden border border-white/10">
-          <img class="w-full h-[420px] object-cover opacity-90"
-               src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2000&auto=format&fit=crop" alt="Lookbook 3">
+        <div class="h-1 bg-white/25"></div>
+        <div class="p-5 sm:p-6 bg-white/08">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-white/80">
+            <div class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4"></i>
+              hello@studiosvb.fr
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="phone" class="w-4 h-4"></i>
+              07 44 91 91 55
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+              @svb.officiel
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MAISON -->
-  <section id="maison" class="max-w-[1480px] mx-auto px-6 sm:px-10 py-16 md:py-20">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center bg-svb-cream rounded-3xl border border-black/5 p-6 md:p-10 shadow-soft">
-      <div>
-        <p class="text-[11px] tracking-lux uppercase text-svb-stone mb-3">Maison</p>
-        <h2 class="font-editorial text-3xl md:text-4xl">SVB, un art de vivre</h2>
-        <p class="text-black/70 text-base leading-relaxed mt-5 max-w-xl">
-          Studios, communauté, pièces premium — un univers cohérent et exigeant.
-          L’Atelier SVB célèbre la discipline, la douceur et le détail.
-        </p>
-        <div class="mt-8 flex flex-col sm:flex-row gap-3">
-          <button class="px-7 py-4 rounded-full bg-svb-ink text-white font-semibold hover:bg-svb-forest transition">
-            S’inscrire à la newsletter
-          </button>
-          <button class="px-7 py-4 rounded-full border border-black/15 hover:border-svb-forest hover:text-svb-forest transition font-semibold">
-            Nous contacter
-          </button>
+  <!-- OFFRES / OPTIONS (style flyer) -->
+  <section id="offres" class="relative z-10">
+    <div class="max-w-[1200px] mx-auto px-5 sm:px-8 py-10">
+      <div class="text-center">
+        <div class="font-script text-5xl">Nos offres</div>
+        <div class="mt-2 text-[11px] caps text-white/80">Découverte · Options · Coaching · Kids</div>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Offre découverte -->
+        <div class="rounded-[28px] overflow-hidden border border-white/25 bg-white/10 backdrop-blur shadow-soft">
+          <div class="bg-svbSage/80 px-6 py-4 text-center">
+            <div class="text-[12px] caps font-semibold">Notre offre découverte</div>
+          </div>
+          <div class="p-6">
+            <div class="rounded-2xl bg-white/10 border border-white/20 p-5 text-center">
+              <div class="text-[12px] caps font-semibold">NEW PASS STARTER — 99,90€</div>
+              <div class="mt-3 text-[12px] caps text-white/85 leading-relaxed">
+                5 sessions différentes au choix<br>
+                Pas d’engagement<br>
+                Pas de reconduction<br>
+                Valable 1 mois
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Options -->
+        <div class="rounded-[28px] overflow-hidden border border-white/25 bg-white/10 backdrop-blur shadow-soft">
+          <div class="bg-svbMint/70 px-6 py-4 text-center">
+            <div class="text-[12px] caps font-semibold">Nos options</div>
+          </div>
+          <div class="p-6">
+            <div class="rounded-2xl bg-white/10 border border-white/20 p-5">
+              <div class="text-center text-[12px] caps font-semibold">
+                OPTION SVB BOOST · 9,90€/mois (en + d’un pass)
+              </div>
+              <div class="mt-4 text-[12px] caps text-white/85 leading-relaxed text-center">
+                Frais d’inscription offerts<br>
+                1 essai gratuit/mois pour un proche (selon dispo)<br>
+                Engagement 2 mois (coaching) & 3 mois (small groups)<br>
+                Suspension abonnement sans préavis
+              </div>
+            </div>
+
+            <div class="mt-4 rounded-2xl bg-white/12 border border-white/20 p-4 text-center text-[11px] caps text-white/80">
+              Aucun pass 2 sessions vendu seul · Frais de dossier 49€ · Engagement 6 mois (small groups)
+            </div>
+          </div>
+        </div>
+
+        <!-- Coaching -->
+        <div class="rounded-[28px] overflow-hidden border border-white/25 bg-white/10 backdrop-blur shadow-soft">
+          <div class="bg-svbTeal/80 px-6 py-4 text-center">
+            <div class="text-[12px] caps font-semibold">Nos abonnements mensuels · Coaching</div>
+          </div>
+          <div class="p-6 space-y-4">
+            <div class="rounded-2xl bg-white/10 border border-white/20 p-5 text-center">
+              <div class="text-[12px] caps font-semibold">COACHING PASS GOOD VIBES (55 min)</div>
+              <div class="mt-3 text-[12px] caps text-white/85">
+                4 séances/mois — 300,30€<br>
+                8 séances/mois — 560,30€<br>
+                <span class="text-white font-semibold">Engagement 3 mois</span>
+              </div>
+            </div>
+
+            <div class="rounded-2xl bg-white/10 border border-white/20 p-5 text-center">
+              <div class="text-[12px] caps font-semibold">COACHING PASS DUO (55 min)</div>
+              <div class="mt-3 text-[12px] caps text-white/85">
+                4 séances/mois — 400,60€ (200,30€/pers)<br>
+                8 séances/mois — 720,60€ (360,30€/pers)<br>
+                <span class="text-white font-semibold">Engagement 3 mois</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kids -->
+        <div class="rounded-[28px] overflow-hidden border border-white/25 bg-white/10 backdrop-blur shadow-soft">
+          <div class="bg-svbCoral/70 px-6 py-4 text-center">
+            <div class="text-[12px] caps font-semibold">Notre abonnement mensuel · Kids</div>
+          </div>
+          <div class="p-6">
+            <div class="rounded-2xl bg-white/10 border border-white/20 p-5 text-center">
+              <div class="text-[12px] caps font-semibold">PASS KIDS (hors juillet/août)</div>
+              <div class="mt-3 text-[12px] caps text-white/85 leading-relaxed">
+                2 sessions — 35,30€<br>
+                4 sessions — 65,30€<br>
+                Session supplémentaire — 18,30€<br>
+                1 activité au choix<br>
+                <span class="text-white font-semibold">Frais de dossier — 29€</span><br>
+                <span class="text-white font-semibold">Engagement 4 mois</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="rounded-3xl overflow-hidden border border-black/5 shadow-lift">
-        <img class="w-full h-[360px] md:h-[520px] object-cover"
-             src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?q=80&w=2000&auto=format&fit=crop"
-             alt="SVB Maison">
+    </div>
+  </section>
+
+  <!-- ABONNEMENTS SMALL GROUP (style flyer) -->
+  <section id="abonnements" class="relative z-10">
+    <div class="max-w-[1200px] mx-auto px-5 sm:px-8 py-10">
+      <div class="text-center">
+        <div class="font-script text-5xl">Nos abonnements mensuels</div>
+        <div class="mt-2 text-[11px] caps text-white/80">Small group</div>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Left column -->
+        <div class="space-y-6">
+          <div class="rounded-[28px] overflow-hidden border border-white/25 bg-white/10 backdrop-blur shadow-soft">
+            <div class="bg-svbPeach/55 px-6 py-4 text-center">
+              <div class="text-[12px] caps font-semibold">Séance d’essai à 30€</div>
+              <div class="text-[12px] caps text-white/85">15€ remboursés si inscription</div>
+            </div>
+          </div>
+
+          <div class="rounded-[28px] overflow-hidden border border-white/25 bg-white/10 backdrop-blur shadow-soft">
+            <div class="bg-svbPeach/70 px-6 py-4 text-center">
+              <div class="text-[12px] caps font-semibold">PASS CROSSFORMER (50 min)</div>
+            </div>
+            <div class="p-6 text-center text-[12px] caps text-white/85 leading-relaxed">
+              2 sessions — 78,30€<br>
+              4 sessions — 152,30€<br>
+              6 sessions — 222,30€<br>
+              8 sessions — 288,30€<br>
+              10 sessions — 350,30€<br>
+              12 sessions — 408,30€
+            </div>
+          </div>
+
+          <div class="rounded-[28px] overflow-hidden border border-white/25 bg-white/10 backdrop-blur shadow-soft">
+            <div class="bg-svbGold/55 px-6 py-4 text-center">
+              <div class="text-[12px] caps font-semibold">PASS REFORMER (50 min)</div>
+            </div>
+            <div class="p-6 text-center text-[12px] caps text-white/85 leading-relaxed">
+              2 sessions — 70,30€<br>
+              4 sessions — 136,30€<br>
+              6 sessions — 198,30€<br>
+              8 sessions — 256,30€<br>
+              10 sessions — 310,30€<br>
+              12 sessions — 360,30€
+            </div>
+          </div>
+
+          <div class="rounded-[28px] overflow-hidden border border-white/25 bg-white/10 backdrop-blur shadow-soft">
+            <div class="bg-svbPeach/70 px-6 py-4 text-center">
+              <div class="text-[12px] caps font-semibold">PASS FULL FORMER (50 min)</div>
+            </div>
+            <div class="p-6 text-center text-[12px] caps text-white/85 leading-relaxed">
+              2 sessions — 74,30€<br>
+              4 sessions — 144,30€<br>
+              6 sessions — 210,30€<br>
+              8 sessions — 272,30€<br>
+              10 sessions — 330,30€<br>
+              12 sessions — 384,30€
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column -->
+        <div class="space-y-6">
+          <div class="rounded-[28px] overflow-hidden border border-white/25 bg-white/10 backdrop-blur shadow-soft">
+            <div class="bg-svbMint/55 px-6 py-4 text-center">
+              <div class="text-[12px] caps font-semibold">Séance d’essai offerte</div>
+            </div>
+          </div>
+
+          <div class="rounded-[28px] overflow-hidden border border-white/25 bg-white/10 backdrop-blur shadow-soft">
+            <div class="bg-svbMint/70 px-6 py-4 text-center">
+              <div class="text-[12px] caps font-semibold">PASS CROSS (55 min)</div>
+            </div>
+            <div class="p-6 text-center text-[12px] caps text-white/85 leading-relaxed">
+              2 sessions — 30,30€<br>
+              4 sessions — 60,30€<br>
+              6 sessions — 90,30€<br>
+              8 sessions — 116,30€<br>
+              10 sessions — 145,30€<br>
+              12 sessions — 168,30€
+            </div>
+          </div>
+
+          <div class="rounded-[28px] overflow-hidden border border-white/25 bg-white/10 backdrop-blur shadow-soft">
+            <div class="bg-svbGold/55 px-6 py-4 text-center">
+              <div class="text-[12px] caps font-semibold">PASS FOCUS (55 min)</div>
+            </div>
+            <div class="p-6 text-center text-[12px] caps text-white/85 leading-relaxed">
+              2 sessions — 36,30€<br>
+              4 sessions — 72,30€<br>
+              6 sessions — 105,30€<br>
+              8 sessions — 136,30€<br>
+              10 sessions — 165,30€<br>
+              12 sessions — 192,30€
+            </div>
+          </div>
+
+          <div class="rounded-[28px] overflow-hidden border border-white/25 bg-white/10 backdrop-blur shadow-soft">
+            <div class="bg-svbMint/70 px-6 py-4 text-center">
+              <div class="text-[12px] caps font-semibold">PASS FULL (55 min)</div>
+              <div class="text-[12px] caps text-white/90">(Cross + Focus)</div>
+            </div>
+            <div class="p-6 text-center text-[12px] caps text-white/85 leading-relaxed">
+              2 sessions — 40,30€<br>
+              4 sessions — 80,30€<br>
+              6 sessions — 115,30€<br>
+              8 sessions — 150,30€<br>
+              10 sessions — 180,30€<br>
+              12 sessions — 210,30€
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-white/12 border border-white/20 p-4 text-center text-[11px] caps text-white/80">
+            Non cumulables · Réservation via l’appli
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="bg-svb-ink text-white pt-14 pb-10">
-    <div class="max-w-[1480px] mx-auto px-6 sm:px-10 grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
-      <div>
-        <h4 class="font-semibold tracking-lux uppercase text-xs mb-4 text-white/90">Atelier</h4>
-        <ul class="space-y-2 text-sm text-white/60">
-          <li><a href="#collections" class="hover:text-white transition">Collections</a></li>
-          <li><a href="#boutique" class="hover:text-white transition">Boutique</a></li>
-          <li><a href="#lookbook" class="hover:text-white transition">Lookbook</a></li>
-        </ul>
+  <!-- PLANNER (2 onglets) -->
+  <section id="planner" class="relative z-10">
+    <div class="max-w-[1200px] mx-auto px-5 sm:px-8 py-10">
+      <div class="text-center">
+        <div class="font-script text-5xl">Planner</div>
+        <div class="mt-2 text-[11px] caps text-white/80">Parc des Docks · Cours Lavandières</div>
       </div>
 
-      <div>
-        <h4 class="font-semibold tracking-lux uppercase text-xs mb-4 text-white/90">Aide</h4>
-        <ul class="space-y-2 text-sm text-white/60">
-          <li><a href="#" class="hover:text-white transition">Service Client</a></li>
-          <li><a href="#" class="hover:text-white transition">Expédition</a></li>
-          <li><a href="#" class="hover:text-white transition">Retours 30 jours</a></li>
-        </ul>
+      <div class="mt-8 flex items-center justify-center gap-3">
+        <button id="tab1" class="rounded-2xl px-5 py-3 bg-svbMint/55 border border-white/25 text-[11px] caps font-semibold"
+                onclick="showPlanner('docks')">Parc des Docks</button>
+        <button id="tab2" class="rounded-2xl px-5 py-3 bg-white/12 border border-white/20 text-[11px] caps font-semibold"
+                onclick="showPlanner('lav')">Cours Lavandières</button>
       </div>
 
-      <div>
-        <h4 class="font-semibold tracking-lux uppercase text-xs mb-4 text-white/90">Légal</h4>
-        <ul class="space-y-2 text-sm text-white/60">
-          <li><a href="#" class="hover:text-white transition">Confidentialité</a></li>
-          <li><a href="#" class="hover:text-white transition">Conditions</a></li>
-          <li><a href="#" class="hover:text-white transition">Mentions légales</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 class="font-semibold tracking-lux uppercase text-xs mb-4 text-white/90">Newsletter</h4>
-        <p class="text-sm text-white/60 mb-4">Accès anticipé, éditions limitées, nouveautés.</p>
-        <div class="flex gap-2">
-          <input type="email" placeholder="Email"
-                 class="bg-white/10 border border-white/15 text-white px-4 py-3 rounded-full w-full focus:outline-none focus:border-white/40">
-          <button class="bg-white text-svb-ink px-5 py-3 rounded-full font-semibold hover:bg-svb-sand transition">OK</button>
+      <!-- Parc des Docks -->
+      <div id="planner-docks" class="mt-8 rounded-[32px] border border-white/25 bg-white/10 backdrop-blur shadow-soft p-6 sm:p-8">
+        <div class="text-center mb-6">
+          <div class="font-script text-4xl">Planner</div>
+          <div class="text-[11px] caps text-white/80">Parc des Docks</div>
         </div>
-        <div class="flex items-center gap-4 mt-6 text-white/70">
-          <a href="#" class="hover:text-white transition" aria-label="Instagram"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-          <a href="#" class="hover:text-white transition" aria-label="YouTube"><i data-lucide="youtube" class="w-5 h-5"></i></a>
-          <a href="#" class="hover:text-white transition" aria-label="TikTok"><i data-lucide="music-2" class="w-5 h-5"></i></a>
+
+        <div class="space-y-3">
+          <!-- Row helper -->
+          <div class="flex gap-3">
+            <div class="w-[110px] shrink-0 rounded-2xl bg-svbSage/75 border border-white/20 px-4 py-4 text-center text-[12px] caps font-semibold">
+              Lundi
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">12H<br><span class="font-normal text-white/85">Cross Training</span></div>
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">13H<br><span class="font-normal text-white/85">Cross Core</span></div>
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">19H<br><span class="font-normal text-white/85">Cross Training</span></div>
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">20H<br><span class="font-normal text-white/85">Cross Body</span></div>
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <div class="w-[110px] shrink-0 rounded-2xl bg-svbSage/75 border border-white/20 px-4 py-4 text-center text-[12px] caps font-semibold">Mardi</div>
+            <div class="flex flex-wrap gap-3">
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">12H<br><span class="font-normal text-white/85">Cross Rox</span></div>
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">19H<br><span class="font-normal text-white/85">Cross Body</span></div>
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">20H<br><span class="font-normal text-white/85">Cross Training</span></div>
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <div class="w-[110px] shrink-0 rounded-2xl bg-svbSage/75 border border-white/20 px-4 py-4 text-center text-[12px] caps font-semibold">Mercredi</div>
+            <div class="flex flex-wrap gap-3">
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">12H<br><span class="font-normal text-white/85">Cross Training</span></div>
+              <div class="rounded-2xl bg-svbCoral/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">16H<br><span class="font-normal text-white/85">Yoga Kids</span></div>
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">19H<br><span class="font-normal text-white/85">Cross Training</span></div>
+              <div class="rounded-2xl bg-svbGold/45 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">20H<br><span class="font-normal text-white/85">Boxe</span></div>
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <div class="w-[110px] shrink-0 rounded-2xl bg-svbSage/75 border border-white/20 px-4 py-4 text-center text-[12px] caps font-semibold">Jeudi</div>
+            <div class="flex flex-wrap gap-3">
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">8H<br><span class="font-normal text-white/85">Cross Core</span></div>
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">12H<br><span class="font-normal text-white/85">Cross Body</span></div>
+              <div class="rounded-2xl bg-svbGold/45 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">13H<br><span class="font-normal text-white/85">Boxe</span></div>
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">18H<br><span class="font-normal text-white/85">Cross Training</span></div>
+              <div class="rounded-2xl bg-svbGold/45 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">19H<br><span class="font-normal text-white/85">Afrodance’All</span></div>
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <div class="w-[110px] shrink-0 rounded-2xl bg-svbSage/75 border border-white/20 px-4 py-4 text-center text-[12px] caps font-semibold">Vendredi</div>
+            <div class="flex flex-wrap gap-3">
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">18H<br><span class="font-normal text-white/85">Cross Rox</span></div>
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">19H<br><span class="font-normal text-white/85">Cross Training</span></div>
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <div class="w-[110px] shrink-0 rounded-2xl bg-svbSage/75 border border-white/20 px-4 py-4 text-center text-[12px] caps font-semibold">Samedi</div>
+            <div class="flex flex-wrap gap-3">
+              <div class="rounded-2xl bg-svbCoral/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">9H30<br><span class="font-normal text-white/85">Training Kids</span></div>
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">10H30<br><span class="font-normal text-white/85">Cross Body</span></div>
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">11H30<br><span class="font-normal text-white/85">Cross Training</span></div>
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <div class="w-[110px] shrink-0 rounded-2xl bg-svbSage/75 border border-white/20 px-4 py-4 text-center text-[12px] caps font-semibold">Dimanche</div>
+            <div class="flex flex-wrap gap-3">
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">10H30<br><span class="font-normal text-white/85">Cross Training</span></div>
+              <div class="rounded-2xl bg-svbMint/65 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">11H30<br><span class="font-normal text-white/85">Cross Yoga</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 flex flex-wrap gap-3 text-[11px] caps">
+          <span class="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-svbGold/35 border border-white/20">
+            <span class="h-3 w-3 rounded bg-svbGold/70 border border-white/40"></span> Pass Focus
+          </span>
+          <span class="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-svbMint/35 border border-white/20">
+            <span class="h-3 w-3 rounded bg-svbMint/70 border border-white/40"></span> Pass Cross
+          </span>
+          <span class="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-svbCoral/30 border border-white/20">
+            <span class="h-3 w-3 rounded bg-svbCoral/70 border border-white/40"></span> Pass Kids
+          </span>
+        </div>
+
+        <div class="mt-6 rounded-2xl bg-svbTeal/50 border border-white/20 px-5 py-4 text-center text-[11px] caps text-white/90">
+          6 Mail André Breton, 93400 Saint-Ouen · Réservations sur l’appli pour les membres SVB
+        </div>
+      </div>
+
+      <!-- Cours Lavandières -->
+      <div id="planner-lav" class="hidden mt-8 rounded-[32px] border border-white/25 bg-white/10 backdrop-blur shadow-soft p-6 sm:p-8">
+        <div class="text-center mb-6">
+          <div class="font-script text-4xl">Planner</div>
+          <div class="text-[11px] caps text-white/80">Cours Lavandières</div>
+        </div>
+
+        <div class="space-y-3">
+          <!-- (reprend l’esprit du visuel : blocs pêche/ivoire/mint) -->
+          <div class="flex gap-3">
+            <div class="w-[110px] shrink-0 rounded-2xl bg-svbSage/75 border border-white/20 px-4 py-4 text-center text-[12px] caps font-semibold">Lundi</div>
+            <div class="flex flex-wrap gap-3">
+              <div class="rounded-2xl bg-svbPeach/60 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">12H<br><span class="font-normal text-white/85">Cross-Former</span></div>
+              <div class="rounded-2xl bg-svbGold/50 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">12H15<br><span class="font-normal text-white/85">Reformer</span></div>
+              <div class="rounded-2xl bg-svbGold/50 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">12H30<br><span class="font-normal text-white/85">Yoga Vinyasa</span></div>
+              <div class="rounded-2xl bg-svbPeach/60 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">18H45<br><span class="font-normal text-white/85">Cross-Former</span></div>
+              <div class="rounded-2xl bg-svbGold/50 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">19H<br><span class="font-normal text-white/85">Yoga Vinyasa</span></div>
+              <div class="rounded-2xl bg-svbGold/55 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">19H15<br><span class="font-normal text-white/85">Reformer</span></div>
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <div class="w-[110px] shrink-0 rounded-2xl bg-svbSage/75 border border-white/20 px-4 py-4 text-center text-[12px] caps font-semibold">Mardi</div>
+            <div class="flex flex-wrap gap-3">
+              <div class="rounded-2xl bg-svbGold/50 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">7H30<br><span class="font-normal text-white/85">Hatha flow</span></div>
+              <div class="rounded-2xl bg-svbPeach/60 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">11H45<br><span class="font-normal text-white/85">Cross-Former</span></div>
+              <div class="rounded-2xl bg-svbGold/50 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">12H<br><span class="font-normal text-white/85">Power Pilates</span></div>
+              <div class="rounded-2xl bg-svbGold/55 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">13H15<br><span class="font-normal text-white/85">Reformer</span></div>
+              <div class="rounded-2xl bg-svbPeach/60 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">18H45<br><span class="font-normal text-white/85">Cross-Former</span></div>
+              <div class="rounded-2xl bg-svbGold/55 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">19H15<br><span class="font-normal text-white/85">Reformer</span></div>
+              <div class="rounded-2xl bg-svbGold/50 border border-white/20 px-5 py-4 text-center text-[12px] caps font-semibold w-[170px]">20H<br><span class="font-normal text-white/85">Power Pilates</span></div>
+            </div>
+          </div>
+
+          <!-- (Tu peux compléter Mercredi/Jeudi/Vendredi/Samedi/Dimanche pareil si tu veux exact à 100%) -->
+        </div>
+
+        <div class="mt-6 flex flex-wrap gap-3 text-[11px] caps">
+          <span class="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-svbMint/35 border border-white/20">
+            <span class="h-3 w-3 rounded bg-svbMint/70 border border-white/40"></span> Pass Cross
+          </span>
+          <span class="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-svbGold/30 border border-white/20">
+            <span class="h-3 w-3 rounded bg-svbGold/70 border border-white/40"></span> Pass Focus
+          </span>
+          <span class="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-svbPeach/30 border border-white/20">
+            <span class="h-3 w-3 rounded bg-svbPeach/70 border border-white/40"></span> Pass CrossFormer
+          </span>
+          <span class="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-svbGold/25 border border-white/20">
+            <span class="h-3 w-3 rounded bg-svbGold/60 border border-white/40"></span> Pass Reformer
+          </span>
+        </div>
+
+        <div class="mt-6 rounded-2xl bg-svbTeal/50 border border-white/20 px-5 py-4 text-center text-[11px] caps text-white/90">
+          40 Cours Lavandières, 93400 Saint-Ouen · Réservations sur l’appli pour les membres SVB
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="max-w-[1480px] mx-auto px-6 sm:px-10 border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-white/50 gap-4">
-      <p>&copy; 2026 SVB Atelier. Tous droits réservés.</p>
-      <p class="tracking-lux uppercase text-[10px] text-white/45">Design minimal · esprit couture</p>
-    </div>
-  </footer>
+  <!-- PARRAINAGE + REGLEMENT (style flyer vert) -->
+  <section id="parrainage" class="relative z-10">
+    <div class="max-w-[1200px] mx-auto px-5 sm:px-8 py-10">
+      <div class="rounded-[32px] border border-white/25 bg-svbMint/35 backdrop-blur shadow-soft overflow-hidden">
+        <div class="p-8 sm:p-10 text-center">
+          <div class="font-script text-6xl">Offre de parrainage</div>
+          <div class="mt-4 text-[12px] caps text-white/90 leading-relaxed max-w-3xl mx-auto">
+            Parrainez un ami & recevez un cadeau !<br>
+            Invitez vos proches à devenir membre du studio & profitez d’un cadeau exclusif pour chaque nouveau membre, grâce à vous. ♥
+          </div>
 
-  <!-- TOAST -->
-  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] hidden">
-    <div class="px-5 py-3 rounded-full bg-svb-ink text-white text-sm shadow-lift">
-      Ajouté au panier.
+          <div class="mt-10 font-script text-5xl">Règlement intérieur</div>
+
+          <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-5 text-left">
+            <div class="rounded-3xl bg-white/10 border border-white/25 p-6">
+              <div class="flex items-start gap-3">
+                <div class="mt-1 h-10 w-10 rounded-2xl bg-white/12 border border-white/25 flex items-center justify-center">
+                  <i data-lucide="sun" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="inline-block bg-white/15 px-3 py-1 rounded-full text-[11px] caps font-semibold">Absences</div>
+                  <div class="mt-3 text-sm text-white/90 leading-relaxed">
+                    En cas d’absence de plus de 10 jours, préavis d’un mois requis pour suspendre l’abonnement.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-3xl bg-white/10 border border-white/25 p-6">
+              <div class="flex items-start gap-3">
+                <div class="mt-1 h-10 w-10 rounded-2xl bg-white/12 border border-white/25 flex items-center justify-center">
+                  <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="inline-block bg-white/15 px-3 py-1 rounded-full text-[11px] caps font-semibold">Booker</div>
+                  <div class="mt-3 text-sm text-white/90 leading-relaxed">
+                    En small group, vous pouvez booker vos sessions avec 1 mois d’avance.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-3xl bg-white/10 border border-white/25 p-6">
+              <div class="flex items-start gap-3">
+                <div class="mt-1 h-10 w-10 rounded-2xl bg-white/12 border border-white/25 flex items-center justify-center">
+                  <i data-lucide="users" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="inline-block bg-white/15 px-3 py-1 rounded-full text-[11px] caps font-semibold">Annulation small group</div>
+                  <div class="mt-3 text-sm text-white/90 leading-relaxed">
+                    Vous pouvez annuler un small group jusqu’à 1h avant le début sans perdre de crédit.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-3xl bg-white/10 border border-white/25 p-6">
+              <div class="flex items-start gap-3">
+                <div class="mt-1 h-10 w-10 rounded-2xl bg-white/12 border border-white/25 flex items-center justify-center">
+                  <i data-lucide="mail" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="inline-block bg-white/15 px-3 py-1 rounded-full text-[11px] caps font-semibold">Résiliation & modification</div>
+                  <div class="mt-3 text-sm text-white/90 leading-relaxed">
+                    Résiliation par mail : préavis d’1 mois dès la fin d’engagement. Pas de préavis pour un abonnement supérieur, 1 mois pour un abonnement inférieur.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-3xl bg-white/10 border border-white/25 p-6 md:col-span-2">
+              <div class="flex items-start gap-3">
+                <div class="mt-1 h-10 w-10 rounded-2xl bg-white/12 border border-white/25 flex items-center justify-center">
+                  <i data-lucide="dumbbell" class="w-5 h-5"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="inline-block bg-white/15 px-3 py-1 rounded-full text-[11px] caps font-semibold">Coaching privé</div>
+                  <div class="mt-3 text-sm text-white/90 leading-relaxed">
+                    Vous pouvez annuler un coaching privé jusqu’à 24h avant le créneau sans perdre de crédit.
+                  </div>
+
+                  <div class="mt-5 rounded-2xl bg-white/12 border border-white/20 p-4 text-sm text-white/90 leading-relaxed">
+                    <b class="caps text-[11px]">SVB Cours Lavandières :</b>
+                    Chaussettes antidérapantes obligatoires. En cas d’oubli : achat à 10€ ou prêt à 3€ (10€ supplémentaires facturés si pas rendu).
+                    <br><b>+ de 5 minutes de retard = cours refusé</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-10 flex flex-col md:flex-row items-center justify-center gap-6 text-[12px] caps text-white/90">
+            <div class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i> hello@studiosvb.fr</div>
+            <div class="flex items-center gap-2"><i data-lucide="instagram" class="w-4 h-4"></i> @svb.officiel</div>
+            <div class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> 07 44 91 91 55</div>
+          </div>
+
+          <div class="mt-6 text-[12px] caps text-white/85">
+            6 Mail André Breton & 40 Cours Lavandières — Saint-Ouen
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="relative z-10">
+    <div class="max-w-[1200px] mx-auto px-5 sm:px-8 py-12">
+      <div class="rounded-[32px] border border-white/25 bg-white/10 backdrop-blur shadow-soft p-8 sm:p-10">
+        <div class="text-center">
+          <div class="font-script text-5xl">Contact</div>
+          <div class="mt-2 text-[11px] caps text-white/80">Questions · Infos · Inscription</div>
+        </div>
+
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="rounded-3xl bg-white/10 border border-white/20 p-6 text-center">
+            <i data-lucide="mail" class="w-6 h-6 mx-auto"></i>
+            <div class="mt-3 text-[11px] caps font-semibold">Email</div>
+            <div class="mt-2 text-sm text-white/90">hello@studiosvb.fr</div>
+          </div>
+
+          <div class="rounded-3xl bg-white/10 border border-white/20 p-6 text-center">
+            <i data-lucide="phone" class="w-6 h-6 mx-auto"></i>
+            <div class="mt-3 text-[11px] caps font-semibold">Téléphone</div>
+            <div class="mt-2 text-sm text-white/90">07 44 91 91 55</div>
+          </div>
+
+          <div class="rounded-3xl bg-white/10 border border-white/20 p-6 text-center">
+            <i data-lucide="instagram" class="w-6 h-6 mx-auto"></i>
+            <div class="mt-3 text-[11px] caps font-semibold">Instagram</div>
+            <div class="mt-2 text-sm text-white/90">@svb.officiel</div>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center">
+          <a href="#home"
+             class="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-4 bg-svbTeal/80 hover:bg-svbTeal transition border border-white/20 text-[11px] caps font-semibold">
+            <i data-lucide="arrow-up" class="w-4 h-4"></i>
+            Retour en haut
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center text-[11px] caps text-white/70">
+        © SVB — Santé Vous Bien · Saint-Ouen
+      </div>
+    </div>
+  </section>
 
   <script>
-    // ---------------------------
-    // DATA
-    // ---------------------------
-    const products = [
-      {
-        id: "svb-001",
-        name: "Legging Atelier 25”",
-        price: 98,
-        collection: "Signature",
-        category: "Legging",
-        badge: "Premium",
-        desc: "Seconde peau, maintien doux, coupe nette. Pensé pour la silhouette et le mouvement.",
-        image: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=1400&auto=format&fit=crop",
-        sizes: ["XS", "S", "M", "L"],
-        colors: [
-          { name: "Noir", hex: "#0B0B0B" },
-          { name: "Forêt", hex: "#0B3D2E" },
-          { name: "Sable", hex: "#E8DFD2" }
-        ],
-        featured: 10
-      },
-      {
-        id: "svb-002",
-        name: "Brassière Atelier",
-        price: 64,
-        collection: "Studio",
-        category: "Brassière",
-        badge: "Studio",
-        desc: "Soutien moyen, respirant, confort longue durée. Détails minimalistes premium.",
-        image: "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=1400&auto=format&fit=crop",
-        sizes: ["XS", "S", "M", "L"],
-        colors: [
-          { name: "Ivoire", hex: "#F6F1E8" },
-          { name: "Noir", hex: "#0B0B0B" }
-        ],
-        featured: 9
-      },
-      {
-        id: "svb-003",
-        name: "T-shirt Technique",
-        price: 78,
-        collection: "Performance",
-        category: "T-shirt",
-        badge: "Performance",
-        desc: "Léger, anti-odeur, tombé élégant. Conçu pour l’effort et la ville.",
-        image: "https://images.unsplash.com/photo-1539185441755-769473a23570?w=1400&auto=format&fit=crop",
-        sizes: ["S", "M", "L", "XL"],
-        colors: [
-          { name: "Noir", hex: "#0B0B0B" },
-          { name: "Gris", hex: "#8A857C" }
-        ],
-        featured: 8
-      },
-      {
-        id: "svb-004",
-        name: "Jogger Signature",
-        price: 118,
-        collection: "Essentiels",
-        category: "Jogger",
-        badge: "Essentiel",
-        desc: "Molleton premium, coupe structurée, détail discret. Luxe confortable.",
-        image: "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=1400&auto=format&fit=crop",
-        sizes: ["S", "M", "L"],
-        colors: [
-          { name: "Noir", hex: "#0B0B0B" },
-          { name: "Sable", hex: "#E8DFD2" }
-        ],
-        featured: 7
-      },
-      {
-        id: "svb-005",
-        name: "Veste Atelier",
-        price: 132,
-        collection: "Signature",
-        category: "Veste",
-        badge: "Premium",
-        desc: "Coupe couture, lignes nettes, finition élégante. Parfaite avant/après studio.",
-        image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1400&auto=format&fit=crop",
-        sizes: ["XS", "S", "M", "L"],
-        colors: [
-          { name: "Forêt", hex: "#0B3D2E" },
-          { name: "Noir", hex: "#0B0B0B" }
-        ],
-        featured: 6
-      },
-      {
-        id: "svb-006",
-        name: "Legging Studio Sculpt",
-        price: 104,
-        collection: "Studio",
-        category: "Legging",
-        badge: "Studio",
-        desc: "Toucher doux, compression légère, taille haute. Minimal, premium, efficace.",
-        image: "https://images.unsplash.com/photo-1526401485004-2aa7f3e01216?w=1400&auto=format&fit=crop",
-        sizes: ["XS", "S", "M", "L"],
-        colors: [
-          { name: "Noir", hex: "#0B0B0B" },
-          { name: "Ivoire", hex: "#F6F1E8" }
-        ],
-        featured: 5
-      }
-    ];
-
-    // ---------------------------
-    // STATE
-    // ---------------------------
-    const state = {
-      search: "",
-      filters: { collection: "", category: "" },
-      sort: "featured",
-      cart: [],
-      qv: { productId: null, size: null, color: null }
-    };
-
-    // ---------------------------
-    // HELPERS
-    // ---------------------------
-    const euro = (n) => `${n} €`;
-
-    function toast(msg = "Ajouté au panier.") {
-      const el = document.getElementById("toast");
-      el.querySelector("div").textContent = msg;
-      el.classList.remove("hidden");
-      setTimeout(() => el.classList.add("hidden"), 1400);
-    }
-
-    function scrollToBoutique() {
-      document.getElementById("boutique").scrollIntoView({ behavior: "smooth" });
-    }
-
-    function toggleMobileMenu() {
-      document.getElementById("mobile-menu").classList.toggle("hidden");
-    }
-
-    function openSearch() {
-      document.getElementById("search-modal").classList.remove("hidden");
-      setTimeout(() => {
-        const input = document.getElementById("global-search");
-        if (input) input.focus();
-      }, 50);
-    }
-    function closeSearch() {
-      document.getElementById("search-modal").classList.add("hidden");
-    }
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") { closeSearch(); closeCart(); closeQV(); }
-    });
-
-    function openCart() {
-      document.getElementById("cart-overlay").classList.add("open");
-      document.getElementById("cart-drawer").classList.add("open");
-      renderCart();
-      setTimeout(() => lucide.createIcons(), 0);
-    }
-    function closeCart() {
-      document.getElementById("cart-overlay").classList.remove("open");
-      document.getElementById("cart-drawer").classList.remove("open");
-    }
-
-    function openQV(productId) {
-      state.qv.productId = productId;
-      state.qv.size = null;
-      state.qv.color = null;
-
-      const p = products.find(x => x.id === productId);
-      if (!p) return;
-
-      document.getElementById("qv-image").src = p.image;
-      document.getElementById("qv-image").alt = p.name;
-      document.getElementById("qv-collection").textContent = `Édition ${p.collection}`;
-      document.getElementById("qv-title").textContent = p.name;
-      document.getElementById("qv-desc").textContent = p.desc;
-      document.getElementById("qv-price").textContent = euro(p.price);
-      document.getElementById("qv-badge").textContent = p.badge;
-
-      // sizes
-      const sizesEl = document.getElementById("qv-sizes");
-      sizesEl.innerHTML = p.sizes.map(s => `
-        <button class="px-4 py-2 rounded-full border border-black/10 hover:border-svb-forest hover:text-svb-forest transition text-sm"
-                onclick="selectQVSize('${s}')"
-                id="qv-size-${s}">
-          ${s}
-        </button>
-      `).join("");
-
-      // colors
-      const colorsEl = document.getElementById("qv-colors");
-      colorsEl.innerHTML = p.colors.map((c, idx) => `
-        <button class="flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 hover:border-svb-forest transition text-sm"
-                onclick="selectQVColor(${idx})"
-                id="qv-color-${idx}">
-          <span class="w-4 h-4 rounded-full border border-black/20" style="background:${c.hex}"></span>
-          ${c.name}
-        </button>
-      `).join("");
-
-      // add
-      const addBtn = document.getElementById("qv-add");
-      addBtn.onclick = () => {
-        if (!state.qv.size) return toast("Choisis une taille.");
-        if (state.qv.color === null) return toast("Choisis une couleur.");
-        addToCart(p.id, state.qv.size, state.qv.color);
-        closeQV();
-        openCart();
-      };
-
-      document.getElementById("qv-modal").classList.remove("hidden");
-      setTimeout(() => lucide.createIcons(), 0);
-    }
-
-    function closeQV() {
-      document.getElementById("qv-modal").classList.add("hidden");
-    }
-
-    function selectQVSize(size) {
-      state.qv.size = size;
-      // update UI
-      const p = products.find(x => x.id === state.qv.productId);
-      if (!p) return;
-      p.sizes.forEach(s => {
-        const el = document.getElementById(`qv-size-${s}`);
-        if (!el) return;
-        el.classList.toggle("border-svb-forest", s === size);
-        el.classList.toggle("text-svb-forest", s === size);
-      });
-    }
-
-    function selectQVColor(idx) {
-      state.qv.color = idx;
-      const p = products.find(x => x.id === state.qv.productId);
-      if (!p) return;
-      p.colors.forEach((_, i) => {
-        const el = document.getElementById(`qv-color-${i}`);
-        if (!el) return;
-        el.classList.toggle("border-svb-forest", i === idx);
-      });
-    }
-
-    // ---------------------------
-    // FILTERS / SORT
-    // ---------------------------
-    function setSearchQuery(q) {
-      state.search = (q || "").trim().toLowerCase();
-      renderProducts();
-    }
-
-    function quickSearch(q) {
-      state.search = q.toLowerCase();
-      document.getElementById("searchInput").value = q;
-      document.getElementById("global-search").value = q;
-      closeSearch();
-      renderProducts();
-      scrollToBoutique();
-    }
-
-    function setFilter(key, value) {
-      state.filters[key] = value || "";
-      renderProducts();
-    }
-
-    function setSort(v) {
-      state.sort = v || "featured";
-      renderProducts();
-    }
-
-    function applyCollection(name) {
-      state.filters.collection = name;
-      document.getElementById("collectionSelect").value = name;
-      renderProducts();
-      scrollToBoutique();
-    }
-
-    function resetFilters() {
-      state.search = "";
-      state.filters.collection = "";
-      state.filters.category = "";
-      state.sort = "featured";
-      document.getElementById("searchInput").value = "";
-      document.getElementById("collectionSelect").value = "";
-      document.getElementById("categorySelect").value = "";
-      document.getElementById("sortSelect").value = "featured";
-      renderProducts();
-    }
-
-    function getFilteredProducts() {
-      let list = [...products];
-
-      // search
-      if (state.search) {
-        list = list.filter(p =>
-          (p.name + " " + p.collection + " " + p.category + " " + p.desc).toLowerCase().includes(state.search)
-        );
-      }
-
-      // filters
-      if (state.filters.collection) list = list.filter(p => p.collection === state.filters.collection);
-      if (state.filters.category) list = list.filter(p => p.category === state.filters.category);
-
-      // sort
-      if (state.sort === "price-asc") list.sort((a,b) => a.price - b.price);
-      if (state.sort === "price-desc") list.sort((a,b) => b.price - a.price);
-      if (state.sort === "name-asc") list.sort((a,b) => a.name.localeCompare(b.name));
-      if (state.sort === "featured") list.sort((a,b) => b.featured - a.featured);
-
-      return list;
-    }
-
-    // ---------------------------
-    // RENDER PRODUCTS
-    // ---------------------------
-    function renderProducts() {
-      const grid = document.getElementById("product-grid");
-      const empty = document.getElementById("empty-state");
-      const list = getFilteredProducts();
-
-      if (list.length === 0) {
-        grid.innerHTML = "";
-        empty.classList.remove("hidden");
-        return;
-      } else {
-        empty.classList.add("hidden");
-      }
-
-      grid.innerHTML = list.map(p => `
-        <div class="group cursor-pointer">
-          <div class="relative overflow-hidden aspect-[3/4] mb-4 bg-svb-cream rounded-3xl border border-black/5 shadow-soft group-hover:shadow-lift transition">
-            <img src="${p.image}" alt="${p.name}"
-                 class="w-full h-full object-cover group-hover:scale-[1.04] transition duration-700"
-                 loading="lazy" decoding="async" />
-
-            <div class="absolute top-4 left-4 flex gap-2">
-              <span class="text-[10px] tracking-lux uppercase bg-white/90 backdrop-blur px-3 py-1 rounded-full border border-black/10">
-                ${p.collection}
-              </span>
-              <span class="text-[10px] tracking-lux uppercase ${p.badge === "Premium" ? "bg-svb-forest text-white" : "bg-white/90"} backdrop-blur px-3 py-1 rounded-full border border-black/10">
-                ${p.badge}
-              </span>
-            </div>
-
-            <button class="absolute bottom-4 right-4 bg-white/95 backdrop-blur p-3 rounded-full shadow-soft opacity-0 group-hover:opacity-100 transition hover:scale-105"
-                    aria-label="Quick view"
-                    onclick="event.stopPropagation(); openQV('${p.id}')">
-              <i data-lucide="plus" class="w-4 h-4"></i>
-            </button>
-
-            <button class="absolute bottom-4 left-4 bg-white/95 backdrop-blur px-4 py-2 rounded-full shadow-soft opacity-0 group-hover:opacity-100 transition hover:scale-[1.02] text-[11px] tracking-lux uppercase"
-                    onclick="event.stopPropagation(); openQV('${p.id}')">
-              Voir
-            </button>
-          </div>
-
-          <div class="flex justify-between items-start gap-3">
-            <div>
-              <h3 class="font-semibold text-sm md:text-base">${p.name}</h3>
-              <p class="text-black/55 text-xs mt-1">${p.category} · ${p.collection}</p>
-            </div>
-            <span class="text-sm font-semibold">${euro(p.price)}</span>
-          </div>
-
-          <div class="flex gap-2 mt-3" aria-label="Couleurs disponibles">
-            ${p.colors.slice(0,3).map(c => `<span class="w-4 h-4 rounded-full border border-black/20" style="background:${c.hex}"></span>`).join("")}
-          </div>
-        </div>
-      `).join("");
-
-      lucide.createIcons();
-    }
-
-    // ---------------------------
-    // CART
-    // ---------------------------
-    function addToCart(productId, size, colorIndex) {
-      const p = products.find(x => x.id === productId);
-      if (!p) return;
-      const key = `${productId}|${size}|${colorIndex}`;
-
-      const existing = state.cart.find(i => i.key === key);
-      if (existing) existing.qty += 1;
-      else state.cart.push({
-        key,
-        productId,
-        size,
-        colorIndex,
-        qty: 1
-      });
-
-      updateCartBadge();
-      toast("Ajouté au panier.");
-    }
-
-    function updateCartBadge() {
-      const total = state.cart.reduce((sum, i) => sum + i.qty, 0);
-      document.getElementById("cart-badge").textContent = total;
-    }
-
-    function cartSubtotal() {
-      return state.cart.reduce((sum, i) => {
-        const p = products.find(x => x.id === i.productId);
-        return sum + (p ? p.price * i.qty : 0);
-      }, 0);
-    }
-
-    function changeQty(key, delta) {
-      const item = state.cart.find(i => i.key === key);
-      if (!item) return;
-      item.qty += delta;
-      if (item.qty <= 0) state.cart = state.cart.filter(i => i.key !== key);
-      updateCartBadge();
-      renderCart();
-    }
-
-    function removeItem(key) {
-      state.cart = state.cart.filter(i => i.key !== key);
-      updateCartBadge();
-      renderCart();
-    }
-
-    function renderCart() {
-      const itemsEl = document.getElementById("cart-items");
-      const emptyEl = document.getElementById("cart-empty");
-      const subtotalEl = document.getElementById("cart-subtotal");
-
-      if (state.cart.length === 0) {
-        itemsEl.innerHTML = "";
-        emptyEl.classList.remove("hidden");
-        subtotalEl.textContent = euro(0);
-        return;
-      }
-
-      emptyEl.classList.add("hidden");
-
-      itemsEl.innerHTML = state.cart.map(i => {
-        const p = products.find(x => x.id === i.productId);
-        if (!p) return "";
-        const color = p.colors[i.colorIndex];
-
-        return `
-          <div class="flex gap-4 p-4 rounded-2xl border border-black/10 bg-white">
-            <img src="${p.image}" alt="${p.name}" class="w-20 h-24 rounded-xl object-cover border border-black/5">
-            <div class="flex-1">
-              <div class="flex justify-between items-start gap-3">
-                <div>
-                  <p class="text-sm font-semibold">${p.name}</p>
-                  <p class="text-xs text-black/55 mt-1">${p.collection} · Taille ${i.size}</p>
-                  <p class="text-xs text-black/55 mt-1 flex items-center gap-2">
-                    <span class="w-3.5 h-3.5 rounded-full border border-black/20" style="background:${color.hex}"></span>
-                    ${color.name}
-                  </p>
-                </div>
-                <button class="p-2 rounded-full hover:bg-black/5 transition" onclick="removeItem('${i.key}')" aria-label="Supprimer">
-                  <i data-lucide="trash-2" class="w-4 h-4"></i>
-                </button>
-              </div>
-
-              <div class="mt-4 flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <button class="w-9 h-9 rounded-full border border-black/10 hover:border-svb-forest hover:text-svb-forest transition flex items-center justify-center"
-                          onclick="changeQty('${i.key}', -1)" aria-label="Diminuer">
-                    <i data-lucide="minus" class="w-4 h-4"></i>
-                  </button>
-                  <span class="text-sm font-semibold w-6 text-center">${i.qty}</span>
-                  <button class="w-9 h-9 rounded-full border border-black/10 hover:border-svb-forest hover:text-svb-forest transition flex items-center justify-center"
-                          onclick="changeQty('${i.key}', 1)" aria-label="Augmenter">
-                    <i data-lucide="plus" class="w-4 h-4"></i>
-                  </button>
-                </div>
-                <span class="text-sm font-semibold">${euro(p.price * i.qty)}</span>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join("");
-
-      subtotalEl.textContent = euro(cartSubtotal());
-      lucide.createIcons();
-    }
-
-    // ---------------------------
-    // INIT
-    // ---------------------------
     lucide.createIcons();
-    renderProducts();
-    updateCartBadge();
-  </script>
 
+    function showPlanner(which) {
+      const docks = document.getElementById("planner-docks");
+      const lav = document.getElementById("planner-lav");
+      const tab1 = document.getElementById("tab1");
+      const tab2 = document.getElementById("tab2");
+
+      if (which === "docks") {
+        docks.classList.remove("hidden");
+        lav.classList.add("hidden");
+        tab1.classList.add("bg-svbMint/55");
+        tab1.classList.remove("bg-white/12");
+        tab2.classList.add("bg-white/12");
+        tab2.classList.remove("bg-svbMint/55");
+      } else {
+        lav.classList.remove("hidden");
+        docks.classList.add("hidden");
+        tab2.classList.add("bg-svbMint/55");
+        tab2.classList.remove("bg-white/12");
+        tab1.classList.add("bg-white/12");
+        tab1.classList.remove("bg-svbMint/55");
+      }
+    }
+  </script>
 </body>
 </html>
