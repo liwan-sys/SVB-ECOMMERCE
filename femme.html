@@ -70,37 +70,46 @@
 <body class="text-svb-black antialiased bg-grid">
 
   <!-- NAV -->
-  <nav class="fixed top-0 w-full z-40 bg-white/35 backdrop-blur-md border-b border-black/5">
+  <nav class="fixed top-0 w-full z-40 bg-white/60 backdrop-blur-md border-b border-black/5 transition-all duration-300">
     <div class="max-w-[1800px] mx-auto px-6 h-16 flex justify-between items-center">
+      
       <div class="flex items-center gap-4">
         <a href="index.html" class="font-tech font-black text-2xl tracking-tighter hover:text-svb-teal transition">
           SVB.
         </a>
-        <span class="text-[10px] font-tech uppercase bg-svb-teal text-white px-2 py-0.5 rounded-sm tracking-widest">
+      </div>
+
+      <div class="hidden md:flex items-center gap-10 text-xs font-bold uppercase tracking-[0.15em] font-tech text-black/60">
+        <a href="index.html" class="hover:text-black transition relative group">
+          Accueil
+          <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-black transition-all group-hover:w-full"></span>
+        </a>
+        
+        <a href="femme.html" class="text-svb-teal font-black relative">
           Femme
-        </span>
-        <span class="hidden sm:inline text-[10px] font-mono uppercase tracking-widest text-black/40">
-          Collection Atelier
-        </span>
+          <span class="absolute -bottom-1 left-0 w-full h-[2px] bg-svb-teal"></span>
+        </a>
+
+        <a href="homme.html" class="hover:text-black transition relative group">
+          Homme
+          <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-black transition-all group-hover:w-full"></span>
+        </a>
       </div>
 
-      <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest font-tech text-black/50">
-        <a href="#drop" class="text-black hover:text-svb-teal transition">Drop 01</a>
-        <a href="#catalog" class="hover:text-black transition">Leggings</a>
-        <a href="#catalog" class="hover:text-black transition">Brassières</a>
-        <a href="#catalog" class="hover:text-black transition">Outerwear</a>
-        <a href="homme.html" class="hover:text-black transition">Homme</a>
-      </div>
-
-      <div class="flex items-center gap-4">
-        <div class="hidden sm:flex items-center gap-2 bg-white/70 border border-black/10 px-3 py-1.5">
-          <i data-lucide="search" class="w-4 h-4 text-black/40"></i>
-          <input id="search" type="text" placeholder="Rechercher…" class="bg-transparent text-xs outline-none w-44 placeholder:text-black/30">
+      <div class="flex items-center gap-6">
+        
+        <div class="hidden sm:flex items-center gap-2 bg-white/50 border border-black/10 px-3 py-1.5 rounded-sm focus-within:border-black/30 transition">
+          <i data-lucide="search" class="w-3.5 h-3.5 text-black/40"></i>
+          <input id="search" type="text" placeholder="RECHERCHER..." class="bg-transparent text-[10px] font-mono uppercase outline-none w-32 placeholder:text-black/30">
         </div>
 
-        <button id="openCart" class="relative hover:text-svb-teal transition" aria-label="Ouvrir le panier">
-          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-          <span id="cartPill" class="absolute -top-2 -right-2 bg-svb-cobalt text-white text-[9px] min-w-4 h-4 px-1 rounded-full flex items-center justify-center opacity-0 transition-opacity">0</span>
+        <button id="openCart" class="relative hover:text-svb-teal transition group" aria-label="Ouvrir le panier">
+          <i data-lucide="shopping-bag" class="w-5 h-5 group-hover:scale-105 transition"></i>
+          <span id="cartPill" class="absolute -top-1.5 -right-1.5 bg-svb-cobalt text-white text-[9px] min-w-[16px] h-[16px] rounded-full flex items-center justify-center opacity-0 transition-opacity font-mono">0</span>
+        </button>
+        
+        <button class="md:hidden">
+            <i data-lucide="menu" class="w-6 h-6 text-black/80"></i>
         </button>
       </div>
     </div>
