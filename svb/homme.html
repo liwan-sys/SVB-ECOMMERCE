@@ -1,225 +1,501 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SVB | Collection Homme</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'svb-black': '#050505',
-                        'svb-concrete': '#f0f2f5', /* Gris technique */
-                        'svb-cobalt': '#0033CC', /* Bleu Signature */
-                        'svb-darkblue': '#001a66',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                        tech: ['Archivo', 'sans-serif'],
-                    },
-                    backgroundImage: {
-                        'grid': "url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27 width=%2732%27 height=%2732%27 fill=%27none%27 stroke=%27rgba(0,0,0,0.03)%27%3e%3cpath d=%27M0 .5H31.5V32%27/%3e%3c/svg%3e')",
-                    }
-                }
-            }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SVB | Collection Homme</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "svb-black": "#050505",
+            "svb-cream": "#EAE6CA",
+            "svb-mint":  "#C1DECA",
+            "svb-sage":  "#A0CDAE",
+            "svb-sand":  "#E8D5B5",
+            "svb-teal":  "#2D7972",  // vert/logo
+            "svb-cobalt":"#0033CC"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            serif: ["Playfair Display", "serif"],
+            tech: ["Archivo", "sans-serif"]
+          },
+          backgroundImage: {
+            grid: "url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27 width=%2732%27 height=%2732%27 fill=%27none%27 stroke=%27rgba(45,121,114,0.06)%27%3e%3cpath d=%27M0 .5H31.5V32%27/%3e%3c/svg%3e')"
+          },
+          boxShadow: {
+            soft: "0 18px 60px rgba(0,0,0,0.10)"
+          }
         }
-    </script>
+      }
+    };
+  </script>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Fond SVB (mint/cream/sand) + grid */
+    body{
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(193,222,202,0.90), transparent 55%),
+        radial-gradient(900px 500px at 85% 15%, rgba(232,213,181,0.80), transparent 55%),
+        radial-gradient(900px 600px at 70% 90%, rgba(234,230,202,0.95), transparent 60%),
+        linear-gradient(180deg, #F7F3EA 0%, #F3EFE3 55%, #F6F2E6 100%);
+      overflow-x:hidden;
+    }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #2D7972; border-radius: 10px; }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@400;600&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+    /* Découpe "tech" mais plus luxe (moins agressive) */
+    .clip-tech { clip-path: polygon(0 0, 100% 0, 100% 86%, 92% 100%, 0 100%); }
 
-    <style>
-        .clip-tech { clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%); }
-    </style>
+    /* Petit bruit très léger (sans image externe) */
+    .noise::before{
+      content:"";
+      position:absolute; inset:0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+      mix-blend-mode:multiply;
+      opacity:.06;
+      pointer-events:none;
+    }
+
+    /* Anti blur aliasing sur images */
+    img { -webkit-transform: translateZ(0); transform: translateZ(0); }
+  </style>
 </head>
-<body class="bg-svb-concrete text-svb-black antialiased bg-grid">
 
-    <nav class="fixed top-0 w-full z-40 bg-svb-concrete/95 backdrop-blur border-b border-black/5">
-        <div class="max-w-[1800px] mx-auto px-6 h-16 flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <a href="index.html" class="font-tech font-black text-2xl tracking-tighter hover:text-svb-cobalt transition">SVB.</a>
-                <span class="text-[10px] font-tech uppercase bg-svb-cobalt text-white px-2 py-0.5 rounded-sm tracking-widest">Homme</span>
-            </div>
-            
-            <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest font-tech text-gray-500">
-                <a href="#" class="text-black hover:text-svb-cobalt">Drop 01</a>
-                <a href="#" class="hover:text-black transition">T-Shirts</a>
-                <a href="#" class="hover:text-black transition">Pantalons</a>
-                <a href="#" class="hover:text-black transition">Outerwear</a>
-            </div>
+<body class="text-svb-black antialiased bg-grid">
 
-            <div class="flex items-center gap-5">
-                <button><i data-lucide="search" class="w-5 h-5"></i></button>
-                <button class="relative">
-                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-                    <span class="absolute -top-1 -right-1 w-2 h-2 bg-black rounded-full"></span>
-                </button>
-            </div>
+  <!-- NAV -->
+  <nav class="fixed top-0 w-full z-40 bg-white/35 backdrop-blur-md border-b border-black/5">
+    <div class="max-w-[1800px] mx-auto px-6 h-16 flex justify-between items-center">
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="font-tech font-black text-2xl tracking-tighter hover:text-svb-teal transition">
+          SVB.
+        </a>
+        <span class="text-[10px] font-tech uppercase bg-svb-teal text-white px-2 py-0.5 rounded-sm tracking-widest">
+          Homme
+        </span>
+        <span class="hidden sm:inline text-[10px] font-mono uppercase tracking-widest text-black/40">
+          Collection Atelier
+        </span>
+      </div>
+
+      <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest font-tech text-black/50">
+        <a href="#drop" class="text-black hover:text-svb-teal transition">Drop 01</a>
+        <a href="#catalog" class="hover:text-black transition">T-Shirts</a>
+        <a href="#catalog" class="hover:text-black transition">Pantalons</a>
+        <a href="#catalog" class="hover:text-black transition">Outerwear</a>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <div class="hidden sm:flex items-center gap-2 bg-white/70 border border-black/10 px-3 py-1.5">
+          <i data-lucide="search" class="w-4 h-4 text-black/40"></i>
+          <input id="search" type="text" placeholder="Rechercher…" class="bg-transparent text-xs outline-none w-44 placeholder:text-black/30">
         </div>
-    </nav>
 
-    <header class="pt-16">
-        <div class="bg-svb-black text-white py-20 px-6 clip-tech">
-            <div class="max-w-[1800px] mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-                <div class="max-w-2xl">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-2 h-2 bg-svb-cobalt animate-pulse"></div>
-                        <span class="font-mono text-xs text-gray-400 uppercase tracking-widest">Systeme V.02 // Homme</span>
-                    </div>
-                    <h1 class="font-tech font-black text-6xl md:text-8xl leading-[0.9] uppercase">
-                        Structure<br>
-                        <span class="text-transparent stroke-white" style="-webkit-text-stroke: 1px white;">& Matière</span>
-                    </h1>
-                    <p class="mt-6 text-gray-400 max-w-lg font-mono text-sm border-l-2 border-svb-cobalt pl-4">
-                        Tissus japonais haute densité. Coupes architecturales. 
-                        Conçu pour la performance urbaine et l'entraînement intensif.
-                    </p>
-                    <div class="mt-8 flex gap-4">
-                        <button class="bg-white text-black px-8 py-3 font-tech font-bold uppercase hover:bg-svb-cobalt hover:text-white transition">
-                            Explorer le Drop
-                        </button>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/3 aspect-video md:aspect-square bg-gray-800 relative overflow-hidden grayscale hover:grayscale-0 transition duration-700 border border-white/10">
-                    <img src="https://images.unsplash.com/photo-1517466787929-bc90951d6dbd?w=800&q=80" class="object-cover w-full h-full opacity-80">
-                    <div class="absolute bottom-4 right-4 font-tech text-4xl font-bold text-white/20">SVB</div>
-                </div>
+        <button id="openCart" class="relative hover:text-svb-teal transition" aria-label="Ouvrir le panier">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span id="cartPill" class="absolute -top-2 -right-2 bg-svb-cobalt text-white text-[9px] min-w-4 h-4 px-1 rounded-full flex items-center justify-center opacity-0 transition-opacity">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="pt-16">
+    <div class="relative noise clip-tech border-b border-black/10">
+      <div class="bg-svb-black text-white py-20 px-6">
+        <div class="max-w-[1800px] mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+          <div class="max-w-2xl">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-2 h-2 bg-svb-teal animate-pulse"></div>
+              <span class="font-mono text-xs text-white/50 uppercase tracking-widest">SYSTÈME V.02 // HOMME</span>
             </div>
-        </div>
-    </header>
 
-    <div class="max-w-[1800px] mx-auto px-6 py-10 border-b border-black/5 flex flex-wrap gap-4 items-center justify-between">
-        <span class="font-mono text-xs text-gray-400">INDEX PRODUITS [12]</span>
-        <div class="flex gap-2">
-            <button onclick="filter('all')" class="bg-black text-white px-4 py-1 text-[10px] font-mono uppercase hover:bg-svb-cobalt transition">Tout</button>
-            <button onclick="filter('Heavy')" class="bg-white border border-gray-300 px-4 py-1 text-[10px] font-mono uppercase hover:border-black transition">Heavyweight</button>
-            <button onclick="filter('Tech')" class="bg-white border border-gray-300 px-4 py-1 text-[10px] font-mono uppercase hover:border-black transition">Tech-Wear</button>
-            <button onclick="filter('Run')" class="bg-white border border-gray-300 px-4 py-1 text-[10px] font-mono uppercase hover:border-black transition">Running</button>
+            <h1 class="font-tech font-black text-6xl md:text-8xl leading-[0.9] uppercase">
+              Structure<br>
+              <span class="text-transparent" style="-webkit-text-stroke: 1px rgba(255,255,255,0.85);">
+                & Matière
+              </span>
+            </h1>
+
+            <p class="mt-6 text-white/60 max-w-lg font-mono text-sm border-l-2 border-svb-teal pl-4">
+              Tissus haute densité. Coupes architecturales.
+              Conçu pour la performance urbaine et l'entraînement intensif.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <button onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})"
+                class="bg-white text-black px-8 py-3 font-tech font-bold uppercase tracking-widest hover:bg-svb-teal hover:text-white transition">
+                Explorer le Drop
+              </button>
+              <div class="flex items-center gap-2 px-4 py-3 border border-white/15 text-[10px] font-mono uppercase tracking-widest text-white/60">
+                <span class="w-2 h-2 bg-svb-cobalt"></span>
+                Livraison & retours offerts
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full md:w-1/3 aspect-video md:aspect-square bg-white/5 relative overflow-hidden grayscale hover:grayscale-0 transition duration-700 border border-white/10">
+            <img src="https://images.unsplash.com/photo-1517466787929-bc90951d6dbd?w=1200&q=80&auto=format&fit=crop"
+                 class="object-cover w-full h-full opacity-85" loading="lazy" decoding="async" alt="SVB Homme" />
+            <div class="absolute bottom-4 right-4 font-tech text-4xl font-bold text-white/15">SVB</div>
+            <div class="absolute top-4 left-4 text-[10px] font-mono uppercase tracking-widest text-white/50 bg-black/30 px-2 py-1 border border-white/10">
+              DROP 01 · ATELIER
+            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Bande SVB douce (mint/cream) -->
+      <div class="bg-gradient-to-r from-svb-mint via-svb-cream to-svb-sand border-t border-white/10">
+        <div class="max-w-[1800px] mx-auto px-6 py-3 flex flex-wrap gap-6 items-center text-[10px] font-mono uppercase tracking-widest text-black/55">
+          <span class="flex items-center gap-2"><span class="w-2 h-2 bg-svb-teal"></span> Coupe architecturale</span>
+          <span class="flex items-center gap-2"><span class="w-2 h-2 bg-svb-cobalt"></span> Performance couture</span>
+          <span class="flex items-center gap-2"><span class="w-2 h-2 bg-black"></span> Matériaux premium</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- TOOLBAR -->
+  <section id="drop" class="max-w-[1800px] mx-auto px-6 pt-10">
+    <div class="bg-white/60 backdrop-blur border border-black/10 shadow-soft">
+      <div class="px-6 py-5 flex flex-wrap gap-4 items-center justify-between border-b border-black/5">
+        <div class="flex items-center gap-4">
+          <span class="font-mono text-xs text-black/40">INDEX PRODUITS</span>
+          <span id="count" class="text-[10px] font-mono uppercase tracking-widest text-black/50 bg-white/80 border border-black/10 px-2 py-1">
+            [--]
+          </span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <div class="sm:hidden flex items-center gap-2 bg-white/80 border border-black/10 px-3 py-2">
+            <i data-lucide="search" class="w-4 h-4 text-black/40"></i>
+            <input id="searchMobile" type="text" placeholder="Rechercher…" class="bg-transparent text-xs outline-none w-40 placeholder:text-black/30">
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <button data-filter="all" class="fbtn bg-black text-white px-4 py-2 text-[10px] font-mono uppercase hover:bg-svb-teal transition border border-black">
+              Tout
+            </button>
+            <button data-filter="Heavy" class="fbtn bg-white/80 border border-black/10 px-4 py-2 text-[10px] font-mono uppercase hover:border-black transition">
+              Heavyweight
+            </button>
+            <button data-filter="Tech" class="fbtn bg-white/80 border border-black/10 px-4 py-2 text-[10px] font-mono uppercase hover:border-black transition">
+              Tech-Wear
+            </button>
+            <button data-filter="Run" class="fbtn bg-white/80 border border-black/10 px-4 py-2 text-[10px] font-mono uppercase hover:border-black transition">
+              Running
+            </button>
+            <button data-filter="Accessoire" class="fbtn bg-white/80 border border-black/10 px-4 py-2 text-[10px] font-mono uppercase hover:border-black transition">
+              Accessoires
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-6 py-4 flex flex-wrap items-center gap-3 text-[10px] font-mono uppercase tracking-widest text-black/45">
+        <span class="inline-flex items-center gap-2"><span class="w-2 h-2 bg-svb-teal"></span> Palette SVB</span>
+        <span class="inline-flex items-center gap-2"><span class="w-2 h-2 bg-svb-sand"></span> Sable</span>
+        <span class="inline-flex items-center gap-2"><span class="w-2 h-2 bg-svb-mint"></span> Mint</span>
+        <span class="inline-flex items-center gap-2"><span class="w-2 h-2 bg-svb-cobalt"></span> Cobalt signature</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRID -->
+  <main id="catalog" class="max-w-[1800px] mx-auto px-6 py-10 pb-32">
+    <div id="grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white/60 backdrop-blur border-t border-black/10 py-12">
+    <div class="max-w-[1800px] mx-auto px-6 text-center md:text-left">
+      <h2 class="font-tech text-7xl md:text-9xl text-black/5 font-black tracking-tighter select-none">SVB ATELIER</h2>
+      <div class="flex flex-col md:flex-row justify-between items-center md:items-end mt-[-1.5rem] relative z-10 gap-4">
+        <p class="text-xs font-mono text-black/50">INGÉNIERIE PARIS ©2026</p>
+        <div class="flex gap-6 text-xs font-bold uppercase tracking-widest">
+          <a href="#" class="hover:text-svb-teal transition">Légal</a>
+          <a href="#" class="hover:text-svb-teal transition">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CART DRAWER -->
+  <div id="cartOverlay" class="fixed inset-0 bg-black/45 backdrop-blur-sm z-[60] hidden opacity-0 transition-opacity"></div>
+  <aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-[#F7F3EA] z-[70] translate-x-full transition-transform duration-500 shadow-soft border-l border-black/10 flex flex-col">
+    <div class="p-6 bg-white/80 backdrop-blur border-b border-black/10 flex items-center justify-between">
+      <div>
+        <p class="text-[10px] font-mono uppercase tracking-widest text-black/50">Panier</p>
+        <h3 class="font-serif text-2xl">SVB Homme</h3>
+      </div>
+      <button id="closeCart" class="p-2 hover:rotate-180 transition" aria-label="Fermer">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
     </div>
 
-    <main class="max-w-[1800px] mx-auto px-6 py-12 pb-32">
-        <div id="grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div id="cartItems" class="p-6 flex-1 overflow-y-auto space-y-4"></div>
+
+    <div class="p-6 bg-white/80 backdrop-blur border-t border-black/10">
+      <div class="flex justify-between items-center text-sm mb-4">
+        <span class="text-black/50">Sous-total</span>
+        <span id="cartTotal" class="font-bold">0.00 €</span>
+      </div>
+      <button class="w-full bg-svb-teal text-white py-4 text-xs font-bold uppercase tracking-widest hover:bg-svb-cobalt transition font-tech">
+        Paiement sécurisé
+      </button>
+    </div>
+  </aside>
+
+  <script>
+    const products = [
+      { id: "M-001", name: "T-Shirt Heavyweight Boxy", category: "Heavy", price: 55, specs: "400 GSM · COTON BIO", image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=1200&q=80&auto=format&fit=crop", color: "NOIR CARBONE" },
+      { id: "M-002", name: "Pantalon Cargo Tech", category: "Tech", price: 120, specs: "NYLON RIPSTOP · DÉPERLANT", image: "https://images.unsplash.com/photo-1556906781-9a412961d28c?w=1200&q=80&auto=format&fit=crop", color: "GRIS BÉTON" },
+      { id: "M-003", name: "Veste Track Retro", category: "Tech", price: 140, specs: "ARCHIVE FIT · DOUBLURE MESH", image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=1200&q=80&auto=format&fit=crop", color: "BLEU COBALT" },
+      { id: "M-004", name: "Short de Compression", category: "Run", price: 60, specs: "STRETCH 4-WAY · POCHE CLÉ", image: "https://images.unsplash.com/photo-1517466787929-bc90951d6dbd?w=1200&q=80&auto=format&fit=crop", color: "NOIR" },
+      { id: "M-005", name: "Hoodie 'Atelier' Zip", category: "Heavy", price: 110, specs: "600 GSM · DOUBLE ZIP", image: "https://images.unsplash.com/photo-1556906781-9a412961d28c?w=1200&q=80&auto=format&fit=crop", color: "BLANC CASSÉ" },
+      { id: "M-006", name: "Casquette Dad Hat", category: "Accessoire", price: 35, specs: "BRODERIE SVB · LAVÉ", image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=1200&q=80&auto=format&fit=crop", color: "BLEU MARINE" }
+    ];
+
+    const state = {
+      filter: "all",
+      query: "",
+      cart: [] // {id, qty}
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    function filteredProducts() {
+      const q = (state.query || "").trim().toLowerCase();
+      return products.filter(p => {
+        const okFilter = state.filter === "all" ? true : p.category === state.filter;
+        const okQuery = !q ? true : (p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || p.specs.toLowerCase().includes(q));
+        return okFilter && okQuery;
+      });
+    }
+
+    function render(items) {
+      $("count").textContent = `[${items.length}]`;
+
+      $("grid").innerHTML = items.map(p => `
+        <article class="group bg-white/65 backdrop-blur border border-black/10 hover:border-black/30 transition duration-300 p-2 shadow-soft">
+          <div class="relative overflow-hidden aspect-[4/5] bg-black/5 mb-3">
+            <img src="${p.image}"
+                 class="w-full h-full object-cover filter grayscale contrast-110 group-hover:grayscale-0 transition duration-500"
+                 loading="lazy" decoding="async" alt="${p.name}">
+            <div class="absolute top-2 right-2 bg-black text-white text-[8px] font-mono px-2 py-1 border border-white/10">
+              ${p.id}
             </div>
-    </main>
 
-    <footer class="bg-white border-t border-gray-200 py-12">
-        <div class="max-w-[1800px] mx-auto px-6 text-center md:text-left">
-            <h2 class="font-tech text-9xl text-gray-100 font-black tracking-tighter select-none">SVB ATELIER</h2>
-            <div class="flex justify-between items-end mt-[-2rem] relative z-10">
-                <p class="text-xs font-mono text-gray-500">INGÉNIERIE PARIS ©2026</p>
-                <div class="flex gap-4 text-xs font-bold uppercase">
-                    <a href="#">Légal</a>
-                    <a href="#">Contact</a>
-                </div>
+            <div class="absolute left-2 top-2 flex flex-col gap-2">
+              <span class="bg-svb-teal text-white text-[8px] font-mono uppercase tracking-widest px-2 py-1 border border-white/10">
+                ${p.category}
+              </span>
             </div>
-        </div>
-    </footer>
 
-    <script>
-        const products = [
-            {
-                id: "M-001",
-                name: "T-Shirt Heavyweight Boxy",
-                category: "Heavy",
-                price: 55,
-                specs: "400 GSM · COTON BIO",
-                image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80",
-                color: "NOIR CARBONE"
-            },
-            {
-                id: "M-002",
-                name: "Pantalon Cargo Tech",
-                category: "Tech",
-                price: 120,
-                specs: "NYLON RIPSTOP · DÉPERLANT",
-                image: "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=800&q=80", // Image sport homme sombre
-                color: "GRIS BÉTON"
-            },
-            {
-                id: "M-003",
-                name: "Veste Track Retro",
-                category: "Tech",
-                price: 140,
-                specs: "ARCHIVE FIT · DOUBLURE MESH",
-                image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80",
-                color: "BLEU COBALT"
-            },
-            {
-                id: "M-004",
-                name: "Short de Compression",
-                category: "Run",
-                price: 60,
-                specs: "STRETCH 4-WAY · POCHE CLÉ",
-                image: "https://images.unsplash.com/photo-1517466787929-bc90951d6dbd?w=800&q=80",
-                color: "NOIR"
-            },
-            {
-                id: "M-005",
-                name: "Hoodie 'Atelier' Zip",
-                category: "Heavy",
-                price: 110,
-                specs: "600 GSM · DOUBLE ZIP",
-                image: "https://images.unsplash.com/photo-1556906781-9a412961d28c?w=800&q=80",
-                color: "BLANC CASSÉ"
-            },
-            {
-                id: "M-006",
-                name: "Casquette Dad Hat",
-                category: "Accessoire",
-                price: 35,
-                specs: "BRODERIE SVB · LAVÉ",
-                image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80",
-                color: "BLEU MARINE"
-            }
-        ];
+            <div class="absolute inset-x-0 bottom-0 p-3 translate-y-full group-hover:translate-y-0 transition duration-500 ease-out flex gap-2">
+              <button data-add="${p.id}" class="flex-1 bg-white/85 backdrop-blur text-black text-[10px] font-bold uppercase tracking-widest py-3 hover:bg-svb-teal hover:text-white transition font-tech border border-black/10">
+                Ajouter
+              </button>
+              <button data-add="${p.id}" class="px-4 bg-white/85 backdrop-blur text-black hover:bg-svb-cobalt hover:text-white transition border border-black/10" aria-label="Ajouter au panier">
+                <i data-lucide="plus" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
 
-        function render(items) {
-            const grid = document.getElementById('grid');
-            grid.innerHTML = items.map(p => `
-                <div class="group bg-white border border-gray-200 p-2 hover:border-black transition duration-300">
-                    <div class="relative overflow-hidden aspect-[4/5] bg-gray-100 mb-3">
-                        <img src="${p.image}" class="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 transition duration-500">
-                        <div class="absolute top-2 right-2 bg-black text-white text-[8px] font-mono px-1 py-0.5">
-                            ${p.id}
-                        </div>
-                    </div>
-                    
-                    <div class="border-b border-dashed border-gray-300 pb-2 mb-2">
-                        <p class="font-mono text-[9px] text-svb-cobalt uppercase tracking-tight">${p.specs}</p>
-                    </div>
+          <div class="border-b border-dashed border-black/15 pb-2 mb-2">
+            <p class="font-mono text-[9px] text-svb-cobalt uppercase tracking-tight">${p.specs}</p>
+          </div>
 
-                    <div class="flex justify-between items-end">
-                        <div>
-                            <h3 class="font-tech font-bold text-lg uppercase leading-none">${p.name}</h3>
-                            <p class="text-[10px] text-gray-500 mt-1 uppercase">${p.color}</p>
-                        </div>
-                        <span class="font-mono font-bold text-sm">${p.price}€</span>
-                    </div>
+          <div class="flex justify-between items-end">
+            <div class="min-w-0 pr-3">
+              <h3 class="font-tech font-black text-lg uppercase leading-none truncate">${p.name}</h3>
+              <p class="text-[10px] text-black/45 mt-1 uppercase tracking-widest">${p.color}</p>
+            </div>
+            <span class="font-mono font-bold text-sm">${p.price}€</span>
+          </div>
+        </article>
+      `).join("");
 
-                    <button class="w-full mt-3 bg-black text-white text-[10px] font-bold uppercase py-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        Ajouter au panier
-                    </button>
-                </div>
-            `).join('');
-            lucide.createIcons();
-        }
+      lucide.createIcons();
 
-        function filter(cat) {
-            if(cat === 'all') render(products);
-            else render(products.filter(p => p.category === cat));
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            render(products);
-            lucide.createIcons();
+      document.querySelectorAll("[data-add]").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault(); e.stopPropagation();
+          addToCart(btn.dataset.add);
         });
-    </script>
+      });
+    }
+
+    function setActiveFilterButton() {
+      document.querySelectorAll(".fbtn").forEach(b => {
+        const isActive = b.dataset.filter === state.filter;
+        b.classList.toggle("bg-black", isActive);
+        b.classList.toggle("text-white", isActive);
+        b.classList.toggle("border-black", isActive);
+        b.classList.toggle("bg-white/80", !isActive);
+      });
+    }
+
+    // CART
+    function addToCart(id) {
+      const found = state.cart.find(x => x.id === id);
+      if (found) found.qty += 1;
+      else state.cart.push({ id, qty: 1 });
+      updateCartPill();
+      renderCart();
+      openCart(true);
+    }
+
+    function removeFromCart(id) {
+      state.cart = state.cart.filter(x => x.id !== id);
+      updateCartPill();
+      renderCart();
+    }
+
+    function decQty(id) {
+      const item = state.cart.find(x => x.id === id);
+      if (!item) return;
+      item.qty -= 1;
+      if (item.qty <= 0) removeFromCart(id);
+      updateCartPill();
+      renderCart();
+    }
+
+    function incQty(id) {
+      const item = state.cart.find(x => x.id === id);
+      if (!item) return;
+      item.qty += 1;
+      updateCartPill();
+      renderCart();
+    }
+
+    function updateCartPill() {
+      const count = state.cart.reduce((s, x) => s + x.qty, 0);
+      const pill = $("cartPill");
+      pill.textContent = count;
+      pill.style.opacity = count > 0 ? "1" : "0";
+    }
+
+    function renderCart() {
+      const items = state.cart.map(ci => {
+        const p = products.find(x => x.id === ci.id);
+        return { ...p, qty: ci.qty };
+      });
+
+      if (!items.length) {
+        $("cartItems").innerHTML = `
+          <div class="text-black/50 text-sm">
+            Votre panier est vide.
+            <div class="mt-4 text-[10px] font-mono uppercase tracking-widest text-black/40">
+              Ajoutez une pièce du drop.
+            </div>
+          </div>
+        `;
+        $("cartTotal").textContent = "0.00 €";
+        return;
+      }
+
+      $("cartItems").innerHTML = items.map(p => `
+        <div class="bg-white/70 border border-black/10 p-3 flex gap-3">
+          <div class="w-16 h-20 bg-black/5 overflow-hidden shrink-0">
+            <img src="${p.image}" class="w-full h-full object-cover" loading="lazy" decoding="async" alt="${p.name}">
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex justify-between gap-3">
+              <div class="min-w-0">
+                <p class="font-serif text-sm truncate">${p.name}</p>
+                <p class="text-[10px] font-mono uppercase tracking-widest text-black/45 mt-1">${p.specs}</p>
+              </div>
+              <p class="font-mono font-bold text-sm">${(p.price * p.qty).toFixed(2)}€</p>
+            </div>
+
+            <div class="mt-3 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <button data-dec="${p.id}" class="w-8 h-8 border border-black/10 hover:border-black/40 transition">–</button>
+                <span class="text-xs font-mono w-6 text-center">${p.qty}</span>
+                <button data-inc="${p.id}" class="w-8 h-8 border border-black/10 hover:border-black/40 transition">+</button>
+              </div>
+              <button data-remove="${p.id}" class="text-[10px] font-mono uppercase tracking-widest text-black/40 underline hover:text-red-600 transition">
+                Retirer
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+
+      document.querySelectorAll("[data-dec]").forEach(b => b.addEventListener("click", () => decQty(b.dataset.dec)));
+      document.querySelectorAll("[data-inc]").forEach(b => b.addEventListener("click", () => incQty(b.dataset.inc)));
+      document.querySelectorAll("[data-remove]").forEach(b => b.addEventListener("click", () => removeFromCart(b.dataset.remove)));
+
+      const total = items.reduce((s, p) => s + p.price * p.qty, 0);
+      $("cartTotal").textContent = total.toFixed(2) + " €";
+    }
+
+    function openCart(forceOpen) {
+      const overlay = $("cartOverlay");
+      const drawer = $("cartDrawer");
+      const isOpen = !drawer.classList.contains("translate-x-full");
+      const nextOpen = typeof forceOpen === "boolean" ? forceOpen : !isOpen;
+
+      if (nextOpen) {
+        overlay.classList.remove("hidden");
+        requestAnimationFrame(() => overlay.classList.remove("opacity-0"));
+        drawer.classList.remove("translate-x-full");
+        document.body.style.overflow = "hidden";
+      } else {
+        drawer.classList.add("translate-x-full");
+        overlay.classList.add("opacity-0");
+        setTimeout(() => overlay.classList.add("hidden"), 300);
+        document.body.style.overflow = "";
+      }
+    }
+
+    // EVENTS
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+
+      // filters
+      document.querySelectorAll(".fbtn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          state.filter = btn.dataset.filter;
+          setActiveFilterButton();
+          render(filteredProducts());
+        });
+      });
+      setActiveFilterButton();
+
+      // search
+      const hookSearch = (val) => {
+        state.query = val || "";
+        render(filteredProducts());
+      };
+      $("search").addEventListener("input", (e) => hookSearch(e.target.value));
+      $("searchMobile").addEventListener("input", (e) => hookSearch(e.target.value));
+
+      // cart
+      $("openCart").addEventListener("click", () => openCart());
+      $("closeCart").addEventListener("click", () => openCart(false));
+      $("cartOverlay").addEventListener("click", () => openCart(false));
+      window.addEventListener("keydown", (e) => { if (e.key === "Escape") openCart(false); });
+
+      // first render
+      updateCartPill();
+      render(filteredProducts());
+      renderCart();
+    });
+  </script>
 </body>
 </html>
