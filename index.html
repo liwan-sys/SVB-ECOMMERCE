@@ -6,13 +6,11 @@
 
   <title>SVB | L'Excellence en Mouvement</title>
   <meta name="description" content="SVB Atelier — Performance couture. Une esthétique pure. Conçu pour ceux qui exigent l'excellence." />
-
   <meta name="theme-color" content="#0033CC" />
 
   <!-- Preconnect fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -31,7 +29,8 @@
             "svb-light":  "#F9F8F6",
             "svb-accent": "#CFB096", // Or sablé
             "svb-cobalt": "#0033CC", // Bleu signature
-            "svb-green":  "#1B2E24"
+            "svb-green":  "#1B2E24",
+            "svb-teal":   "#2D7972"  // (manquait) vert DA SVB
           },
           fontFamily: {
             sans: ["Inter", "sans-serif"],
@@ -73,6 +72,10 @@
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #0033CC; border-radius: 10px; }
+
+    /* Hide scrollbar utility used in catalog filters */
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
@@ -123,8 +126,8 @@
   </div>
 
   <!-- MENU OVERLAY + DRAWER -->
-  <div id="menu-overlay" class="fixed inset-0 bg-black/55 backdrop-blur-sm z-[70] overlay transition-opacity duration-500"></div>
-  <aside id="menu-drawer" class="fixed top-0 left-0 h-full w-[92%] sm:w-[420px] bg-white z-[80] menu-drawer transition-transform duration-500 shadow-2xl">
+  <div id="menu-overlay" class="fixed inset-0 bg-black/55 backdrop-blur-sm z-[70] overlay transition-opacity duration-500" aria-hidden="true"></div>
+  <aside id="menu-drawer" class="fixed top-0 left-0 h-full w-[92%] sm:w-[420px] bg-white z-[80] menu-drawer transition-transform duration-500 shadow-2xl" aria-label="Menu">
     <div class="p-8 border-b border-gray-200 flex items-center justify-between">
       <div class="flex items-baseline gap-3">
         <div class="font-tech font-black text-2xl tracking-tighter">SVB.</div>
@@ -152,9 +155,9 @@
   </aside>
 
   <!-- NAV -->
-  <nav class="fixed top-0 w-full z-40 bg-white/60 backdrop-blur-md border-b border-black/5 transition-all duration-300">
+  <nav id="navbar" class="fixed top-0 w-full z-40 bg-white/60 backdrop-blur-md border-b border-black/5 transition-all duration-300">
     <div class="max-w-[1800px] mx-auto px-6 h-16 flex justify-between items-center">
-      
+
       <div class="flex items-center gap-4">
         <a href="index.html" class="font-tech font-black text-2xl tracking-tighter hover:text-svb-teal transition">
           SVB.
@@ -166,7 +169,7 @@
           Accueil
           <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-black transition-all group-hover:w-full"></span>
         </a>
-        
+
         <a href="femme.html" class="text-svb-teal font-black relative">
           Femme
           <span class="absolute -bottom-1 left-0 w-full h-[2px] bg-svb-teal"></span>
@@ -178,20 +181,26 @@
         </a>
       </div>
 
-      <div class="flex items-center gap-6">
-        
+      <div class="flex items-center gap-4">
+
+        <!-- inline search (small) -->
         <div class="hidden sm:flex items-center gap-2 bg-white/50 border border-black/10 px-3 py-1.5 rounded-sm focus-within:border-black/30 transition">
           <i data-lucide="search" class="w-3.5 h-3.5 text-black/40"></i>
-          <input id="search" type="text" placeholder="RECHERCHER..." class="bg-transparent text-[10px] font-mono uppercase outline-none w-32 placeholder:text-black/30">
+          <input id="nav-search" type="text" placeholder="RECHERCHER..." class="bg-transparent text-[10px] font-mono uppercase outline-none w-32 placeholder:text-black/30">
         </div>
 
-        <button id="openCart" class="relative hover:text-svb-teal transition group" aria-label="Ouvrir le panier">
-          <i data-lucide="shopping-bag" class="w-5 h-5 group-hover:scale-105 transition"></i>
-          <span id="cartPill" class="absolute -top-1.5 -right-1.5 bg-svb-cobalt text-white text-[9px] min-w-[16px] h-[16px] rounded-full flex items-center justify-center opacity-0 transition-opacity font-mono">0</span>
+        <!-- open full search modal -->
+        <button id="search-open" class="hover:text-svb-teal transition group hidden sm:inline-flex" aria-label="Ouvrir la recherche">
+          <i data-lucide="command" class="w-5 h-5 group-hover:scale-105 transition"></i>
         </button>
-        
-        <button class="md:hidden">
-            <i data-lucide="menu" class="w-6 h-6 text-black/80"></i>
+
+        <button id="cart-open" class="relative hover:text-svb-teal transition group" aria-label="Ouvrir le panier">
+          <i data-lucide="shopping-bag" class="w-5 h-5 group-hover:scale-105 transition"></i>
+          <span id="cart-pill" class="absolute -top-1.5 -right-1.5 bg-svb-cobalt text-white text-[9px] min-w-[16px] h-[16px] rounded-full flex items-center justify-center opacity-0 transition-opacity font-mono">0</span>
+        </button>
+
+        <button id="menu-open" class="md:hidden" aria-label="Ouvrir le menu">
+          <i data-lucide="menu" class="w-6 h-6 text-black/80"></i>
         </button>
       </div>
     </div>
@@ -236,7 +245,7 @@
     </div>
   </header>
 
-  <!-- MARQUEE (fluide / seamless) -->
+  <!-- MARQUEE -->
   <div class="bg-svb-cobalt text-white py-4 overflow-hidden whitespace-nowrap border-y border-white/10">
     <div class="flex w-[200%] animate-marquee">
       <div class="w-1/2 flex items-center">
@@ -294,13 +303,11 @@
       </div>
 
       <div class="w-full md:w-auto mt-4 md:mt-0 flex items-center gap-4">
-        <!-- Inline search (quick) -->
         <div class="hidden md:flex items-center gap-2 border border-gray-200 bg-white px-4 py-2">
           <i data-lucide="search" class="w-4 h-4 text-gray-400"></i>
           <input id="inline-search" type="text" placeholder="Rechercher…" class="text-xs outline-none w-56 placeholder:text-gray-300" />
         </div>
 
-        <!-- Filters -->
         <div id="filters-container" class="flex gap-3 overflow-x-auto scrollbar-hide w-full md:w-auto pb-2 md:pb-0"></div>
       </div>
     </div>
@@ -520,12 +527,13 @@
 
     // --- Utils ---
     const $ = (id) => document.getElementById(id);
+    const exists = (id) => !!document.getElementById(id);
 
     function lockBody(lock) {
       document.body.classList.toggle("no-scroll", !!lock);
     }
 
-    function debounce(fn, wait=120) {
+    function debounce(fn, wait = 120) {
       let t;
       return (...args) => {
         clearTimeout(t);
@@ -558,8 +566,8 @@
         this.cartPill = $("cart-pill");
         this.cartItems = $("cart-items");
         this.cartTotal = $("cart-total");
-        this.navbar = $("navbar");
         this.itemsCount = $("items-count");
+        this.navbar = $("navbar");
 
         this.cartDrawer = $("cart-drawer");
         this.cartOverlay = $("cart-overlay");
@@ -567,6 +575,7 @@
         this.searchModal = $("search-modal");
         this.searchInput = $("search-input");
         this.inlineSearch = $("inline-search");
+        this.navSearch = $("nav-search");
 
         this.menuDrawer = $("menu-drawer");
         this.menuOverlay = $("menu-overlay");
@@ -595,10 +604,11 @@
           });
         });
 
-        // Inline search
+        // Inline + modal + nav search
         const onSearch = debounce((val) => this.setSearch(val), 120);
         this.searchInput.addEventListener("input", (e) => onSearch(e.target.value));
         if (this.inlineSearch) this.inlineSearch.addEventListener("input", (e) => onSearch(e.target.value));
+        if (this.navSearch) this.navSearch.addEventListener("input", (e) => onSearch(e.target.value));
 
         // Hero explore
         $("hero-explore").addEventListener("click", () => $("split-collections").scrollIntoView({ behavior: "smooth" }));
@@ -615,23 +625,29 @@
             this.toggleMenu(false);
             this.closeQuickView();
           }
+          // "/" ouvre la recherche (comme une commande)
+          if (e.key === "/" && !/input|textarea/i.test(document.activeElement?.tagName || "")) {
+            e.preventDefault();
+            this.toggleSearch(true);
+          }
         });
       },
 
       setupUX() {
-        // Navbar state on scroll
+        // Navbar state on scroll (safe)
         window.addEventListener("scroll", () => {
+          if (!this.navbar) return;
           if (window.scrollY > 50) {
-            this.navbar.classList.add("bg-white/90","backdrop-blur-md","shadow-sm","py-4");
-            this.navbar.classList.remove("py-6");
+            this.navbar.classList.add("bg-white/90","shadow-sm");
           } else {
-            this.navbar.classList.remove("bg-white/90","backdrop-blur-md","shadow-sm","py-4");
-            this.navbar.classList.add("py-6");
+            this.navbar.classList.remove("bg-white/90","shadow-sm");
           }
         });
       },
 
       initAnimations() {
+        if (typeof gsap === "undefined") return;
+
         gsap.registerPlugin(ScrollTrigger);
 
         // Loader timeline
@@ -681,13 +697,12 @@
 
       setSearch(val) {
         this.state.search = val || "";
-        const products = this.getFiltered();
-        this.renderProducts(products);
+        this.renderProducts(this.getFiltered());
       },
 
       renderFilters() {
         const categories = ["All", ...new Set(DB.map(p => p.category))];
-        const container = document.getElementById("filters-container");
+        const container = $("filters-container");
 
         container.innerHTML = categories.map(cat => {
           const active = this.state.filter === cat;
@@ -704,8 +719,7 @@
           btn.addEventListener("click", () => {
             this.state.filter = btn.dataset.filter;
             this.renderFilters();
-            const products = this.getFiltered();
-            this.renderProducts(products);
+            this.renderProducts(this.getFiltered());
           });
         });
       },
@@ -774,8 +788,7 @@
 
         lucide.createIcons();
 
-        // Re-register batches (new nodes)
-        ScrollTrigger.refresh();
+        if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
       },
 
       // Cart (with qty)
@@ -869,6 +882,10 @@
       },
 
       toggleCart(open) {
+        // Ferme les autres couches
+        this.toggleSearch(false);
+        this.toggleMenu(false);
+
         const drawer = this.cartDrawer;
         const overlay = this.cartOverlay;
 
@@ -892,6 +909,9 @@
       },
 
       toggleSearch(open) {
+        // Ferme les autres couches
+        if (open) { this.toggleCart(false); this.toggleMenu(false); }
+
         const modal = this.searchModal;
         const input = this.searchInput;
         const isHidden = modal.classList.contains("hidden");
@@ -914,16 +934,21 @@
       },
 
       toggleMenu(open) {
+        // Ferme les autres couches
+        if (open) { this.toggleCart(false); this.toggleSearch(false); }
+
         const isOpen = this.menuDrawer.classList.contains("open");
         const nextOpen = typeof open === "boolean" ? open : !isOpen;
 
         if (nextOpen) {
           this.menuDrawer.classList.add("open");
           this.menuOverlay.classList.add("open");
+          this.menuOverlay.setAttribute("aria-hidden", "false");
           lockBody(true);
         } else {
           this.menuDrawer.classList.remove("open");
           this.menuOverlay.classList.remove("open");
+          this.menuOverlay.setAttribute("aria-hidden", "true");
           lockBody(false);
         }
       },
@@ -963,13 +988,7 @@
 
     window.addEventListener("DOMContentLoaded", () => {
       app.init();
-
-      // Global icons
       lucide.createIcons();
-
-      // Close cart/search from nav buttons
-      $("cart-open").addEventListener("click", () => app.toggleCart(true));
-      $("search-open").addEventListener("click", () => app.toggleSearch(true));
     });
   </script>
 </body>
