@@ -7,14 +7,12 @@
     <meta name="description" content="SVB Atelier - Performance Couture.">
 
     <script src="https://cdn.tailwindcss.com"></script>
-
     <script src="https://unpkg.com/lucide@latest"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -24,12 +22,13 @@
                         'svb-dark': '#050505',
                         'svb-light': '#F9F8F6',
                         'svb-accent': '#Cfb096', // Or sablé
+                        'svb-cobalt': '#0033CC', // BLEU SIGNATURE
                         'svb-green': '#1B2E24'
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         serif: ['Playfair Display', 'serif'],
-                        display: ['Cinzel', 'serif']
+                        tech: ['Archivo', 'sans-serif'] // Police "Brutaliste"
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
@@ -47,46 +46,35 @@
     </script>
 
     <style>
-        /* CSS AVANCÉ POUR FINITIONS LUXE */
+        /* CSS PREMIUM */
         body { background-color: #F9F8F6; overflow-x: hidden; }
         
-        /* Custom Scrollbar */
+        /* Scrollbar Custom */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #1B2E24; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #0033CC; border-radius: 10px; }
 
-        /* Loader */
+        /* Loader Cinématique */
         .loader-overlay {
             position: fixed; inset: 0; background: #050505; z-index: 9999;
             display: flex; justify-content: center; align-items: center;
             transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
         }
         
-        /* Magnetic Button Effect */
-        .magnetic-btn { transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1); }
-        
-        /* Image Reveal Effect */
+        /* Effets de Reveal */
         .reveal-img { clip-path: inset(0 0 100% 0); transition: clip-path 1.5s cubic-bezier(0.77, 0, 0.175, 1); }
         .reveal-img.active { clip-path: inset(0 0 0 0); }
-
-        /* Quick View Modal Transition */
-        .modal-enter { opacity: 0; transform: scale(0.95); }
-        .modal-enter-active { opacity: 1; transform: scale(1); transition: all 0.3s ease-out; }
-        .modal-exit { opacity: 1; transform: scale(1); }
-        .modal-exit-active { opacity: 0; transform: scale(0.95); transition: all 0.2s ease-in; }
-
-        /* Text reveal */
         .line-wrapper { overflow: hidden; }
         .text-reveal { transform: translateY(100%); transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .text-reveal.visible { transform: translateY(0); }
     </style>
 </head>
-<body class="text-svb-dark antialiased selection:bg-svb-green selection:text-white">
+<body class="text-svb-dark antialiased selection:bg-svb-cobalt selection:text-white">
 
     <div id="loader" class="loader-overlay">
         <div class="text-center">
-            <h1 class="text-white font-display text-6xl tracking-widest mb-4 opacity-0" id="loader-text">SVB</h1>
-            <div class="w-0 h-[1px] bg-svb-accent mx-auto transition-all duration-1000" id="loader-line"></div>
+            <h1 class="text-white font-tech text-6xl tracking-widest mb-4 opacity-0" id="loader-text">SVB.</h1>
+            <div class="w-0 h-[2px] bg-svb-cobalt mx-auto transition-all duration-1000" id="loader-line"></div>
         </div>
     </div>
 
@@ -94,31 +82,33 @@
         <div class="max-w-[1800px] mx-auto px-8 flex justify-between items-center">
             
             <div class="flex items-center gap-6">
-                <button class="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-svb-accent transition">
+                <button class="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-svb-cobalt transition">
                     <div class="flex flex-col gap-1.5 w-6">
                         <span class="w-full h-[2px] bg-current group-hover:w-4 transition-all"></span>
                         <span class="w-3/4 h-[2px] bg-current group-hover:w-full transition-all"></span>
                     </div>
                     <span class="hidden md:block">Menu</span>
                 </button>
-                <div class="hidden md:flex gap-6 text-xs font-semibold uppercase tracking-widest ml-8">
-    <a href="#new" class="hover:text-svb-accent transition">Nouveautés</a>
-    <a href="femme.html" class="hover:text-svb-accent transition text-svb-dark font-bold">Femme</a>
-    <a href="homme.html" class="hover:text-svb-accent transition text-svb-dark font-bold">Homme</a>
-    <a href="#editorial" class="hover:text-svb-accent transition">Le Journal</a>
-</div>
+                <div class="hidden md:flex gap-8 text-xs font-semibold uppercase tracking-widest ml-8">
+                    <a href="#new" class="hover:text-svb-cobalt transition">Nouveautés</a>
+                    
+                    <a href="femme.html" class="hover:text-svb-cobalt transition font-bold text-svb-dark">Femme</a>
+                    <a href="homme.html" class="hover:text-svb-cobalt transition font-bold text-svb-dark">Homme</a>
+                    
+                    <a href="#editorial" class="hover:text-svb-cobalt transition">Atelier</a>
+                </div>
             </div>
 
-            <a href="#" class="absolute left-1/2 -translate-x-1/2 text-3xl font-display font-bold tracking-tighter mix-blend-difference text-current z-50">
-                SVB<span class="text-[10px] align-top opacity-60 font-sans tracking-widest ml-1">ATELIER</span>
+            <a href="#" class="absolute left-1/2 -translate-x-1/2 text-3xl font-tech font-black tracking-tighter mix-blend-difference text-current z-50">
+                SVB<span class="text-[10px] align-top opacity-60 font-sans tracking-widest ml-1 font-normal">PARIS</span>
             </a>
 
             <div class="flex items-center gap-6">
-                <button onclick="app.toggleSearch()" class="hover:text-svb-accent transition"><i data-lucide="search" class="w-5 h-5"></i></button>
-                <button class="hover:text-svb-accent transition hidden sm:block"><i data-lucide="heart" class="w-5 h-5"></i></button>
-                <button onclick="app.toggleCart()" class="relative hover:text-svb-accent transition">
+                <button onclick="app.toggleSearch()" class="hover:text-svb-cobalt transition"><i data-lucide="search" class="w-5 h-5"></i></button>
+                <button class="hover:text-svb-cobalt transition hidden sm:block"><i data-lucide="heart" class="w-5 h-5"></i></button>
+                <button onclick="app.toggleCart()" class="relative hover:text-svb-cobalt transition">
                     <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-                    <span id="cart-pill" class="absolute -top-1 -right-2 bg-svb-green text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center opacity-0 transition-opacity">0</span>
+                    <span id="cart-pill" class="absolute -top-1 -right-2 bg-svb-cobalt text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center opacity-0 transition-opacity">0</span>
                 </button>
             </div>
         </div>
@@ -133,7 +123,7 @@
         <div class="absolute bottom-0 left-0 w-full p-10 md:p-20 text-white flex flex-col md:flex-row justify-between items-end">
             <div class="max-w-2xl">
                 <div class="line-wrapper mb-2">
-                    <p class="text-reveal text-sm font-bold tracking-[0.3em] text-svb-accent uppercase">Collection Automne-Hiver</p>
+                    <p class="text-reveal text-sm font-tech font-bold tracking-[0.3em] text-svb-cobalt uppercase">Collection Automne-Hiver</p>
                 </div>
                 <div class="line-wrapper">
                     <h1 class="text-reveal text-6xl md:text-8xl font-serif leading-[0.9] mb-6">
@@ -146,36 +136,66 @@
                     </p>
                 </div>
                 <div class="mt-10 opacity-0 translate-y-10" id="hero-cta">
-                    <button onclick="document.getElementById('catalog').scrollIntoView({behavior: 'smooth'})" class="bg-white text-black px-10 py-4 text-xs font-bold uppercase tracking-widest hover:bg-svb-accent hover:text-white transition duration-500">
-                        Explorer la collection
+                    <button onclick="document.getElementById('split-collections').scrollIntoView({behavior: 'smooth'})" class="bg-white text-black px-10 py-4 text-xs font-bold uppercase tracking-widest hover:bg-svb-cobalt hover:text-white transition duration-500 font-tech">
+                        Explorer
                     </button>
                 </div>
             </div>
             
             <div class="hidden md:block animate-float">
                 <div class="w-32 h-32 border border-white/20 rounded-full flex items-center justify-center backdrop-blur-md">
-                    <span class="text-[10px] uppercase tracking-widest text-center">Scroll<br>Down</span>
+                    <span class="text-[10px] uppercase tracking-widest text-center font-tech">Scroll<br>Down</span>
                 </div>
             </div>
         </div>
     </header>
 
-    <div class="bg-svb-green text-white py-4 overflow-hidden whitespace-nowrap border-y border-white/10">
-        <div class="inline-block animate-[scroll_20s_linear_infinite]">
+    <div class="bg-svb-cobalt text-white py-4 overflow-hidden whitespace-nowrap border-y border-white/10">
+        <div class="inline-block animate-[float_20s_linear_infinite]">
             <span class="mx-8 text-xs font-bold uppercase tracking-[0.2em]">Livraison Offerte dès 150€</span>
             <span class="mx-8 text-xs font-bold uppercase tracking-[0.2em]">★ ★ ★ ★ ★ "Le meilleur legging du monde" - Vogue</span>
             <span class="mx-8 text-xs font-bold uppercase tracking-[0.2em]">Retours Gratuits 30 Jours</span>
             <span class="mx-8 text-xs font-bold uppercase tracking-[0.2em]">Nouveautés chaque Vendredi</span>
-            <span class="mx-8 text-xs font-bold uppercase tracking-[0.2em]">Livraison Offerte dès 150€</span>
-            <span class="mx-8 text-xs font-bold uppercase tracking-[0.2em]">★ ★ ★ ★ ★ "Le meilleur legging du monde" - Vogue</span>
         </div>
     </div>
+
+    <section id="split-collections" class="w-full grid grid-cols-1 md:grid-cols-2 h-[85vh] border-b border-black/10">
+        
+        <a href="femme.html" class="group relative block w-full h-full overflow-hidden border-r border-black/10 cursor-pointer">
+            <div class="absolute inset-0 bg-black/40 z-10 group-hover:bg-transparent transition duration-700"></div>
+            <img src="https://images.unsplash.com/photo-1541336528065-8f1fdc435835?q=80&w=1200&auto=format&fit=crop" 
+                 class="absolute inset-0 w-full h-full object-cover transition duration-[1.5s] group-hover:scale-105 filter grayscale group-hover:grayscale-0">
+            
+            <div class="absolute inset-0 flex flex-col items-center justify-center z-20">
+                <span class="text-white text-xs font-tech font-bold tracking-[0.3em] uppercase mb-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition duration-500">Collection</span>
+                <h2 class="text-6xl md:text-8xl font-tech font-black text-white tracking-tighter group-hover:text-svb-cobalt transition duration-300">FEMME</h2>
+                <div class="mt-8 bg-white text-black px-8 py-3 text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition duration-700 font-tech">
+                    Entrer
+                </div>
+            </div>
+        </a>
+    
+        <a href="homme.html" class="group relative block w-full h-full overflow-hidden cursor-pointer">
+            <div class="absolute inset-0 bg-black/40 z-10 group-hover:bg-transparent transition duration-700"></div>
+            <img src="https://images.unsplash.com/photo-1517466787929-bc90951d6dbd?q=80&w=1200&auto=format&fit=crop" 
+                 class="absolute inset-0 w-full h-full object-cover transition duration-[1.5s] group-hover:scale-105 filter grayscale group-hover:grayscale-0">
+            
+            <div class="absolute inset-0 flex flex-col items-center justify-center z-20">
+                <span class="text-white text-xs font-tech font-bold tracking-[0.3em] uppercase mb-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition duration-500">Collection</span>
+                <h2 class="text-6xl md:text-8xl font-tech font-black text-white tracking-tighter group-hover:text-svb-cobalt transition duration-300">HOMME</h2>
+                <div class="mt-8 bg-white text-black px-8 py-3 text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition duration-700 font-tech">
+                    Entrer
+                </div>
+            </div>
+        </a>
+    
+    </section>
 
     <section id="catalog" class="max-w-[1800px] mx-auto px-6 py-24 min-h-screen">
         
         <div class="sticky top-24 z-30 bg-[#F9F8F6]/95 backdrop-blur-sm py-6 mb-12 flex flex-col md:flex-row justify-between items-center border-b border-gray-200">
             <div>
-                <h2 class="text-3xl font-display">Le Vestiaire</h2>
+                <h2 class="text-3xl font-tech font-bold">ICONIQUES SVB.</h2>
                 <span id="items-count" class="text-xs text-gray-500 font-mono mt-1 block">Chargement...</span>
             </div>
             
@@ -187,25 +207,25 @@
             </div>
 
         <div class="mt-24 text-center">
-            <button class="border-b border-black pb-1 text-xs font-bold uppercase tracking-widest hover:text-svb-accent hover:border-svb-accent transition">Tout voir (42)</button>
+            <button class="border-b border-black pb-1 text-xs font-bold uppercase tracking-widest hover:text-svb-cobalt hover:border-svb-cobalt transition">Tout voir (42)</button>
         </div>
     </section>
 
     <section id="editorial" class="relative w-full py-24 bg-white">
         <div class="max-w-[1800px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <div class="relative h-[80vh] overflow-hidden reveal-container">
-                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1600&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover reveal-img transition-transform duration-[2s] hover:scale-110" id="parallax-img">
+            <div class="relative h-[80vh] overflow-hidden reveal-container group">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1600&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover reveal-img transition-transform duration-[2s] group-hover:scale-110" id="parallax-img">
                 <div class="absolute bottom-10 left-10 bg-white/90 p-6 backdrop-blur-md max-w-xs">
-                    <p class="text-xs font-bold uppercase tracking-widest mb-2">La Matière Signature</p>
+                    <p class="text-xs font-bold uppercase tracking-widest mb-2 font-tech text-svb-cobalt">Matière Signature</p>
                     <p class="text-sm font-serif italic">"Une seconde peau qui ne comprime jamais, mais soutient toujours."</p>
                 </div>
             </div>
             <div class="lg:pl-10">
-                <span class="text-svb-accent text-xs font-bold uppercase tracking-[0.3em] block mb-6">Philosophie</span>
+                <span class="text-svb-cobalt text-xs font-bold uppercase tracking-[0.3em] block mb-6">Philosophie</span>
                 <h2 class="text-5xl md:text-7xl font-serif mb-8 leading-tight">Silence & <br>Performance.</h2>
                 <p class="text-lg text-gray-500 font-light leading-relaxed mb-10">
-                    Nous avons supprimé le superflu. Pas de logos criards. Pas de coutures inutiles. 
-                    Juste une coupe architecturale et des tissus italiens techniques qui résistent à l'épreuve du temps et de la sueur.
+                    Pas de logos criards. Pas de coutures inutiles. 
+                    Juste une coupe architecturale et des tissus italiens techniques qui résistent à l'épreuve du temps.
                 </p>
                 <div class="grid grid-cols-2 gap-8 mb-10">
                     <div>
@@ -217,7 +237,7 @@
                         <p class="text-xs text-gray-500 leading-6">Conçu pour durer 5x plus longtemps que les vêtements de sport traditionnels.</p>
                     </div>
                 </div>
-                <button class="bg-svb-dark text-white px-10 py-4 text-xs font-bold uppercase tracking-widest hover:bg-svb-green transition">Lire le journal</button>
+                <button class="bg-svb-dark text-white px-10 py-4 text-xs font-bold uppercase tracking-widest hover:bg-svb-cobalt transition font-tech">Lire le journal</button>
             </div>
         </div>
     </section>
@@ -225,29 +245,28 @@
     <footer class="bg-svb-dark text-white pt-24 pb-10">
         <div class="max-w-[1800px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-white/10 pb-20">
             <div class="md:col-span-1">
-                <h3 class="text-3xl font-display mb-8">SVB.</h3>
+                <h3 class="text-3xl font-tech font-black tracking-tighter mb-8">SVB.</h3>
                 <p class="text-white/50 text-sm leading-relaxed max-w-xs">
                     Paris, France.<br>
-                    Depuis 2024.<br><br>
+                    Depuis 2026.<br><br>
                     L'intersection de la mode et de la performance.
                 </p>
             </div>
             <div>
                 <h4 class="text-xs font-bold uppercase tracking-widest mb-6 text-white/40">Boutique</h4>
                 <ul class="space-y-4 text-sm font-light">
-                    <li><a href="#" class="hover:text-svb-accent transition">Femme</a></li>
-                    <li><a href="#" class="hover:text-svb-accent transition">Homme</a></li>
-                    <li><a href="#" class="hover:text-svb-accent transition">Accessoires</a></li>
-                    <li><a href="#" class="hover:text-svb-accent transition">Cartes Cadeaux</a></li>
+                    <li><a href="femme.html" class="hover:text-svb-cobalt transition">Femme</a></li>
+                    <li><a href="homme.html" class="hover:text-svb-cobalt transition">Homme</a></li>
+                    <li><a href="#" class="hover:text-svb-cobalt transition">Accessoires</a></li>
+                    <li><a href="#" class="hover:text-svb-cobalt transition">Cartes Cadeaux</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="text-xs font-bold uppercase tracking-widest mb-6 text-white/40">Support</h4>
                 <ul class="space-y-4 text-sm font-light">
-                    <li><a href="#" class="hover:text-svb-accent transition">Nous contacter</a></li>
-                    <li><a href="#" class="hover:text-svb-accent transition">Livraisons</a></li>
-                    <li><a href="#" class="hover:text-svb-accent transition">Retours & Échanges</a></li>
-                    <li><a href="#" class="hover:text-svb-accent transition">Entretien</a></li>
+                    <li><a href="#" class="hover:text-svb-cobalt transition">Nous contacter</a></li>
+                    <li><a href="#" class="hover:text-svb-cobalt transition">Livraisons</a></li>
+                    <li><a href="#" class="hover:text-svb-cobalt transition">Retours & Échanges</a></li>
                 </ul>
             </div>
             <div>
@@ -255,12 +274,11 @@
                 <p class="text-white/50 text-xs mb-4">Accès prioritaire aux nouvelles collections.</p>
                 <div class="flex border-b border-white/30 py-2">
                     <input type="email" placeholder="Email" class="bg-transparent w-full outline-none text-sm placeholder:text-white/20">
-                    <button class="text-xs font-bold uppercase tracking-widest hover:text-svb-accent transition">OK</button>
+                    <button class="text-xs font-bold uppercase tracking-widest hover:text-svb-cobalt transition">OK</button>
                 </div>
                 <div class="flex gap-4 mt-8">
                     <i data-lucide="instagram" class="w-5 h-5 opacity-50 hover:opacity-100 cursor-pointer transition"></i>
                     <i data-lucide="facebook" class="w-5 h-5 opacity-50 hover:opacity-100 cursor-pointer transition"></i>
-                    <i data-lucide="youtube" class="w-5 h-5 opacity-50 hover:opacity-100 cursor-pointer transition"></i>
                 </div>
             </div>
         </div>
@@ -290,7 +308,7 @@
                 <span class="text-gray-500">Sous-total</span>
                 <span id="cart-total" class="font-bold">0.00 €</span>
             </div>
-            <button class="w-full bg-svb-green text-white py-4 text-xs font-bold uppercase tracking-widest hover:bg-black transition flex justify-center items-center gap-2">
+            <button class="w-full bg-svb-cobalt text-white py-4 text-xs font-bold uppercase tracking-widest hover:bg-black transition flex justify-center items-center gap-2 font-tech">
                 Paiement Sécurisé <i data-lucide="lock" class="w-3 h-3"></i>
             </button>
         </div>
@@ -318,7 +336,7 @@
             <div class="p-10 md:p-14 flex flex-col justify-center">
                 <button onclick="app.closeQuickView()" class="absolute top-6 right-6 p-2 hover:bg-gray-100 rounded-full transition"><i data-lucide="x" class="w-5 h-5"></i></button>
                 
-                <span id="qv-cat" class="text-svb-accent text-xs font-bold uppercase tracking-widest mb-3"></span>
+                <span id="qv-cat" class="text-svb-cobalt text-xs font-bold uppercase tracking-widest mb-3 font-tech"></span>
                 <h2 id="qv-title" class="text-4xl font-serif mb-4"></h2>
                 <p id="qv-price" class="text-xl font-medium mb-6"></p>
                 <div class="w-10 h-[1px] bg-black mb-6"></div>
@@ -345,7 +363,7 @@
                 </div>
 
                 <div class="flex gap-4">
-                    <button id="qv-add-btn" class="flex-1 bg-svb-green text-white py-4 text-xs font-bold uppercase tracking-widest hover:bg-black transition">
+                    <button id="qv-add-btn" class="flex-1 bg-svb-cobalt text-white py-4 text-xs font-bold uppercase tracking-widest hover:bg-black transition font-tech">
                         Ajouter au panier
                     </button>
                     <button class="px-6 border border-gray-200 hover:border-black transition"><i data-lucide="heart" class="w-5 h-5"></i></button>
@@ -354,9 +372,9 @@
         </div>
     </div>
 
-    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-svb-green text-white px-8 py-4 rounded-full shadow-2xl flex items-center gap-4 translate-y-20 opacity-0 transition-all duration-500 z-[100]">
-        <i data-lucide="check-circle" class="w-5 h-5 text-svb-accent"></i>
-        <span class="text-xs font-bold uppercase tracking-widest">Produit ajouté au panier</span>
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-svb-cobalt text-white px-8 py-4 rounded-full shadow-2xl flex items-center gap-4 translate-y-20 opacity-0 transition-all duration-500 z-[100]">
+        <i data-lucide="check-circle" class="w-5 h-5 text-white"></i>
+        <span class="text-xs font-bold uppercase tracking-widest font-tech">Produit ajouté au panier</span>
     </div>
 
     <script>
@@ -487,7 +505,7 @@
                             <img src="${product.image}" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105" loading="lazy">
                             
                             <div class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition duration-500 ease-out z-20 flex gap-2">
-                                <button onclick="app.addToCart(${product.id})" class="flex-1 bg-white/90 backdrop-blur text-black py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-svb-dark hover:text-white transition">Ajouter</button>
+                                <button onclick="app.addToCart(${product.id})" class="flex-1 bg-white/90 backdrop-blur text-black py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-svb-dark hover:text-white transition font-tech">Ajouter</button>
                                 <button onclick="app.openQuickView(${product.id})" class="px-4 bg-white/90 backdrop-blur text-black hover:bg-svb-dark hover:text-white transition"><i data-lucide="eye" class="w-4 h-4"></i></button>
                             </div>
                         </div>
@@ -497,7 +515,7 @@
                                 <h3 class="font-serif text-lg text-svb-dark group-hover:underline underline-offset-4 decoration-1">${product.name}</h3>
                                 <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">${product.category}</p>
                             </div>
-                            <span class="text-sm font-medium">${product.price} €</span>
+                            <span class="text-sm font-medium font-tech">${product.price} €</span>
                         </div>
                     </div>
                 `).join('');
