@@ -3,62 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>SVB | L'Excellence en Mouvement</title>
-  <meta name="description" content="SVB Atelier — Performance couture. Une esthétique pure. Conçu pour ceux qui exigent l'excellence." />
-  <meta name="theme-color" content="#0033CC" />
-
-  <!-- Preconnect fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <meta name="description" content="SVB Atelier — Performance Couture." />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            "svb-dark":   "#050505",
-            "svb-light":  "#F9F8F6",
-            "svb-accent": "#CFB096", // Or sablé
-            "svb-cobalt": "#0033CC", // Bleu signature
-            "svb-green":  "#1B2E24",
-            "svb-teal":   "#2D7972"  // (manquait) vert DA SVB
+            "svb-dark": "#050505",
+            "svb-light": "#F9F8F6",
+            "svb-cobalt": "#0033CC",
+            "svb-teal": "#2D7972"
           },
           fontFamily: {
             sans: ["Inter", "sans-serif"],
             serif: ["Playfair Display", "serif"],
             tech: ["Archivo", "sans-serif"]
           },
-          boxShadow: {
-            "soft": "0 18px 60px rgba(0,0,0,0.10)",
-            "hard": "0 18px 60px rgba(0,0,0,0.18)"
+          animation: {
+            'fade-in': 'fadeIn 1.5s ease-out forwards',
           },
           keyframes: {
-            float: {
-              "0%, 100%": { transform: "translateY(0)" },
-              "50%": { transform: "translateY(-18px)" }
-            },
-            marquee: {
-              "0%": { transform: "translateX(0)" },
-              "100%": { transform: "translateX(-50%)" }
-            },
-            fadeUp: {
-              "0%": { opacity: "0", transform: "translateY(18px)" },
-              "100%": { opacity: "1", transform: "translateY(0)" }
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
             }
-          },
-          animation: {
-            "float": "float 6s ease-in-out infinite",
-            "marquee": "marquee 22s linear infinite",
-            "fade-up": "fadeUp 0.6s ease-out both"
           }
         }
       }
@@ -66,930 +42,82 @@
   </script>
 
   <style>
-    body { background: #F9F8F6; overflow-x: hidden; }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #0033CC; border-radius: 10px; }
-
-    /* Hide scrollbar utility used in catalog filters */
-    .scrollbar-hide::-webkit-scrollbar { display: none; }
-    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto !important; }
-      * { animation: none !important; transition: none !important; }
-      video { display: none !important; }
+    body { background-color: #F9F8F6; overflow: hidden; /* Pas de scroll sur l'accueil pur */ }
+    
+    /* Effet Grain */
+    .grain::before {
+      content: ""; position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.04; pointer-events: none; mix-blend-mode: multiply; z-index: 50;
     }
 
-    /* Loader */
-    .loader-overlay {
-      position: fixed; inset: 0; background: #050505; z-index: 9999;
-      display: flex; justify-content: center; align-items: center;
-      transform: translateY(0);
-      will-change: transform;
-    }
-
-    /* Reveal FX (image) */
-    .reveal-img { clip-path: inset(0 0 100% 0); will-change: clip-path, transform; }
-    .line-wrapper { overflow: hidden; }
-    .text-reveal { transform: translateY(110%); will-change: transform, opacity; }
-
-    /* Body lock */
-    .no-scroll { overflow: hidden !important; }
-
-    /* Drawer transitions */
-    .drawer { transform: translateX(100%); }
-    .drawer.open { transform: translateX(0); }
-    .overlay { opacity: 0; pointer-events: none; }
-    .overlay.open { opacity: 1; pointer-events: auto; }
-
-    /* Menu drawer */
-    .menu-drawer { transform: translateX(-105%); }
-    .menu-drawer.open { transform: translateX(0); }
-
-    /* Focus visible */
-    :focus-visible { outline: 2px solid rgba(0,51,204,0.55); outline-offset: 3px; }
+    /* Transition d'image au survol */
+    .split-image { transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s ease; }
+    .split-section:hover .split-image { transform: scale(1.05); filter: grayscale(0%); }
+    
+    /* Texte qui apparaît */
+    .split-content { transition: opacity 0.5s ease, transform 0.5s ease; }
+    .split-section:hover .split-content { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 
-<body class="text-svb-dark antialiased selection:bg-svb-cobalt selection:text-white">
+<body class="text-svb-dark antialiased h-screen w-full flex flex-col relative grain">
 
-  <!-- LOADER -->
-  <div id="loader" class="loader-overlay">
-    <div class="text-center">
-      <h1 class="text-white font-tech text-6xl tracking-widest mb-4" id="loader-text" style="opacity:0;">SVB.</h1>
-      <div class="h-[2px] bg-svb-cobalt mx-auto" id="loader-line" style="width:0;"></div>
-    </div>
-  </div>
-
-  <!-- MENU OVERLAY + DRAWER -->
-  <div id="menu-overlay" class="fixed inset-0 bg-black/55 backdrop-blur-sm z-[70] overlay transition-opacity duration-500" aria-hidden="true"></div>
-  <aside id="menu-drawer" class="fixed top-0 left-0 h-full w-[92%] sm:w-[420px] bg-white z-[80] menu-drawer transition-transform duration-500 shadow-2xl" aria-label="Menu">
-    <div class="p-8 border-b border-gray-200 flex items-center justify-between">
-      <div class="flex items-baseline gap-3">
-        <div class="font-tech font-black text-2xl tracking-tighter">SVB.</div>
-        <span class="text-[10px] uppercase tracking-[0.3em] text-gray-400">Atelier</span>
-      </div>
-      <button id="menu-close" class="p-2 hover:rotate-180 transition duration-500" aria-label="Fermer le menu">
-        <i data-lucide="x" class="w-6 h-6"></i>
-      </button>
+  <nav class="absolute top-0 w-full z-50 py-8 px-8 flex justify-between items-center mix-blend-difference text-white">
+    <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest font-tech">
+      <a href="#" class="hover:text-svb-cobalt transition">À Propos</a>
+      <a href="#" class="hover:text-svb-cobalt transition">Journal</a>
     </div>
 
-    <div class="p-8 space-y-8">
-      <div class="space-y-4 text-xs font-bold uppercase tracking-widest font-tech">
-        <a href="#new" class="block hover:text-svb-cobalt transition">Nouveautés</a>
-        <a href="femme.html" class="block hover:text-svb-cobalt transition">Femme</a>
-        <a href="homme.html" class="block hover:text-svb-cobalt transition">Homme</a>
-        <a href="#catalog" class="block hover:text-svb-cobalt transition">Iconiques</a>
-        <a href="#editorial" class="block hover:text-svb-cobalt transition">Atelier</a>
-      </div>
+    <a href="index.html" class="absolute left-1/2 -translate-x-1/2 text-3xl font-tech font-black tracking-tighter">
+      SVB<span class="text-[10px] align-top opacity-70 font-sans tracking-widest ml-1 font-normal">ATELIER</span>
+    </a>
 
-      <div class="border-t pt-6 text-sm text-gray-500 leading-relaxed">
-        <p class="font-serif italic text-gray-700">“Silence. Coupe. Performance.”</p>
-        <p class="mt-3 text-xs uppercase tracking-widest text-gray-400">Paris · Depuis 2026</p>
-      </div>
-    </div>
-  </aside>
-
-  <!-- NAV -->
-  <nav id="navbar" class="fixed top-0 w-full z-40 bg-white/60 backdrop-blur-md border-b border-black/5 transition-all duration-300">
-    <div class="max-w-[1800px] mx-auto px-6 h-16 flex justify-between items-center">
-
-      <div class="flex items-center gap-4">
-        <a href="index.html" class="font-tech font-black text-2xl tracking-tighter hover:text-svb-teal transition">
-          SVB.
-        </a>
-      </div>
-
-      <div class="hidden md:flex items-center gap-10 text-xs font-bold uppercase tracking-[0.15em] font-tech text-black/60">
-        <a href="index.html" class="hover:text-black transition relative group">
-          Accueil
-          <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-black transition-all group-hover:w-full"></span>
-        </a>
-
-        <a href="femme.html" class="text-svb-teal font-black relative">
-          Femme
-          <span class="absolute -bottom-1 left-0 w-full h-[2px] bg-svb-teal"></span>
-        </a>
-
-        <a href="homme.html" class="hover:text-black transition relative group">
-          Homme
-          <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-black transition-all group-hover:w-full"></span>
-        </a>
-      </div>
-
-      <div class="flex items-center gap-4">
-
-        <!-- inline search (small) -->
-        <div class="hidden sm:flex items-center gap-2 bg-white/50 border border-black/10 px-3 py-1.5 rounded-sm focus-within:border-black/30 transition">
-          <i data-lucide="search" class="w-3.5 h-3.5 text-black/40"></i>
-          <input id="nav-search" type="text" placeholder="RECHERCHER..." class="bg-transparent text-[10px] font-mono uppercase outline-none w-32 placeholder:text-black/30">
-        </div>
-
-        <!-- open full search modal -->
-        <button id="search-open" class="hover:text-svb-teal transition group hidden sm:inline-flex" aria-label="Ouvrir la recherche">
-          <i data-lucide="command" class="w-5 h-5 group-hover:scale-105 transition"></i>
-        </button>
-
-        <button id="cart-open" class="relative hover:text-svb-teal transition group" aria-label="Ouvrir le panier">
-          <i data-lucide="shopping-bag" class="w-5 h-5 group-hover:scale-105 transition"></i>
-          <span id="cart-pill" class="absolute -top-1.5 -right-1.5 bg-svb-cobalt text-white text-[9px] min-w-[16px] h-[16px] rounded-full flex items-center justify-center opacity-0 transition-opacity font-mono">0</span>
-        </button>
-
-        <button id="menu-open" class="md:hidden" aria-label="Ouvrir le menu">
-          <i data-lucide="menu" class="w-6 h-6 text-black/80"></i>
-        </button>
-      </div>
+    <div class="flex items-center gap-6">
+      <button class="hover:opacity-70 transition"><i data-lucide="search" class="w-5 h-5"></i></button>
+      <button class="hover:opacity-70 transition"><i data-lucide="shopping-bag" class="w-5 h-5"></i></button>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <header class="relative w-full h-screen overflow-hidden bg-black">
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-80 scale-105" id="hero-video">
-      <source src="https://cdn.coverr.co/videos/coverr-shadow-of-a-woman-doing-yoga-poses-2621/1080p.mp4" type="video/mp4">
-    </video>
-    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
-
-    <div class="absolute bottom-0 left-0 w-full p-10 md:p-20 text-white flex flex-col md:flex-row justify-between items-end">
-      <div class="max-w-2xl">
-        <div class="line-wrapper mb-2">
-          <p class="text-reveal text-sm font-tech font-bold tracking-[0.3em] text-svb-cobalt uppercase">Collection Automne-Hiver</p>
-        </div>
-        <div class="line-wrapper">
-          <h1 class="text-reveal text-6xl md:text-8xl font-serif leading-[0.9] mb-6">
-            L'Art du <br><span class="italic font-light">Mouvement</span>.
-          </h1>
-        </div>
-        <div class="line-wrapper">
-          <p class="text-reveal text-white/70 text-lg max-w-md font-light">
-            Une ingénierie textile invisible. Une esthétique pure. Conçu pour ceux qui exigent l'excellence.
-          </p>
-        </div>
-
-        <div class="mt-10" id="hero-cta" style="opacity:0; transform: translateY(14px);">
-          <button id="hero-explore"
-            class="bg-white text-black px-10 py-4 text-xs font-bold uppercase tracking-widest hover:bg-svb-cobalt hover:text-white transition duration-500 font-tech">
-            Explorer
-          </button>
-        </div>
-      </div>
-
-      <div class="hidden md:block animate-float">
-        <div class="w-32 h-32 border border-white/20 rounded-full flex items-center justify-center backdrop-blur-md">
-          <span class="text-[10px] uppercase tracking-widest text-center font-tech">Scroll<br>Down</span>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- MARQUEE -->
-  <div class="bg-svb-cobalt text-white py-4 overflow-hidden whitespace-nowrap border-y border-white/10">
-    <div class="flex w-[200%] animate-marquee">
-      <div class="w-1/2 flex items-center">
-        <span class="mx-8 text-xs font-bold uppercase tracking-[0.2em]">Livraison Offerte dès 150€</span>
-        <span class="mx-8 text-xs font-bold uppercase tracking-[0.2em]">★ ★ ★ ★ ★ “Le meilleur legging du monde” — Vogue</span>
-        <span class="mx-8 text-xs font-bold uppercase tracking-[0.2em]">Retours Gratuits 30 Jours</span>
-        <span class="mx-8 text-xs font-bold uppercase tracking-[0.2em]">Nouveautés chaque Vendredi</span>
-      </div>
-      <div class="w-1/2 flex items-center" aria-hidden="true">
-        <span class="mx-8 text-xs font-bold uppercase tracking-[0.2em]">Livraison Offerte dès 150€</span>
-        <span class="mx-8 text-xs font-bold uppercase tracking-[0.2em]">★ ★ ★ ★ ★ “Le meilleur legging du monde” — Vogue</span>
-        <span class="mx-8 text-xs font-bold uppercase tracking-[0.2em]">Retours Gratuits 30 Jours</span>
-        <span class="mx-8 text-xs font-bold uppercase tracking-[0.2em]">Nouveautés chaque Vendredi</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- SPLIT COLLECTIONS -->
-  <section id="split-collections" class="w-full grid grid-cols-1 md:grid-cols-2 h-[85vh] border-b border-black/10">
-    <a href="femme.html" class="group relative block w-full h-full overflow-hidden border-r border-black/10 cursor-pointer">
-      <div class="absolute inset-0 bg-black/40 z-10 group-hover:bg-transparent transition duration-700"></div>
-      <img src="https://images.unsplash.com/photo-1541336528065-8f1fdc435835?q=80&w=1200&auto=format&fit=crop"
-           class="absolute inset-0 w-full h-full object-cover transition duration-[1.5s] group-hover:scale-105 filter grayscale group-hover:grayscale-0"
-           loading="lazy" decoding="async" alt="Collection Femme SVB">
-      <div class="absolute inset-0 flex flex-col items-center justify-center z-20">
-        <span class="text-white text-xs font-tech font-bold tracking-[0.3em] uppercase mb-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition duration-500">Collection</span>
-        <h2 class="text-6xl md:text-8xl font-tech font-black text-white tracking-tighter group-hover:text-svb-cobalt transition duration-300">FEMME</h2>
-        <div class="mt-8 bg-white text-black px-8 py-3 text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition duration-700 font-tech">
-          Entrer
-        </div>
+  <main class="flex-1 w-full h-full flex flex-col md:flex-row relative">
+    
+    <a href="femme.html" class="split-section relative w-full md:w-1/2 h-1/2 md:h-full overflow-hidden cursor-pointer border-b md:border-b-0 md:border-r border-white/10 group">
+      <div class="absolute inset-0 bg-black/30 z-10 group-hover:bg-transparent transition duration-700"></div>
+      <img src="https://images.unsplash.com/photo-1541336528065-8f1fdc435835?q=80&w=1600&auto=format&fit=crop" 
+           class="split-image absolute inset-0 w-full h-full object-cover filter grayscale" alt="Femme">
+      
+      <div class="absolute inset-0 flex flex-col items-center justify-center z-20 text-white animate-fade-in">
+        <h2 class="text-6xl md:text-8xl font-tech font-black tracking-tighter mb-2 group-hover:text-svb-teal transition duration-500">FEMME</h2>
+        <span class="split-content opacity-0 translate-y-4 text-xs font-mono uppercase tracking-[0.3em] border-b border-white pb-1">
+          Entrer dans la collection
+        </span>
       </div>
     </a>
 
-    <a href="homme.html" class="group relative block w-full h-full overflow-hidden cursor-pointer">
-      <div class="absolute inset-0 bg-black/40 z-10 group-hover:bg-transparent transition duration-700"></div>
-      <img src="https://images.unsplash.com/photo-1517466787929-bc90951d6dbd?q=80&w=1200&auto=format&fit=crop"
-           class="absolute inset-0 w-full h-full object-cover transition duration-[1.5s] group-hover:scale-105 filter grayscale group-hover:grayscale-0"
-           loading="lazy" decoding="async" alt="Collection Homme SVB">
-      <div class="absolute inset-0 flex flex-col items-center justify-center z-20">
-        <span class="text-white text-xs font-tech font-bold tracking-[0.3em] uppercase mb-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition duration-500">Collection</span>
-        <h2 class="text-6xl md:text-8xl font-tech font-black text-white tracking-tighter group-hover:text-svb-cobalt transition duration-300">HOMME</h2>
-        <div class="mt-8 bg-white text-black px-8 py-3 text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition duration-700 font-tech">
-          Entrer
-        </div>
+    <a href="homme.html" class="split-section relative w-full md:w-1/2 h-1/2 md:h-full overflow-hidden cursor-pointer group">
+      <div class="absolute inset-0 bg-black/30 z-10 group-hover:bg-transparent transition duration-700"></div>
+      <img src="https://images.unsplash.com/photo-1517466787929-bc90951d6dbd?q=80&w=1600&auto=format&fit=crop" 
+           class="split-image absolute inset-0 w-full h-full object-cover filter grayscale" alt="Homme">
+      
+      <div class="absolute inset-0 flex flex-col items-center justify-center z-20 text-white animate-fade-in" style="animation-delay: 0.2s;">
+        <h2 class="text-6xl md:text-8xl font-tech font-black tracking-tighter mb-2 group-hover:text-svb-cobalt transition duration-500">HOMME</h2>
+        <span class="split-content opacity-0 translate-y-4 text-xs font-mono uppercase tracking-[0.3em] border-b border-white pb-1">
+          Entrer dans la collection
+        </span>
       </div>
     </a>
-  </section>
 
-  <!-- CATALOG -->
-  <section id="catalog" class="max-w-[1800px] mx-auto px-6 py-24 min-h-screen">
-    <div class="sticky top-24 z-30 bg-[#F9F8F6]/95 backdrop-blur-sm py-6 mb-12 flex flex-col md:flex-row justify-between items-center border-b border-gray-200">
-      <div>
-        <h2 class="text-3xl font-tech font-bold">ICONIQUES SVB.</h2>
-        <span id="items-count" class="text-xs text-gray-500 font-mono mt-1 block">Chargement...</span>
-      </div>
+  </main>
 
-      <div class="w-full md:w-auto mt-4 md:mt-0 flex items-center gap-4">
-        <div class="hidden md:flex items-center gap-2 border border-gray-200 bg-white px-4 py-2">
-          <i data-lucide="search" class="w-4 h-4 text-gray-400"></i>
-          <input id="inline-search" type="text" placeholder="Rechercher…" class="text-xs outline-none w-56 placeholder:text-gray-300" />
-        </div>
-
-        <div id="filters-container" class="flex gap-3 overflow-x-auto scrollbar-hide w-full md:w-auto pb-2 md:pb-0"></div>
-      </div>
-    </div>
-
-    <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-16 gap-x-8"></div>
-
-    <div class="mt-24 text-center">
-      <button class="border-b border-black pb-1 text-xs font-bold uppercase tracking-widest hover:text-svb-cobalt hover:border-svb-cobalt transition">
-        Tout voir (42)
-      </button>
-    </div>
-  </section>
-
-  <!-- EDITORIAL -->
-  <section id="editorial" class="relative w-full py-24 bg-white">
-    <div class="max-w-[1800px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-      <div class="relative h-[80vh] overflow-hidden reveal-container group shadow-soft">
-        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1600&auto=format&fit=crop"
-             class="absolute inset-0 w-full h-full object-cover reveal-img transition-transform duration-[2s] group-hover:scale-110"
-             id="parallax-img"
-             loading="lazy" decoding="async" alt="Editorial SVB">
-        <div class="absolute bottom-10 left-10 bg-white/90 p-6 backdrop-blur-md max-w-xs">
-          <p class="text-xs font-bold uppercase tracking-widest mb-2 font-tech text-svb-cobalt">Matière Signature</p>
-          <p class="text-sm font-serif italic">"Une seconde peau qui ne comprime jamais, mais soutient toujours."</p>
-        </div>
-      </div>
-
-      <div class="lg:pl-10">
-        <span class="text-svb-cobalt text-xs font-bold uppercase tracking-[0.3em] block mb-6">Philosophie</span>
-        <h2 class="text-5xl md:text-7xl font-serif mb-8 leading-tight">Silence & <br>Performance.</h2>
-        <p class="text-lg text-gray-500 font-light leading-relaxed mb-10">
-          Pas de logos criards. Pas de coutures inutiles.
-          Juste une coupe architecturale et des tissus italiens techniques qui résistent à l'épreuve du temps.
-        </p>
-        <div class="grid grid-cols-2 gap-8 mb-10">
-          <div>
-            <h4 class="font-bold text-xl mb-2">01. Innovation</h4>
-            <p class="text-xs text-gray-500 leading-6">Micro-fibres infusées à l'argent pour une action anti-bactérienne naturelle.</p>
-          </div>
-          <div>
-            <h4 class="font-bold text-xl mb-2">02. Durabilité</h4>
-            <p class="text-xs text-gray-500 leading-6">Conçu pour durer 5x plus longtemps que les vêtements de sport traditionnels.</p>
-          </div>
-        </div>
-        <button class="bg-svb-dark text-white px-10 py-4 text-xs font-bold uppercase tracking-widest hover:bg-svb-cobalt transition font-tech">
-          Lire le journal
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="bg-svb-dark text-white pt-24 pb-10">
-    <div class="max-w-[1800px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-white/10 pb-20">
-      <div class="md:col-span-1">
-        <h3 class="text-3xl font-tech font-black tracking-tighter mb-8">SVB.</h3>
-        <p class="text-white/50 text-sm leading-relaxed max-w-xs">
-          Paris, France.<br>
-          Depuis 2026.<br><br>
-          L'intersection de la mode et de la performance.
-        </p>
-      </div>
-      <div>
-        <h4 class="text-xs font-bold uppercase tracking-widest mb-6 text-white/40">Boutique</h4>
-        <ul class="space-y-4 text-sm font-light">
-          <li><a href="femme.html" class="hover:text-svb-cobalt transition">Femme</a></li>
-          <li><a href="homme.html" class="hover:text-svb-cobalt transition">Homme</a></li>
-          <li><a href="#" class="hover:text-svb-cobalt transition">Accessoires</a></li>
-          <li><a href="#" class="hover:text-svb-cobalt transition">Cartes Cadeaux</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-xs font-bold uppercase tracking-widest mb-6 text-white/40">Support</h4>
-        <ul class="space-y-4 text-sm font-light">
-          <li><a href="#" class="hover:text-svb-cobalt transition">Nous contacter</a></li>
-          <li><a href="#" class="hover:text-svb-cobalt transition">Livraisons</a></li>
-          <li><a href="#" class="hover:text-svb-cobalt transition">Retours & Échanges</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-xs font-bold uppercase tracking-widest mb-6 text-white/40">Newsletter</h4>
-        <p class="text-white/50 text-xs mb-4">Accès prioritaire aux nouvelles collections.</p>
-        <div class="flex border-b border-white/30 py-2">
-          <input type="email" placeholder="Email" class="bg-transparent w-full outline-none text-sm placeholder:text-white/20">
-          <button class="text-xs font-bold uppercase tracking-widest hover:text-svb-cobalt transition">OK</button>
-        </div>
-        <div class="flex gap-4 mt-8">
-          <i data-lucide="instagram" class="w-5 h-5 opacity-50 hover:opacity-100 cursor-pointer transition"></i>
-          <i data-lucide="facebook" class="w-5 h-5 opacity-50 hover:opacity-100 cursor-pointer transition"></i>
-        </div>
-      </div>
-    </div>
-    <div class="max-w-[1800px] mx-auto px-6 pt-10 flex flex-col md:flex-row justify-between text-[10px] uppercase tracking-widest text-white/30">
-      <p>© 2026 SVB Atelier. Tous droits réservés.</p>
-      <div class="flex gap-6 mt-4 md:mt-0">
-        <a href="#" class="hover:text-white transition">Confidentialité</a>
-        <a href="#" class="hover:text-white transition">CGV</a>
-      </div>
-    </div>
+  <footer class="absolute bottom-0 w-full py-4 px-8 flex justify-between items-end text-[10px] text-white/50 uppercase tracking-widest font-mono z-50 mix-blend-difference pointer-events-none">
+    <div>Paris, France<br>Est. 2026</div>
+    <div class="text-center hidden md:block">Performance Couture<br>Silence & Matière</div>
+    <div>SVB Atelier®</div>
   </footer>
 
-  <!-- CART -->
-  <div id="cart-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] hidden transition-opacity opacity-0"></div>
-
-  <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full md:w-[520px] bg-[#F9F8F6] z-[70] transform translate-x-full transition-transform duration-500 shadow-2xl flex flex-col">
-    <div class="p-8 border-b border-gray-200 flex justify-between items-center bg-white">
-      <h3 class="font-serif text-2xl">Panier (<span id="cart-count-header">0</span>)</h3>
-      <button id="cart-close" class="hover:rotate-180 transition duration-500" aria-label="Fermer le panier">
-        <i data-lucide="x" class="w-6 h-6"></i>
-      </button>
-    </div>
-
-    <div id="cart-items" class="flex-1 overflow-y-auto p-8 space-y-6"></div>
-
-    <div class="p-8 bg-white border-t border-gray-200">
-      <div class="flex justify-between mb-4 text-sm">
-        <span class="text-gray-500">Sous-total</span>
-        <span id="cart-total" class="font-bold">0.00 €</span>
-      </div>
-      <button class="w-full bg-svb-cobalt text-white py-4 text-xs font-bold uppercase tracking-widest hover:bg-black transition flex justify-center items-center gap-2 font-tech">
-        Paiement Sécurisé <i data-lucide="lock" class="w-3 h-3"></i>
-      </button>
-    </div>
-  </div>
-
-  <!-- SEARCH MODAL -->
-  <div id="search-modal" class="fixed inset-0 bg-white/98 z-[80] hidden flex flex-col items-center justify-center transition-all duration-300 opacity-0 scale-95"
-       role="dialog" aria-modal="true" aria-label="Recherche">
-    <button id="search-close" class="absolute top-10 right-10 p-2" aria-label="Fermer la recherche">
-      <i data-lucide="x" class="w-8 h-8 text-gray-400 hover:text-black transition"></i>
-    </button>
-
-    <span class="text-xs font-bold uppercase tracking-[0.3em] text-svb-accent mb-6">Rechercher une pièce</span>
-    <input type="text" id="search-input" placeholder="LEGGING, TOP..."
-           class="text-4xl md:text-7xl font-serif text-center bg-transparent border-b border-gray-200 pb-4 w-[92%] md:w-2/3 focus:outline-none focus:border-black transition uppercase placeholder:text-gray-200">
-
-    <div class="mt-8 flex flex-wrap justify-center gap-4 text-xs text-gray-400 uppercase tracking-widest">
-      <span>Populaire :</span>
-      <button class="hover:text-black underline" data-suggest="Signature">Signature</button>
-      <button class="hover:text-black underline" data-suggest="Performance">Performance</button>
-      <button class="hover:text-black underline" data-suggest="Lifestyle">Lifestyle</button>
-    </div>
-  </div>
-
-  <!-- QUICK VIEW -->
-  <div id="qv-modal" class="fixed inset-0 z-[90] hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="Aperçu produit">
-    <div id="qv-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-md"></div>
-
-    <div class="bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto relative z-10 grid grid-cols-1 md:grid-cols-2 shadow-2xl">
-      <div class="bg-gray-100 relative group">
-        <img id="qv-img" src="" class="w-full h-full object-cover" alt="Produit SVB">
-        <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition"></div>
-      </div>
-
-      <div class="p-10 md:p-14 flex flex-col justify-center relative">
-        <button id="qv-close" class="absolute top-6 right-6 p-2 hover:bg-gray-100 rounded-full transition" aria-label="Fermer l'aperçu">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-
-        <span id="qv-cat" class="text-svb-cobalt text-xs font-bold uppercase tracking-widest mb-3 font-tech"></span>
-        <h2 id="qv-title" class="text-4xl font-serif mb-4"></h2>
-        <p id="qv-price" class="text-xl font-medium mb-6"></p>
-
-        <div class="w-10 h-[1px] bg-black mb-6"></div>
-        <p id="qv-desc" class="text-gray-500 font-light leading-relaxed mb-8 text-sm"></p>
-
-        <div class="mb-8">
-          <span class="text-xs font-bold uppercase mb-3 block">Couleur</span>
-          <div class="flex gap-3">
-            <button class="w-7 h-7 rounded-full bg-black cursor-pointer ring-2 ring-offset-2 ring-gray-300" aria-label="Noir"></button>
-            <button class="w-7 h-7 rounded-full bg-[#1B2E24] cursor-pointer hover:ring-2 hover:ring-offset-2 hover:ring-gray-300 transition" aria-label="Vert"></button>
-            <button class="w-7 h-7 rounded-full bg-[#CFB096] cursor-pointer hover:ring-2 hover:ring-offset-2 hover:ring-gray-300 transition" aria-label="Sable"></button>
-          </div>
-        </div>
-
-        <div class="mb-10">
-          <span class="text-xs font-bold uppercase mb-3 block">Taille</span>
-          <div class="grid grid-cols-5 gap-2">
-            <button class="h-10 border border-gray-200 text-xs hover:bg-black hover:text-white transition">XS</button>
-            <button class="h-10 border border-gray-200 text-xs hover:bg-black hover:text-white transition">S</button>
-            <button class="h-10 border border-black bg-black text-white text-xs">M</button>
-            <button class="h-10 border border-gray-200 text-xs hover:bg-black hover:text-white transition">L</button>
-            <button class="h-10 border border-gray-200 text-xs hover:bg-black hover:text-white transition">XL</button>
-          </div>
-        </div>
-
-        <div class="flex gap-4">
-          <button id="qv-add-btn" class="flex-1 bg-svb-cobalt text-white py-4 text-xs font-bold uppercase tracking-widest hover:bg-black transition font-tech">
-            Ajouter au panier
-          </button>
-          <button class="px-6 border border-gray-200 hover:border-black transition" aria-label="Ajouter aux favoris">
-            <i data-lucide="heart" class="w-5 h-5"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TOAST -->
-  <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-svb-cobalt text-white px-8 py-4 rounded-full shadow-2xl flex items-center gap-4 translate-y-20 opacity-0 transition-all duration-500 z-[100]">
-    <i data-lucide="check-circle" class="w-5 h-5 text-white"></i>
-    <span class="text-xs font-bold uppercase tracking-widest font-tech" id="toast-text">Produit ajouté au panier</span>
-  </div>
-
   <script>
-    // --- DB ---
-    const DB = [
-      { id: 101, name: "Legging Align™ High-Rise", category: "Signature", price: 98, image: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=1000&q=80&auto=format&fit=crop", desc: "Le tissu Nulu™ est si doux et léger qu'il se fait oublier. Conçu pour le yoga.", tags: ["new", "best"] },
-      { id: 102, name: "Veste Define Luon", category: "Performance", price: 118, image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1000&q=80&auto=format&fit=crop", desc: "Cintrée, technique, respirante. La veste parfaite pour l'avant et l'après.", tags: ["warm"] },
-      { id: 103, name: "Brassière Energy Longline", category: "Studio", price: 68, image: "https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=1000&q=80&auto=format&fit=crop", desc: "Soutien moyen B/C. Tissu Luxtreme™ évacuant la transpiration.", tags: [] },
-      { id: 104, name: "Pantalon City Sweat", category: "Lifestyle", price: 128, image: "https://images.unsplash.com/photo-1483721310020-03333e577078?w=1000&q=80&auto=format&fit=crop", desc: "Molleton extensible d'ingénierie française. Confort urbain ultime.", tags: ["men"] },
-      { id: 105, name: "Tapis 'The Reversible' 5mm", category: "Accessoires", price: 88, image: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=1000&q=80&auto=format&fit=crop", desc: "Grip naturel en caoutchouc. Amorti supérieur pour les articulations.", tags: [] },
-      { id: 106, name: "Cycliste Align™ 6”", category: "Signature", price: 64, image: "https://images.unsplash.com/photo-1554629631-7e3e7f4c39cb?w=1000&q=80&auto=format&fit=crop", desc: "La version courte de notre classique. Taille haute flatteuse.", tags: ["summer"] },
-      { id: 107, name: "T-shirt Metal Vent Tech", category: "Performance", price: 78, image: "https://images.unsplash.com/photo-1539185441755-769473a23570?w=1000&q=80&auto=format&fit=crop", desc: "Construction sans coutures. Technologie Silverescent™ anti-odeurs.", tags: ["men"] },
-      { id: 108, name: "Sweat Scuba Oversized", category: "Lifestyle", price: 148, image: "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=1000&q=80&auto=format&fit=crop", desc: "Coupe ample, mélange coton polaire épais. Le confort repensé.", tags: ["best"] }
-    ];
-
-    // --- Utils ---
-    const $ = (id) => document.getElementById(id);
-    const exists = (id) => !!document.getElementById(id);
-
-    function lockBody(lock) {
-      document.body.classList.toggle("no-scroll", !!lock);
-    }
-
-    function debounce(fn, wait = 120) {
-      let t;
-      return (...args) => {
-        clearTimeout(t);
-        t = setTimeout(() => fn(...args), wait);
-      };
-    }
-
-    // --- App ---
-    const app = {
-      state: {
-        cart: [], // [{id, qty}]
-        filter: "All",
-        search: ""
-      },
-
-      init() {
-        this.cache();
-        this.bind();
-        this.renderFilters();
-        this.renderProducts(this.getFiltered());
-        this.updateCartUI();
-        this.setupUX();
-        this.initAnimations();
-
-        lucide.createIcons();
-      },
-
-      cache() {
-        this.grid = $("product-grid");
-        this.cartPill = $("cart-pill");
-        this.cartItems = $("cart-items");
-        this.cartTotal = $("cart-total");
-        this.itemsCount = $("items-count");
-        this.navbar = $("navbar");
-
-        this.cartDrawer = $("cart-drawer");
-        this.cartOverlay = $("cart-overlay");
-
-        this.searchModal = $("search-modal");
-        this.searchInput = $("search-input");
-        this.inlineSearch = $("inline-search");
-        this.navSearch = $("nav-search");
-
-        this.menuDrawer = $("menu-drawer");
-        this.menuOverlay = $("menu-overlay");
-      },
-
-      bind() {
-        // Menu
-        $("menu-open").addEventListener("click", () => this.toggleMenu(true));
-        $("menu-close").addEventListener("click", () => this.toggleMenu(false));
-        this.menuOverlay.addEventListener("click", () => this.toggleMenu(false));
-
-        // Cart
-        $("cart-open").addEventListener("click", () => this.toggleCart(true));
-        $("cart-close").addEventListener("click", () => this.toggleCart(false));
-        this.cartOverlay.addEventListener("click", () => this.toggleCart(false));
-
-        // Search modal
-        $("search-open").addEventListener("click", () => this.toggleSearch(true));
-        $("search-close").addEventListener("click", () => this.toggleSearch(false));
-
-        // Suggestions
-        this.searchModal.querySelectorAll("[data-suggest]").forEach(btn => {
-          btn.addEventListener("click", () => {
-            this.searchInput.value = btn.dataset.suggest;
-            this.setSearch(btn.dataset.suggest);
-          });
-        });
-
-        // Inline + modal + nav search
-        const onSearch = debounce((val) => this.setSearch(val), 120);
-        this.searchInput.addEventListener("input", (e) => onSearch(e.target.value));
-        if (this.inlineSearch) this.inlineSearch.addEventListener("input", (e) => onSearch(e.target.value));
-        if (this.navSearch) this.navSearch.addEventListener("input", (e) => onSearch(e.target.value));
-
-        // Hero explore
-        $("hero-explore").addEventListener("click", () => $("split-collections").scrollIntoView({ behavior: "smooth" }));
-
-        // QV modal close
-        $("qv-overlay").addEventListener("click", () => this.closeQuickView());
-        $("qv-close").addEventListener("click", () => this.closeQuickView());
-
-        // Keyboard
-        window.addEventListener("keydown", (e) => {
-          if (e.key === "Escape") {
-            this.toggleSearch(false);
-            this.toggleCart(false);
-            this.toggleMenu(false);
-            this.closeQuickView();
-          }
-          // "/" ouvre la recherche (comme une commande)
-          if (e.key === "/" && !/input|textarea/i.test(document.activeElement?.tagName || "")) {
-            e.preventDefault();
-            this.toggleSearch(true);
-          }
-        });
-      },
-
-      setupUX() {
-        // Navbar state on scroll (safe)
-        window.addEventListener("scroll", () => {
-          if (!this.navbar) return;
-          if (window.scrollY > 50) {
-            this.navbar.classList.add("bg-white/90","shadow-sm");
-          } else {
-            this.navbar.classList.remove("bg-white/90","shadow-sm");
-          }
-        });
-      },
-
-      initAnimations() {
-        if (typeof gsap === "undefined") return;
-
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Loader timeline
-        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-        tl.to("#loader-text", { opacity: 1, duration: 0.6, delay: 0.2 })
-          .to("#loader-line", { width: 96, duration: 0.9 }, "<0.1")
-          .to("#loader", { yPercent: -100, duration: 0.9, ease: "expo.inOut", delay: 0.6 })
-          .set("#loader", { display: "none" });
-
-        // Hero text reveal
-        gsap.to(".text-reveal", { y: 0, duration: 0.9, stagger: 0.12, delay: 1.2, ease: "power4.out" });
-        gsap.to("#hero-cta", { opacity: 1, y: 0, duration: 0.7, delay: 1.65 });
-
-        // Reveal images (clip-path)
-        gsap.utils.toArray(".reveal-img").forEach((img) => {
-          gsap.to(img, {
-            clipPath: "inset(0 0 0% 0)",
-            duration: 1.2,
-            ease: "power3.out",
-            scrollTrigger: { trigger: img, start: "top 80%" }
-          });
-        });
-
-        // Parallax image
-        gsap.to("#parallax-img", {
-          y: 80,
-          ease: "none",
-          scrollTrigger: { trigger: "#editorial", start: "top bottom", end: "bottom top", scrub: true }
-        });
-
-        // Products reveal
-        ScrollTrigger.batch(".p-card", {
-          start: "top 88%",
-          onEnter: (batch) => gsap.fromTo(batch, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.65, stagger: 0.06, ease: "power3.out" })
-        });
-      },
-
-      // Filters + search combined
-      getFiltered() {
-        const q = (this.state.search || "").trim().toLowerCase();
-        return DB.filter(p => {
-          const byFilter = this.state.filter === "All" ? true : p.category === this.state.filter;
-          const bySearch = !q ? true : (p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
-          return byFilter && bySearch;
-        });
-      },
-
-      setSearch(val) {
-        this.state.search = val || "";
-        this.renderProducts(this.getFiltered());
-      },
-
-      renderFilters() {
-        const categories = ["All", ...new Set(DB.map(p => p.category))];
-        const container = $("filters-container");
-
-        container.innerHTML = categories.map(cat => {
-          const active = this.state.filter === cat;
-          return `
-            <button data-filter="${cat}"
-              class="shrink-0 px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider border transition
-              ${active ? "bg-svb-dark text-white border-svb-dark" : "bg-transparent border-gray-300 hover:border-svb-dark"}">
-              ${cat}
-            </button>
-          `;
-        }).join("");
-
-        container.querySelectorAll("[data-filter]").forEach(btn => {
-          btn.addEventListener("click", () => {
-            this.state.filter = btn.dataset.filter;
-            this.renderFilters();
-            this.renderProducts(this.getFiltered());
-          });
-        });
-      },
-
-      renderProducts(products) {
-        this.itemsCount.innerText = `${products.length} Articles`;
-
-        if (!products.length) {
-          this.grid.innerHTML = `<div class="col-span-4 text-center py-20 text-gray-400">Aucun produit trouvé.</div>`;
-          return;
-        }
-
-        this.grid.innerHTML = products.map(product => {
-          const badges = [];
-          if (product.tags.includes("new")) badges.push(`<span class="bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest">Nouveau</span>`);
-          if (product.tags.includes("best")) badges.push(`<span class="bg-svb-accent text-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest">Best Seller</span>`);
-
-          return `
-            <div class="group cursor-pointer p-card">
-              <div class="relative overflow-hidden aspect-[4/5] bg-gray-200 mb-6">
-                ${badges.length ? `<div class="absolute top-4 left-4 z-20 flex flex-col gap-2">${badges.join("")}</div>` : ""}
-
-                <img src="${product.image}"
-                     class="w-full h-full object-cover transition duration-1000 group-hover:scale-105"
-                     loading="lazy" decoding="async"
-                     alt="${product.name}">
-
-                <div class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition duration-500 ease-out z-20 flex gap-2">
-                  <button data-add="${product.id}"
-                    class="flex-1 bg-white/90 backdrop-blur text-black py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-svb-dark hover:text-white transition font-tech">
-                    Ajouter
-                  </button>
-                  <button data-qv="${product.id}"
-                    class="px-4 bg-white/90 backdrop-blur text-black hover:bg-svb-dark hover:text-white transition"
-                    aria-label="Aperçu">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
-                  </button>
-                </div>
-              </div>
-
-              <div class="flex justify-between items-start">
-                <div>
-                  <h3 class="font-serif text-lg text-svb-dark group-hover:underline underline-offset-4 decoration-1">${product.name}</h3>
-                  <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">${product.category}</p>
-                </div>
-                <span class="text-sm font-medium font-tech">${product.price} €</span>
-              </div>
-            </div>
-          `;
-        }).join("");
-
-        // Bind product actions
-        this.grid.querySelectorAll("[data-add]").forEach(btn => {
-          btn.addEventListener("click", (e) => {
-            e.preventDefault(); e.stopPropagation();
-            this.addToCart(parseInt(btn.dataset.add, 10));
-          });
-        });
-
-        this.grid.querySelectorAll("[data-qv]").forEach(btn => {
-          btn.addEventListener("click", (e) => {
-            e.preventDefault(); e.stopPropagation();
-            this.openQuickView(parseInt(btn.dataset.qv, 10));
-          });
-        });
-
-        lucide.createIcons();
-
-        if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
-      },
-
-      // Cart (with qty)
-      addToCart(id) {
-        const item = this.state.cart.find(x => x.id === id);
-        if (item) item.qty += 1;
-        else this.state.cart.push({ id, qty: 1 });
-
-        this.updateCartUI();
-        this.showToast("Produit ajouté au panier");
-      },
-
-      decQty(id) {
-        const item = this.state.cart.find(x => x.id === id);
-        if (!item) return;
-        item.qty -= 1;
-        if (item.qty <= 0) this.state.cart = this.state.cart.filter(x => x.id !== id);
-        this.updateCartUI();
-      },
-
-      incQty(id) {
-        const item = this.state.cart.find(x => x.id === id);
-        if (!item) return;
-        item.qty += 1;
-        this.updateCartUI();
-      },
-
-      updateCartUI() {
-        const count = this.state.cart.reduce((sum, x) => sum + x.qty, 0);
-        this.cartPill.innerText = count;
-        $("cart-count-header").innerText = count;
-        this.cartPill.style.opacity = count > 0 ? "1" : "0";
-
-        if (count === 0) {
-          this.cartItems.innerHTML = `
-            <div class="h-full flex flex-col items-center justify-center text-gray-400">
-              <p class="mb-4 text-sm">Votre panier est vide.</p>
-              <button id="empty-cart-back" class="text-black underline text-xs font-bold uppercase tracking-widest">Retourner à la boutique</button>
-            </div>
-          `;
-          const back = $("empty-cart-back");
-          if (back) back.addEventListener("click", () => this.toggleCart(false));
-        } else {
-          this.cartItems.innerHTML = this.state.cart.map((ci) => {
-            const p = DB.find(x => x.id === ci.id);
-            return `
-              <div class="flex gap-4 animate-fade-up">
-                <div class="w-20 h-24 bg-gray-100 overflow-hidden shrink-0">
-                  <img src="${p.image}" class="w-full h-full object-cover" loading="lazy" decoding="async" alt="${p.name}">
-                </div>
-
-                <div class="flex-1 flex flex-col justify-between py-1">
-                  <div>
-                    <h4 class="font-serif text-sm">${p.name}</h4>
-                    <p class="text-[10px] text-gray-500 uppercase mt-1">${p.category}</p>
-                  </div>
-
-                  <div class="flex justify-between items-end">
-                    <div class="flex items-center gap-2">
-                      <button data-dec="${p.id}" class="w-8 h-8 border border-gray-200 hover:border-black transition text-sm">–</button>
-                      <span class="text-xs font-bold w-6 text-center">${ci.qty}</span>
-                      <button data-inc="${p.id}" class="w-8 h-8 border border-gray-200 hover:border-black transition text-sm">+</button>
-                    </div>
-                    <div class="text-right">
-                      <span class="text-sm font-bold">${(p.price * ci.qty).toFixed(2)} €</span>
-                      <div>
-                        <button data-remove="${p.id}" class="text-xs text-gray-400 underline hover:text-red-500">Retirer</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            `;
-          }).join("");
-
-          this.cartItems.querySelectorAll("[data-dec]").forEach(b => b.addEventListener("click", () => this.decQty(parseInt(b.dataset.dec, 10))));
-          this.cartItems.querySelectorAll("[data-inc]").forEach(b => b.addEventListener("click", () => this.incQty(parseInt(b.dataset.inc, 10))));
-          this.cartItems.querySelectorAll("[data-remove]").forEach(b => b.addEventListener("click", () => {
-            const id = parseInt(b.dataset.remove, 10);
-            this.state.cart = this.state.cart.filter(x => x.id !== id);
-            this.updateCartUI();
-          }));
-        }
-
-        const total = this.state.cart.reduce((sum, ci) => {
-          const p = DB.find(x => x.id === ci.id);
-          return sum + (p.price * ci.qty);
-        }, 0);
-
-        this.cartTotal.innerText = total.toFixed(2) + " €";
-      },
-
-      toggleCart(open) {
-        // Ferme les autres couches
-        this.toggleSearch(false);
-        this.toggleMenu(false);
-
-        const drawer = this.cartDrawer;
-        const overlay = this.cartOverlay;
-
-        const isOpen = !drawer.classList.contains("translate-x-full");
-        const nextOpen = typeof open === "boolean" ? open : !isOpen;
-
-        if (!nextOpen) {
-          drawer.classList.add("translate-x-full");
-          overlay.classList.remove("opacity-100");
-          overlay.classList.add("opacity-0");
-          setTimeout(() => overlay.classList.add("hidden"), 500);
-          lockBody(false);
-        } else {
-          overlay.classList.remove("hidden");
-          void overlay.offsetWidth;
-          overlay.classList.remove("opacity-0");
-          overlay.classList.add("opacity-100");
-          drawer.classList.remove("translate-x-full");
-          lockBody(true);
-        }
-      },
-
-      toggleSearch(open) {
-        // Ferme les autres couches
-        if (open) { this.toggleCart(false); this.toggleMenu(false); }
-
-        const modal = this.searchModal;
-        const input = this.searchInput;
-        const isHidden = modal.classList.contains("hidden");
-        const nextOpen = typeof open === "boolean" ? open : isHidden;
-
-        if (nextOpen) {
-          modal.classList.remove("hidden");
-          setTimeout(() => {
-            modal.classList.remove("opacity-0", "scale-95");
-            modal.classList.add("opacity-100", "scale-100");
-            input.focus();
-          }, 10);
-          lockBody(true);
-        } else {
-          modal.classList.remove("opacity-100", "scale-100");
-          modal.classList.add("opacity-0", "scale-95");
-          setTimeout(() => modal.classList.add("hidden"), 250);
-          lockBody(false);
-        }
-      },
-
-      toggleMenu(open) {
-        // Ferme les autres couches
-        if (open) { this.toggleCart(false); this.toggleSearch(false); }
-
-        const isOpen = this.menuDrawer.classList.contains("open");
-        const nextOpen = typeof open === "boolean" ? open : !isOpen;
-
-        if (nextOpen) {
-          this.menuDrawer.classList.add("open");
-          this.menuOverlay.classList.add("open");
-          this.menuOverlay.setAttribute("aria-hidden", "false");
-          lockBody(true);
-        } else {
-          this.menuDrawer.classList.remove("open");
-          this.menuOverlay.classList.remove("open");
-          this.menuOverlay.setAttribute("aria-hidden", "true");
-          lockBody(false);
-        }
-      },
-
-      openQuickView(id) {
-        const p = DB.find(x => x.id === id);
-        $("qv-img").src = p.image;
-        $("qv-cat").innerText = p.category;
-        $("qv-title").innerText = p.name;
-        $("qv-price").innerText = p.price + " €";
-        $("qv-desc").innerText = p.desc;
-
-        $("qv-add-btn").onclick = () => {
-          this.addToCart(id);
-          this.closeQuickView();
-        };
-
-        $("qv-modal").classList.remove("hidden");
-        lockBody(true);
-      },
-
-      closeQuickView() {
-        const modal = $("qv-modal");
-        if (!modal.classList.contains("hidden")) {
-          modal.classList.add("hidden");
-          lockBody(false);
-        }
-      },
-
-      showToast(message) {
-        $("toast-text").innerText = message || "Action effectuée";
-        const toast = $("toast");
-        toast.classList.remove("translate-y-20", "opacity-0");
-        setTimeout(() => toast.classList.add("translate-y-20", "opacity-0"), 2600);
-      }
-    };
-
-    window.addEventListener("DOMContentLoaded", () => {
-      app.init();
-      lucide.createIcons();
-    });
+    // Juste pour les icônes, pas de logique complexe
+    lucide.createIcons();
   </script>
 </body>
 </html>
