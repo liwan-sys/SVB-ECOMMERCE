@@ -152,39 +152,46 @@
   </aside>
 
   <!-- NAV -->
-  <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 py-6 border-b border-transparent">
-    <div class="max-w-[1800px] mx-auto px-6 md:px-8 flex justify-between items-center">
-      <div class="flex items-center gap-6">
-        <button id="menu-open" class="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-svb-cobalt transition" aria-label="Ouvrir le menu">
-          <div class="flex flex-col gap-1.5 w-6">
-            <span class="w-full h-[2px] bg-current group-hover:w-4 transition-all"></span>
-            <span class="w-3/4 h-[2px] bg-current group-hover:w-full transition-all"></span>
-          </div>
-          <span class="hidden md:block">Menu</span>
-        </button>
-
-        <div class="hidden md:flex gap-8 text-xs font-semibold uppercase tracking-widest ml-8">
-          <a href="#new" class="hover:text-svb-cobalt transition">Nouveautés</a>
-          <a href="femme.html" class="hover:text-svb-cobalt transition font-bold text-svb-dark">Femme</a>
-          <a href="homme.html" class="hover:text-svb-cobalt transition font-bold text-svb-dark">Homme</a>
-          <a href="#editorial" class="hover:text-svb-cobalt transition">Atelier</a>
-        </div>
+  <nav class="fixed top-0 w-full z-40 bg-white/60 backdrop-blur-md border-b border-black/5 transition-all duration-300">
+    <div class="max-w-[1800px] mx-auto px-6 h-16 flex justify-between items-center">
+      
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="font-tech font-black text-2xl tracking-tighter hover:text-svb-teal transition">
+          SVB.
+        </a>
       </div>
 
-      <a href="#" class="absolute left-1/2 -translate-x-1/2 text-3xl font-tech font-black tracking-tighter mix-blend-difference text-current z-50">
-        SVB<span class="text-[10px] align-top opacity-60 font-sans tracking-widest ml-1 font-normal">PARIS</span>
-      </a>
+      <div class="hidden md:flex items-center gap-10 text-xs font-bold uppercase tracking-[0.15em] font-tech text-black/60">
+        <a href="index.html" class="hover:text-black transition relative group">
+          Accueil
+          <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-black transition-all group-hover:w-full"></span>
+        </a>
+        
+        <a href="femme.html" class="text-svb-teal font-black relative">
+          Femme
+          <span class="absolute -bottom-1 left-0 w-full h-[2px] bg-svb-teal"></span>
+        </a>
+
+        <a href="homme.html" class="hover:text-black transition relative group">
+          Homme
+          <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-black transition-all group-hover:w-full"></span>
+        </a>
+      </div>
 
       <div class="flex items-center gap-6">
-        <button id="search-open" class="hover:text-svb-cobalt transition" aria-label="Ouvrir la recherche">
-          <i data-lucide="search" class="w-5 h-5"></i>
+        
+        <div class="hidden sm:flex items-center gap-2 bg-white/50 border border-black/10 px-3 py-1.5 rounded-sm focus-within:border-black/30 transition">
+          <i data-lucide="search" class="w-3.5 h-3.5 text-black/40"></i>
+          <input id="search" type="text" placeholder="RECHERCHER..." class="bg-transparent text-[10px] font-mono uppercase outline-none w-32 placeholder:text-black/30">
+        </div>
+
+        <button id="openCart" class="relative hover:text-svb-teal transition group" aria-label="Ouvrir le panier">
+          <i data-lucide="shopping-bag" class="w-5 h-5 group-hover:scale-105 transition"></i>
+          <span id="cartPill" class="absolute -top-1.5 -right-1.5 bg-svb-cobalt text-white text-[9px] min-w-[16px] h-[16px] rounded-full flex items-center justify-center opacity-0 transition-opacity font-mono">0</span>
         </button>
-        <button class="hover:text-svb-cobalt transition hidden sm:block" aria-label="Favoris">
-          <i data-lucide="heart" class="w-5 h-5"></i>
-        </button>
-        <button id="cart-open" class="relative hover:text-svb-cobalt transition" aria-label="Ouvrir le panier">
-          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-          <span id="cart-pill" class="absolute -top-1 -right-2 bg-svb-cobalt text-white text-[9px] min-w-4 h-4 px-1 rounded-full flex items-center justify-center opacity-0 transition-opacity">0</span>
+        
+        <button class="md:hidden">
+            <i data-lucide="menu" class="w-6 h-6 text-black/80"></i>
         </button>
       </div>
     </div>
