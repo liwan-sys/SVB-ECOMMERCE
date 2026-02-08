@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVB | Collection Femme</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'svb-black': '#0a0a0a',
+                        'svb-paper': '#f4f4f0', /* Fond blanc cassé chaud */
+                        'svb-cobalt': '#0033CC', /* TA COULEUR SIGNATURE */
+                        'svb-grey': '#888888',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        tech: ['Archivo', 'sans-serif'], /* Police Industrielle */
+                    },
+                    backgroundImage: {
+                        'grain': "url('https://upload.wikimedia.org/wikipedia/commons/7/76/Noise.png')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* EFFET GRAIN CINÉMA */
+        .bg-grain-overlay {
+            position: fixed; inset: 0; opacity: 0.04; pointer-events: none; z-index: 50;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        /* SCROLLBAR CACHÉE */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* ANIMATIONS */
+        .hover-lift { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .hover-lift:hover { transform: translateY(-4px); }
+    </style>
+</head>
+<body class="bg-svb-paper text-svb-black antialiased">
+
+    <div class="bg-grain-overlay"></div>
+
+    <nav class="fixed top-0 w-full z-40 bg-svb-paper/90 backdrop-blur border-b border-black/5">
+        <div class="max-w-[1800px] mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="font-tech font-black text-2xl tracking-tighter hover:text-svb-cobalt transition">SVB.</a>
+                <span class="hidden md:block text-[10px] font-tech uppercase bg-black text-white px-2 py-0.5 rounded-sm">Femme</span>
+            </div>
+            
+            <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest font-tech">
+                <a href="#" class="text-svb-cobalt">Nouveautés</a>
+                <a href="#" class="hover:text-svb-cobalt transition">Leggings</a>
+                <a href="#" class="hover:text-svb-cobalt transition">Brassières</a>
+                <a href="#" class="hover:text-svb-cobalt transition">Sets</a>
+            </div>
+
+            <div class="flex items-center gap-5">
+                <button><i data-lucide="search" class="w-5 h-5"></i></button>
+                <button class="relative">
+                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                    <span class="absolute -top-1 -right-1 w-2 h-2 bg-svb-cobalt rounded-full"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-12 px-6 max-w-[1800px] mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end gap-8 border-b border-black/10 pb-8">
+            <div>
+                <p class="font-tech text-svb-cobalt text-xs uppercase tracking-widest mb-2">Collection 2026</p>
+                <h1 class="font-serif text-5xl md:text-7xl">Mouvement<br><span class="italic text-gray-400">Technique</span></h1>
+            </div>
+            <div class="max-w-md text-right md:text-left">
+                <p class="text-sm text-gray-600 leading-relaxed font-medium">
+                    Une ingénierie de précision pour le corps féminin. 
+                    Des coupes sculptantes, des matières compressives et une esthétique radicale.
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-8 flex gap-3 overflow-x-auto no-scrollbar pb-2">
+            <button onclick="filter('all')" class="filter-btn active whitespace-nowrap px-6 py-2 border-2 border-black bg-black text-white font-tech text-xs uppercase font-bold hover:bg-svb-cobalt hover:border-svb-cobalt transition">
+                Tout Voir
+            </button>
+            <button onclick="filter('Leggings')" class="filter-btn whitespace-nowrap px-6 py-2 border-2 border-transparent bg-gray-200 text-black font-tech text-xs uppercase font-bold hover:bg-white hover:border-black transition">
+                Leggings
+            </button>
+            <button onclick="filter('Brassieres')" class="filter-btn whitespace-nowrap px-6 py-2 border-2 border-transparent bg-gray-200 text-black font-tech text-xs uppercase font-bold hover:bg-white hover:border-black transition">
+                Brassières
+            </button>
+            <button onclick="filter('Tops')" class="filter-btn whitespace-nowrap px-6 py-2 border-2 border-transparent bg-gray-200 text-black font-tech text-xs uppercase font-bold hover:bg-white hover:border-black transition">
+                Tops & Hoodies
+            </button>
+            <button onclick="filter('Sets')" class="filter-btn whitespace-nowrap px-6 py-2 border-2 border-transparent bg-gray-200 text-black font-tech text-xs uppercase font-bold hover:bg-white hover:border-black transition">
+                Sets Assortis
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-[1800px] mx-auto px-6 pb-24">
+        <div id="grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
+            </div>
+        
+        <div class="mt-20 flex justify-center">
+            <button class="font-tech text-xs font-bold uppercase border-b-2 border-black pb-1 hover:text-svb-cobalt hover:border-svb-cobalt transition">
+                Charger plus de produits
+            </button>
+        </div>
+    </main>
+
+    <footer class="bg-black text-white py-12 border-t-4 border-svb-cobalt">
+        <div class="max-w-[1800px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <h2 class="font-tech text-3xl font-black tracking-tighter">SVB.</h2>
+            <div class="flex gap-6 text-[10px] font-tech uppercase tracking-widest text-gray-400">
+                <a href="#" class="hover:text-white">Instagram</a>
+                <a href="#" class="hover:text-white">TikTok</a>
+                <a href="#" class="hover:text-white">Support</a>
+            </div>
+            <p class="text-[10px] text-gray-500 font-mono">© 2026 SVB ATELIER PARIS.</p>
+        </div>
+    </footer>
+
+    <script>
+        // DATA : Note les noms et les catégories "Retro-Tech"
+        const products = [
+            {
+                id: 1,
+                name: "Legging Cobalt Sculpt™",
+                category: "Leggings",
+                price: 95,
+                image: "https://images.unsplash.com/photo-1541336528065-8f1fdc435835?w=800&q=80",
+                badges: ["New", "Tech"],
+                colors: ["#0033CC", "#000"]
+            },
+            {
+                id: 2,
+                name: "Brassière Asymétrique",
+                category: "Brassieres",
+                price: 55,
+                image: "https://images.unsplash.com/photo-1620799140408-ed5341cd2431?w=800&q=80",
+                badges: [],
+                colors: ["#fff", "#000"]
+            },
+            {
+                id: 3,
+                name: "Cycliste Archives 90s",
+                category: "Leggings",
+                price: 60,
+                image: "https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=800&q=80",
+                badges: ["Vintage Cut"],
+                colors: ["#0a0a0a"]
+            },
+            {
+                id: 4,
+                name: "Hoodie Crop 'Atelier'",
+                category: "Tops",
+                price: 110,
+                image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80",
+                badges: ["Oversize"],
+                colors: ["#f4f4f0", "#888"]
+            },
+            {
+                id: 5,
+                name: "Set Seamless Mineral",
+                category: "Sets",
+                price: 140,
+                image: "https://images.unsplash.com/photo-1574680096141-1cddd32e04ca?w=800&q=80",
+                badges: ["Best Seller"],
+                colors: ["#5d5d5d"]
+            },
+            {
+                id: 6,
+                name: "Top Manches Longues Run",
+                category: "Tops",
+                price: 75,
+                image: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=800&q=80",
+                badges: ["Thermo"],
+                colors: ["#0033CC"]
+            },
+            {
+                id: 7,
+                name: "Legging Taille Haute Air",
+                category: "Leggings",
+                price: 85,
+                image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80",
+                badges: [],
+                colors: ["#888", "#000"]
+            },
+            {
+                id: 8,
+                name: "Veste Track & Field",
+                category: "Tops",
+                price: 130,
+                image: "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=800&q=80",
+                badges: ["Limited"],
+                colors: ["#000"]
+            }
+        ];
+
+        // RENDER FUNCTION
+        function render(items) {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = items.map(p => `
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden bg-gray-200 aspect-[4/5] mb-4 border border-black/5">
+                        <img src="${p.image}" class="w-full h-full object-cover transition duration-700 group-hover:scale-105 filter grayscale-[20%] group-hover:grayscale-0">
+                        
+                        <div class="absolute top-3 left-3 flex flex-col gap-1">
+                            ${p.badges.map(b => `
+                                <span class="bg-white/90 backdrop-blur border border-black/10 px-2 py-1 text-[9px] font-tech uppercase font-bold tracking-widest text-black">
+                                    ${b}
+                                </span>
+                            `).join('')}
+                        </div>
+
+                        <button class="absolute bottom-3 right-3 bg-svb-cobalt text-white w-10 h-10 flex items-center justify-center hover:bg-black transition translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 duration-300 shadow-lg">
+                            <i data-lucide="plus" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-bold text-sm leading-none group-hover:text-svb-cobalt transition">${p.name}</h3>
+                            <p class="text-[10px] text-gray-500 font-mono mt-1 uppercase">${p.category} // REF-${p.id}0</p>
+                        </div>
+                        <span class="font-tech font-black text-sm">${p.price}€</span>
+                    </div>
+
+                    <div class="flex gap-1 mt-2">
+                        ${p.colors.map(c => `
+                            <div class="w-2 h-2 rounded-full border border-gray-300" style="background-color:${c}"></div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        // FILTER FUNCTION
+        function filter(cat) {
+            // Update Buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-black', 'text-white', 'border-black');
+                btn.classList.add('bg-gray-200', 'text-black', 'border-transparent');
+            });
+            event.target.classList.remove('bg-gray-200', 'text-black', 'border-transparent');
+            event.target.classList.add('bg-black', 'text-white', 'border-black');
+
+            // Filter Data
+            if(cat === 'all') {
+                render(products);
+            } else {
+                render(products.filter(p => p.category === cat));
+            }
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            render(products);
+            lucide.createIcons();
+        });
+
+    </script>
+</body>
+</html>
