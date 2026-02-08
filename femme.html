@@ -8,7 +8,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
   <script>
@@ -21,7 +23,7 @@
             "svb-mint":  "#C1DECA",
             "svb-sage":  "#A0CDAE",
             "svb-sand":  "#E8D5B5",
-            "svb-teal":  "#2D7972",   // vert/logo
+            "svb-teal":  "#2D7972",
             "svb-cobalt":"#0033CC"
           },
           fontFamily: {
@@ -108,8 +110,8 @@
           <span id="cartPill" class="absolute -top-1.5 -right-1.5 bg-svb-cobalt text-white text-[9px] min-w-[16px] h-[16px] rounded-full flex items-center justify-center opacity-0 transition-opacity font-mono">0</span>
         </button>
         
-        <button class="md:hidden">
-            <i data-lucide="menu" class="w-6 h-6 text-black/80"></i>
+        <button class="md:hidden" aria-label="Menu">
+          <i data-lucide="menu" class="w-6 h-6 text-black/80"></i>
         </button>
       </div>
     </div>
@@ -179,9 +181,7 @@
       <div class="px-6 py-5 flex flex-wrap gap-4 items-center justify-between border-b border-black/5">
         <div class="flex items-center gap-4">
           <span class="font-mono text-xs text-black/40">INDEX PRODUITS</span>
-          <span id="count" class="text-[10px] font-mono uppercase tracking-widest text-black/50 bg-white/80 border border-black/10 px-2 py-1">
-            [--]
-          </span>
+          <span id="count" class="text-[10px] font-mono uppercase tracking-widest text-black/50 bg-white/80 border border-black/10 px-2 py-1">[--]</span>
         </div>
 
         <div class="flex items-center gap-2">
@@ -191,21 +191,11 @@
           </div>
 
           <div class="flex flex-wrap gap-2">
-            <button data-filter="all" class="fbtn bg-black text-white px-4 py-2 text-[10px] font-mono uppercase hover:bg-svb-teal transition border border-black">
-              Tout
-            </button>
-            <button data-filter="Legging" class="fbtn bg-white/80 border border-black/10 px-4 py-2 text-[10px] font-mono uppercase hover:border-black transition">
-              Leggings
-            </button>
-            <button data-filter="Studio" class="fbtn bg-white/80 border border-black/10 px-4 py-2 text-[10px] font-mono uppercase hover:border-black transition">
-              Studio
-            </button>
-            <button data-filter="Outerwear" class="fbtn bg-white/80 border border-black/10 px-4 py-2 text-[10px] font-mono uppercase hover:border-black transition">
-              Outerwear
-            </button>
-            <button data-filter="Accessoire" class="fbtn bg-white/80 border border-black/10 px-4 py-2 text-[10px] font-mono uppercase hover:border-black transition">
-              Accessoires
-            </button>
+            <button data-filter="all" class="fbtn bg-black text-white px-4 py-2 text-[10px] font-mono uppercase hover:bg-svb-teal transition border border-black">Tout</button>
+            <button data-filter="Legging" class="fbtn bg-white/80 border border-black/10 px-4 py-2 text-[10px] font-mono uppercase hover:border-black transition">Leggings</button>
+            <button data-filter="Studio" class="fbtn bg-white/80 border border-black/10 px-4 py-2 text-[10px] font-mono uppercase hover:border-black transition">Studio</button>
+            <button data-filter="Outerwear" class="fbtn bg-white/80 border border-black/10 px-4 py-2 text-[10px] font-mono uppercase hover:border-black transition">Outerwear</button>
+            <button data-filter="Accessoire" class="fbtn bg-white/80 border border-black/10 px-4 py-2 text-[10px] font-mono uppercase hover:border-black transition">Accessoires</button>
           </div>
         </div>
       </div>
@@ -239,7 +229,7 @@
   </footer>
 
   <!-- CART DRAWER -->
-  <div id="cartOverlay" class="fixed inset-0 bg-black/45 backdrop-blur-sm z-[60] hidden opacity-0 transition-opacity"></div>
+  <div id="cartOverlay" class="fixed inset-0 bg-black/45 backdrop-blur-sm z-[60] hidden opacity-0 transition-opacity duration-300"></div>
   <aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-[#F7F3EA] z-[70] translate-x-full transition-transform duration-500 shadow-soft border-l border-black/10 flex flex-col">
     <div class="p-6 bg-white/80 backdrop-blur border-b border-black/10 flex items-center justify-between">
       <div>
@@ -266,75 +256,26 @@
 
   <script>
     const products = [
-      {
-        id: "F-001",
-        name: "Legging Seconde Peau 25”",
-        category: "Legging",
-        price: 98,
-        specs: "NULU-LIKE · 4-WAY STRETCH",
-        image: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=1200&q=80&auto=format&fit=crop",
-        color: "VERT SAUGE"
-      },
-      {
-        id: "F-002",
-        name: "Brassière Studio Longline",
-        category: "Studio",
-        price: 58,
-        specs: "SOUTIEN MOYEN · RESPIRANT",
-        image: "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=1200&q=80&auto=format&fit=crop",
-        color: "SABLE"
-      },
-      {
-        id: "F-003",
-        name: "Top Technique Seamless",
-        category: "Studio",
-        price: 62,
-        specs: "SANS COUTURE · ANTI-ODEUR",
-        image: "https://images.unsplash.com/photo-1539185441755-769473a23570?w=1200&q=80&auto=format&fit=crop",
-        color: "NOIR"
-      },
-      {
-        id: "F-004",
-        name: "Veste Define Atelier",
-        category: "Outerwear",
-        price: 118,
-        specs: "COUPE CINTRÉE · 4-WAY STRETCH",
-        image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&q=80&auto=format&fit=crop",
-        color: "CRÈME"
-      },
-      {
-        id: "F-005",
-        name: "Jogger Lifestyle Premium",
-        category: "Outerwear",
-        price: 128,
-        specs: "MOLLETON ÉPAIS · CONFORT URBAIN",
-        image: "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=1200&q=80&auto=format&fit=crop",
-        color: "NOIR CARBONE"
-      },
-      {
-        id: "F-006",
-        name: "Chaussettes Grip Studio",
-        category: "Accessoire",
-        price: 14,
-        specs: "GRIP · LOGO SVB",
-        image: "https://images.unsplash.com/photo-1520975693411-b45d0f9c9f3a?w=1200&q=80&auto=format&fit=crop",
-        color: "VERT SVB"
-      }
+      { id: "F-001", name: "Legging Seconde Peau 25”", category: "Legging",   price: 98,  specs: "NULU-LIKE · 4-WAY STRETCH",        image: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=1200&q=80&auto=format&fit=crop", color: "VERT SAUGE" },
+      { id: "F-002", name: "Brassière Studio Longline", category: "Studio",    price: 58,  specs: "SOUTIEN MOYEN · RESPIRANT",        image: "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=1200&q=80&auto=format&fit=crop", color: "SABLE" },
+      { id: "F-003", name: "Top Technique Seamless",    category: "Studio",    price: 62,  specs: "SANS COUTURE · ANTI-ODEUR",        image: "https://images.unsplash.com/photo-1539185441755-769473a23570?w=1200&q=80&auto=format&fit=crop", color: "NOIR" },
+      { id: "F-004", name: "Veste Define Atelier",      category: "Outerwear", price: 118, specs: "COUPE CINTRÉE · 4-WAY STRETCH",    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&q=80&auto=format&fit=crop", color: "CRÈME" },
+      { id: "F-005", name: "Jogger Lifestyle Premium",  category: "Outerwear", price: 128, specs: "MOLLETON ÉPAIS · CONFORT URBAIN",   image: "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=1200&q=80&auto=format&fit=crop", color: "NOIR CARBONE" },
+      { id: "F-006", name: "Chaussettes Grip Studio",   category: "Accessoire",price: 14,  specs: "GRIP · LOGO SVB",                  image: "https://images.unsplash.com/photo-1520975693411-b45d0f9c9f3a?w=1200&q=80&auto=format&fit=crop", color: "VERT SVB" }
     ];
 
-    const state = {
-      filter: "all",
-      query: "",
-      cart: [] // {id, qty}
-    };
-
+    const state = { filter: "all", query: "", cart: [] }; // {id, qty}
     const $ = (id) => document.getElementById(id);
 
     function filteredProducts() {
       const q = (state.query || "").trim().toLowerCase();
       return products.filter(p => {
         const okFilter = state.filter === "all" ? true : p.category === state.filter;
-        const okQuery = !q ? true : (p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || p.specs.toLowerCase().includes(q));
+        const okQuery  = !q ? true : (
+          p.name.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q) ||
+          p.specs.toLowerCase().includes(q)
+        );
         return okFilter && okQuery;
       });
     }
@@ -385,7 +326,8 @@
 
       lucide.createIcons();
 
-      document.querySelectorAll("[data-add]").forEach(btn => {
+      // ✅ Fix: on bind UNIQUEMENT dans le grid (évite collisions/duplications)
+      $("grid").querySelectorAll("[data-add]").forEach(btn => {
         btn.addEventListener("click", (e) => {
           e.preventDefault(); e.stopPropagation();
           addToCart(btn.dataset.add);
@@ -400,6 +342,7 @@
         b.classList.toggle("text-white", isActive);
         b.classList.toggle("border-black", isActive);
         b.classList.toggle("bg-white/80", !isActive);
+        b.classList.toggle("border-black/10", !isActive);
       });
     }
 
@@ -444,10 +387,11 @@
     }
 
     function renderCart() {
+      // ✅ Fix: protège si un produit n'existe pas
       const items = state.cart.map(ci => {
         const p = products.find(x => x.id === ci.id);
-        return { ...p, qty: ci.qty };
-      });
+        return p ? ({ ...p, qty: ci.qty }) : null;
+      }).filter(Boolean);
 
       if (!items.length) {
         $("cartItems").innerHTML = `
@@ -490,9 +434,11 @@
         </div>
       `).join("");
 
-      document.querySelectorAll("[data-dec]").forEach(b => b.addEventListener("click", () => decQty(b.dataset.dec)));
-      document.querySelectorAll("[data-inc]").forEach(b => b.addEventListener("click", () => incQty(b.dataset.inc)));
-      document.querySelectorAll("[data-remove]").forEach(b => b.addEventListener("click", () => removeFromCart(b.dataset.remove)));
+      // ✅ Fix: bind UNIQUEMENT dans le panier
+      const cartRoot = $("cartItems");
+      cartRoot.querySelectorAll("[data-dec]").forEach(b => b.addEventListener("click", () => decQty(b.dataset.dec)));
+      cartRoot.querySelectorAll("[data-inc]").forEach(b => b.addEventListener("click", () => incQty(b.dataset.inc)));
+      cartRoot.querySelectorAll("[data-remove]").forEach(b => b.addEventListener("click", () => removeFromCart(b.dataset.remove)));
 
       const total = items.reduce((s, p) => s + p.price * p.qty, 0);
       $("cartTotal").textContent = total.toFixed(2) + " €";
@@ -535,7 +481,10 @@
       };
 
       $("search").addEventListener("input", (e) => hookSearch(e.target.value));
-      $("searchMobile").addEventListener("input", (e) => hookSearch(e.target.value));
+
+      // ✅ Fix: évite crash si searchMobile n'existe pas
+      const sm = $("searchMobile");
+      if (sm) sm.addEventListener("input", (e) => hookSearch(e.target.value));
 
       $("openCart").addEventListener("click", () => openCart());
       $("closeCart").addEventListener("click", () => openCart(false));
