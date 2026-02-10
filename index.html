@@ -3,29 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SVB — PRIVATE CIRCLE</title>
+  <title>SVB — NATURAL LUXURY</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Mulish:wght@300;400;600&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Lato', 'sans-serif'],
-            serif: ['Cinzel', 'serif'],
+            sans: ['Mulish', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
           },
           colors: {
-            'svb-black': '#0a0a0a',
-            'svb-gold': '#D4AF37', // Or Métallique
-            'svb-gray': '#1f1f1f'
+            'svb-main': '#2C2420',   // Marron Expresso (remplace le noir)
+            'svb-cream': '#FDFBF7',  // Fond Crème/Papier
+            'svb-sand': '#E8E4D9',   // Beige Sable
+            'svb-accent': '#9A8C7D', // Taupe chaud
+            'svb-terracotta': '#A85A3C' // Touche de couleur chaude
           },
           letterSpacing: {
-            'mega': '0.35em',
+            'luxe': '0.15em',
           }
         }
       }
@@ -33,241 +35,242 @@
   </script>
 
   <style>
-    /* INTRO ANIMATION STYLES */
-    #intro-overlay {
-      transition: opacity 1.5s ease-in-out, visibility 1.5s;
-    }
+    /* INTRO ANIMATION */
+    #intro-overlay { transition: opacity 1.2s ease-in-out, visibility 1.2s; }
+    .fade-text { opacity: 0; transform: translateY(15px); transition: opacity 1s ease, transform 1s ease; }
+    .fade-text.visible { opacity: 1; transform: translateY(0); }
+    .fade-text.hidden-text { opacity: 0; transform: translateY(-15px); }
+
+    /* Custom Toggle Switch (Warm Style) */
+    .toggle-checkbox:checked { right: 0; border-color: #2C2420; }
+    .toggle-checkbox:checked + .toggle-label { background-color: #E8E4D9; }
     
-    .fade-text {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1.5s ease, transform 1.5s ease;
-    }
+    body { background-color: #FDFBF7; } /* Fond crème global */
     
-    .fade-text.visible {
-      opacity: 1;
-      transform: translateY(0);
+    /* Bouton Luxe */
+    .btn-warm {
+        background-color: #2C2420;
+        color: #FDFBF7;
+        transition: all 0.3s ease;
     }
-
-    .fade-text.hidden-text {
-      opacity: 0;
-      transform: translateY(-20px);
+    .btn-warm:hover {
+        background-color: #4A3E38;
+        transform: translateY(-2px);
     }
-
-    /* Pour éviter le "flash" blanc au chargement si l'intro est active */
-    body.intro-active { overflow: hidden; }
-
-    /* Toggle Switch Dark Mode Style */
-    .toggle-checkbox:checked { right: 0; border-color: #D4AF37; }
-    .toggle-checkbox:checked + .toggle-label { background-color: #0a0a0a; }
   </style>
 </head>
 
-<body class="bg-white text-svb-black antialiased overflow-x-hidden">
+<body class="text-svb-main antialiased overflow-x-hidden selection:bg-svb-accent selection:text-white">
 
-  <div id="intro-overlay" class="fixed inset-0 z-[100] bg-svb-black flex flex-col items-center justify-center text-white px-8 text-center">
+  <div id="intro-overlay" class="fixed inset-0 z-[100] bg-[#231F1D] flex flex-col items-center justify-center text-[#FDFBF7] px-8 text-center">
     
     <div id="seq-1" class="fade-text absolute max-w-2xl">
-      <p class="text-xs uppercase tracking-mega text-svb-gold mb-6">Le Constat</p>
-      <h2 class="text-3xl md:text-5xl font-serif leading-relaxed">
-        Le Luxe traditionnel vous facture l'étiquette,<br/>pas la qualité.
+      <p class="text-xs uppercase tracking-luxe text-svb-accent mb-6">Philosophie</p>
+      <h2 class="text-3xl md:text-5xl font-serif leading-relaxed italic">
+        "L'élégance n'a pas besoin d'être froide."
       </h2>
     </div>
 
     <div id="seq-2" class="fade-text absolute max-w-2xl">
-      <p class="text-xs uppercase tracking-mega text-svb-gold mb-6">La Mission</p>
+      <p class="text-xs uppercase tracking-luxe text-svb-accent mb-6">Transparence</p>
       <h2 class="text-3xl md:text-5xl font-serif leading-relaxed">
-        Nous avons supprimé les intermédiaires.<br/>De l'atelier à vous.
+        Des matières nobles.<br/>Des prix justes.
       </h2>
     </div>
 
     <div id="seq-3" class="fade-text absolute max-w-2xl flex flex-col items-center">
-      <img src="images/logo.png" alt="SVB Logo" class="h-32 w-auto mb-8 invert opacity-90">
+      <img src="images/logo.png" alt="SVB Logo" class="h-28 w-auto mb-8 opacity-90 brightness-200 contrast-50">
       
-      <p class="text-sm uppercase tracking-[0.4em] text-gray-400 mb-12">Private Circle</p>
+      <p class="text-sm uppercase tracking-[0.3em] text-svb-accent mb-10">Private Club</p>
       
-      <p class="text-lg font-light italic text-gray-300 mb-12">
-        "Vous êtes au bon endroit. L'excellence est enfin accessible."
-      </p>
-
-      <button onclick="enterSite()" class="border border-svb-gold text-svb-gold px-12 py-4 text-xs uppercase tracking-[0.25em] hover:bg-svb-gold hover:text-black transition duration-700 ease-out">
-        Entrer dans le Club
+      <button onclick="enterSite()" class="border border-[#FDFBF7] text-[#FDFBF7] px-10 py-4 text-xs uppercase tracking-[0.2em] hover:bg-[#FDFBF7] hover:text-[#231F1D] transition duration-500 ease-out">
+        Entrer
       </button>
     </div>
 
-    <div class="absolute bottom-10 w-64 h-0.5 bg-gray-800 rounded-full overflow-hidden">
-      <div id="progress-bar" class="h-full bg-svb-gold w-0 transition-all duration-[4000ms] ease-linear"></div>
+    <div class="absolute bottom-10 w-64 h-0.5 bg-white/10 rounded-full overflow-hidden">
+      <div id="progress-bar" class="h-full bg-svb-accent w-0 transition-all duration-[4000ms] ease-linear"></div>
     </div>
   </div>
 
 
-  <div class="bg-gray-100 text-svb-black text-[9px] uppercase tracking-[0.2em] py-2 text-center border-b border-gray-200">
-    Accès Membre Autorisé • Session Sécurisée
+  <div class="bg-svb-sand text-svb-main text-[10px] uppercase tracking-[0.15em] py-3 text-center font-bold">
+    Offre Bienvenue : -70% sur votre première commande
   </div>
 
-  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-transparent transition duration-300 hover:border-gray-100">
-    <div class="max-w-[1920px] mx-auto px-8 h-24 flex justify-between items-center">
+  <header class="sticky top-0 z-40 bg-[#FDFBF7]/90 backdrop-blur border-b border-svb-sand/50 transition duration-300">
+    <div class="max-w-[1800px] mx-auto px-8 h-24 flex justify-between items-center">
       
-      <nav class="hidden md:flex space-x-12 text-[10px] uppercase tracking-[0.2em] font-bold">
-        <a href="femme.html" class="hover:text-svb-gold transition">Femme</a>
-        <a href="homme.html" class="hover:text-svb-gold transition">Homme</a>
-        <a href="#rules" class="hover:text-svb-gold transition">Le Concept</a>
+      <nav class="hidden md:flex space-x-12 text-[11px] uppercase tracking-[0.15em] font-bold text-svb-main/60">
+        <a href="femme.html" class="hover:text-svb-main transition">Femme</a>
+        <a href="homme.html" class="hover:text-svb-main transition">Homme</a>
+        <a href="#concept" class="hover:text-svb-main transition">Le Concept</a>
       </nav>
 
       <a href="index.html" class="absolute left-1/2 -translate-x-1/2">
-        <img src="images/logo.png" alt="SVB Logo" class="h-12 w-auto">
+        <img src="images/logo.png" alt="SVB Logo" class="h-10 w-auto opacity-90">
       </a>
 
       <div class="flex items-center space-x-8">
-        <div class="hidden lg:flex flex-col items-end border-r border-gray-200 pr-6 mr-2">
-          <span class="text-[9px] text-gray-400 uppercase tracking-widest">Votre Statut</span>
-          <span class="text-[10px] font-bold uppercase text-svb-gold">Membre Invité</span>
+        <div class="hidden lg:flex flex-col items-end border-r border-svb-sand pr-6 mr-2">
+          <span class="text-[9px] text-svb-main/50 uppercase tracking-widest">Statut</span>
+          <span class="text-[10px] font-bold uppercase text-svb-terracotta">Invité</span>
         </div>
-        <button class="relative" onclick="toggleCart()">
-          <span class="text-[10px] uppercase tracking-widest mr-2 hidden md:inline-block">Mon Panier</span>
-          <i data-lucide="shopping-bag" class="w-5 h-5 inline-block"></i>
-          <span id="cart-dot" class="absolute top-0 right-0 w-2 h-2 bg-svb-gold rounded-full hidden"></span>
+        <button class="relative group" onclick="toggleCart()">
+          <i data-lucide="shopping-bag" class="w-6 h-6 text-svb-main group-hover:text-svb-terracotta transition"></i>
+          <span id="cart-dot" class="absolute top-0 right-0 w-2.5 h-2.5 bg-svb-terracotta rounded-full hidden border-2 border-[#FDFBF7]"></span>
         </button>
       </div>
     </div>
   </header>
 
-  <section class="relative h-[85vh] w-full">
-    <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover grayscale brightness-75">
+  <section class="relative h-[90vh] w-full">
+    <img src="https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=1964&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover">
     
-    <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#FDFBF7]/80 via-transparent to-transparent"></div>
 
-    <div class="absolute bottom-0 left-0 w-full p-12 md:p-24">
-      <p class="text-white text-xs uppercase tracking-[0.3em] mb-4">Collection Privée N°4</p>
-      <h1 class="text-6xl md:text-8xl font-serif text-white mb-8">SILENCE</h1>
+    <div class="absolute inset-y-0 left-0 w-full md:w-1/2 flex flex-col justify-center p-12 md:p-24">
+      <p class="text-svb-main text-xs uppercase tracking-[0.3em] mb-4 font-bold">Automne / Hiver</p>
+      <h1 class="text-6xl md:text-8xl font-serif text-svb-main mb-8 leading-tight">
+        DOUCEUR<br/><span class="italic font-light text-svb-terracotta">BRUTE</span>
+      </h1>
       
-      <div class="bg-white/10 backdrop-blur-md p-6 max-w-md border-l-2 border-svb-gold">
-        <p class="text-gray-200 font-light text-sm leading-relaxed mb-4">
-          "Le luxe n'est pas un prix. C'est une liberté."<br/>
-          Rejoignez le mouvement. Payez le produit, pas la marque.
-        </p>
-        <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})" class="text-white text-xs uppercase tracking-[0.2em] border-b border-svb-gold pb-1 hover:text-svb-gold transition">
-          Accéder aux pièces
+      <p class="text-svb-main/80 text-lg font-light leading-relaxed mb-10 max-w-md">
+        Le luxe de s'habiller sans contrainte. Rejoignez le cercle et profitez de tarifs privilégiés toute l'année.
+      </p>
+      
+      <div class="flex gap-4">
+        <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})" class="btn-warm px-10 py-4 text-xs uppercase tracking-[0.2em] shadow-lg">
+          Voir la Collection
         </button>
       </div>
     </div>
   </section>
 
-  <section id="rules" class="py-24 px-8 max-w-6xl mx-auto">
+  <section id="concept" class="py-24 px-8 max-w-7xl mx-auto">
     <div class="text-center mb-20">
-      <span class="text-svb-gold text-4xl font-serif">I, II, III</span>
-      <h2 class="text-3xl font-serif mt-4 uppercase tracking-[0.15em]">Le Code du Cercle</h2>
+      <h2 class="text-4xl font-serif text-svb-main mb-4">L'Art de Vivre SVB</h2>
+      <div class="w-20 h-1 bg-svb-terracotta mx-auto rounded-full opacity-50"></div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
-      <div class="group">
-        <div class="h-px w-20 bg-svb-black mx-auto mb-8 group-hover:w-full transition-all duration-700 ease-out"></div>
-        <h3 class="text-sm font-bold uppercase tracking-widest mb-4">L'Accès</h3>
-        <p class="text-gray-500 font-light text-sm leading-7">
-          En choisissant le prix Membre, vous activez votre adhésion. Vous débloquez immédiatement <span class="text-black font-medium">-70% sur tout</span>.
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div class="bg-white p-10 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] rounded-sm text-center border border-svb-sand/30 hover:-translate-y-2 transition duration-500">
+        <div class="w-16 h-16 bg-svb-sand/30 rounded-full flex items-center justify-center mx-auto mb-6 text-svb-main">
+          <span class="font-serif text-2xl italic">1</span>
+        </div>
+        <h3 class="text-sm font-bold uppercase tracking-luxe mb-4 text-svb-main">Prix Privilège</h3>
+        <p class="text-svb-main/60 font-light text-sm leading-7">
+          Activez votre abonnement et accédez immédiatement à des tarifs jusqu'à <strong class="text-svb-terracotta">-70%</strong> sur tout le site.
         </p>
       </div>
 
-      <div class="group">
-        <div class="h-px w-20 bg-svb-black mx-auto mb-8 group-hover:w-full transition-all duration-700 ease-out"></div>
-        <h3 class="text-sm font-bold uppercase tracking-widest mb-4">La Liberté</h3>
-        <p class="text-gray-500 font-light text-sm leading-7">
-          Le 5 de chaque mois. C'est la date clé. Achetez une tenue, ou cliquez sur <span class="text-black font-medium border-b border-black">"Passer le mois"</span>. Si vous passez : 0€ débité.
+      <div class="bg-white p-10 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] rounded-sm text-center border border-svb-sand/30 hover:-translate-y-2 transition duration-500">
+        <div class="w-16 h-16 bg-svb-sand/30 rounded-full flex items-center justify-center mx-auto mb-6 text-svb-main">
+          <i data-lucide="calendar" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-sm font-bold uppercase tracking-luxe mb-4 text-svb-main">Flexible</h3>
+        <p class="text-svb-main/60 font-light text-sm leading-7">
+          Du 1er au 5 du mois, faites un achat ou cliquez sur <strong class="border-b border-svb-main text-svb-main">"Passer le mois"</strong>. Si vous passez : 0€ débité.
         </p>
       </div>
 
-      <div class="group">
-        <div class="h-px w-20 bg-svb-black mx-auto mb-8 group-hover:w-full transition-all duration-700 ease-out"></div>
-        <h3 class="text-sm font-bold uppercase tracking-widest mb-4">L'Investissement</h3>
-        <p class="text-gray-500 font-light text-sm leading-7">
-          Un oubli ? Le prélèvement de 49.90€ devient un <span class="text-black font-medium">Crédit Boutique</span>. Votre argent reste à vous, indéfiniment.
+      <div class="bg-white p-10 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] rounded-sm text-center border border-svb-sand/30 hover:-translate-y-2 transition duration-500">
+        <div class="w-16 h-16 bg-svb-sand/30 rounded-full flex items-center justify-center mx-auto mb-6 text-svb-main">
+          <i data-lucide="piggy-bank" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-sm font-bold uppercase tracking-luxe mb-4 text-svb-main">Épargne Mode</h3>
+        <p class="text-svb-main/60 font-light text-sm leading-7">
+          En cas d'oubli, vos 49,90€ deviennent un crédit utilisable à vie. C'est votre argent, il vous attend.
         </p>
       </div>
     </div>
   </section>
 
-  <section id="products" class="bg-gray-50 py-24 px-8">
+  <section id="products" class="bg-white py-24 px-8 border-t border-svb-sand/30">
     <div class="max-w-[1920px] mx-auto">
       
       <div class="sticky top-28 z-30 flex justify-center mb-16">
-        <div class="bg-white shadow-2xl px-8 py-3 rounded-full flex items-center space-x-4 border border-gray-100">
-          <span class="text-[10px] uppercase tracking-widest text-gray-400" id="label-guest">Prix Public</span>
+        <div class="bg-[#FDFBF7] shadow-xl px-8 py-3 rounded-full flex items-center space-x-6 border border-svb-sand">
+          <span class="text-[10px] uppercase tracking-luxe text-svb-main/40 font-bold" id="label-guest">Prix Public</span>
           
-          <div class="relative inline-block w-12 h-6 align-middle select-none">
-            <input type="checkbox" checked id="price-toggle" class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white border-2 border-gray-300 appearance-none cursor-pointer transition-all duration-300 left-1 top-1"/>
-            <label for="price-toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-200 cursor-pointer"></label>
+          <div class="relative inline-block w-14 h-7 align-middle select-none">
+            <input type="checkbox" checked id="price-toggle" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border border-gray-300 appearance-none cursor-pointer transition-all duration-300 left-1 top-1 shadow-sm"/>
+            <label for="price-toggle" class="toggle-label block overflow-hidden h-7 rounded-full bg-svb-sand/50 cursor-pointer"></label>
           </div>
           
-          <span class="text-[10px] uppercase tracking-widest text-svb-black font-bold" id="label-member">Prix Membre</span>
+          <span class="text-[10px] uppercase tracking-luxe text-svb-main font-bold" id="label-member">Prix Membre</span>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
         
         <div class="group cursor-pointer">
-          <div class="relative overflow-hidden mb-4 aspect-[3/4]">
-            <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1769&auto=format&fit=crop" class="w-full h-full object-cover transition duration-[1.5s] group-hover:scale-105 filter grayscale group-hover:grayscale-0">
-            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
-              <button onclick="addToCart('Le Manteau Noir', 450, 129)" class="bg-white text-black px-8 py-3 text-[10px] uppercase tracking-[0.2em] hover:bg-svb-gold transition">
-                Acquérir
+          <div class="relative overflow-hidden mb-6 aspect-[3/4] rounded-sm bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover transition duration-[1.5s] group-hover:scale-105">
+            
+            <div class="absolute inset-0 bg-svb-main/10 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+            
+            <div class="absolute bottom-6 left-0 w-full text-center translate-y-full group-hover:translate-y-0 transition duration-500">
+               <button onclick="addToCart('Jupe Plissée Soie', 190, 59)" class="bg-white text-svb-main px-8 py-3 text-[10px] uppercase tracking-[0.2em] shadow-lg hover:bg-svb-main hover:text-white transition">
+                Ajouter
               </button>
             </div>
           </div>
-          <div class="text-center">
-            <h3 class="font-serif text-lg tracking-wide">Le Manteau Noir</h3>
-            <div class="mt-2 h-8">
-              <div class="price-member">
-                <span class="text-gray-400 text-xs line-through">450 €</span>
-                <span class="text-svb-gold font-bold ml-2 text-lg">129 €</span>
+          <div class="text-center px-4">
+            <h3 class="font-serif text-lg text-svb-main mb-2">Jupe Plissée Soie</h3>
+            <div class="h-8">
+              <div class="price-member flex justify-center items-center gap-3">
+                <span class="text-svb-main/40 text-xs line-through">190 €</span>
+                <span class="text-svb-terracotta font-serif font-bold text-xl">59 €</span>
               </div>
               <div class="price-public hidden">
-                <span class="text-black text-lg">450 €</span>
+                <span class="text-svb-main text-lg">190 €</span>
               </div>
             </div>
           </div>
         </div>
 
         <div class="group cursor-pointer">
-          <div class="relative overflow-hidden mb-4 aspect-[3/4]">
-            <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1769&auto=format&fit=crop" class="w-full h-full object-cover transition duration-[1.5s] group-hover:scale-105 filter grayscale group-hover:grayscale-0">
-            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
-              <button onclick="addToCart('Blazer Croisé', 280, 79)" class="bg-white text-black px-8 py-3 text-[10px] uppercase tracking-[0.2em] hover:bg-svb-gold transition">
-                Acquérir
+          <div class="relative overflow-hidden mb-6 aspect-[3/4] rounded-sm bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=2005&auto=format&fit=crop" class="w-full h-full object-cover transition duration-[1.5s] group-hover:scale-105">
+            <div class="absolute bottom-6 left-0 w-full text-center translate-y-full group-hover:translate-y-0 transition duration-500">
+               <button onclick="addToCart('Blouse Lin', 120, 39)" class="bg-white text-svb-main px-8 py-3 text-[10px] uppercase tracking-[0.2em] shadow-lg hover:bg-svb-main hover:text-white transition">
+                Ajouter
               </button>
             </div>
           </div>
-          <div class="text-center">
-            <h3 class="font-serif text-lg tracking-wide">Blazer Croisé</h3>
-            <div class="mt-2 h-8">
-              <div class="price-member">
-                <span class="text-gray-400 text-xs line-through">280 €</span>
-                <span class="text-svb-gold font-bold ml-2 text-lg">79 €</span>
+          <div class="text-center px-4">
+            <h3 class="font-serif text-lg text-svb-main mb-2">Blouse Lin Naturel</h3>
+            <div class="h-8">
+              <div class="price-member flex justify-center items-center gap-3">
+                <span class="text-svb-main/40 text-xs line-through">120 €</span>
+                <span class="text-svb-terracotta font-serif font-bold text-xl">39 €</span>
               </div>
               <div class="price-public hidden">
-                <span class="text-black text-lg">280 €</span>
+                <span class="text-svb-main text-lg">120 €</span>
               </div>
             </div>
           </div>
         </div>
 
         <div class="group cursor-pointer">
-          <div class="relative overflow-hidden mb-4 aspect-[3/4]">
-            <img src="https://images.unsplash.com/photo-1550614000-4b9519e08048?q=80&w=1769&auto=format&fit=crop" class="w-full h-full object-cover transition duration-[1.5s] group-hover:scale-105 filter grayscale group-hover:grayscale-0">
-            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
-              <button onclick="addToCart('Chemise Oxford', 150, 49)" class="bg-white text-black px-8 py-3 text-[10px] uppercase tracking-[0.2em] hover:bg-svb-gold transition">
-                Acquérir
+          <div class="relative overflow-hidden mb-6 aspect-[3/4] rounded-sm bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1549576490-b0b4831ef60a?q=80&w=1780&auto=format&fit=crop" class="w-full h-full object-cover transition duration-[1.5s] group-hover:scale-105">
+            <div class="absolute bottom-6 left-0 w-full text-center translate-y-full group-hover:translate-y-0 transition duration-500">
+               <button onclick="addToCart('Pantalon Palazzo', 160, 49)" class="bg-white text-svb-main px-8 py-3 text-[10px] uppercase tracking-[0.2em] shadow-lg hover:bg-svb-main hover:text-white transition">
+                Ajouter
               </button>
             </div>
           </div>
-          <div class="text-center">
-            <h3 class="font-serif text-lg tracking-wide">Chemise Oxford</h3>
-            <div class="mt-2 h-8">
-              <div class="price-member">
-                <span class="text-gray-400 text-xs line-through">150 €</span>
-                <span class="text-svb-gold font-bold ml-2 text-lg">49 €</span>
+          <div class="text-center px-4">
+            <h3 class="font-serif text-lg text-svb-main mb-2">Pantalon Palazzo</h3>
+            <div class="h-8">
+              <div class="price-member flex justify-center items-center gap-3">
+                <span class="text-svb-main/40 text-xs line-through">160 €</span>
+                <span class="text-svb-terracotta font-serif font-bold text-xl">49 €</span>
               </div>
               <div class="price-public hidden">
-                <span class="text-black text-lg">150 €</span>
+                <span class="text-svb-main text-lg">160 €</span>
               </div>
             </div>
           </div>
@@ -277,50 +280,49 @@
     </div>
   </section>
 
-  <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full md:w-[500px] bg-white z-[60] transform translate-x-full transition-transform duration-500 shadow-2xl flex flex-col">
-    <div class="p-8 border-b border-gray-100 flex justify-between items-center bg-svb-black text-white">
-      <h2 class="font-serif text-xl tracking-widest">VOTRE SÉLECTION</h2>
-      <button onclick="toggleCart()"><i data-lucide="x" class="w-6 h-6"></i></button>
+  <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full md:w-[500px] bg-[#FDFBF7] z-[60] transform translate-x-full transition-transform duration-500 shadow-2xl flex flex-col border-l border-svb-sand">
+    <div class="p-8 border-b border-svb-sand flex justify-between items-center bg-svb-main text-[#FDFBF7]">
+      <h2 class="font-serif text-xl tracking-luxe italic">Votre Panier</h2>
+      <button onclick="toggleCart()" class="hover:text-svb-terracotta transition"><i data-lucide="x" class="w-6 h-6"></i></button>
     </div>
     
     <div id="cart-content" class="flex-1 p-8 overflow-y-auto">
-      <p class="text-center text-gray-400 text-sm mt-10 font-light italic">Votre vestiaire est actuellement vide.</p>
+      <p class="text-center text-svb-main/40 text-sm mt-10 font-serif italic">Votre vestiaire est vide.</p>
     </div>
 
-    <div class="p-8 border-t border-gray-100 bg-gray-50">
-      <div class="flex justify-between text-sm mb-2 text-gray-400">
-        <span>Valeur Publique</span>
+    <div class="p-8 border-t border-svb-sand bg-white">
+      <div class="flex justify-between text-sm mb-2 text-svb-main/50">
+        <span>Total Public</span>
         <span class="line-through" id="total-public">0 €</span>
       </div>
-      <div class="flex justify-between text-xl font-serif mb-4 text-svb-black">
-        <span>Total Membre</span>
+      <div class="flex justify-between text-2xl font-serif mb-6 text-svb-main">
+        <span>Prix Club</span>
         <span id="total-member">0 €</span>
       </div>
-      <div class="text-center text-[10px] text-svb-gold uppercase tracking-widest mb-6">
-        Économie réalisée : <span id="total-savings">0 €</span>
+      
+      <div class="bg-svb-sand/30 p-3 text-center mb-6 rounded-sm">
+        <span class="text-[10px] text-svb-main uppercase tracking-widest font-bold">Économie Club : <span id="total-savings" class="text-svb-terracotta">0 €</span></span>
       </div>
-      <button class="w-full bg-svb-black text-white py-4 text-xs uppercase tracking-[0.2em] hover:bg-svb-gold hover:text-black transition duration-300">
-        Valider l'adhésion
+
+      <button class="w-full btn-warm py-4 text-xs uppercase tracking-[0.2em]">
+        Commander
       </button>
     </div>
   </div>
-  <div id="overlay" onclick="toggleCart()" class="fixed inset-0 bg-black/50 z-[50] hidden backdrop-blur-sm transition-opacity"></div>
+  <div id="overlay" onclick="toggleCart()" class="fixed inset-0 bg-[#2C2420]/40 z-[50] hidden backdrop-blur-sm transition-opacity"></div>
 
   <script>
     lucide.createIcons();
 
-    // 1. GESTION DE L'INTRO (Vérifie si déjà vu)
+    // 1. INTRO LOGIC (LocalStorage)
     document.addEventListener('DOMContentLoaded', () => {
-        const hasVisited = localStorage.getItem('svb_has_visited');
+        const hasVisited = localStorage.getItem('svb_visited_v2'); // Clé changée pour reset l'intro pour toi
         const overlay = document.getElementById('intro-overlay');
 
         if (hasVisited === 'true') {
-            // Si déjà visité, on cache l'intro immédiatement
             overlay.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Réactive le scroll
         } else {
-            // Sinon, on lance l'animation
-            document.body.classList.add('intro-active');
+            document.body.style.overflow = 'hidden';
             playIntro();
         }
     });
@@ -342,11 +344,7 @@
         const overlay = document.getElementById('intro-overlay');
         overlay.style.opacity = '0';
         overlay.style.visibility = 'hidden';
-        
-        // Enregistre que l'utilisateur a vu l'intro
-        localStorage.setItem('svb_has_visited', 'true');
-        
-        document.body.classList.remove('intro-active');
+        localStorage.setItem('svb_visited_v2', 'true');
         document.body.style.overflow = 'auto';
         window.scrollTo(0,0);
     }
@@ -367,14 +365,14 @@
       if(cart.length > 0) {
         dot.classList.remove('hidden');
         content.innerHTML = cart.map((item) => `
-          <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
+          <div class="flex justify-between items-center mb-6 border-b border-svb-sand/50 pb-4">
             <div>
-              <h4 class="font-serif text-md">${item.name}</h4>
-              <p class="text-[10px] text-gray-400 uppercase">Taille Unique</p>
+              <h4 class="font-serif text-md text-svb-main">${item.name}</h4>
+              <p class="text-[10px] text-svb-main/40 uppercase">Taille Unique</p>
             </div>
             <div class="text-right">
-              <div class="text-gray-300 text-xs line-through">${item.publicPrice}€</div>
-              <div class="text-svb-gold font-bold">${item.memberPrice}€</div>
+              <div class="text-svb-main/30 text-xs line-through">${item.publicPrice}€</div>
+              <div class="text-svb-terracotta font-bold font-serif">${item.memberPrice}€</div>
             </div>
           </div>
         `).join('');
@@ -413,18 +411,18 @@
             // Mode Membre
             mems.forEach(e => e.classList.remove('hidden'));
             pubs.forEach(e => e.classList.add('hidden'));
-            lm.classList.add('text-svb-black', 'font-bold');
-            lm.classList.remove('text-gray-400');
-            lg.classList.add('text-gray-400');
-            lg.classList.remove('text-svb-black', 'font-bold');
+            lm.classList.add('text-svb-main');
+            lm.classList.remove('text-svb-main/40');
+            lg.classList.add('text-svb-main/40');
+            lg.classList.remove('text-svb-main');
         } else {
             // Mode Public
             mems.forEach(e => e.classList.add('hidden'));
             pubs.forEach(e => e.classList.remove('hidden'));
-            lg.classList.add('text-svb-black', 'font-bold');
-            lg.classList.remove('text-gray-400');
-            lm.classList.add('text-gray-400');
-            lm.classList.remove('text-svb-black', 'font-bold');
+            lg.classList.add('text-svb-main');
+            lg.classList.remove('text-svb-main/40');
+            lm.classList.add('text-svb-main/40');
+            lm.classList.remove('text-svb-main');
         }
     });
   </script>
