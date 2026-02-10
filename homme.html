@@ -3,509 +3,285 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SVB | Collection Homme</title>
-
+  <title>SVB HOMME — L'ESSENTIEL</title>
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          colors: {
-            "svb-black": "#050505",
-            "svb-cream": "#EAE6CA",
-            "svb-mint":  "#C1DECA",
-            "svb-sage":  "#A0CDAE",
-            "svb-sand":  "#E8D5B5",
-            "svb-teal":  "#2D7972",  // vert/logo
-            "svb-cobalt":"#0033CC"
-          },
           fontFamily: {
-            sans: ["Inter", "sans-serif"],
-            serif: ["Playfair Display", "serif"],
-            tech: ["Archivo", "sans-serif"]
+            sans: ['Lato', 'sans-serif'],
+            serif: ['Cinzel', 'serif'],
           },
-          backgroundImage: {
-            grid: "url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27 width=%2732%27 height=%2732%27 fill=%27none%27 stroke=%27rgba(45,121,114,0.06)%27%3e%3cpath d=%27M0 .5H31.5V32%27/%3e%3c/svg%3e')"
+          colors: {
+            'svb-black': '#050505',
+            'svb-charcoal': '#1a1a1a', // Gris anthracite pour l'homme
+            'svb-gold': '#C5A059',
+            'svb-offwhite': '#F9F9F9'
           },
-          boxShadow: {
-            soft: "0 18px 60px rgba(0,0,0,0.10)"
+          letterSpacing: {
+            'widest': '0.25em',
           }
         }
       }
-    };
+    }
   </script>
 
   <style>
-    /* Fond SVB (mint/cream/sand) + grid */
-    body{
-      background:
-        radial-gradient(1200px 600px at 15% 10%, rgba(193,222,202,0.90), transparent 55%),
-        radial-gradient(900px 500px at 85% 15%, rgba(232,213,181,0.80), transparent 55%),
-        radial-gradient(900px 600px at 70% 90%, rgba(234,230,202,0.95), transparent 60%),
-        linear-gradient(180deg, #F7F3EA 0%, #F3EFE3 55%, #F6F2E6 100%);
-      overflow-x:hidden;
-    }
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #2D7972; border-radius: 10px; }
+    /* Scrollbar invisible */
+    ::-webkit-scrollbar { width: 0px; background: transparent; }
+    
+    /* Toggle Switch Dark Mode */
+    .toggle-checkbox:checked { right: 0; border-color: #C5A059; }
+    .toggle-checkbox:checked + .toggle-label { background-color: #050505; }
 
-    /* Découpe "tech" mais plus luxe (moins agressive) */
-    .clip-tech { clip-path: polygon(0 0, 100% 0, 100% 86%, 92% 100%, 0 100%); }
-
-    /* Petit bruit très léger (sans image externe) */
-    .noise::before{
-      content:"";
-      position:absolute; inset:0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
-      mix-blend-mode:multiply;
-      opacity:.06;
-      pointer-events:none;
-    }
-
-    /* Anti blur aliasing sur images */
-    img { -webkit-transform: translateZ(0); transform: translateZ(0); }
+    /* Hover Zoom & Grayscale Logic */
+    .product-card img { filter: grayscale(100%) contrast(1.1); transition: all 0.6s ease; }
+    .product-card:hover img { filter: grayscale(0%) contrast(1); transform: scale(1.03); }
+    
+    /* Sticky Bar Shadow transition */
+    .sticky-active { box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
   </style>
 </head>
 
-<body class="text-svb-black antialiased bg-grid">
+<body class="bg-white text-svb-black antialiased">
 
-  <!-- NAV -->
-  <<nav class="fixed top-0 w-full z-40 bg-white/60 backdrop-blur-md border-b border-black/5 transition-all duration-300">
-    <div class="max-w-[1800px] mx-auto px-6 h-16 flex justify-between items-center">
+  <header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+    <div class="max-w-[1920px] mx-auto px-6 h-20 flex justify-between items-center">
       
-      <div class="flex items-center gap-4">
-        <a href="index.html" class="font-tech font-black text-2xl tracking-tighter hover:text-svb-teal transition">
-          SVB.
-        </a>
-      </div>
+      <nav class="hidden md:flex space-x-10 text-[10px] uppercase tracking-widest font-bold text-gray-400">
+        <a href="index.html" class="hover:text-black transition">Accueil</a>
+        <a href="femme.html" class="hover:text-black transition">Femme</a>
+        <a href="#" class="text-black border-b border-black pb-1">Homme</a>
+      </nav>
 
-      <div class="hidden md:flex items-center gap-10 text-xs font-bold uppercase tracking-[0.15em] font-tech text-black/60">
-        <a href="index.html" class="hover:text-black transition relative group">
-          Accueil
-          <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-black transition-all group-hover:w-full"></span>
-        </a>
-        
-        <a href="femme.html" class="text-svb-teal font-black relative">
-          Femme
-          <span class="absolute -bottom-1 left-0 w-full h-[2px] bg-svb-teal"></span>
-        </a>
+      <a href="index.html" class="text-3xl font-serif tracking-widest absolute left-1/2 -translate-x-1/2 font-bold">SVB</a>
 
-        <a href="homme.html" class="hover:text-black transition relative group">
-          Homme
-          <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-black transition-all group-hover:w-full"></span>
-        </a>
-      </div>
-
-      <div class="flex items-center gap-6">
-        
-        <div class="hidden sm:flex items-center gap-2 bg-white/50 border border-black/10 px-3 py-1.5 rounded-sm focus-within:border-black/30 transition">
-          <i data-lucide="search" class="w-3.5 h-3.5 text-black/40"></i>
-          <input id="search" type="text" placeholder="RECHERCHER..." class="bg-transparent text-[10px] font-mono uppercase outline-none w-32 placeholder:text-black/30">
-        </div>
-
-        <button id="openCart" class="relative hover:text-svb-teal transition group" aria-label="Ouvrir le panier">
-          <i data-lucide="shopping-bag" class="w-5 h-5 group-hover:scale-105 transition"></i>
-          <span id="cartPill" class="absolute -top-1.5 -right-1.5 bg-svb-cobalt text-white text-[9px] min-w-[16px] h-[16px] rounded-full flex items-center justify-center opacity-0 transition-opacity font-mono">0</span>
+      <div class="flex items-center space-x-8">
+        <button onclick="openCart()" class="relative group">
+          <span class="text-[9px] uppercase tracking-widest mr-2 hidden md:inline group-hover:text-svb-gold transition">Vestiaire</span>
+          <i data-lucide="shopping-bag" class="w-4 h-4 inline-block"></i>
+          <span id="cart-badge" class="absolute -top-1 -right-1 w-2 h-2 bg-svb-black rounded-full hidden"></span>
         </button>
-        
-        <button class="md:hidden">
-            <i data-lucide="menu" class="w-6 h-6 text-black/80"></i>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <header class="pt-16">
-    <div class="relative noise clip-tech border-b border-black/10">
-      <div class="bg-svb-black text-white py-20 px-6">
-        <div class="max-w-[1800px] mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-          <div class="max-w-2xl">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-2 h-2 bg-svb-teal animate-pulse"></div>
-              <span class="font-mono text-xs text-white/50 uppercase tracking-widest">SYSTÈME V.02 // HOMME</span>
-            </div>
-
-            <h1 class="font-tech font-black text-6xl md:text-8xl leading-[0.9] uppercase">
-              Structure<br>
-              <span class="text-transparent" style="-webkit-text-stroke: 1px rgba(255,255,255,0.85);">
-                & Matière
-              </span>
-            </h1>
-
-            <p class="mt-6 text-white/60 max-w-lg font-mono text-sm border-l-2 border-svb-teal pl-4">
-              Tissus haute densité. Coupes architecturales.
-              Conçu pour la performance urbaine et l'entraînement intensif.
-            </p>
-
-            <div class="mt-8 flex flex-wrap gap-3">
-              <button onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})"
-                class="bg-white text-black px-8 py-3 font-tech font-bold uppercase tracking-widest hover:bg-svb-teal hover:text-white transition">
-                Explorer le Drop
-              </button>
-              <div class="flex items-center gap-2 px-4 py-3 border border-white/15 text-[10px] font-mono uppercase tracking-widest text-white/60">
-                <span class="w-2 h-2 bg-svb-cobalt"></span>
-                Livraison & retours offerts
-              </div>
-            </div>
-          </div>
-
-          <div class="w-full md:w-1/3 aspect-video md:aspect-square bg-white/5 relative overflow-hidden grayscale hover:grayscale-0 transition duration-700 border border-white/10">
-            <img src="https://images.unsplash.com/photo-1517466787929-bc90951d6dbd?w=1200&q=80&auto=format&fit=crop"
-                 class="object-cover w-full h-full opacity-85" loading="lazy" decoding="async" alt="SVB Homme" />
-            <div class="absolute bottom-4 right-4 font-tech text-4xl font-bold text-white/15">SVB</div>
-            <div class="absolute top-4 left-4 text-[10px] font-mono uppercase tracking-widest text-white/50 bg-black/30 px-2 py-1 border border-white/10">
-              DROP 01 · ATELIER
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bande SVB douce (mint/cream) -->
-      <div class="bg-gradient-to-r from-svb-mint via-svb-cream to-svb-sand border-t border-white/10">
-        <div class="max-w-[1800px] mx-auto px-6 py-3 flex flex-wrap gap-6 items-center text-[10px] font-mono uppercase tracking-widest text-black/55">
-          <span class="flex items-center gap-2"><span class="w-2 h-2 bg-svb-teal"></span> Coupe architecturale</span>
-          <span class="flex items-center gap-2"><span class="w-2 h-2 bg-svb-cobalt"></span> Performance couture</span>
-          <span class="flex items-center gap-2"><span class="w-2 h-2 bg-black"></span> Matériaux premium</span>
-        </div>
       </div>
     </div>
   </header>
 
-  <!-- TOOLBAR -->
-  <section id="drop" class="max-w-[1800px] mx-auto px-6 pt-10">
-    <div class="bg-white/60 backdrop-blur border border-black/10 shadow-soft">
-      <div class="px-6 py-5 flex flex-wrap gap-4 items-center justify-between border-b border-black/5">
-        <div class="flex items-center gap-4">
-          <span class="font-mono text-xs text-black/40">INDEX PRODUITS</span>
-          <span id="count" class="text-[10px] font-mono uppercase tracking-widest text-black/50 bg-white/80 border border-black/10 px-2 py-1">
-            [--]
-          </span>
-        </div>
-
-        <div class="flex items-center gap-2">
-          <div class="sm:hidden flex items-center gap-2 bg-white/80 border border-black/10 px-3 py-2">
-            <i data-lucide="search" class="w-4 h-4 text-black/40"></i>
-            <input id="searchMobile" type="text" placeholder="Rechercher…" class="bg-transparent text-xs outline-none w-40 placeholder:text-black/30">
-          </div>
-
-          <div class="flex flex-wrap gap-2">
-            <button data-filter="all" class="fbtn bg-black text-white px-4 py-2 text-[10px] font-mono uppercase hover:bg-svb-teal transition border border-black">
-              Tout
-            </button>
-            <button data-filter="Heavy" class="fbtn bg-white/80 border border-black/10 px-4 py-2 text-[10px] font-mono uppercase hover:border-black transition">
-              Heavyweight
-            </button>
-            <button data-filter="Tech" class="fbtn bg-white/80 border border-black/10 px-4 py-2 text-[10px] font-mono uppercase hover:border-black transition">
-              Tech-Wear
-            </button>
-            <button data-filter="Run" class="fbtn bg-white/80 border border-black/10 px-4 py-2 text-[10px] font-mono uppercase hover:border-black transition">
-              Running
-            </button>
-            <button data-filter="Accessoire" class="fbtn bg-white/80 border border-black/10 px-4 py-2 text-[10px] font-mono uppercase hover:border-black transition">
-              Accessoires
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="px-6 py-4 flex flex-wrap items-center gap-3 text-[10px] font-mono uppercase tracking-widest text-black/45">
-        <span class="inline-flex items-center gap-2"><span class="w-2 h-2 bg-svb-teal"></span> Palette SVB</span>
-        <span class="inline-flex items-center gap-2"><span class="w-2 h-2 bg-svb-sand"></span> Sable</span>
-        <span class="inline-flex items-center gap-2"><span class="w-2 h-2 bg-svb-mint"></span> Mint</span>
-        <span class="inline-flex items-center gap-2"><span class="w-2 h-2 bg-svb-cobalt"></span> Cobalt signature</span>
+  <section class="relative h-[65vh] w-full overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=2148&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover object-top">
+    <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
+    
+    <div class="absolute bottom-16 left-8 md:left-16 text-white max-w-xl">
+      <div class="border-l-2 border-svb-gold pl-6">
+        <p class="text-[10px] uppercase tracking-[0.4em] mb-4 text-gray-300">Collection Permanente</p>
+        <h1 class="text-5xl md:text-7xl font-serif mb-6 leading-none">L'ALLURE<br/>MAÎTRISÉE</h1>
+        <p class="text-sm font-light text-gray-300 mb-8 max-w-md">
+          Coupes architecturales. Matières nobles. Prix justes.<br/>
+          L'élégance n'est pas une option, c'est une discipline.
+        </p>
+        <button class="bg-white text-black px-8 py-3 text-[10px] uppercase tracking-[0.25em] hover:bg-svb-gold hover:text-white transition duration-300">
+          Découvrir
+        </button>
       </div>
     </div>
   </section>
 
-  <!-- GRID -->
-  <main id="catalog" class="max-w-[1800px] mx-auto px-6 py-10 pb-32">
-    <div id="grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
-  </main>
+  <div class="sticky top-20 z-40 bg-white/95 backdrop-blur border-b border-gray-200 py-4 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4 transition-all" id="control-bar">
+    
+    <div class="flex items-center space-x-8 text-[10px] uppercase tracking-widest font-bold text-gray-400 overflow-x-auto w-full md:w-auto">
+      <button class="text-black flex items-center gap-1 border-b border-transparent hover:border-black transition">Tout</button>
+      <button class="hover:text-black transition">Costumes</button>
+      <button class="hover:text-black transition">Outerwear</button>
+      <button class="hover:text-black transition">Mailles</button>
+      <button class="hover:text-black transition">Souliers</button>
+    </div>
 
-  <!-- FOOTER -->
-  <footer class="bg-white/60 backdrop-blur border-t border-black/10 py-12">
-    <div class="max-w-[1800px] mx-auto px-6 text-center md:text-left">
-      <h2 class="font-tech text-7xl md:text-9xl text-black/5 font-black tracking-tighter select-none">SVB ATELIER</h2>
-      <div class="flex flex-col md:flex-row justify-between items-center md:items-end mt-[-1.5rem] relative z-10 gap-4">
-        <p class="text-xs font-mono text-black/50">INGÉNIERIE PARIS ©2026</p>
-        <div class="flex gap-6 text-xs font-bold uppercase tracking-widest">
-          <a href="#" class="hover:text-svb-teal transition">Légal</a>
-          <a href="#" class="hover:text-svb-teal transition">Contact</a>
+    <div class="flex items-center bg-svb-charcoal px-5 py-2 rounded-sm shadow-md">
+      <span class="text-[9px] uppercase tracking-widest text-gray-500 mr-3" id="lbl-guest">Public</span>
+      <div class="relative inline-block w-10 h-5 align-middle select-none">
+        <input type="checkbox" checked id="price-toggle" class="toggle-checkbox absolute block w-3 h-3 rounded-full bg-svb-charcoal border border-gray-500 appearance-none cursor-pointer transition-all duration-300 left-1 top-1"/>
+        <label for="price-toggle" class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-600 cursor-pointer"></label>
+      </div>
+      <span class="text-[9px] uppercase tracking-widest text-white font-bold ml-3" id="lbl-member">Membre</span>
+    </div>
+  </div>
+
+  <section class="py-16 px-6 md:px-12 bg-white">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-20" id="product-grid">
+      </div>
+
+    <div class="col-span-1 md:col-span-2 lg:col-span-4 py-24 my-20 bg-svb-charcoal text-white flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-full opacity-10" style="background-image: repeating-linear-gradient(45deg, #000 0, #000 1px, transparent 0, transparent 50%); background-size: 10px 10px;"></div>
+      
+      <span class="text-svb-gold text-xs uppercase tracking-[0.4em] mb-4 relative z-10">Philosophie SVB</span>
+      <h3 class="text-3xl md:text-4xl font-serif max-w-3xl leading-snug mb-8 relative z-10">
+        "N'achetez pas un vêtement.<br/>Investissez dans votre charisme."
+      </h3>
+      <div class="flex gap-8 text-center relative z-10">
+        <div>
+          <span class="block text-2xl font-serif text-svb-gold">-70%</span>
+          <span class="text-[9px] uppercase tracking-widest text-gray-400">Avantage Membre</span>
+        </div>
+        <div class="w-px bg-gray-700"></div>
+        <div>
+          <span class="block text-2xl font-serif text-svb-gold">0€</span>
+          <span class="text-[9px] uppercase tracking-widest text-gray-400">Si vous passez le mois</span>
         </div>
       </div>
     </div>
-  </footer>
+  </section>
 
-  <!-- CART DRAWER -->
-  <div id="cartOverlay" class="fixed inset-0 bg-black/45 backdrop-blur-sm z-[60] hidden opacity-0 transition-opacity"></div>
-  <aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-[#F7F3EA] z-[70] translate-x-full transition-transform duration-500 shadow-soft border-l border-black/10 flex flex-col">
-    <div class="p-6 bg-white/80 backdrop-blur border-b border-black/10 flex items-center justify-between">
-      <div>
-        <p class="text-[10px] font-mono uppercase tracking-widest text-black/50">Panier</p>
-        <h3 class="font-serif text-2xl">SVB Homme</h3>
-      </div>
-      <button id="closeCart" class="p-2 hover:rotate-180 transition" aria-label="Fermer">
-        <i data-lucide="x" class="w-6 h-6"></i>
-      </button>
+  <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full md:w-[500px] bg-white z-[60] transform translate-x-full transition-transform duration-500 shadow-2xl flex flex-col border-l border-gray-100">
+    <div class="p-8 border-b border-gray-100 flex justify-between items-center bg-svb-charcoal text-white">
+      <span class="font-serif text-lg tracking-widest">SÉLECTION</span>
+      <button onclick="closeCart()" class="hover:text-svb-gold transition"><i data-lucide="x" class="w-5 h-5"></i></button>
     </div>
-
-    <div id="cartItems" class="p-6 flex-1 overflow-y-auto space-y-4"></div>
-
-    <div class="p-6 bg-white/80 backdrop-blur border-t border-black/10">
-      <div class="flex justify-between items-center text-sm mb-4">
-        <span class="text-black/50">Sous-total</span>
-        <span id="cartTotal" class="font-bold">0.00 €</span>
+    
+    <div id="cart-items" class="flex-1 p-8 overflow-y-auto space-y-8">
       </div>
-      <button class="w-full bg-svb-teal text-white py-4 text-xs font-bold uppercase tracking-widest hover:bg-svb-cobalt transition font-tech">
-        Paiement sécurisé
+    
+    <div class="p-8 bg-svb-offwhite border-t border-gray-200">
+      <div class="flex justify-between text-xs mb-2 text-gray-400 uppercase tracking-wide"><span>Valeur Publique</span><span class="line-through" id="cart-total-public">0€</span></div>
+      <div class="flex justify-between text-2xl font-serif mb-4 text-black"><span>Prix Club</span><span id="cart-total-member">0€</span></div>
+      
+      <div class="bg-white border border-svb-gold/30 p-3 text-center mb-6">
+        <span class="text-[10px] text-svb-black uppercase tracking-widest">Gain Immédiat : <span id="cart-savings" class="font-bold text-svb-gold">0€</span></span>
+      </div>
+      
+      <button class="w-full bg-svb-black text-white py-4 text-xs uppercase tracking-[0.25em] hover:bg-svb-gold hover:text-black transition duration-300">
+        Valider la commande
       </button>
+      <p class="text-[9px] text-gray-400 text-center mt-4">En validant, j'accepte les conditions de l'abonnement SVB.</p>
     </div>
-  </aside>
+  </div>
+  <div id="overlay" onclick="closeCart()" class="fixed inset-0 bg-black/60 z-[50] hidden backdrop-blur-sm transition-opacity"></div>
 
   <script>
+    lucide.createIcons();
+
+    // DONNÉES HOMME
     const products = [
-      { id: "M-001", name: "T-Shirt Heavyweight Boxy", category: "Heavy", price: 55, specs: "400 GSM · COTON BIO", image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=1200&q=80&auto=format&fit=crop", color: "NOIR CARBONE" },
-      { id: "M-002", name: "Pantalon Cargo Tech", category: "Tech", price: 120, specs: "NYLON RIPSTOP · DÉPERLANT", image: "https://images.unsplash.com/photo-1556906781-9a412961d28c?w=1200&q=80&auto=format&fit=crop", color: "GRIS BÉTON" },
-      { id: "M-003", name: "Veste Track Retro", category: "Tech", price: 140, specs: "ARCHIVE FIT · DOUBLURE MESH", image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=1200&q=80&auto=format&fit=crop", color: "BLEU COBALT" },
-      { id: "M-004", name: "Short de Compression", category: "Run", price: 60, specs: "STRETCH 4-WAY · POCHE CLÉ", image: "https://images.unsplash.com/photo-1517466787929-bc90951d6dbd?w=1200&q=80&auto=format&fit=crop", color: "NOIR" },
-      { id: "M-005", name: "Hoodie 'Atelier' Zip", category: "Heavy", price: 110, specs: "600 GSM · DOUBLE ZIP", image: "https://images.unsplash.com/photo-1556906781-9a412961d28c?w=1200&q=80&auto=format&fit=crop", color: "BLANC CASSÉ" },
-      { id: "M-006", name: "Casquette Dad Hat", category: "Accessoire", price: 35, specs: "BRODERIE SVB · LAVÉ", image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=1200&q=80&auto=format&fit=crop", color: "BLEU MARINE" }
+      { id: 101, name: "Costume Croisé", cat: "Tailoring", pricePub: 650, priceMem: 199, img: "https://images.unsplash.com/photo-1594938298603-c8148c47e356?q=80&w=1887&auto=format&fit=crop" },
+      { id: 102, name: "Bombardier Cuir", cat: "Outerwear", pricePub: 480, priceMem: 159, img: "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?q=80&w=1995&auto=format&fit=crop" },
+      { id: 103, name: "Col Roulé Cachemire", cat: "Mailles", pricePub: 220, priceMem: 79, img: "https://images.unsplash.com/photo-1621072118294-e672f6c48743?q=80&w=1887&auto=format&fit=crop" },
+      { id: 104, name: "Chelsea Boots", cat: "Souliers", pricePub: 290, priceMem: 99, img: "https://images.unsplash.com/photo-1638367015842-88f50357f847?q=80&w=1887&auto=format&fit=crop" },
+      { id: 105, name: "Trench Coat Tech", cat: "Outerwear", pricePub: 350, priceMem: 110, img: "https://images.unsplash.com/photo-1605908502724-9093a79a1b39?q=80&w=1964&auto=format&fit=crop" },
+      { id: 106, name: "Chemise Oxford", cat: "Essentiels", pricePub: 120, priceMem: 45, img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=1888&auto=format&fit=crop" },
+      { id: 107, name: "Chino Ajusté", cat: "Pantalons", pricePub: 140, priceMem: 55, img: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?q=80&w=1887&auto=format&fit=crop" },
+      { id: 108, name: "Weekender Cuir", cat: "Accessoires", pricePub: 390, priceMem: 129, img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=1887&auto=format&fit=crop" },
     ];
 
-    const state = {
-      filter: "all",
-      query: "",
-      cart: [] // {id, qty}
-    };
-
-    const $ = (id) => document.getElementById(id);
-
-    function filteredProducts() {
-      const q = (state.query || "").trim().toLowerCase();
-      return products.filter(p => {
-        const okFilter = state.filter === "all" ? true : p.category === state.filter;
-        const okQuery = !q ? true : (p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || p.specs.toLowerCase().includes(q));
-        return okFilter && okQuery;
-      });
-    }
-
-    function render(items) {
-      $("count").textContent = `[${items.length}]`;
-
-      $("grid").innerHTML = items.map(p => `
-        <article class="group bg-white/65 backdrop-blur border border-black/10 hover:border-black/30 transition duration-300 p-2 shadow-soft">
-          <div class="relative overflow-hidden aspect-[4/5] bg-black/5 mb-3">
-            <img src="${p.image}"
-                 class="w-full h-full object-cover filter grayscale contrast-110 group-hover:grayscale-0 transition duration-500"
-                 loading="lazy" decoding="async" alt="${p.name}">
-            <div class="absolute top-2 right-2 bg-black text-white text-[8px] font-mono px-2 py-1 border border-white/10">
-              ${p.id}
+    // RENDU GRILLE
+    const grid = document.getElementById('product-grid');
+    
+    function renderGrid(isMemberMode) {
+      grid.innerHTML = products.map(p => `
+        <div class="product-card group cursor-pointer flex flex-col">
+          <div class="relative overflow-hidden aspect-[3/4] mb-5 bg-gray-200">
+            <img src="${p.img}" class="w-full h-full object-cover">
+            
+            <div class="absolute inset-0 bg-svb-charcoal/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
+               <span class="text-svb-gold text-xs font-serif italic mb-2">Exclusivité</span>
+               <button onclick="addToCart(${p.id})" class="border border-white text-white px-6 py-3 text-[9px] uppercase tracking-[0.2em] hover:bg-white hover:text-black transition">
+                 Ajouter
+               </button>
             </div>
-
-            <div class="absolute left-2 top-2 flex flex-col gap-2">
-              <span class="bg-svb-teal text-white text-[8px] font-mono uppercase tracking-widest px-2 py-1 border border-white/10">
-                ${p.category}
-              </span>
-            </div>
-
-            <div class="absolute inset-x-0 bottom-0 p-3 translate-y-full group-hover:translate-y-0 transition duration-500 ease-out flex gap-2">
-              <button data-add="${p.id}" class="flex-1 bg-white/85 backdrop-blur text-black text-[10px] font-bold uppercase tracking-widest py-3 hover:bg-svb-teal hover:text-white transition font-tech border border-black/10">
-                Ajouter
-              </button>
-              <button data-add="${p.id}" class="px-4 bg-white/85 backdrop-blur text-black hover:bg-svb-cobalt hover:text-white transition border border-black/10" aria-label="Ajouter au panier">
-                <i data-lucide="plus" class="w-4 h-4"></i>
-              </button>
-            </div>
+            
+            ${isMemberMode ? `<div class="absolute top-0 right-0 bg-svb-gold text-white text-[8px] px-3 py-1 uppercase tracking-widest font-bold">Club</div>` : ''}
           </div>
-
-          <div class="border-b border-dashed border-black/15 pb-2 mb-2">
-            <p class="font-mono text-[9px] text-svb-cobalt uppercase tracking-tight">${p.specs}</p>
-          </div>
-
-          <div class="flex justify-between items-end">
-            <div class="min-w-0 pr-3">
-              <h3 class="font-tech font-black text-lg uppercase leading-none truncate">${p.name}</h3>
-              <p class="text-[10px] text-black/45 mt-1 uppercase tracking-widest">${p.color}</p>
-            </div>
-            <span class="font-mono font-bold text-sm">${p.price}€</span>
-          </div>
-        </article>
-      `).join("");
-
-      lucide.createIcons();
-
-      document.querySelectorAll("[data-add]").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-          e.preventDefault(); e.stopPropagation();
-          addToCart(btn.dataset.add);
-        });
-      });
-    }
-
-    function setActiveFilterButton() {
-      document.querySelectorAll(".fbtn").forEach(b => {
-        const isActive = b.dataset.filter === state.filter;
-        b.classList.toggle("bg-black", isActive);
-        b.classList.toggle("text-white", isActive);
-        b.classList.toggle("border-black", isActive);
-        b.classList.toggle("bg-white/80", !isActive);
-      });
-    }
-
-    // CART
-    function addToCart(id) {
-      const found = state.cart.find(x => x.id === id);
-      if (found) found.qty += 1;
-      else state.cart.push({ id, qty: 1 });
-      updateCartPill();
-      renderCart();
-      openCart(true);
-    }
-
-    function removeFromCart(id) {
-      state.cart = state.cart.filter(x => x.id !== id);
-      updateCartPill();
-      renderCart();
-    }
-
-    function decQty(id) {
-      const item = state.cart.find(x => x.id === id);
-      if (!item) return;
-      item.qty -= 1;
-      if (item.qty <= 0) removeFromCart(id);
-      updateCartPill();
-      renderCart();
-    }
-
-    function incQty(id) {
-      const item = state.cart.find(x => x.id === id);
-      if (!item) return;
-      item.qty += 1;
-      updateCartPill();
-      renderCart();
-    }
-
-    function updateCartPill() {
-      const count = state.cart.reduce((s, x) => s + x.qty, 0);
-      const pill = $("cartPill");
-      pill.textContent = count;
-      pill.style.opacity = count > 0 ? "1" : "0";
-    }
-
-    function renderCart() {
-      const items = state.cart.map(ci => {
-        const p = products.find(x => x.id === ci.id);
-        return { ...p, qty: ci.qty };
-      });
-
-      if (!items.length) {
-        $("cartItems").innerHTML = `
-          <div class="text-black/50 text-sm">
-            Votre panier est vide.
-            <div class="mt-4 text-[10px] font-mono uppercase tracking-widest text-black/40">
-              Ajoutez une pièce du drop.
-            </div>
-          </div>
-        `;
-        $("cartTotal").textContent = "0.00 €";
-        return;
-      }
-
-      $("cartItems").innerHTML = items.map(p => `
-        <div class="bg-white/70 border border-black/10 p-3 flex gap-3">
-          <div class="w-16 h-20 bg-black/5 overflow-hidden shrink-0">
-            <img src="${p.image}" class="w-full h-full object-cover" loading="lazy" decoding="async" alt="${p.name}">
-          </div>
-          <div class="flex-1 min-w-0">
-            <div class="flex justify-between gap-3">
-              <div class="min-w-0">
-                <p class="font-serif text-sm truncate">${p.name}</p>
-                <p class="text-[10px] font-mono uppercase tracking-widest text-black/45 mt-1">${p.specs}</p>
-              </div>
-              <p class="font-mono font-bold text-sm">${(p.price * p.qty).toFixed(2)}€</p>
-            </div>
-
-            <div class="mt-3 flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <button data-dec="${p.id}" class="w-8 h-8 border border-black/10 hover:border-black/40 transition">–</button>
-                <span class="text-xs font-mono w-6 text-center">${p.qty}</span>
-                <button data-inc="${p.id}" class="w-8 h-8 border border-black/10 hover:border-black/40 transition">+</button>
-              </div>
-              <button data-remove="${p.id}" class="text-[10px] font-mono uppercase tracking-widest text-black/40 underline hover:text-red-600 transition">
-                Retirer
-              </button>
+          
+          <div class="text-center">
+            <h3 class="font-serif text-md tracking-wide text-svb-black group-hover:text-svb-gold transition">${p.name}</h3>
+            <p class="text-[9px] text-gray-400 uppercase tracking-widest mt-1 mb-2">${p.cat}</p>
+            
+            <div class="h-6">
+              ${isMemberMode 
+                ? `<div class="flex justify-center items-center gap-3">
+                     <span class="text-xs text-gray-400 line-through decoration-1">${p.pricePub}€</span>
+                     <span class="text-lg font-serif font-bold text-svb-black border-b border-svb-gold pb-0.5">${p.priceMem}€</span>
+                   </div>`
+                : `<span class="text-md font-serif text-black">${p.pricePub}€</span>`
+              }
             </div>
           </div>
         </div>
-      `).join("");
-
-      document.querySelectorAll("[data-dec]").forEach(b => b.addEventListener("click", () => decQty(b.dataset.dec)));
-      document.querySelectorAll("[data-inc]").forEach(b => b.addEventListener("click", () => incQty(b.dataset.inc)));
-      document.querySelectorAll("[data-remove]").forEach(b => b.addEventListener("click", () => removeFromCart(b.dataset.remove)));
-
-      const total = items.reduce((s, p) => s + p.price * p.qty, 0);
-      $("cartTotal").textContent = total.toFixed(2) + " €";
+      `).join('');
     }
 
-    function openCart(forceOpen) {
-      const overlay = $("cartOverlay");
-      const drawer = $("cartDrawer");
-      const isOpen = !drawer.classList.contains("translate-x-full");
-      const nextOpen = typeof forceOpen === "boolean" ? forceOpen : !isOpen;
+    // INITIALISATION
+    let memberMode = true;
+    renderGrid(memberMode);
 
-      if (nextOpen) {
-        overlay.classList.remove("hidden");
-        requestAnimationFrame(() => overlay.classList.remove("opacity-0"));
-        drawer.classList.remove("translate-x-full");
-        document.body.style.overflow = "hidden";
+    // LOGIQUE SWITCH
+    const toggle = document.getElementById('price-toggle');
+    const lblGuest = document.getElementById('lbl-guest');
+    const lblMem = document.getElementById('lbl-member');
+
+    toggle.addEventListener('change', (e) => {
+      memberMode = e.target.checked;
+      renderGrid(memberMode);
+      
+      if(memberMode) {
+        lblMem.classList.replace('text-gray-500', 'text-white');
+        lblGuest.classList.replace('text-white', 'text-gray-500');
       } else {
-        drawer.classList.add("translate-x-full");
-        overlay.classList.add("opacity-0");
-        setTimeout(() => overlay.classList.add("hidden"), 300);
-        document.body.style.overflow = "";
+        lblGuest.classList.replace('text-gray-500', 'text-white');
+        lblMem.classList.replace('text-white', 'text-gray-500');
       }
+    });
+
+    // LOGIQUE PANIER
+    let cart = [];
+    function addToCart(id) {
+      const prod = products.find(p => p.id === id);
+      cart.push(prod);
+      updateCartUI();
+      openCart();
     }
 
-    // EVENTS
-    document.addEventListener("DOMContentLoaded", () => {
-      lucide.createIcons();
+    function updateCartUI() {
+      const container = document.getElementById('cart-items');
+      const badge = document.getElementById('cart-badge');
+      
+      if(cart.length > 0) badge.classList.remove('hidden');
+      
+      container.innerHTML = cart.map(item => `
+        <div class="flex gap-5 border-b border-gray-100 pb-4">
+          <div class="w-20 h-24 overflow-hidden bg-gray-100">
+            <img src="${item.img}" class="w-full h-full object-cover filter grayscale">
+          </div>
+          <div class="flex-1 flex flex-col justify-center">
+            <h4 class="font-serif text-sm tracking-wide text-black">${item.name}</h4>
+            <div class="flex justify-between items-end mt-3">
+              <span class="text-xs text-gray-400 line-through">${item.pricePub}€</span>
+              <span class="text-lg font-serif font-bold text-svb-gold">${item.priceMem}€</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
 
-      // filters
-      document.querySelectorAll(".fbtn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          state.filter = btn.dataset.filter;
-          setActiveFilterButton();
-          render(filteredProducts());
-        });
-      });
-      setActiveFilterButton();
+      let tPub = cart.reduce((acc, item) => acc + item.pricePub, 0);
+      let tMem = cart.reduce((acc, item) => acc + item.priceMem, 0);
 
-      // search
-      const hookSearch = (val) => {
-        state.query = val || "";
-        render(filteredProducts());
-      };
-      $("search").addEventListener("input", (e) => hookSearch(e.target.value));
-      $("searchMobile").addEventListener("input", (e) => hookSearch(e.target.value));
+      document.getElementById('cart-total-public').innerText = tPub + '€';
+      document.getElementById('cart-total-member').innerText = tMem + '€';
+      document.getElementById('cart-savings').innerText = (tPub - tMem) + '€';
+    }
 
-      // cart
-      $("openCart").addEventListener("click", () => openCart());
-      $("closeCart").addEventListener("click", () => openCart(false));
-      $("cartOverlay").addEventListener("click", () => openCart(false));
-      window.addEventListener("keydown", (e) => { if (e.key === "Escape") openCart(false); });
-
-      // first render
-      updateCartPill();
-      render(filteredProducts());
-      renderCart();
-    });
+    function openCart() {
+      document.getElementById('cart-drawer').classList.remove('translate-x-full');
+      document.getElementById('overlay').classList.remove('hidden');
+    }
+    function closeCart() {
+      document.getElementById('cart-drawer').classList.add('translate-x-full');
+      document.getElementById('overlay').classList.add('hidden');
+    }
   </script>
 </body>
 </html>
