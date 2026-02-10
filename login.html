@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SVB — CONNEXION MEMBRE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Mulish:wght@300;400;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Mulish', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+          colors: { 'svb-main': '#2C2420', 'svb-cream': '#FDFBF7', 'svb-sand': '#E8E4D9', 'svb-terracotta': '#A85A3C' }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-svb-cream text-svb-main h-screen flex items-center justify-center">
+
+  <div class="w-full max-w-md p-8">
+    <div class="text-center mb-12">
+      <h1 class="font-serif text-4xl tracking-widest mb-2">SVB</h1>
+      <p class="text-[10px] uppercase tracking-[0.3em] text-svb-terracotta">Espace Privilège</p>
+    </div>
+
+    <div class="bg-white p-10 shadow-[0_20px_50px_-12px_rgba(44,36,32,0.1)] border border-svb-sand/50">
+      <form onsubmit="handleLogin(event)" class="space-y-6">
+        
+        <div>
+          <label class="block text-[10px] uppercase tracking-widest text-svb-main/50 mb-2">Identifiant / Email</label>
+          <input type="email" id="email" required class="w-full border-b border-svb-sand py-2 outline-none focus:border-svb-terracotta transition bg-transparent" placeholder="membre@svb.com">
+        </div>
+
+        <div>
+          <div class="flex justify-between mb-2">
+            <label class="block text-[10px] uppercase tracking-widest text-svb-main/50">Mot de Passe</label>
+            <a href="#" class="text-[9px] text-svb-terracotta hover:underline">Oublié ?</a>
+          </div>
+          <input type="password" id="password" required class="w-full border-b border-svb-sand py-2 outline-none focus:border-svb-terracotta transition bg-transparent" placeholder="••••••••">
+        </div>
+
+        <button type="submit" class="w-full bg-svb-main text-white py-4 text-xs uppercase tracking-[0.2em] hover:bg-svb-terracotta transition duration-500 mt-4">
+          Accéder au Club
+        </button>
+      </form>
+    </div>
+
+    <p class="text-center text-xs text-svb-main/40 mt-8">
+      Pas encore membre ? <a href="index.html" class="text-svb-main border-b border-svb-main pb-0.5 hover:text-svb-terracotta hover:border-svb-terracotta transition">Activer l'offre de bienvenue</a>
+    </p>
+  </div>
+
+  <script>
+    function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const pass = document.getElementById('password').value;
+
+      // Simulation de vérification (Accepte tout pour la démo)
+      if(email && pass) {
+        // Animation bouton
+        const btn = e.target.querySelector('button');
+        btn.innerText = "CONNEXION EN COURS...";
+        btn.classList.add('opacity-80');
+        
+        setTimeout(() => {
+          // Enregistre l'état connecté
+          localStorage.setItem('svb_logged_in', 'true');
+          localStorage.setItem('svb_user_email', email);
+          // Redirection vers le dashboard
+          window.location.href = 'compte.html';
+        }, 1500);
+      }
+    }
+  </script>
+</body>
+</html>
