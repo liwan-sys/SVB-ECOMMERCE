@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SVB — MON COMPTE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Mulish:wght@300;400;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Mulish', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+          colors: { 'svb-main': '#2C2420', 'svb-cream': '#FDFBF7', 'svb-sand': '#E8E4D9', 'svb-terracotta': '#A85A3C' }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-svb-cream text-svb-main min-h-screen flex flex-col">
+
+  <header class="bg-white border-b border-svb-sand py-4 px-8 flex justify-between items-center sticky top-0 z-50">
+    <a href="index.html" class="font-serif text-2xl tracking-widest font-bold">SVB</a>
+    <div class="flex items-center gap-6">
+      <span class="text-xs uppercase tracking-widest hidden md:inline">Bonjour, <span class="font-bold text-svb-terracotta">Julie</span></span>
+      <button onclick="logout()" class="text-[10px] uppercase tracking-widest border border-svb-sand px-4 py-2 hover:bg-svb-main hover:text-white transition">Déconnexion</button>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-7xl mx-auto w-full p-6 md:p-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
+    
+    <aside class="lg:col-span-3 space-y-2">
+      <nav class="flex flex-col space-y-1">
+        <a href="#" class="px-4 py-3 bg-svb-main text-white text-xs uppercase tracking-widest font-bold rounded-sm">Tableau de Bord</a>
+        <a href="#" class="px-4 py-3 text-svb-main/60 hover:bg-white hover:text-svb-main text-xs uppercase tracking-widest transition rounded-sm">Mes Commandes</a>
+        <a href="#" class="px-4 py-3 text-svb-main/60 hover:bg-white hover:text-svb-main text-xs uppercase tracking-widest transition rounded-sm">Crédits Boutique</a>
+        <a href="#" class="px-4 py-3 text-svb-main/60 hover:bg-white hover:text-svb-main text-xs uppercase tracking-widest transition rounded-sm">Profil & Adresse</a>
+      </nav>
+      
+      <div class="mt-8 bg-white p-6 border border-svb-sand/50 shadow-sm text-center">
+        <p class="text-[10px] uppercase tracking-widest text-svb-main/50 mb-2">Solde Disponible</p>
+        <div class="text-4xl font-serif text-svb-terracotta mb-1">1 Crédit</div>
+        <p class="text-xs text-svb-main/40 italic mb-4">(Valeur 49.90€)</p>
+        <a href="index.html" class="block w-full border border-svb-main py-2 text-[10px] uppercase tracking-widest hover:bg-svb-main hover:text-white transition">Utiliser maintenant</a>
+      </div>
+    </aside>
+
+    <div class="lg:col-span-9 space-y-8">
+      
+      <section class="bg-white border border-svb-terracotta/20 shadow-lg overflow-hidden relative group">
+        <div class="absolute top-0 left-0 w-1 h-full bg-svb-terracotta"></div>
+        <div class="p-8 md:p-12">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="text-[10px] uppercase tracking-widest text-green-600 font-bold">Période Active : 1er - 5 Février</span>
+              </div>
+              <h2 class="text-3xl font-serif mb-2">Votre Action du Mois</h2>
+              <p class="text-svb-main/70 text-sm max-w-lg leading-relaxed">
+                Vous n'avez pas encore fait de choix pour ce mois-ci. Achetez une tenue ou passez votre tour pour ne pas être débité(e).
+              </p>
+            </div>
+            
+            <div id="skip-action-area">
+              <button onclick="skipMonth()" class="bg-svb-main text-white px-8 py-4 text-xs uppercase tracking-[0.2em] hover:bg-svb-terracotta hover:scale-105 transition duration-300 shadow-xl">
+                Passer ce mois
+              </button>
+              <p class="text-[9px] text-center mt-3 text-svb-main/40">Aucun prélèvement ne sera effectué.</p>
+            </div>
+            
+            <div id="skip-success-msg" class="hidden text-center bg-svb-cream p-4 border border-svb-sand">
+              <div class="flex items-center justify-center gap-2 text-svb-terracotta mb-1">
+                <i data-lucide="check-circle" class="w-5 h-5"></i>
+                <span class="font-serif italic text-lg">Mois passé avec succès</span>
+              </div>
+              <p class="text-xs text-svb-main/60">Vous ne serez pas débité ce mois-ci.<br>Rendez-vous le 1er Mars !</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="text-xl font-serif mb-6 border-b border-svb-sand pb-2">Commandes Récentes</h3>
+        <div class="bg-white border border-svb-sand/50">
+          <div class="p-6 flex flex-col md:flex-row gap-6 items-center border-b border-svb-sand/30 hover:bg-svb-cream/50 transition">
+            <div class="w-20 h-24 bg-gray-100 flex-shrink-0">
+              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=200" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-1 text-center md:text-left">
+              <h4 class="font-serif text-lg">Jupe Plissée Soie</h4>
+              <p class="text-xs text-svb-main/50 uppercase tracking-wide">Commande #SVB-8902 • Livré</p>
+            </div>
+            <div class="text-right">
+              <span class="block text-lg font-bold text-svb-terracotta">59.00 €</span>
+              <span class="text-[10px] text-svb-main/40 uppercase line-through">Prix Public 190€</span>
+            </div>
+            <button class="text-[10px] uppercase border border-svb-sand px-4 py-2 hover:border-svb-main transition">Voir</button>
+          </div>
+
+          <div class="p-6 flex flex-col md:flex-row gap-6 items-center hover:bg-svb-cream/50 transition">
+             <div class="w-20 h-24 bg-gray-100 flex-shrink-0">
+              <img src="https://images.unsplash.com/photo-1550614000-4b9519e08048?q=80&w=200" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-1 text-center md:text-left">
+              <h4 class="font-serif text-lg">Chemise Oxford</h4>
+              <p class="text-xs text-svb-main/50 uppercase tracking-wide">Commande #SVB-7721 • Livré</p>
+            </div>
+            <div class="text-right">
+              <span class="block text-lg font-bold text-svb-terracotta">49.00 €</span>
+              <span class="text-[10px] text-svb-main/40 uppercase line-through">Prix Public 150€</span>
+            </div>
+             <button class="text-[10px] uppercase border border-svb-sand px-4 py-2 hover:border-svb-main transition">Voir</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    lucide.createIcons();
+
+    // 1. Vérification Connexion (Sécurité simulée)
+    document.addEventListener('DOMContentLoaded', () => {
+      const isLogged = localStorage.getItem('svb_logged_in');
+      if(!isLogged) {
+        // Si pas connecté, renvoie vers login
+        window.location.href = 'login.html';
+      }
+      
+      // Vérifier si le mois est déjà passé
+      const monthSkipped = localStorage.getItem('svb_month_skipped');
+      if(monthSkipped === 'true') {
+        showSkipSuccess();
+      }
+    });
+
+    // 2. Fonction Passer le Mois
+    function skipMonth() {
+      // Effet visuel
+      const btn = document.querySelector('#skip-action-area button');
+      btn.innerText = "TRAITEMENT...";
+      
+      setTimeout(() => {
+        localStorage.setItem('svb_month_skipped', 'true');
+        showSkipSuccess();
+      }, 1000);
+    }
+
+    function showSkipSuccess() {
+      document.getElementById('skip-action-area').classList.add('hidden');
+      const msg = document.getElementById('skip-success-msg');
+      msg.classList.remove('hidden');
+      // Animation d'entrée
+      msg.classList.add('animate-pulse');
+      setTimeout(() => msg.classList.remove('animate-pulse'), 500);
+    }
+
+    // 3. Déconnexion
+    function logout() {
+      localStorage.removeItem('svb_logged_in');
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
