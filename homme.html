@@ -3,30 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SVB HOMME — L'ESSENTIEL</title>
+  <title>SVB HOMME — L'ALLURE</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Mulish:wght@300;400;600&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Lato', 'sans-serif'],
-            serif: ['Cinzel', 'serif'],
+            sans: ['Mulish', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
           },
           colors: {
-            'svb-black': '#050505',
-            'svb-charcoal': '#1a1a1a', // Gris anthracite pour l'homme
-            'svb-gold': '#C5A059',
-            'svb-offwhite': '#F9F9F9'
+            'svb-main': '#2C2420',   // Marron Expresso
+            'svb-cream': '#FDFBF7',  // Fond Papier
+            'svb-sand': '#E8E4D9',   // Beige Sable
+            'svb-terracotta': '#A85A3C' // Accent chaud
           },
           letterSpacing: {
-            'widest': '0.25em',
+            'luxe': '0.2em',
           }
         }
       }
@@ -37,145 +37,157 @@
     /* Scrollbar invisible */
     ::-webkit-scrollbar { width: 0px; background: transparent; }
     
-    /* Toggle Switch Dark Mode */
-    .toggle-checkbox:checked { right: 0; border-color: #C5A059; }
-    .toggle-checkbox:checked + .toggle-label { background-color: #050505; }
+    /* Toggle Switch Warm */
+    .toggle-checkbox:checked { right: 0; border-color: #2C2420; }
+    .toggle-checkbox:checked + .toggle-label { background-color: #E8E4D9; }
 
-    /* Hover Zoom & Grayscale Logic */
-    .product-card img { filter: grayscale(100%) contrast(1.1); transition: all 0.6s ease; }
-    .product-card:hover img { filter: grayscale(0%) contrast(1); transform: scale(1.03); }
+    body { background-color: #FDFBF7; }
+
+    /* Bouton Luxe */
+    .btn-warm {
+        background-color: #2C2420;
+        color: #FDFBF7;
+        transition: all 0.3s ease;
+    }
+    .btn-warm:hover {
+        background-color: #A85A3C;
+        transform: translateY(-2px);
+    }
     
-    /* Sticky Bar Shadow transition */
-    .sticky-active { box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+    /* Image Hover Effect (Warm) */
+    .product-card img { transition: transform 0.7s ease; }
+    .product-card:hover img { transform: scale(1.05); }
   </style>
 </head>
 
-<body class="bg-white text-svb-black antialiased">
+<body class="text-svb-main antialiased overflow-x-hidden selection:bg-svb-terracotta selection:text-white">
 
-  <header class="bg-white border-b border-gray-100 sticky top-0 z-50">
-    <div class="max-w-[1920px] mx-auto px-6 h-20 flex justify-between items-center">
+  <header class="sticky top-0 z-40 bg-[#FDFBF7]/95 backdrop-blur border-b border-svb-sand/50 transition duration-300">
+    <div class="max-w-[1800px] mx-auto px-8 h-24 flex justify-between items-center">
       
-        <nav class="hidden md:flex space-x-12 text-[10px] uppercase tracking-[0.2em] font-bold">
-        <a href="femme.html" class="hover:text-svb-gold transition">Femme</a>
-        <a href="homme.html" class="hover:text-svb-gold transition">Homme</a>
-        <a href="#rules" class="hover:text-svb-gold transition">Le Concept</a>
+      <nav class="hidden md:flex space-x-12 text-[11px] uppercase tracking-[0.15em] font-bold text-svb-main/60">
+        <a href="index.html" class="hover:text-svb-main transition">Accueil</a>
+        <a href="femme.html" class="hover:text-svb-main transition">Femme</a>
+        <a href="#" class="text-svb-main border-b border-svb-main pb-1">Homme</a>
       </nav>
 
-
-      <a href="index.html" class="text-3xl font-serif tracking-widest absolute left-1/2 -translate-x-1/2 font-bold">SVB</a>
+      <a href="index.html" class="absolute left-1/2 -translate-x-1/2">
+        <img src="images/logo.png" alt="SVB Logo" class="h-12 w-auto opacity-90">
+      </a>
 
       <div class="flex items-center space-x-8">
-        <button onclick="openCart()" class="relative group">
-          <span class="text-[9px] uppercase tracking-widest mr-2 hidden md:inline group-hover:text-svb-gold transition">Vestiaire</span>
-          <i data-lucide="shopping-bag" class="w-4 h-4 inline-block"></i>
-          <span id="cart-badge" class="absolute -top-1 -right-1 w-2 h-2 bg-svb-black rounded-full hidden"></span>
+        <a href="login.html" class="hover:text-svb-terracotta transition" title="Mon Compte">
+          <i data-lucide="user" class="w-6 h-6"></i>
+        </a>
+
+        <button class="relative group" onclick="toggleCart()">
+          <i data-lucide="shopping-bag" class="w-6 h-6 text-svb-main group-hover:text-svb-terracotta transition"></i>
+          <span id="cart-dot" class="absolute top-0 right-0 w-2.5 h-2.5 bg-svb-terracotta rounded-full hidden border-2 border-[#FDFBF7]"></span>
         </button>
       </div>
     </div>
   </header>
 
   <section class="relative h-[65vh] w-full overflow-hidden">
-    <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=2148&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover object-top">
-    <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
+    <img src="https://images.unsplash.com/photo-1504198458649-3128b932f49e?q=80&w=2574&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover object-top">
+    <div class="absolute inset-0 bg-gradient-to-r from-[#2C2420]/60 to-transparent"></div>
     
-    <div class="absolute bottom-16 left-8 md:left-16 text-white max-w-xl">
-      <div class="border-l-2 border-svb-gold pl-6">
-        <p class="text-[10px] uppercase tracking-[0.4em] mb-4 text-gray-300">Collection Permanente</p>
-        <h1 class="text-5xl md:text-7xl font-serif mb-6 leading-none">L'ALLURE<br/>MAÎTRISÉE</h1>
-        <p class="text-sm font-light text-gray-300 mb-8 max-w-md">
+    <div class="absolute bottom-16 left-8 md:left-24 text-[#FDFBF7] max-w-xl">
+      <div class="border-l-2 border-svb-sand pl-8">
+        <p class="text-[10px] uppercase tracking-[0.4em] mb-4 text-svb-sand">Collection Permanente</p>
+        <h1 class="text-5xl md:text-7xl font-serif mb-6 leading-none italic">L'ALLURE<br/><span class="not-italic font-bold">MAÎTRISÉE</span></h1>
+        <p class="text-sm font-light text-svb-sand/80 mb-8 max-w-md leading-relaxed">
           Coupes architecturales. Matières nobles. Prix justes.<br/>
           L'élégance n'est pas une option, c'est une discipline.
         </p>
-        <button class="bg-white text-black px-8 py-3 text-[10px] uppercase tracking-[0.25em] hover:bg-svb-gold hover:text-white transition duration-300">
-          Découvrir
+        <button onclick="document.getElementById('product-grid').scrollIntoView({behavior:'smooth'})" class="bg-[#FDFBF7] text-svb-main px-8 py-3 text-[10px] uppercase tracking-[0.25em] hover:bg-svb-terracotta hover:text-white transition duration-300">
+          Explorer
         </button>
       </div>
     </div>
   </section>
 
-  <div class="sticky top-20 z-40 bg-white/95 backdrop-blur border-b border-gray-200 py-4 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4 transition-all" id="control-bar">
+  <div class="sticky top-24 z-30 bg-[#FDFBF7]/95 backdrop-blur border-b border-svb-sand/50 py-4 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4 transition-all" id="control-bar">
     
-    <div class="flex items-center space-x-8 text-[10px] uppercase tracking-widest font-bold text-gray-400 overflow-x-auto w-full md:w-auto">
-      <button class="text-black flex items-center gap-1 border-b border-transparent hover:border-black transition">Tout</button>
-      <button class="hover:text-black transition">Costumes</button>
-      <button class="hover:text-black transition">Outerwear</button>
-      <button class="hover:text-black transition">Mailles</button>
-      <button class="hover:text-black transition">Souliers</button>
+    <div class="flex items-center space-x-8 text-[10px] uppercase tracking-luxe font-bold text-svb-main/40 overflow-x-auto w-full md:w-auto">
+      <button class="text-svb-main flex items-center gap-1 border-b border-svb-main">Tout</button>
+      <button class="hover:text-svb-main transition">Costumes</button>
+      <button class="hover:text-svb-main transition">Outerwear</button>
+      <button class="hover:text-svb-main transition">Mailles</button>
+      <button class="hover:text-svb-main transition">Souliers</button>
     </div>
 
-    <div class="flex items-center bg-svb-charcoal px-5 py-2 rounded-sm shadow-md">
-      <span class="text-[9px] uppercase tracking-widest text-gray-500 mr-3" id="lbl-guest">Public</span>
-      <div class="relative inline-block w-10 h-5 align-middle select-none">
-        <input type="checkbox" checked id="price-toggle" class="toggle-checkbox absolute block w-3 h-3 rounded-full bg-svb-charcoal border border-gray-500 appearance-none cursor-pointer transition-all duration-300 left-1 top-1"/>
-        <label for="price-toggle" class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-600 cursor-pointer"></label>
-      </div>
-      <span class="text-[9px] uppercase tracking-widest text-white font-bold ml-3" id="lbl-member">Membre</span>
+    <div class="bg-white shadow-sm px-6 py-2 rounded-full flex items-center space-x-4 border border-svb-sand">
+        <span class="text-[9px] uppercase tracking-luxe text-svb-main/40" id="lbl-guest">Public</span>
+        <div class="relative inline-block w-10 h-5 align-middle select-none">
+          <input type="checkbox" checked id="price-toggle" class="toggle-checkbox absolute block w-3 h-3 rounded-full bg-svb-sand border border-svb-main/20 appearance-none cursor-pointer transition-all duration-300 left-1 top-1"/>
+          <label for="price-toggle" class="toggle-label block overflow-hidden h-5 rounded-full bg-svb-main/10 cursor-pointer"></label>
+        </div>
+        <span class="text-[9px] uppercase tracking-luxe text-svb-main font-bold" id="lbl-member">Membre</span>
     </div>
   </div>
 
-  <section class="py-16 px-6 md:px-12 bg-white">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-20" id="product-grid">
+  <section class="py-16 px-6 md:px-12 bg-[#FDFBF7]">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-20" id="product-grid">
       </div>
 
-    <div class="col-span-1 md:col-span-2 lg:col-span-4 py-24 my-20 bg-svb-charcoal text-white flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
-      <div class="absolute top-0 left-0 w-full h-full opacity-10" style="background-image: repeating-linear-gradient(45deg, #000 0, #000 1px, transparent 0, transparent 50%); background-size: 10px 10px;"></div>
-      
-      <span class="text-svb-gold text-xs uppercase tracking-[0.4em] mb-4 relative z-10">Philosophie SVB</span>
-      <h3 class="text-3xl md:text-4xl font-serif max-w-3xl leading-snug mb-8 relative z-10">
-        "N'achetez pas un vêtement.<br/>Investissez dans votre charisme."
-      </h3>
-      <div class="flex gap-8 text-center relative z-10">
-        <div>
-          <span class="block text-2xl font-serif text-svb-gold">-70%</span>
-          <span class="text-[9px] uppercase tracking-widest text-gray-400">Avantage Membre</span>
+    <div class="col-span-1 md:col-span-2 lg:col-span-4 py-24 my-20 bg-svb-main text-[#FDFBF7] flex flex-col items-center justify-center text-center px-4 relative overflow-hidden rounded-sm">
+        <span class="text-svb-terracotta text-xs uppercase tracking-[0.4em] mb-4">Philosophie SVB</span>
+        <h3 class="text-3xl md:text-4xl font-serif max-w-3xl leading-snug mb-8 italic">
+            "N'achetez pas un vêtement.<br/>Investissez dans votre charisme."
+        </h3>
+        <div class="flex gap-12 text-center border-t border-white/10 pt-8">
+            <div>
+            <span class="block text-3xl font-serif text-svb-terracotta">-70%</span>
+            <span class="text-[9px] uppercase tracking-luxe text-svb-sand/50">Avantage Club</span>
+            </div>
+            <div>
+            <span class="block text-3xl font-serif text-svb-terracotta">0€</span>
+            <span class="text-[9px] uppercase tracking-luxe text-svb-sand/50">Si vous passez le mois</span>
+            </div>
         </div>
-        <div class="w-px bg-gray-700"></div>
-        <div>
-          <span class="block text-2xl font-serif text-svb-gold">0€</span>
-          <span class="text-[9px] uppercase tracking-widest text-gray-400">Si vous passez le mois</span>
-        </div>
-      </div>
     </div>
   </section>
 
-  <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full md:w-[500px] bg-white z-[60] transform translate-x-full transition-transform duration-500 shadow-2xl flex flex-col border-l border-gray-100">
-    <div class="p-8 border-b border-gray-100 flex justify-between items-center bg-svb-charcoal text-white">
-      <span class="font-serif text-lg tracking-widest">SÉLECTION</span>
-      <button onclick="closeCart()" class="hover:text-svb-gold transition"><i data-lucide="x" class="w-5 h-5"></i></button>
+  <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full md:w-[500px] bg-[#FDFBF7] z-[60] transform translate-x-full transition-transform duration-500 shadow-2xl flex flex-col border-l border-svb-sand">
+    <div class="p-8 border-b border-svb-sand flex justify-between items-center bg-svb-main text-[#FDFBF7]">
+      <h2 class="font-serif text-xl tracking-luxe italic">Votre Sélection</h2>
+      <button onclick="toggleCart()" class="hover:text-svb-terracotta transition"><i data-lucide="x" class="w-6 h-6"></i></button>
     </div>
     
     <div id="cart-items" class="flex-1 p-8 overflow-y-auto space-y-8">
-      </div>
+      <p class="text-center text-svb-main/40 text-sm mt-10 font-serif italic">Votre vestiaire est vide.</p>
+    </div>
     
-    <div class="p-8 bg-svb-offwhite border-t border-gray-200">
-      <div class="flex justify-between text-xs mb-2 text-gray-400 uppercase tracking-wide"><span>Valeur Publique</span><span class="line-through" id="cart-total-public">0€</span></div>
-      <div class="flex justify-between text-2xl font-serif mb-4 text-black"><span>Prix Club</span><span id="cart-total-member">0€</span></div>
+    <div class="p-8 bg-white border-t border-svb-sand">
+      <div class="flex justify-between text-xs mb-2 text-svb-main/50 uppercase tracking-wide"><span>Valeur Publique</span><span class="line-through" id="cart-total-public">0€</span></div>
+      <div class="flex justify-between text-2xl font-serif mb-4 text-svb-main"><span>Prix Club</span><span id="cart-total-member">0€</span></div>
       
-      <div class="bg-white border border-svb-gold/30 p-3 text-center mb-6">
-        <span class="text-[10px] text-svb-black uppercase tracking-widest">Gain Immédiat : <span id="cart-savings" class="font-bold text-svb-gold">0€</span></span>
+      <div class="bg-svb-sand/30 p-3 text-center mb-6 rounded-sm">
+        <span class="text-[10px] text-svb-main uppercase tracking-widest">Gain Immédiat : <span id="cart-savings" class="font-bold text-svb-terracotta">0€</span></span>
       </div>
       
-      <button class="w-full bg-svb-black text-white py-4 text-xs uppercase tracking-[0.25em] hover:bg-svb-gold hover:text-black transition duration-300">
+      <button onclick="checkout()" class="w-full btn-warm py-4 text-xs uppercase tracking-[0.25em]">
         Valider la commande
       </button>
-      <p class="text-[9px] text-gray-400 text-center mt-4">En validant, j'accepte les conditions de l'abonnement SVB.</p>
+      <p class="text-[9px] text-svb-main/40 text-center mt-4">En validant, j'accepte les conditions de l'abonnement SVB.</p>
     </div>
   </div>
-  <div id="overlay" onclick="closeCart()" class="fixed inset-0 bg-black/60 z-[50] hidden backdrop-blur-sm transition-opacity"></div>
+  <div id="overlay" onclick="toggleCart()" class="fixed inset-0 bg-[#2C2420]/40 z-[50] hidden backdrop-blur-sm transition-opacity"></div>
 
   <script>
     lucide.createIcons();
 
-    // DONNÉES HOMME
+    // DONNÉES HOMME (Images chaleureuses)
     const products = [
-      { id: 101, name: "Costume Croisé", cat: "Tailoring", pricePub: 650, priceMem: 199, img: "https://images.unsplash.com/photo-1594938298603-c8148c47e356?q=80&w=1887&auto=format&fit=crop" },
-      { id: 102, name: "Bombardier Cuir", cat: "Outerwear", pricePub: 480, priceMem: 159, img: "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?q=80&w=1995&auto=format&fit=crop" },
-      { id: 103, name: "Col Roulé Cachemire", cat: "Mailles", pricePub: 220, priceMem: 79, img: "https://images.unsplash.com/photo-1621072118294-e672f6c48743?q=80&w=1887&auto=format&fit=crop" },
+      { id: 101, name: "Costume Lin", cat: "Tailoring", pricePub: 650, priceMem: 199, img: "https://images.unsplash.com/photo-1594938298603-c8148c47e356?q=80&w=1887&auto=format&fit=crop" },
+      { id: 102, name: "Veste Daim", cat: "Outerwear", pricePub: 480, priceMem: 159, img: "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?q=80&w=1995&auto=format&fit=crop" },
+      { id: 103, name: "Col Roulé", cat: "Mailles", pricePub: 220, priceMem: 79, img: "https://images.unsplash.com/photo-1621072118294-e672f6c48743?q=80&w=1887&auto=format&fit=crop" },
       { id: 104, name: "Chelsea Boots", cat: "Souliers", pricePub: 290, priceMem: 99, img: "https://images.unsplash.com/photo-1638367015842-88f50357f847?q=80&w=1887&auto=format&fit=crop" },
-      { id: 105, name: "Trench Coat Tech", cat: "Outerwear", pricePub: 350, priceMem: 110, img: "https://images.unsplash.com/photo-1605908502724-9093a79a1b39?q=80&w=1964&auto=format&fit=crop" },
+      { id: 105, name: "Trench Beige", cat: "Outerwear", pricePub: 350, priceMem: 110, img: "https://images.unsplash.com/photo-1605908502724-9093a79a1b39?q=80&w=1964&auto=format&fit=crop" },
       { id: 106, name: "Chemise Oxford", cat: "Essentiels", pricePub: 120, priceMem: 45, img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=1888&auto=format&fit=crop" },
-      { id: 107, name: "Chino Ajusté", cat: "Pantalons", pricePub: 140, priceMem: 55, img: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?q=80&w=1887&auto=format&fit=crop" },
-      { id: 108, name: "Weekender Cuir", cat: "Accessoires", pricePub: 390, priceMem: 129, img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=1887&auto=format&fit=crop" },
+      { id: 107, name: "Chino Sable", cat: "Pantalons", pricePub: 140, priceMem: 55, img: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?q=80&w=1887&auto=format&fit=crop" },
+      { id: 108, name: "Weekender", cat: "Accessoires", pricePub: 390, priceMem: 129, img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=1887&auto=format&fit=crop" },
     ];
 
     // RENDU GRILLE
@@ -184,30 +196,31 @@
     function renderGrid(isMemberMode) {
       grid.innerHTML = products.map(p => `
         <div class="product-card group cursor-pointer flex flex-col">
-          <div class="relative overflow-hidden aspect-[3/4] mb-5 bg-gray-200">
+          <div class="relative overflow-hidden aspect-[3/4] mb-5 bg-svb-sand/20 rounded-sm">
             <img src="${p.img}" class="w-full h-full object-cover">
             
-            <div class="absolute inset-0 bg-svb-charcoal/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
-               <span class="text-svb-gold text-xs font-serif italic mb-2">Exclusivité</span>
-               <button onclick="addToCart(${p.id})" class="border border-white text-white px-6 py-3 text-[9px] uppercase tracking-[0.2em] hover:bg-white hover:text-black transition">
+            <div class="absolute inset-0 bg-svb-main/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            
+            <div class="absolute bottom-6 left-0 w-full text-center translate-y-full group-hover:translate-y-0 transition duration-500">
+               <button onclick="addToCart(${p.id})" class="bg-white text-svb-main px-6 py-3 text-[9px] uppercase tracking-[0.2em] shadow-lg hover:bg-svb-main hover:text-white transition">
                  Ajouter
                </button>
             </div>
             
-            ${isMemberMode ? `<div class="absolute top-0 right-0 bg-svb-gold text-white text-[8px] px-3 py-1 uppercase tracking-widest font-bold">Club</div>` : ''}
+            ${isMemberMode ? `<div class="absolute top-2 right-2 bg-svb-terracotta text-white text-[8px] px-3 py-1 uppercase tracking-widest font-bold">Club</div>` : ''}
           </div>
           
-          <div class="text-center">
-            <h3 class="font-serif text-md tracking-wide text-svb-black group-hover:text-svb-gold transition">${p.name}</h3>
-            <p class="text-[9px] text-gray-400 uppercase tracking-widest mt-1 mb-2">${p.cat}</p>
+          <div class="text-center px-4">
+            <h3 class="font-serif text-md tracking-wide text-svb-main group-hover:text-svb-terracotta transition">${p.name}</h3>
+            <p class="text-[9px] text-svb-main/40 uppercase tracking-widest mt-1 mb-3">${p.cat}</p>
             
             <div class="h-6">
               ${isMemberMode 
                 ? `<div class="flex justify-center items-center gap-3">
-                     <span class="text-xs text-gray-400 line-through decoration-1">${p.pricePub}€</span>
-                     <span class="text-lg font-serif font-bold text-svb-black border-b border-svb-gold pb-0.5">${p.priceMem}€</span>
+                     <span class="text-xs text-svb-main/30 line-through decoration-1">${p.pricePub}€</span>
+                     <span class="text-lg font-serif font-bold text-svb-terracotta">${p.priceMem}€</span>
                    </div>`
-                : `<span class="text-md font-serif text-black">${p.pricePub}€</span>`
+                : `<span class="text-md font-serif text-svb-main">${p.pricePub}€</span>`
               }
             </div>
           </div>
@@ -229,11 +242,11 @@
       renderGrid(memberMode);
       
       if(memberMode) {
-        lblMem.classList.replace('text-gray-500', 'text-white');
-        lblGuest.classList.replace('text-white', 'text-gray-500');
+        lblMem.classList.add('text-svb-main'); lblMem.classList.remove('text-svb-main/40');
+        lblGuest.classList.add('text-svb-main/40'); lblGuest.classList.remove('text-svb-main');
       } else {
-        lblGuest.classList.replace('text-gray-500', 'text-white');
-        lblMem.classList.replace('text-white', 'text-gray-500');
+        lblGuest.classList.add('text-svb-main'); lblGuest.classList.remove('text-svb-main/40');
+        lblMem.classList.add('text-svb-main/40'); lblMem.classList.remove('text-svb-main');
       }
     });
 
@@ -241,7 +254,7 @@
     let cart = [];
     function addToCart(id) {
       const prod = products.find(p => p.id === id);
-      cart.push(prod);
+      cart.push({name: prod.name, publicPrice: prod.pricePub, memberPrice: prod.priceMem, img: prod.img});
       updateCartUI();
       openCart();
     }
@@ -253,35 +266,63 @@
       if(cart.length > 0) badge.classList.remove('hidden');
       
       container.innerHTML = cart.map(item => `
-        <div class="flex gap-5 border-b border-gray-100 pb-4">
-          <div class="w-20 h-24 overflow-hidden bg-gray-100">
-            <img src="${item.img}" class="w-full h-full object-cover filter grayscale">
+        <div class="flex gap-5 border-b border-svb-sand/50 pb-4">
+          <div class="w-20 h-24 overflow-hidden bg-gray-100 rounded-sm">
+            <img src="${item.img}" class="w-full h-full object-cover">
           </div>
           <div class="flex-1 flex flex-col justify-center">
-            <h4 class="font-serif text-sm tracking-wide text-black">${item.name}</h4>
+            <h4 class="font-serif text-sm tracking-wide text-svb-main">${item.name}</h4>
             <div class="flex justify-between items-end mt-3">
-              <span class="text-xs text-gray-400 line-through">${item.pricePub}€</span>
-              <span class="text-lg font-serif font-bold text-svb-gold">${item.priceMem}€</span>
+              <span class="text-xs text-svb-main/40 line-through">${item.publicPrice}€</span>
+              <span class="text-lg font-serif font-bold text-svb-terracotta">${item.memberPrice}€</span>
             </div>
           </div>
         </div>
       `).join('');
 
-      let tPub = cart.reduce((acc, item) => acc + item.pricePub, 0);
-      let tMem = cart.reduce((acc, item) => acc + item.priceMem, 0);
+      let tPub = cart.reduce((acc, item) => acc + item.publicPrice, 0);
+      let tMem = cart.reduce((acc, item) => acc + item.memberPrice, 0);
 
       document.getElementById('cart-total-public').innerText = tPub + '€';
       document.getElementById('cart-total-member').innerText = tMem + '€';
       document.getElementById('cart-savings').innerText = (tPub - tMem) + '€';
     }
 
+    // FONCTION CHECKOUT (Sauvegarde la commande pour compte.html)
+    function checkout() {
+      if(cart.length === 0) return alert("Votre panier est vide");
+
+      // 1. Création de la commande
+      const order = {
+        id: 'CMD-' + Math.floor(Math.random() * 90000 + 10000),
+        date: new Date().toLocaleDateString(),
+        items: cart,
+        total: document.getElementById('cart-total-member').innerText,
+        savings: document.getElementById('cart-savings').innerText
+      };
+
+      // 2. Sauvegarde dans localStorage
+      let history = JSON.parse(localStorage.getItem('svb_orders')) || [];
+      history.unshift(order);
+      localStorage.setItem('svb_orders', JSON.stringify(history));
+
+      // 3. Animation et Redirection
+      const btn = document.querySelector('#cart-drawer button');
+      btn.innerText = "PAIEMENT EN COURS...";
+      
+      setTimeout(() => {
+        cart = []; updateCartUI();
+        window.location.href = 'compte.html'; // Redirection vers l'espace membre
+      }, 1500);
+    }
+
     function openCart() {
       document.getElementById('cart-drawer').classList.remove('translate-x-full');
       document.getElementById('overlay').classList.remove('hidden');
     }
-    function closeCart() {
-      document.getElementById('cart-drawer').classList.add('translate-x-full');
-      document.getElementById('overlay').classList.add('hidden');
+    function toggleCart() {
+      const drawer = document.getElementById('cart-drawer');
+      if(drawer.classList.contains('translate-x-full')) openCart(); else document.getElementById('cart-drawer').classList.add('translate-x-full'), document.getElementById('overlay').classList.add('hidden');
     }
   </script>
 </body>
