@@ -57,9 +57,15 @@
         background-color: #A85A3C;
         transform: translateY(-2px);
     }
-    
-    /* Quiz Modal Transition */
-    #quiz-modal { transition: opacity 0.5s ease; }
+
+    /* Input Newsletter */
+    .input-luxe {
+        background: transparent;
+        border-bottom: 1px solid rgba(44, 36, 32, 0.2);
+        outline: none;
+        transition: border-color 0.3s;
+    }
+    .input-luxe:focus { border-color: #A85A3C; }
   </style>
 </head>
 
@@ -93,7 +99,7 @@
       <nav class="hidden md:flex space-x-12 text-[11px] uppercase tracking-[0.15em] font-bold text-svb-main/60">
         <a href="femme.html" class="hover:text-svb-main transition">Femme</a>
         <a href="homme.html" class="hover:text-svb-main transition">Homme</a>
-        <button onclick="openQuiz()" class="hover:text-svb-terracotta transition border-b border-transparent hover:border-svb-terracotta">Quiz Style</button>
+        <a href="#concept" class="hover:text-svb-main transition">Le Concept</a>
       </nav>
       <a href="index.html" class="absolute left-1/2 -translate-x-1/2">
         <img src="images/logo.png" alt="SVB Logo" class="h-12 w-auto opacity-90">
@@ -116,8 +122,7 @@
       <h1 class="text-6xl md:text-8xl font-serif text-svb-main mb-8 leading-tight">DOUCEUR<br/><span class="italic font-light text-svb-terracotta">BRUTE</span></h1>
       <p class="text-svb-main/80 text-lg font-light leading-relaxed mb-10 max-w-md">Le luxe de s'habiller sans contrainte. Rejoignez le cercle et profitez de tarifs privilégiés toute l'année.</p>
       <div class="flex gap-4">
-        <button onclick="openQuiz()" class="btn-warm px-10 py-4 text-xs uppercase tracking-[0.2em] shadow-lg">Commencer le Quiz</button>
-        <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})" class="border border-svb-main text-svb-main px-10 py-4 text-xs uppercase tracking-[0.2em] hover:bg-svb-main hover:text-white transition">La Collection</button>
+        <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})" class="btn-warm px-10 py-4 text-xs uppercase tracking-[0.2em] shadow-lg">Voir la Collection</button>
       </div>
     </div>
   </section>
@@ -153,6 +158,7 @@
       <p class="text-sm font-light text-svb-main/60">Explorer par catégorie</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 h-[600px]">
+      
       <a href="femme.html" class="group relative overflow-hidden h-full">
         <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1769" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105">
         <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition"></div>
@@ -161,6 +167,7 @@
           <span class="text-[10px] uppercase tracking-luxe border-b border-white pb-1">Découvrir</span>
         </div>
       </a>
+
       <a href="homme.html" class="group relative overflow-hidden h-full">
         <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=2148" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105">
         <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition"></div>
@@ -169,6 +176,7 @@
           <span class="text-[10px] uppercase tracking-luxe border-b border-white pb-1">Découvrir</span>
         </div>
       </a>
+
       <a href="#" class="group relative overflow-hidden h-full">
         <img src="https://images.unsplash.com/photo-1549576490-b0b4831ef60a?q=80&w=1780" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105">
         <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition"></div>
@@ -177,6 +185,7 @@
           <span class="text-[10px] uppercase tracking-luxe border-b border-white pb-1">Découvrir</span>
         </div>
       </a>
+
     </div>
   </section>
 
@@ -336,45 +345,6 @@
     </div>
   </footer>
 
-  <div id="quiz-modal" class="fixed inset-0 z-[80] hidden">
-    <div class="absolute inset-0 bg-svb-main/90 backdrop-blur-sm transition-opacity" onclick="closeQuiz()"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl bg-[#FDFBF7] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
-      <div class="p-6 border-b border-svb-sand flex justify-between items-center bg-white">
-        <span class="text-xs uppercase tracking-luxe text-svb-terracotta font-bold">Profil Style</span>
-        <button onclick="closeQuiz()"><i data-lucide="x" class="w-5 h-5 text-svb-main/40 hover:text-svb-main"></i></button>
-      </div>
-      <div class="p-10 text-center overflow-y-auto" id="quiz-content">
-        <div id="step-1" class="quiz-step">
-          <h3 class="font-serif text-3xl mb-8">Quelle est votre activité principale ?</h3>
-          <div class="grid grid-cols-2 gap-4">
-            <button onclick="nextStep(2)" class="border border-svb-sand p-6 hover:border-svb-terracotta hover:bg-white transition group"><i data-lucide="activity" class="w-8 h-8 mx-auto mb-2 text-svb-main/50 group-hover:text-svb-terracotta"></i><span class="text-xs uppercase tracking-widest">Fitness</span></button>
-            <button onclick="nextStep(2)" class="border border-svb-sand p-6 hover:border-svb-terracotta hover:bg-white transition group"><i data-lucide="coffee" class="w-8 h-8 mx-auto mb-2 text-svb-main/50 group-hover:text-svb-terracotta"></i><span class="text-xs uppercase tracking-widest">Lifestyle</span></button>
-            <button onclick="nextStep(2)" class="border border-svb-sand p-6 hover:border-svb-terracotta hover:bg-white transition group"><i data-lucide="briefcase" class="w-8 h-8 mx-auto mb-2 text-svb-main/50 group-hover:text-svb-terracotta"></i><span class="text-xs uppercase tracking-widest">Bureau</span></button>
-            <button onclick="nextStep(2)" class="border border-svb-sand p-6 hover:border-svb-terracotta hover:bg-white transition group"><i data-lucide="plane" class="w-8 h-8 mx-auto mb-2 text-svb-main/50 group-hover:text-svb-terracotta"></i><span class="text-xs uppercase tracking-widest">Voyage</span></button>
-          </div>
-        </div>
-        <div id="step-2" class="quiz-step hidden">
-          <h3 class="font-serif text-3xl mb-8">Votre palette préférée ?</h3>
-          <div class="grid grid-cols-3 gap-4">
-            <button onclick="nextStep(3)" class="h-32 bg-[#2C2420] text-white flex items-center justify-center hover:opacity-90"><span class="text-xs uppercase tracking-widest">Neutres</span></button>
-            <button onclick="nextStep(3)" class="h-32 bg-[#E8E4D9] text-svb-main flex items-center justify-center hover:opacity-90"><span class="text-xs uppercase tracking-widest">Clairs</span></button>
-            <button onclick="nextStep(3)" class="h-32 bg-[#A85A3C] text-white flex items-center justify-center hover:opacity-90"><span class="text-xs uppercase tracking-widest">Terre</span></button>
-          </div>
-        </div>
-        <div id="step-3" class="quiz-step hidden">
-          <h3 class="font-serif text-3xl mb-4">Votre Showroom est prêt.</h3>
-          <p class="text-svb-main/60 mb-8 max-w-sm mx-auto">Débloquez votre sélection personnalisée et votre offre de bienvenue à -70%.</p>
-          <form onsubmit="finishQuiz(event)" class="max-w-xs mx-auto space-y-4">
-            <input type="email" required placeholder="Votre Email" class="w-full bg-transparent border-b border-svb-main/30 py-3 text-center outline-none focus:border-svb-terracotta">
-            <button type="submit" class="w-full btn-warm py-4 text-xs uppercase tracking-[0.2em]">Voir ma sélection</button>
-            <p class="text-[9px] text-svb-main/40 mt-2">En cliquant, j'accepte de rejoindre le club SVB.</p>
-          </form>
-        </div>
-      </div>
-      <div class="bg-gray-200 h-1 w-full"><div id="quiz-progress" class="bg-svb-terracotta h-full w-1/3 transition-all duration-500"></div></div>
-    </div>
-  </div>
-
   <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full md:w-[500px] bg-[#FDFBF7] z-[60] transform translate-x-full transition-transform duration-500 shadow-2xl flex flex-col border-l border-svb-sand">
     <div class="p-8 border-b border-svb-sand flex justify-between items-center bg-svb-main text-[#FDFBF7]">
       <h2 class="font-serif text-xl tracking-luxe italic">Votre Panier</h2>
@@ -403,9 +373,9 @@
   <script>
     lucide.createIcons();
 
-    // 1. INTRO LOGIC (LocalStorage Unique)
+    // 1. INTRO LOGIC (LocalStorage)
     document.addEventListener('DOMContentLoaded', () => {
-        const hasVisited = localStorage.getItem('svb_v9_visited'); 
+        const hasVisited = localStorage.getItem('svb_v8_final'); 
         const overlay = document.getElementById('intro-overlay');
         if (hasVisited === 'true') {
             overlay.style.display = 'none';
@@ -413,13 +383,6 @@
             document.body.style.overflow = 'hidden';
             playIntro();
         }
-
-        // Quiz Auto-Launch after 5s
-        setTimeout(() => {
-          if(!localStorage.getItem('svb_quiz_done') && !localStorage.getItem('svb_logged_in')) {
-            openQuiz();
-          }
-        }, 5000);
     });
 
     function playIntro() {
@@ -438,15 +401,16 @@
         const overlay = document.getElementById('intro-overlay');
         overlay.style.opacity = '0';
         overlay.style.visibility = 'hidden';
-        localStorage.setItem('svb_v9_visited', 'true');
+        localStorage.setItem('svb_v8_final', 'true');
         document.body.style.overflow = 'auto';
         window.scrollTo(0,0);
     }
 
-    // 2. LOGIQUE PANIER ET COMMANDE
+    // 2. LOGIQUE PANIER ET COMMANDE REELLE
     let cart = [];
     
     function addToCart(name, publicPrice, memberPrice, imgUrl) {
+      // Image par défaut si non fournie
       const img = imgUrl || 'https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=200';
       cart.push({name, publicPrice, memberPrice, img});
       updateCart();
@@ -486,8 +450,10 @@
       document.getElementById('total-savings').innerText = (tPub - tMem) + ' €';
     }
 
+    // FONCTION CHECKOUT QUI SAUVEGARDE LA COMMANDE
     function checkout() {
       if(cart.length === 0) return alert("Panier vide");
+
       const order = {
         id: 'CMD-' + Math.floor(Math.random() * 90000 + 10000),
         date: new Date().toLocaleDateString(),
@@ -495,9 +461,11 @@
         total: document.getElementById('total-member').innerText,
         savings: document.getElementById('total-savings').innerText
       };
+
       let history = JSON.parse(localStorage.getItem('svb_orders')) || [];
       history.unshift(order);
       localStorage.setItem('svb_orders', JSON.stringify(history));
+
       const btn = document.querySelector('#cart-drawer button');
       btn.innerText = "PAIEMENT SÉCURISÉ...";
       setTimeout(() => {
@@ -539,24 +507,6 @@
             lm.classList.replace('text-svb-main', 'text-svb-main/40');
         }
     });
-
-    // 4. LOGIQUE QUIZ
-    function openQuiz() { document.getElementById('quiz-modal').classList.remove('hidden'); }
-    function closeQuiz() { document.getElementById('quiz-modal').classList.add('hidden'); }
-    function nextStep(step) {
-      document.querySelectorAll('.quiz-step').forEach(e => e.classList.add('hidden'));
-      document.getElementById('step-'+step).classList.remove('hidden');
-      const bar = document.getElementById('quiz-progress');
-      if(step===2) bar.style.width="66%";
-      if(step===3) bar.style.width="100%";
-    }
-    function finishQuiz(e) {
-      e.preventDefault();
-      localStorage.setItem('svb_quiz_done', 'true');
-      const btn = e.target.querySelector('button');
-      btn.innerText = "ACCÈS SHOWROOM...";
-      setTimeout(() => { window.location.href = 'femme.html'; }, 1500);
-    }
   </script>
 </body>
 </html>
