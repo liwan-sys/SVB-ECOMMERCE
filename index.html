@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SVB — L'ABONNEMENT PRESTIGE</title>
+  <title>SVB — PRIVATE CIRCLE</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -17,12 +17,15 @@
         extend: {
           fontFamily: {
             sans: ['Lato', 'sans-serif'],
-            serif: ['Playfair Display', 'serif'],
+            serif: ['Cinzel', 'serif'],
           },
           colors: {
-            'noir': '#050505',
-            'or': '#C5A059', 
-            'gris-luxe': '#F2F2F2'
+            'svb-black': '#0a0a0a',
+            'svb-gold': '#D4AF37', // Or Métallique
+            'svb-gray': '#1f1f1f'
+          },
+          letterSpacing: {
+            'mega': '0.35em',
           }
         }
       }
@@ -30,452 +33,402 @@
   </script>
 
   <style>
-    /* Esthétique Ultra-Fine */
-    .border-thin { border-width: 0.5px; }
+    /* INTRO ANIMATION STYLES */
+    #intro-overlay {
+      transition: opacity 1.5s ease-in-out, visibility 1.5s;
+    }
     
-    /* Animation du Panier Latéral */
-    #cart-drawer { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-    .drawer-open { transform: translateX(0) !important; }
-    .drawer-closed { transform: translateX(100%); }
+    .fade-text {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1.5s ease, transform 1.5s ease;
+    }
+    
+    .fade-text.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-    /* Switch Prix */
-    .toggle-checkbox:checked { right: 0; border-color: #050505; }
-    .toggle-checkbox:checked + .toggle-label { background-color: #050505; }
+    .fade-text.hidden-text {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    /* CURSOR PERSONNALISÉ (Optionnel, fait très luxe) */
+    body { cursor: default; }
     
-    /* Reveal Images au scroll */
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
-    .reveal.active { opacity: 1; transform: translateY(0); }
+    /* Toggle Switch Dark Mode Style */
+    .toggle-checkbox:checked { right: 0; border-color: #D4AF37; }
+    .toggle-checkbox:checked + .toggle-label { background-color: #0a0a0a; }
   </style>
 </head>
 
-<body class="bg-white text-noir antialiased overflow-x-hidden">
+<body class="bg-white text-svb-black antialiased overflow-x-hidden">
 
-  <div class="bg-noir text-white text-[10px] uppercase tracking-[0.25em] py-3 text-center sticky top-0 z-40 font-medium">
-    Exclusivité Membres : La Collection Capsule "Midnight" est arrivée
+  <div id="intro-overlay" class="fixed inset-0 z-[100] bg-svb-black flex flex-col items-center justify-center text-white px-8 text-center">
+    
+    <div id="seq-1" class="fade-text absolute max-w-2xl">
+      <p class="text-xs uppercase tracking-mega text-svb-gold mb-6">Le Constat</p>
+      <h2 class="text-3xl md:text-5xl font-serif leading-relaxed">
+        Le Luxe traditionnel vous facture l'étiquette,<br/>pas la qualité.
+      </h2>
+    </div>
+
+    <div id="seq-2" class="fade-text absolute max-w-2xl">
+      <p class="text-xs uppercase tracking-mega text-svb-gold mb-6">La Mission</p>
+      <h2 class="text-3xl md:text-5xl font-serif leading-relaxed">
+        Nous avons supprimé les intermédiaires.<br/>De l'atelier à vous.
+      </h2>
+    </div>
+
+    <div id="seq-3" class="fade-text absolute max-w-2xl flex flex-col items-center">
+      <h1 class="text-6xl md:text-8xl font-serif mb-4 tracking-widest text-white">SVB</h1>
+      <p class="text-sm uppercase tracking-[0.4em] text-gray-400 mb-12">Private Circle</p>
+      
+      <p class="text-lg font-light italic text-gray-300 mb-12">
+        "Vous êtes au bon endroit. L'excellence est enfin accessible."
+      </p>
+
+      <button onclick="enterSite()" class="border border-svb-gold text-svb-gold px-12 py-4 text-xs uppercase tracking-[0.25em] hover:bg-svb-gold hover:text-black transition duration-700 ease-out">
+        Entrer dans le Club
+      </button>
+    </div>
+
+    <div class="absolute bottom-10 w-64 h-0.5 bg-gray-800 rounded-full overflow-hidden">
+      <div id="progress-bar" class="h-full bg-svb-gold w-0 transition-all duration-[4000ms] ease-linear"></div>
+    </div>
   </div>
 
-  <header class="bg-white/95 backdrop-blur-sm border-b border-gray-100 fixed w-full top-[38px] z-30 transition-all duration-300">
-    <div class="max-w-[1800px] mx-auto flex justify-between items-center h-20 px-6 lg:px-12">
+
+  <div class="bg-gray-100 text-svb-black text-[9px] uppercase tracking-[0.2em] py-2 text-center border-b border-gray-200">
+    Accès Membre Autorisé • Session Sécurisée
+  </div>
+
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-transparent transition duration-300 hover:border-gray-100">
+    <div class="max-w-[1920px] mx-auto px-8 h-24 flex justify-between items-center">
       
-      <nav class="hidden md:flex space-x-10 text-xs uppercase tracking-[0.15em] font-bold text-gray-500">
-        <a href="#" class="hover:text-black transition link-underline">Femme</a>
-        <a href="#" class="hover:text-black transition link-underline">Homme</a>
-        <a href="#how-it-works" class="text-black relative group">
-          Le Concept
-          <span class="absolute -bottom-1 left-0 w-full h-[0.5px] bg-black"></span>
-        </a>
+      <nav class="hidden md:flex space-x-12 text-[10px] uppercase tracking-[0.2em] font-bold">
+        <a href="#" class="hover:text-svb-gold transition">Le Showroom</a>
+        <a href="#rules" class="hover:text-svb-gold transition">Règles du Club</a>
       </nav>
 
-      <button class="md:hidden"><i data-lucide="menu" class="w-6 h-6"></i></button>
-
-      <a href="#" class="text-3xl font-serif tracking-[0.2em] font-semibold absolute left-1/2 -translate-x-1/2">SVB</a>
+      <a href="#" class="text-4xl font-serif tracking-widest absolute left-1/2 -translate-x-1/2">SVB</a>
 
       <div class="flex items-center space-x-8">
-        <button class="hidden lg:block text-xs uppercase tracking-widest border-b border-black pb-0.5 hover:text-gray-600 transition">
-          Faire le Quiz Style
-        </button>
-        <button class="relative group" onclick="toggleCart()">
-          <i data-lucide="shopping-bag" class="w-5 h-5 stroke-1 group-hover:stroke-2 transition-all"></i>
-          <span id="cart-badge" class="absolute -top-1 -right-1 bg-noir text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+        <div class="hidden lg:flex flex-col items-end border-r border-gray-200 pr-6 mr-2">
+          <span class="text-[9px] text-gray-400 uppercase tracking-widest">Votre Statut</span>
+          <span class="text-[10px] font-bold uppercase text-svb-gold">Membre Invité</span>
+        </div>
+        <button class="relative" onclick="toggleCart()">
+          <span class="text-[10px] uppercase tracking-widest mr-2 hidden md:inline-block">Mon Panier</span>
+          <i data-lucide="shopping-bag" class="w-5 h-5 inline-block"></i>
+          <span id="cart-dot" class="absolute top-0 right-0 w-2 h-2 bg-svb-gold rounded-full hidden"></span>
         </button>
       </div>
     </div>
   </header>
 
-  <section class="relative h-screen w-full mt-[38px]">
-    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover object-top filter brightness-[0.85]">
+  <section class="relative h-[85vh] w-full">
+    <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover grayscale brightness-75">
     
-    <div class="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-4">
-      <p class="text-xs uppercase tracking-[0.4em] mb-6 animate-pulse">L'Élégance Accessible</p>
-      <h1 class="text-5xl md:text-8xl font-serif mb-10 tracking-widest leading-tight">
-        L'ART DU<br/><span class="italic font-light">PRIVILÈGE</span>
-      </h1>
+    <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+
+    <div class="absolute bottom-0 left-0 w-full p-12 md:p-24">
+      <p class="text-white text-xs uppercase tracking-[0.3em] mb-4">Collection Privée N°4</p>
+      <h1 class="text-6xl md:text-8xl font-serif text-white mb-8">SILENCE</h1>
       
-      <div class="space-y-4">
-        <button onclick="scrollToProducts()" class="bg-white text-noir px-10 py-4 text-xs uppercase tracking-[0.25em] hover:bg-noir hover:text-white transition duration-500 min-w-[250px] border border-white">
-          Accéder à la Vente
-        </button>
-        <p class="text-[10px] text-gray-300 uppercase tracking-widest mt-4">Prix Membres jusqu'à -70%</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="border-y border-gray-100 py-8 bg-white">
-    <div class="max-w-7xl mx-auto flex justify-between items-center opacity-40 px-12 grayscale">
-      <span class="font-serif text-2xl">VOGUE</span>
-      <span class="font-serif text-2xl">ELLE</span>
-      <span class="font-serif text-2xl font-bold">GQ</span>
-      <span class="font-serif text-2xl italic">Vanity Fair</span>
-      <span class="font-serif text-2xl">Harper's BAZAAR</span>
-    </div>
-  </div>
-
-  <section class="py-20 bg-gris-luxe px-6">
-    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center bg-white p-1 shadow-xl">
-      <div class="w-full md:w-1/2 aspect-square relative">
-        <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-black/10"></div>
-      </div>
-      <div class="w-full md:w-1/2 p-12 text-center md:text-left">
-        <h3 class="font-serif text-3xl mb-4">Votre Style, Votre Signature.</h3>
-        <p class="text-sm text-gray-500 font-light mb-8 leading-relaxed">
-          Répondez à 4 questions simples pour découvrir votre sélection personnalisée ("Showroom") et débloquer votre offre de bienvenue exclusive.
+      <div class="bg-white/10 backdrop-blur-md p-6 max-w-md border-l-2 border-svb-gold">
+        <p class="text-gray-200 font-light text-sm leading-relaxed mb-4">
+          "Le luxe n'est pas un prix. C'est une liberté."<br/>
+          Rejoignez le mouvement. Payez le produit, pas la marque.
         </p>
-        <button class="border-b border-black pb-1 text-xs uppercase tracking-[0.2em] hover:text-gray-500 transition">
-          Commencer le Quiz
+        <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})" class="text-white text-xs uppercase tracking-[0.2em] border-b border-svb-gold pb-1 hover:text-svb-gold transition">
+          Accéder aux pièces
         </button>
       </div>
     </div>
   </section>
 
-  <section id="products" class="py-24 px-6 lg:px-12 bg-white">
-    
-    <div class="max-w-[1800px] mx-auto mb-16 flex flex-col md:flex-row justify-between items-end border-b border-black pb-6">
-      <div>
-        <h2 class="text-4xl font-serif mb-2">La Sélection</h2>
-        <p class="text-xs uppercase tracking-widest text-gray-400">Automne / Hiver 2026</p>
-      </div>
-      
-      <div class="flex items-center mt-6 md:mt-0 bg-gray-50 p-2 rounded-full border border-gray-100">
-        <span class="text-[10px] font-bold mr-3 text-gray-400 tracking-wider" id="label-guest">INVITÉ</span>
-        <div class="relative inline-block w-12 h-6 align-middle select-none transition duration-200 ease-in">
-          <input type="checkbox" name="toggle" id="price-toggle" class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white border-2 appearance-none cursor-pointer transition-all duration-300 left-1 top-1 shadow-sm" style="border-color: #ddd;"/>
-          <label for="price-toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-200 cursor-pointer"></label>
-        </div>
-        <span class="text-[10px] font-bold ml-3 text-black tracking-wider" id="label-member">MEMBRE</span>
-      </div>
+  <section id="rules" class="py-24 px-8 max-w-6xl mx-auto">
+    <div class="text-center mb-20">
+      <span class="text-svb-gold text-4xl font-serif">I, II, III</span>
+      <h2 class="text-3xl font-serif mt-4 uppercase tracking-[0.15em]">Le Code du Cercle</h2>
     </div>
 
-    <div class="max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
-      
-      <div class="group cursor-pointer product-card reveal">
-        <div class="relative aspect-[3/4] overflow-hidden mb-4">
-          <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=1887&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-[1.5s] ease-out">
-          <button onclick="addToCart('Le Trench Velours', 320, 89, 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=200')" class="absolute bottom-0 w-full bg-white/90 text-black text-[10px] uppercase tracking-[0.2em] py-4 translate-y-full group-hover:translate-y-0 transition duration-500 border-t border-black">
-            Ajouter au Panier
-          </button>
-        </div>
-        <div class="flex justify-between items-start">
-          <div>
-            <h3 class="font-serif text-lg">Le Trench Velours</h3>
-            <p class="text-[10px] text-gray-400 uppercase tracking-widest">Édition Limitée</p>
-          </div>
-          <div class="text-right">
-            <div class="price-member">
-              <span class="text-sm text-gray-300 line-through block">320€</span>
-              <span class="text-lg font-serif">89€</span>
-            </div>
-            <div class="price-public hidden">
-              <span class="text-lg font-serif">320€</span>
-            </div>
-          </div>
-        </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
+      <div class="group">
+        <div class="h-px w-20 bg-svb-black mx-auto mb-8 group-hover:w-full transition-all duration-700 ease-out"></div>
+        <h3 class="text-sm font-bold uppercase tracking-widest mb-4">L'Accès</h3>
+        <p class="text-gray-500 font-light text-sm leading-7">
+          En choisissant le prix Membre, vous activez votre adhésion. Vous débloquez immédiatement <span class="text-black font-medium">-70% sur tout</span>.
+        </p>
       </div>
 
-      <div class="group cursor-pointer product-card reveal">
-        <div class="relative aspect-[3/4] overflow-hidden mb-4">
-          <img src="https://images.unsplash.com/photo-1550614000-4b9519e08048?q=80&w=1769&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-[1.5s] ease-out">
-          <button onclick="addToCart('Blazer Oversize', 250, 69, 'https://images.unsplash.com/photo-1550614000-4b9519e08048?q=80&w=200')" class="absolute bottom-0 w-full bg-white/90 text-black text-[10px] uppercase tracking-[0.2em] py-4 translate-y-full group-hover:translate-y-0 transition duration-500 border-t border-black">
-            Ajouter au Panier
-          </button>
-        </div>
-        <div class="flex justify-between items-start">
-          <div>
-            <h3 class="font-serif text-lg">Blazer Oversize</h3>
-            <p class="text-[10px] text-gray-400 uppercase tracking-widest">Tailoring</p>
-          </div>
-          <div class="text-right">
-            <div class="price-member">
-              <span class="text-sm text-gray-300 line-through block">250€</span>
-              <span class="text-lg font-serif">69€</span>
-            </div>
-            <div class="price-public hidden">
-              <span class="text-lg font-serif">250€</span>
-            </div>
-          </div>
-        </div>
+      <div class="group">
+        <div class="h-px w-20 bg-svb-black mx-auto mb-8 group-hover:w-full transition-all duration-700 ease-out"></div>
+        <h3 class="text-sm font-bold uppercase tracking-widest mb-4">La Liberté</h3>
+        <p class="text-gray-500 font-light text-sm leading-7">
+          Le 5 de chaque mois. C'est la date clé. Achetez une tenue, ou cliquez sur <span class="text-black font-medium border-b border-black">"Passer le mois"</span>. Si vous passez : 0€ débité.
+        </p>
       </div>
 
-       <div class="group cursor-pointer product-card reveal">
-        <div class="relative aspect-[3/4] overflow-hidden mb-4">
-          <img src="https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?q=80&w=1769&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-[1.5s] ease-out">
-          <button onclick="addToCart('Chemise Soie', 180, 49, 'https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?q=80&w=200')" class="absolute bottom-0 w-full bg-white/90 text-black text-[10px] uppercase tracking-[0.2em] py-4 translate-y-full group-hover:translate-y-0 transition duration-500 border-t border-black">
-            Ajouter au Panier
-          </button>
-        </div>
-        <div class="flex justify-between items-start">
-          <div>
-            <h3 class="font-serif text-lg">Chemise Soie</h3>
-            <p class="text-[10px] text-gray-400 uppercase tracking-widest">Essentiels</p>
-          </div>
-          <div class="text-right">
-            <div class="price-member">
-              <span class="text-sm text-gray-300 line-through block">180€</span>
-              <span class="text-lg font-serif">49€</span>
-            </div>
-            <div class="price-public hidden">
-              <span class="text-lg font-serif">180€</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-       <div class="group cursor-pointer product-card reveal">
-        <div class="relative aspect-[3/4] overflow-hidden mb-4">
-          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-[1.5s] ease-out">
-          <button onclick="addToCart('Jupe Plissée', 190, 59, 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=200')" class="absolute bottom-0 w-full bg-white/90 text-black text-[10px] uppercase tracking-[0.2em] py-4 translate-y-full group-hover:translate-y-0 transition duration-500 border-t border-black">
-            Ajouter au Panier
-          </button>
-        </div>
-        <div class="flex justify-between items-start">
-          <div>
-            <h3 class="font-serif text-lg">Jupe Plissée</h3>
-            <p class="text-[10px] text-gray-400 uppercase tracking-widest">Iconique</p>
-          </div>
-          <div class="text-right">
-            <div class="price-member">
-              <span class="text-sm text-gray-300 line-through block">190€</span>
-              <span class="text-lg font-serif">59€</span>
-            </div>
-            <div class="price-public hidden">
-              <span class="text-lg font-serif">190€</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="how-it-works" class="py-24 bg-noir text-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        <div>
-          <span class="text-or text-xs uppercase tracking-[0.3em] block mb-6">Le Modèle SVB</span>
-          <h2 class="text-4xl md:text-5xl font-serif mb-8 leading-tight">La Liberté <br/>Comme Signature</h2>
-          <div class="space-y-10">
-            <div class="flex gap-6">
-              <span class="font-serif text-3xl text-or italic">I.</span>
-              <div>
-                <h4 class="text-sm uppercase tracking-widest font-bold mb-2">Adhésion Privilège</h4>
-                <p class="text-gray-400 text-sm font-light leading-relaxed">Accédez aux tarifs "Insider" (-70%) dès votre première commande en activant l'abonnement.</p>
-              </div>
-            </div>
-            <div class="flex gap-6">
-              <span class="font-serif text-3xl text-or italic">II.</span>
-              <div>
-                <h4 class="text-sm uppercase tracking-widest font-bold mb-2">Le Rituel du 5</h4>
-                <p class="text-gray-400 text-sm font-light leading-relaxed">Chaque mois (1er au 5), visitez votre showroom. Achetez une tenue, ou cliquez sur <u>"Passer le mois"</u> pour ne rien payer.</p>
-              </div>
-            </div>
-            <div class="flex gap-6">
-              <span class="font-serif text-3xl text-or italic">III.</span>
-              <div>
-                <h4 class="text-sm uppercase tracking-widest font-bold mb-2">Crédit Perpétuel</h4>
-                <p class="text-gray-400 text-sm font-light leading-relaxed">En cas d'oubli, le prélèvement de 49,90€ devient un crédit boutique. Jamais perdu, toujours disponible.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="relative border border-white/20 p-4">
-          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop" class="w-full h-full grayscale hover:grayscale-0 transition duration-1000">
-        </div>
+      <div class="group">
+        <div class="h-px w-20 bg-svb-black mx-auto mb-8 group-hover:w-full transition-all duration-700 ease-out"></div>
+        <h3 class="text-sm font-bold uppercase tracking-widest mb-4">L'Investissement</h3>
+        <p class="text-gray-500 font-light text-sm leading-7">
+          Un oubli ? Le prélèvement de 49.90€ devient un <span class="text-black font-medium">Crédit Boutique</span>. Votre argent reste à vous, indéfiniment.
+        </p>
       </div>
     </div>
   </section>
 
-  <footer class="bg-white border-t border-gray-100 py-16 px-6">
-    <div class="max-w-[1800px] mx-auto text-center">
-      <h3 class="text-4xl font-serif tracking-widest mb-8">SVB PARIS</h3>
+  <section id="products" class="bg-gray-50 py-24 px-8">
+    <div class="max-w-[1920px] mx-auto">
       
-      <div class="flex flex-col md:flex-row justify-center items-center gap-8 text-xs uppercase tracking-widest text-gray-500 mb-12">
-        <a href="#" class="hover:text-black">La Maison</a>
-        <a href="#" class="hover:text-black">Le Club</a>
-        <button onclick="document.getElementById('legal-modal').classList.remove('hidden')" class="hover:text-black">CGV & Abonnement</button>
-        <a href="#" class="hover:text-black">Contact</a>
+      <div class="sticky top-28 z-30 flex justify-center mb-16">
+        <div class="bg-white shadow-2xl px-8 py-3 rounded-full flex items-center space-x-4 border border-gray-100">
+          <span class="text-[10px] uppercase tracking-widest text-gray-400" id="label-guest">Prix Public</span>
+          
+          <div class="relative inline-block w-12 h-6 align-middle select-none">
+            <input type="checkbox" checked id="price-toggle" class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white border-2 border-gray-300 appearance-none cursor-pointer transition-all duration-300 left-1 top-1"/>
+            <label for="price-toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-200 cursor-pointer"></label>
+          </div>
+          
+          <span class="text-[10px] uppercase tracking-widest text-svb-black font-bold" id="label-member">Prix Membre</span>
+        </div>
       </div>
-      
-      <p class="text-[10px] text-gray-400">© 2026 SVB. Site de démonstration. L'abus de style est recommandé pour la santé.</p>
-    </div>
-  </footer>
 
-  <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full md:w-[450px] bg-white z-50 shadow-2xl drawer-closed flex flex-col border-l border-gray-100">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-12">
+        
+        <div class="group cursor-pointer">
+          <div class="relative overflow-hidden mb-4 aspect-[3/4]">
+            <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1769&auto=format&fit=crop" class="w-full h-full object-cover transition duration-[1.5s] group-hover:scale-105 filter grayscale group-hover:grayscale-0">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+              <button onclick="addToCart('Le Manteau Noir', 450, 129)" class="bg-white text-black px-8 py-3 text-[10px] uppercase tracking-[0.2em] hover:bg-svb-gold transition">
+                Acquérir
+              </button>
+            </div>
+          </div>
+          <div class="text-center">
+            <h3 class="font-serif text-lg tracking-wide">Le Manteau Noir</h3>
+            <div class="mt-2 h-8">
+              <div class="price-member">
+                <span class="text-gray-400 text-xs line-through">450 €</span>
+                <span class="text-svb-gold font-bold ml-2 text-lg">129 €</span>
+              </div>
+              <div class="price-public hidden">
+                <span class="text-black text-lg">450 €</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="group cursor-pointer">
+          <div class="relative overflow-hidden mb-4 aspect-[3/4]">
+            <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1769&auto=format&fit=crop" class="w-full h-full object-cover transition duration-[1.5s] group-hover:scale-105 filter grayscale group-hover:grayscale-0">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+              <button onclick="addToCart('Blazer Croisé', 280, 79)" class="bg-white text-black px-8 py-3 text-[10px] uppercase tracking-[0.2em] hover:bg-svb-gold transition">
+                Acquérir
+              </button>
+            </div>
+          </div>
+          <div class="text-center">
+            <h3 class="font-serif text-lg tracking-wide">Blazer Croisé</h3>
+            <div class="mt-2 h-8">
+              <div class="price-member">
+                <span class="text-gray-400 text-xs line-through">280 €</span>
+                <span class="text-svb-gold font-bold ml-2 text-lg">79 €</span>
+              </div>
+              <div class="price-public hidden">
+                <span class="text-black text-lg">280 €</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="group cursor-pointer">
+          <div class="relative overflow-hidden mb-4 aspect-[3/4]">
+            <img src="https://images.unsplash.com/photo-1550614000-4b9519e08048?q=80&w=1769&auto=format&fit=crop" class="w-full h-full object-cover transition duration-[1.5s] group-hover:scale-105 filter grayscale group-hover:grayscale-0">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+              <button onclick="addToCart('Chemise Oxford', 150, 49)" class="bg-white text-black px-8 py-3 text-[10px] uppercase tracking-[0.2em] hover:bg-svb-gold transition">
+                Acquérir
+              </button>
+            </div>
+          </div>
+          <div class="text-center">
+            <h3 class="font-serif text-lg tracking-wide">Chemise Oxford</h3>
+            <div class="mt-2 h-8">
+              <div class="price-member">
+                <span class="text-gray-400 text-xs line-through">150 €</span>
+                <span class="text-svb-gold font-bold ml-2 text-lg">49 €</span>
+              </div>
+              <div class="price-public hidden">
+                <span class="text-black text-lg">150 €</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full md:w-[500px] bg-white z-[60] transform translate-x-full transition-transform duration-500 shadow-2xl flex flex-col">
+    <div class="p-8 border-b border-gray-100 flex justify-between items-center bg-svb-black text-white">
+      <h2 class="font-serif text-xl tracking-widest">VOTRE SÉLECTION</h2>
+      <button onclick="toggleCart()"><i data-lucide="x" class="w-6 h-6"></i></button>
+    </div>
     
-    <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
-      <h2 class="font-serif text-xl italic">Votre Panier</h2>
-      <button onclick="toggleCart()" class="text-gray-400 hover:text-black"><i data-lucide="x" class="w-6 h-6"></i></button>
+    <div id="cart-content" class="flex-1 p-8 overflow-y-auto">
+      <p class="text-center text-gray-400 text-sm mt-10 font-light italic">Votre vestiaire est actuellement vide.</p>
     </div>
 
-    <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-6">
-      <div class="text-center text-gray-400 mt-20 text-sm font-light italic" id="empty-cart-msg">Votre vestiaire est vide.</div>
-    </div>
-
-    <div class="p-6 border-t border-gray-100 bg-white">
-      <div class="space-y-3 mb-6">
-        <div class="flex justify-between text-sm text-gray-400">
-          <span>Valeur Totale (Prix Public)</span>
-          <span class="line-through decoration-1" id="total-public">0 €</span>
-        </div>
-        <div class="flex justify-between text-lg font-bold text-black items-center">
-          <span class="font-serif italic">Total Club VIP</span>
-          <span id="total-vip">0 €</span>
-        </div>
-        <div class="bg-noir text-white text-center py-2 text-xs uppercase tracking-widest mt-2">
-          Économie Membre : <span id="total-savings" class="text-or font-bold">0 €</span>
-        </div>
+    <div class="p-8 border-t border-gray-100 bg-gray-50">
+      <div class="flex justify-between text-sm mb-2 text-gray-400">
+        <span>Valeur Publique</span>
+        <span class="line-through" id="total-public">0 €</span>
       </div>
-      
-      <button class="w-full bg-noir text-white py-4 text-xs uppercase tracking-[0.2em] hover:bg-gray-800 transition">
-        Commander (Devenir Membre)
+      <div class="flex justify-between text-xl font-serif mb-4 text-svb-black">
+        <span>Total Membre</span>
+        <span id="total-member">0 €</span>
+      </div>
+      <div class="text-center text-[10px] text-svb-gold uppercase tracking-widest mb-6">
+        Économie réalisée : <span id="total-savings">0 €</span>
+      </div>
+      <button class="w-full bg-svb-black text-white py-4 text-xs uppercase tracking-[0.2em] hover:bg-svb-gold hover:text-black transition duration-300">
+        Valider l'adhésion
       </button>
-      <p class="text-[9px] text-gray-400 text-center mt-3 leading-tight">
-        En commandant, j'accepte l'offre d'abonnement VIP (49,90€/mois, résiliable à tout moment, crédits reportables).
-      </p>
     </div>
   </div>
-
-  <div id="overlay" onclick="toggleCart()" class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 hidden transition-opacity"></div>
-
-  <div id="legal-modal" class="hidden fixed inset-0 z-[60] flex items-center justify-center bg-white/95 p-8">
-    <div class="max-w-xl w-full text-center">
-      <h2 class="font-serif text-2xl mb-6">Informations Légales</h2>
-      <p class="text-sm text-gray-600 mb-6 leading-relaxed">
-        Ce site propose un abonnement mensuel avec tacite reconduction. Le client dispose d'un délai de rétractation de 14 jours.
-        <br/><br/>
-        <strong>Mécanisme :</strong> Achat Prix VIP = Abonnement. 
-        <br/>
-        <strong>Option :</strong> Possibilité de "Passer le mois" entre le 1er et le 5 pour éviter le prélèvement.
-      </p>
-      <button onclick="document.getElementById('legal-modal').classList.add('hidden')" class="border-b border-black pb-1 uppercase text-xs tracking-widest">Fermer</button>
-    </div>
-  </div>
+  <div id="overlay" onclick="toggleCart()" class="fixed inset-0 bg-black/50 z-[50] hidden backdrop-blur-sm transition-opacity"></div>
 
   <script>
     lucide.createIcons();
 
-    // -- LOGIQUE PANIER --
+    // 1. GESTION DE L'INTRO (STORYTELLING)
+    document.addEventListener('DOMContentLoaded', () => {
+        // Désactiver le scroll pendant l'intro
+        document.body.style.overflow = 'hidden';
+
+        const seq1 = document.getElementById('seq-1');
+        const seq2 = document.getElementById('seq-2');
+        const seq3 = document.getElementById('seq-3');
+        const bar = document.getElementById('progress-bar');
+
+        // Animation Chronologie
+        setTimeout(() => {
+            seq1.classList.add('visible');
+            bar.style.width = "33%";
+        }, 500);
+
+        setTimeout(() => {
+            seq1.classList.remove('visible');
+            seq1.classList.add('hidden-text');
+        }, 3500);
+
+        setTimeout(() => {
+            seq2.classList.add('visible');
+            bar.style.width = "66%";
+        }, 4000);
+
+        setTimeout(() => {
+            seq2.classList.remove('visible');
+            seq2.classList.add('hidden-text');
+        }, 7500);
+
+        setTimeout(() => {
+            seq3.classList.add('visible');
+            bar.style.width = "100%";
+        }, 8000);
+    });
+
+    function enterSite() {
+        const overlay = document.getElementById('intro-overlay');
+        overlay.style.opacity = '0';
+        overlay.style.visibility = 'hidden';
+        // Réactiver le scroll
+        document.body.style.overflow = 'auto';
+        
+        // Petit effet de scroll doux vers le haut
+        window.scrollTo(0,0);
+    }
+
+    // 2. LOGIQUE PANIER
     let cart = [];
     
-    function addToCart(title, pricePublic, priceMember, img) {
-      cart.push({ title, pricePublic, priceMember, img });
-      updateCartDisplay();
-      openCart();
+    function addToCart(name, publicPrice, memberPrice) {
+      cart.push({name, publicPrice, memberPrice});
+      updateCart();
+      toggleCart();
     }
 
-    function updateCartDisplay() {
-      const container = document.getElementById('cart-items');
-      const badge = document.getElementById('cart-badge');
-      const msg = document.getElementById('empty-cart-msg');
+    function updateCart() {
+      const content = document.getElementById('cart-content');
+      const dot = document.getElementById('cart-dot');
       
-      // Update Badge
-      badge.innerText = cart.length;
-      badge.classList.remove('hidden');
-
-      // Update List
-      if(cart.length > 0) msg.classList.add('hidden');
-      
-      // Rebuild HTML
-      container.innerHTML = cart.map((item, index) => `
-        <div class="flex items-start space-x-4 animate-pulse-once">
-          <div class="w-20 h-24 bg-gray-100 overflow-hidden">
-            <img src="${item.img}" class="w-full h-full object-cover">
-          </div>
-          <div class="flex-1">
-            <h4 class="font-serif text-md">${item.title}</h4>
-            <p class="text-xs text-gray-400 uppercase tracking-wide mb-2">Taille : M</p>
-            <div class="flex space-x-3 text-xs">
-              <span class="text-gray-300 line-through">${item.pricePublic}€</span>
-              <span class="font-bold">${item.priceMember}€</span>
+      if(cart.length > 0) {
+        dot.classList.remove('hidden');
+        content.innerHTML = cart.map((item) => `
+          <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
+            <div>
+              <h4 class="font-serif text-md">${item.name}</h4>
+              <p class="text-[10px] text-gray-400 uppercase">Taille Unique</p>
+            </div>
+            <div class="text-right">
+              <div class="text-gray-300 text-xs line-through">${item.publicPrice}€</div>
+              <div class="text-svb-gold font-bold">${item.memberPrice}€</div>
             </div>
           </div>
-          <button onclick="removeFromCart(${index})" class="text-gray-300 hover:text-black text-xs">Retirer</button>
-        </div>
-      `).join('');
+        `).join('');
+      }
 
-      // Update Totals
-      let totalP = 0, totalV = 0;
-      cart.forEach(i => { totalP += i.pricePublic; totalV += i.priceMember; });
-      
-      document.getElementById('total-public').innerText = totalP + " €";
-      document.getElementById('total-vip').innerText = totalV + " €";
-      document.getElementById('total-savings').innerText = (totalP - totalV) + " €";
-    }
-
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCartDisplay();
+      // Totaux
+      let tPub = 0, tMem = 0;
+      cart.forEach(i => { tPub += i.publicPrice; tMem += i.memberPrice; });
+      document.getElementById('total-public').innerText = tPub + ' €';
+      document.getElementById('total-member').innerText = tMem + ' €';
+      document.getElementById('total-savings').innerText = (tPub - tMem) + ' €';
     }
 
     function toggleCart() {
-      const drawer = document.getElementById('cart-drawer');
-      const overlay = document.getElementById('overlay');
-      
-      if (drawer.classList.contains('drawer-closed')) {
-        openCart();
-      } else {
-        drawer.classList.add('drawer-closed');
-        drawer.classList.remove('drawer-open');
-        overlay.classList.add('hidden');
-      }
+        const drawer = document.getElementById('cart-drawer');
+        const overlay = document.getElementById('overlay');
+        
+        if(drawer.classList.contains('translate-x-full')) {
+            drawer.classList.remove('translate-x-full');
+            overlay.classList.remove('hidden');
+        } else {
+            drawer.classList.add('translate-x-full');
+            overlay.classList.add('hidden');
+        }
     }
 
-    function openCart() {
-      const drawer = document.getElementById('cart-drawer');
-      const overlay = document.getElementById('overlay');
-      drawer.classList.remove('drawer-closed');
-      drawer.classList.add('drawer-open');
-      overlay.classList.remove('hidden');
-    }
-
-    // -- LOGIQUE SWITCH PRIX --
+    // 3. LOGIQUE PRIX (SWITCH)
     const toggle = document.getElementById('price-toggle');
     toggle.addEventListener('change', function() {
-      const memberPrices = document.querySelectorAll('.price-member');
-      const publicPrices = document.querySelectorAll('.price-public');
-      const labelGuest = document.getElementById('label-guest');
-      const labelMember = document.getElementById('label-member');
+        const mems = document.querySelectorAll('.price-member');
+        const pubs = document.querySelectorAll('.price-public');
+        const lg = document.getElementById('label-guest');
+        const lm = document.getElementById('label-member');
 
-      if(this.checked) {
-        // Mode Guest (Checked logic inverted for UX preference often)
-        // Let's keep logic: Unchecked = Guest, Checked = Member? 
-        // Actually, let's follow the labels: Left(Guest) -> Right(Member)
-        // Checkbox usually means "On", so right side.
-        memberPrices.forEach(el => el.classList.remove('hidden'));
-        publicPrices.forEach(el => el.classList.add('hidden'));
-        labelMember.classList.add('text-black');
-        labelMember.classList.remove('text-gray-400');
-        labelGuest.classList.remove('text-black');
-        labelGuest.classList.add('text-gray-400');
-      } else {
-        memberPrices.forEach(el => el.classList.add('hidden'));
-        publicPrices.forEach(el => el.classList.remove('hidden'));
-        labelGuest.classList.add('text-black');
-        labelGuest.classList.remove('text-gray-400');
-        labelMember.classList.remove('text-black');
-        labelMember.classList.add('text-gray-400');
-      }
-    });
-
-    // Init Toggle State (Set to Member by default visually)
-    toggle.checked = true;
-
-    function scrollToProducts() {
-      document.getElementById('products').scrollIntoView({behavior: 'smooth'});
-    }
-
-    // Scroll Reveal
-    window.addEventListener('scroll', reveal);
-    function reveal() {
-      var reveals = document.querySelectorAll('.reveal');
-      for (var i = 0; i < reveals.length; i++) {
-        var windowheight = window.innerHeight;
-        var revealtop = reveals[i].getBoundingClientRect().top;
-        var revealpoint = 150;
-        if (revealtop < windowheight - revealpoint) {
-          reveals[i].classList.add('active');
+        if(this.checked) {
+            // Mode Membre
+            mems.forEach(e => e.classList.remove('hidden'));
+            pubs.forEach(e => e.classList.add('hidden'));
+            lm.classList.add('text-svb-black', 'font-bold');
+            lm.classList.remove('text-gray-400');
+            lg.classList.add('text-gray-400');
+            lg.classList.remove('text-svb-black', 'font-bold');
+        } else {
+            // Mode Public
+            mems.forEach(e => e.classList.add('hidden'));
+            pubs.forEach(e => e.classList.remove('hidden'));
+            lg.classList.add('text-svb-black', 'font-bold');
+            lg.classList.remove('text-gray-400');
+            lm.classList.add('text-gray-400');
+            lm.classList.remove('text-svb-black', 'font-bold');
         }
-      }
-    }
+    });
   </script>
 </body>
 </html>
