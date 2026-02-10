@@ -54,9 +54,9 @@
       transform: translateY(-20px);
     }
 
-    /* CURSOR PERSONNALISÉ */
-    body { cursor: default; }
-    
+    /* Pour éviter le "flash" blanc au chargement si l'intro est active */
+    body.intro-active { overflow: hidden; }
+
     /* Toggle Switch Dark Mode Style */
     .toggle-checkbox:checked { right: 0; border-color: #D4AF37; }
     .toggle-checkbox:checked + .toggle-label { background-color: #0a0a0a; }
@@ -309,51 +309,45 @@
   <script>
     lucide.createIcons();
 
-    // 1. GESTION DE L'INTRO (STORYTELLING)
+    // 1. GESTION DE L'INTRO (Vérifie si déjà vu)
     document.addEventListener('DOMContentLoaded', () => {
-        // Désactiver le scroll pendant l'intro
-        document.body.style.overflow = 'hidden';
+        const hasVisited = localStorage.getItem('svb_has_visited');
+        const overlay = document.getElementById('intro-overlay');
 
+        if (hasVisited === 'true') {
+            // Si déjà visité, on cache l'intro immédiatement
+            overlay.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Réactive le scroll
+        } else {
+            // Sinon, on lance l'animation
+            document.body.classList.add('intro-active');
+            playIntro();
+        }
+    });
+
+    function playIntro() {
         const seq1 = document.getElementById('seq-1');
         const seq2 = document.getElementById('seq-2');
         const seq3 = document.getElementById('seq-3');
         const bar = document.getElementById('progress-bar');
 
-        // Animation Chronologie
-        setTimeout(() => {
-            seq1.classList.add('visible');
-            bar.style.width = "33%";
-        }, 500);
-
-        setTimeout(() => {
-            seq1.classList.remove('visible');
-            seq1.classList.add('hidden-text');
-        }, 3500);
-
-        setTimeout(() => {
-            seq2.classList.add('visible');
-            bar.style.width = "66%";
-        }, 4000);
-
-        setTimeout(() => {
-            seq2.classList.remove('visible');
-            seq2.classList.add('hidden-text');
-        }, 7500);
-
-        setTimeout(() => {
-            seq3.classList.add('visible');
-            bar.style.width = "100%";
-        }, 8000);
-    });
+        setTimeout(() => { seq1.classList.add('visible'); bar.style.width = "33%"; }, 500);
+        setTimeout(() => { seq1.classList.remove('visible'); seq1.classList.add('hidden-text'); }, 3500);
+        setTimeout(() => { seq2.classList.add('visible'); bar.style.width = "66%"; }, 4000);
+        setTimeout(() => { seq2.classList.remove('visible'); seq2.classList.add('hidden-text'); }, 7500);
+        setTimeout(() => { seq3.classList.add('visible'); bar.style.width = "100%"; }, 8000);
+    }
 
     function enterSite() {
         const overlay = document.getElementById('intro-overlay');
         overlay.style.opacity = '0';
         overlay.style.visibility = 'hidden';
-        // Réactiver le scroll
-        document.body.style.overflow = 'auto';
         
-        // Petit effet de scroll doux vers le haut
+        // Enregistre que l'utilisateur a vu l'intro
+        localStorage.setItem('svb_has_visited', 'true');
+        
+        document.body.classList.remove('intro-active');
+        document.body.style.overflow = 'auto';
         window.scrollTo(0,0);
     }
 
