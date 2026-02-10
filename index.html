@@ -1,524 +1,404 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SVB — Performance & Élégance</title>
+  <title>SVB — Performance & Exclusivité</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            svb: {
+              dark: '#001E45', // Bleu Nuit Profond
+              main: '#002F6C', // Bleu SVB
+              light: '#E6F4F1',
+              accent: '#00D7B9', // Teal/Turquoise
+              hover: '#00B89C'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
 
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #002F6C; border-radius: 4px; }
+    
+    /* Animations */
+    .fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; transform: translateY(20px); }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+    
+    .cart-bump { animation: bump 0.3s ease-out; }
+    @keyframes bump { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
   </style>
 </head>
 
-<body class="bg-white">
+<body class="bg-gray-50 text-slate-800 antialiased selection:bg-svb-accent selection:text-white">
 
-  <!-- Header -->
-  <header class="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm">
+  <div class="bg-svb-dark text-white text-xs font-medium py-2 text-center tracking-wide">
+    LIVRAISON OFFERTE DÈS 49€ D'ACHAT • RETOURS GRATUITS SOUS 45 JOURS
+  </div>
+
+  <header id="main-header" class="sticky top-0 z-40 w-full transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
+      <div class="flex justify-between items-center h-20">
         
-        <!-- Logo -->
-        <div class="flex items-center">
-          <a href="#" class="flex items-center space-x-2">
-            <div class="w-10 h-10 bg-[#002F6C] rounded flex items-center justify-center">
-              <span class="text-white font-bold text-lg">S</span>
-            </div>
-            <span class="text-2xl font-semibold text-[#002F6C] tracking-tight">SVB</span>
-          </a>
-        </div>
+        <a href="#" class="flex items-center group">
+          <div class="w-10 h-10 bg-svb-main text-white flex items-center justify-center rounded-sm mr-3 transition-transform group-hover:scale-105 shadow-lg">
+            <span class="font-serif font-bold text-xl italic">S</span>
+          </div>
+          <span class="text-2xl font-bold text-svb-main tracking-tight">SVB</span>
+        </a>
 
-        <!-- Desktop Navigation -->
-        <nav class="hidden md:flex items-center space-x-8">
-          <a href="#" class="text-sm font-medium text-gray-700 hover:text-[#002F6C] transition">Femme</a>
-          <a href="#" class="text-sm font-medium text-gray-700 hover:text-[#002F6C] transition">Homme</a>
-          <a href="#" class="text-sm font-medium text-gray-700 hover:text-[#002F6C] transition">Programme VIP</a>
-          <a href="#how-it-works" class="text-sm font-medium text-gray-700 hover:text-[#002F6C] transition">Comment ça marche</a>
+        <nav class="hidden md:flex items-center space-x-10">
+          <a href="#" class="text-sm font-medium text-gray-600 hover:text-svb-main transition relative group">
+            Femme
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-svb-accent transition-all group-hover:w-full"></span>
+          </a>
+          <a href="#" class="text-sm font-medium text-gray-600 hover:text-svb-main transition relative group">
+            Homme
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-svb-accent transition-all group-hover:w-full"></span>
+          </a>
+          <a href="#vip-program" class="text-sm font-bold text-svb-main hover:text-svb-accent transition flex items-center">
+            <i data-lucide="crown" class="w-4 h-4 mr-1"></i> Programme VIP
+          </a>
         </nav>
 
-        <!-- Right Actions -->
-        <div class="flex items-center space-x-4">
-          <div class="hidden md:flex items-center space-x-2 bg-gray-50 px-4 py-2 rounded-lg">
-            <i data-lucide="credit-card" class="w-4 h-4 text-[#00D7B9]"></i>
-            <span class="text-sm font-medium text-gray-700">Crédit: <span class="text-[#002F6C] font-semibold">0€</span></span>
+        <div class="flex items-center space-x-6">
+          <div class="hidden lg:flex flex-col items-end leading-tight cursor-pointer group">
+            <span class="text-[10px] uppercase text-gray-400 font-bold tracking-wider">Mon Solde</span>
+            <span class="text-sm font-bold text-svb-accent group-hover:text-svb-main transition">0 Crédit</span>
           </div>
-          <button class="text-gray-700 hover:text-[#002F6C] transition">
-            <i data-lucide="user" class="w-5 h-5"></i>
+
+          <div class="h-6 w-px bg-gray-200 hidden lg:block"></div>
+
+          <button class="text-gray-600 hover:text-svb-main transition">
+            <i data-lucide="user" class="w-6 h-6"></i>
           </button>
-          <button class="text-gray-700 hover:text-[#002F6C] transition relative">
-            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-            <span class="absolute -top-2 -right-2 bg-[#00D7B9] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+          
+          <button class="text-gray-600 hover:text-svb-main transition relative group" onclick="wiggleCart()">
+            <i id="cart-icon" data-lucide="shopping-bag" class="w-6 h-6 group-hover:text-svb-accent transition"></i>
+            <span id="cart-count" class="absolute -top-1 -right-2 bg-svb-main text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white transform scale-0 transition-transform duration-300">0</span>
           </button>
-          <button class="md:hidden" onclick="toggleMenu()">
+          
+          <button class="md:hidden text-gray-800" onclick="toggleMenu()">
             <i data-lucide="menu" class="w-6 h-6"></i>
           </button>
         </div>
       </div>
     </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white">
-      <div class="px-4 py-4 space-y-3">
-        <a href="#" class="block text-sm font-medium text-gray-700 hover:text-[#002F6C]">Femme</a>
-        <a href="#" class="block text-sm font-medium text-gray-700 hover:text-[#002F6C]">Homme</a>
-        <a href="#" class="block text-sm font-medium text-gray-700 hover:text-[#002F6C]">Programme VIP</a>
-        <a href="#how-it-works" class="block text-sm font-medium text-gray-700 hover:text-[#002F6C]">Comment ça marche</a>
-        <div class="flex items-center space-x-2 bg-gray-50 px-4 py-2 rounded-lg">
-          <i data-lucide="credit-card" class="w-4 h-4 text-[#00D7B9]"></i>
-          <span class="text-sm font-medium text-gray-700">Crédit: <span class="text-[#002F6C] font-semibold">0€</span></span>
+    
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl">
+      <div class="px-6 py-6 space-y-4">
+        <a href="#" class="block text-lg font-medium text-gray-800">Femme</a>
+        <a href="#" class="block text-lg font-medium text-gray-800">Homme</a>
+        <a href="#" class="block text-lg font-bold text-svb-main">Programme VIP</a>
+        <hr class="border-gray-100">
+        <div class="flex items-center space-x-2 text-svb-main">
+          <i data-lucide="help-circle" class="w-5 h-5"></i>
+          <span>Aide & Contact</span>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="relative bg-gradient-to-r from-[#002F6C] to-[#004999] text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-      <div class="max-w-3xl">
-        <div class="inline-flex items-center space-x-2 bg-[#00D7B9] text-[#002F6C] px-4 py-2 rounded-full text-sm font-semibold mb-6">
-          <i data-lucide="gift" class="w-4 h-4"></i>
-          <span>Offre de Bienvenue</span>
+  <section class="relative bg-svb-dark overflow-hidden">
+    <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-svb-accent/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 flex flex-col md:flex-row items-center">
+      
+      <div class="md:w-1/2 z-10 fade-in-up" style="animation-delay: 0.1s;">
+        <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-1.5 rounded-full mb-8">
+          <span class="w-2 h-2 bg-svb-accent rounded-full animate-pulse"></span>
+          <span class="text-svb-accent text-sm font-bold uppercase tracking-wider">Offre Limitée</span>
         </div>
-        <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-          Votre première commande<br/>à <span class="text-[#00D7B9]">-70%</span>
+        
+        <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
+          L'Élégance de la <br/>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-svb-accent to-white">Performance.</span>
         </h1>
-        <p class="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed">
-          Devenez Membre VIP et accédez à des prix exclusifs sur une sélection premium de vêtements de sport haute performance.
+        
+        <p class="text-lg text-gray-300 mb-10 max-w-lg leading-relaxed font-light">
+          Rejoignez le club privé SVB. Design minimaliste, technologie de pointe, et des prix réservés exclusivement à nos membres.
         </p>
+        
         <div class="flex flex-col sm:flex-row gap-4">
-          <button class="bg-[#00D7B9] text-[#002F6C] px-8 py-4 rounded-lg font-semibold text-lg hover:bg-[#00c4a7] transition shadow-lg">
-            Découvrir le Programme VIP
+          <button onclick="scrollToProducts()" class="bg-svb-accent text-svb-dark px-8 py-4 rounded-sm font-bold text-lg hover:bg-white hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(0,215,185,0.4)]">
+            Débuter le Quiz Style
           </button>
-          <button class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition">
-            En savoir plus
+          <button class="px-8 py-4 rounded-sm font-medium text-white border border-gray-600 hover:border-white hover:bg-white/5 transition-all">
+            Voir la collection
           </button>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- VIP Pricing Banner -->
-  <section class="bg-[#00D7B9] text-[#002F6C] py-6">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row items-center justify-between">
-        <div class="flex items-center space-x-3 mb-4 md:mb-0">
-          <i data-lucide="award" class="w-6 h-6"></i>
-          <p class="font-semibold text-lg">Membre VIP: Jusqu'à 70% de réduction sur tous les produits</p>
-        </div>
-        <div class="flex items-center space-x-2 text-sm">
-          <span class="font-medium">À partir de</span>
-          <span class="text-2xl font-bold">49,90€/mois</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Products Grid -->
-  <section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-[#002F6C] mb-4">Nos Produits Premium</h2>
-        <p class="text-gray-600 text-lg">Performance exceptionnelle, design épuré</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
-        <!-- Product 1 -->
-        <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden group">
-          <div class="relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&auto=format&fit=crop" 
-                 alt="Performance Pro Tee"
-                 class="w-full h-80 object-cover group-hover:scale-105 transition duration-500">
-            <div class="absolute top-4 right-4 bg-[#00D7B9] text-white px-3 py-1 rounded-full text-xs font-semibold">
-              -72%
-            </div>
+        <div class="mt-8 flex items-center space-x-4 text-sm text-gray-400">
+          <div class="flex -space-x-2">
+            <img class="w-8 h-8 rounded-full border-2 border-svb-dark" src="https://i.pravatar.cc/100?img=1" alt="">
+            <img class="w-8 h-8 rounded-full border-2 border-svb-dark" src="https://i.pravatar.cc/100?img=5" alt="">
+            <img class="w-8 h-8 rounded-full border-2 border-svb-dark" src="https://i.pravatar.cc/100?img=9" alt="">
           </div>
-          
-          <div class="p-6">
-            <p class="text-xs text-gray-500 uppercase tracking-wide mb-2">Hauts</p>
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">Performance Pro Tee</h3>
-            
-            <div class="space-y-3 mb-6">
-              <div class="flex items-center justify-between">
-                <span class="text-sm text-gray-500">Prix Standard:</span>
-                <span class="text-lg text-gray-400 line-through">89.90€</span>
-              </div>
-              <div class="flex items-center justify-between border-t pt-3">
-                <div class="flex items-center space-x-2">
-                  <i data-lucide="shield" class="w-4 h-4 text-[#00D7B9]"></i>
-                  <span class="text-sm font-semibold text-[#002F6C]">Prix VIP:</span>
-                </div>
-                <span class="text-2xl font-bold text-[#00D7B9]">24.90€</span>
-              </div>
-            </div>
+          <p>Déjà <span class="text-white font-bold">15k+ membres</span> actifs</p>
+        </div>
+      </div>
 
-            <button class="w-full bg-[#002F6C] text-white py-3 rounded-lg font-semibold hover:bg-[#001f4d] transition">
-              Acheter au Prix VIP
-            </button>
-            <p class="text-xs text-center text-gray-500 mt-2">Réservé aux Membres VIP</p>
+      <div class="md:w-1/2 mt-12 md:mt-0 relative fade-in-up" style="animation-delay: 0.3s;">
+        <div class="relative z-10 rounded-xl overflow-hidden shadow-2xl border-4 border-white/10 rotate-3 hover:rotate-0 transition-all duration-500">
+          <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="SVB Collection" class="w-full h-auto object-cover">
+          
+          <div class="absolute bottom-6 left-6 bg-white/95 backdrop-blur px-6 py-4 rounded shadow-xl">
+            <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Offre de Bienvenue</p>
+            <p class="text-3xl font-bold text-svb-main">-70% <span class="text-lg font-normal text-gray-400">sur tout</span></p>
           </div>
         </div>
-
-        <!-- Product 2 -->
-        <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden group">
-          <div class="relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=800&auto=format&fit=crop" 
-                 alt="Elite Training Shorts"
-                 class="w-full h-80 object-cover group-hover:scale-105 transition duration-500">
-            <div class="absolute top-4 right-4 bg-[#00D7B9] text-white px-3 py-1 rounded-full text-xs font-semibold">
-              -75%
-            </div>
-          </div>
-          
-          <div class="p-6">
-            <p class="text-xs text-gray-500 uppercase tracking-wide mb-2">Bas</p>
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">Elite Training Shorts</h3>
-            
-            <div class="space-y-3 mb-6">
-              <div class="flex items-center justify-between">
-                <span class="text-sm text-gray-500">Prix Standard:</span>
-                <span class="text-lg text-gray-400 line-through">79.90€</span>
-              </div>
-              <div class="flex items-center justify-between border-t pt-3">
-                <div class="flex items-center space-x-2">
-                  <i data-lucide="shield" class="w-4 h-4 text-[#00D7B9]"></i>
-                  <span class="text-sm font-semibold text-[#002F6C]">Prix VIP:</span>
-                </div>
-                <span class="text-2xl font-bold text-[#00D7B9]">19.90€</span>
-              </div>
-            </div>
-
-            <button class="w-full bg-[#002F6C] text-white py-3 rounded-lg font-semibold hover:bg-[#001f4d] transition">
-              Acheter au Prix VIP
-            </button>
-            <p class="text-xs text-center text-gray-500 mt-2">Réservé aux Membres VIP</p>
-          </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden group">
-          <div class="relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&auto=format&fit=crop" 
-                 alt="Premium Leggings"
-                 class="w-full h-80 object-cover group-hover:scale-105 transition duration-500">
-            <div class="absolute top-4 right-4 bg-[#00D7B9] text-white px-3 py-1 rounded-full text-xs font-semibold">
-              -70%
-            </div>
-          </div>
-          
-          <div class="p-6">
-            <p class="text-xs text-gray-500 uppercase tracking-wide mb-2">Bas</p>
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">Premium Leggings</h3>
-            
-            <div class="space-y-3 mb-6">
-              <div class="flex items-center justify-between">
-                <span class="text-sm text-gray-500">Prix Standard:</span>
-                <span class="text-lg text-gray-400 line-through">99.90€</span>
-              </div>
-              <div class="flex items-center justify-between border-t pt-3">
-                <div class="flex items-center space-x-2">
-                  <i data-lucide="shield" class="w-4 h-4 text-[#00D7B9]"></i>
-                  <span class="text-sm font-semibold text-[#002F6C]">Prix VIP:</span>
-                </div>
-                <span class="text-2xl font-bold text-[#00D7B9]">29.90€</span>
-              </div>
-            </div>
-
-            <button class="w-full bg-[#002F6C] text-white py-3 rounded-lg font-semibold hover:bg-[#001f4d] transition">
-              Acheter au Prix VIP
-            </button>
-            <p class="text-xs text-center text-gray-500 mt-2">Réservé aux Membres VIP</p>
-          </div>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden group">
-          <div class="relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&auto=format&fit=crop" 
-                 alt="Tech Hoodie"
-                 class="w-full h-80 object-cover group-hover:scale-105 transition duration-500">
-            <div class="absolute top-4 right-4 bg-[#00D7B9] text-white px-3 py-1 rounded-full text-xs font-semibold">
-              -69%
-            </div>
-          </div>
-          
-          <div class="p-6">
-            <p class="text-xs text-gray-500 uppercase tracking-wide mb-2">Hauts</p>
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">Tech Hoodie</h3>
-            
-            <div class="space-y-3 mb-6">
-              <div class="flex items-center justify-between">
-                <span class="text-sm text-gray-500">Prix Standard:</span>
-                <span class="text-lg text-gray-400 line-through">129.90€</span>
-              </div>
-              <div class="flex items-center justify-between border-t pt-3">
-                <div class="flex items-center space-x-2">
-                  <i data-lucide="shield" class="w-4 h-4 text-[#00D7B9]"></i>
-                  <span class="text-sm font-semibold text-[#002F6C]">Prix VIP:</span>
-                </div>
-                <span class="text-2xl font-bold text-[#00D7B9]">39.90€</span>
-              </div>
-            </div>
-
-            <button class="w-full bg-[#002F6C] text-white py-3 rounded-lg font-semibold hover:bg-[#001f4d] transition">
-              Acheter au Prix VIP
-            </button>
-            <p class="text-xs text-center text-gray-500 mt-2">Réservé aux Membres VIP</p>
-          </div>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden group">
-          <div class="relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=800&auto=format&fit=crop" 
-                 alt="Compression Tank"
-                 class="w-full h-80 object-cover group-hover:scale-105 transition duration-500">
-            <div class="absolute top-4 right-4 bg-[#00D7B9] text-white px-3 py-1 rounded-full text-xs font-semibold">
-              -72%
-            </div>
-          </div>
-          
-          <div class="p-6">
-            <p class="text-xs text-gray-500 uppercase tracking-wide mb-2">Hauts</p>
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">Compression Tank</h3>
-            
-            <div class="space-y-3 mb-6">
-              <div class="flex items-center justify-between">
-                <span class="text-sm text-gray-500">Prix Standard:</span>
-                <span class="text-lg text-gray-400 line-through">69.90€</span>
-              </div>
-              <div class="flex items-center justify-between border-t pt-3">
-                <div class="flex items-center space-x-2">
-                  <i data-lucide="shield" class="w-4 h-4 text-[#00D7B9]"></i>
-                  <span class="text-sm font-semibold text-[#002F6C]">Prix VIP:</span>
-                </div>
-                <span class="text-2xl font-bold text-[#00D7B9]">19.90€</span>
-              </div>
-            </div>
-
-            <button class="w-full bg-[#002F6C] text-white py-3 rounded-lg font-semibold hover:bg-[#001f4d] transition">
-              Acheter au Prix VIP
-            </button>
-            <p class="text-xs text-center text-gray-500 mt-2">Réservé aux Membres VIP</p>
-          </div>
-        </div>
-
-        <!-- Product 6 -->
-        <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden group">
-          <div class="relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&auto=format&fit=crop" 
-                 alt="Performance Joggers"
-                 class="w-full h-80 object-cover group-hover:scale-105 transition duration-500">
-            <div class="absolute top-4 right-4 bg-[#00D7B9] text-white px-3 py-1 rounded-full text-xs font-semibold">
-              -71%
-            </div>
-          </div>
-          
-          <div class="p-6">
-            <p class="text-xs text-gray-500 uppercase tracking-wide mb-2">Bas</p>
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">Performance Joggers</h3>
-            
-            <div class="space-y-3 mb-6">
-              <div class="flex items-center justify-between">
-                <span class="text-sm text-gray-500">Prix Standard:</span>
-                <span class="text-lg text-gray-400 line-through">119.90€</span>
-              </div>
-              <div class="flex items-center justify-between border-t pt-3">
-                <div class="flex items-center space-x-2">
-                  <i data-lucide="shield" class="w-4 h-4 text-[#00D7B9]"></i>
-                  <span class="text-sm font-semibold text-[#002F6C]">Prix VIP:</span>
-                </div>
-                <span class="text-2xl font-bold text-[#00D7B9]">34.90€</span>
-              </div>
-            </div>
-
-            <button class="w-full bg-[#002F6C] text-white py-3 rounded-lg font-semibold hover:bg-[#001f4d] transition">
-              Acheter au Prix VIP
-            </button>
-            <p class="text-xs text-center text-gray-500 mt-2">Réservé aux Membres VIP</p>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <!-- How It Works -->
-  <section id="how-it-works" class="py-20 bg-white">
+  <section id="products" class="py-24 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-[#002F6C] mb-4">Comment fonctionne le Programme VIP ?</h2>
-        <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-          Un système simple et flexible pour accéder aux meilleurs prix
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-12">
-        <div class="text-center">
-          <div class="w-20 h-20 bg-[#002F6C] rounded-full flex items-center justify-center mx-auto mb-6">
-            <i data-lucide="zap" class="w-10 h-10 text-[#00D7B9]"></i>
-          </div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-3">1. Devenez Membre VIP</h3>
-          <p class="text-gray-600 leading-relaxed">
-            Abonnez-vous pour 49,90€/mois et accédez immédiatement aux prix VIP sur tous nos produits.
-          </p>
+      
+      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold text-svb-main mb-3 font-serif">La Collection Signature</h2>
+          <p class="text-gray-500">Conçue pour le mouvement. Inspirée par l'innovation.</p>
         </div>
 
-        <div class="text-center">
-          <div class="w-20 h-20 bg-[#002F6C] rounded-full flex items-center justify-center mx-auto mb-6">
-            <i data-lucide="trending-up" class="w-10 h-10 text-[#00D7B9]"></i>
-          </div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-3">2. Achetez ou Utilisez vos Crédits</h3>
-          <p class="text-gray-600 leading-relaxed">
-            Chaque mois, vos 49,90€ se transforment en crédits SVB à utiliser quand vous voulez.
-          </p>
-        </div>
-
-        <div class="text-center">
-          <div class="w-20 h-20 bg-[#002F6C] rounded-full flex items-center justify-center mx-auto mb-6">
-            <i data-lucide="calendar" class="w-10 h-10 text-[#00D7B9]"></i>
-          </div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-3">3. Passez le Mois si besoin</h3>
-          <p class="text-gray-600 leading-relaxed">
-            Entre le 1er et le 5, cliquez sur "Passer le mois" pour annuler le prélèvement mensuel.
-          </p>
+        <div class="bg-white p-1.5 rounded-full shadow-sm border border-gray-200 inline-flex items-center">
+          <button id="btn-standard" onclick="setPricing('standard')" class="px-6 py-2 rounded-full text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors">
+            Prix Standard
+          </button>
+          <button id="btn-vip" onclick="setPricing('vip')" class="px-6 py-2 rounded-full text-sm font-bold bg-svb-main text-white shadow-md transition-all">
+            Prix Membre VIP
+          </button>
         </div>
       </div>
 
-      <div class="mt-12 bg-gray-50 border-l-4 border-[#00D7B9] p-6 rounded-lg">
-        <div class="flex items-start space-x-3">
-          <i data-lucide="check" class="w-6 h-6 text-[#00D7B9] flex-shrink-0 mt-1"></i>
-          <div>
-            <p class="font-semibold text-gray-800 mb-2">Engagement initial de 3 mois</p>
-            <p class="text-sm text-gray-600">
-              Après cette période, vous pouvez résilier à tout moment. Vos crédits restent valables 12 mois.
-            </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        
+        <div class="group relative">
+          <div class="aspect-[4/5] bg-gray-200 rounded-lg overflow-hidden relative shadow-md group-hover:shadow-2xl transition-all duration-500">
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+            
+            <div class="absolute top-4 left-4 bg-svb-accent text-svb-dark font-bold px-3 py-1 text-xs uppercase tracking-wider">
+              Best Seller
+            </div>
+
+            <div class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <button onclick="addToCart()" class="w-full bg-white text-svb-main font-bold py-3 rounded shadow-lg hover:bg-svb-main hover:text-white transition-colors flex items-center justify-center gap-2">
+                <i data-lucide="shopping-bag" class="w-4 h-4"></i> Ajouter au panier
+              </button>
+            </div>
           </div>
+          
+          <div class="mt-4 flex justify-between items-start">
+            <div>
+              <h3 class="text-lg font-medium text-gray-900">Performance Pro Tee</h3>
+              <p class="text-sm text-gray-500">Respirant • Anti-odeur</p>
+            </div>
+            <div class="text-right">
+              <div class="price-display-vip">
+                <p class="text-lg font-bold text-svb-accent">24.90€</p>
+                <p class="text-xs text-gray-400 line-through">89.90€</p>
+              </div>
+              <div class="price-display-standard hidden">
+                <p class="text-lg font-bold text-gray-900">89.90€</p>
+                <p class="text-xs text-svb-accent cursor-pointer">Devenir VIP (-70%)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="group relative">
+          <div class="aspect-[4/5] bg-gray-200 rounded-lg overflow-hidden relative shadow-md group-hover:shadow-2xl transition-all duration-500">
+            <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=800&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+            <div class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <button onclick="addToCart()" class="w-full bg-white text-svb-main font-bold py-3 rounded shadow-lg hover:bg-svb-main hover:text-white transition-colors flex items-center justify-center gap-2">
+                <i data-lucide="shopping-bag" class="w-4 h-4"></i> Ajouter au panier
+              </button>
+            </div>
+          </div>
+          <div class="mt-4 flex justify-between items-start">
+            <div>
+              <h3 class="text-lg font-medium text-gray-900">Elite Tech Shorts</h3>
+              <p class="text-sm text-gray-500">Compression légère</p>
+            </div>
+            <div class="text-right">
+              <div class="price-display-vip">
+                <p class="text-lg font-bold text-svb-accent">19.90€</p>
+                <p class="text-xs text-gray-400 line-through">79.90€</p>
+              </div>
+              <div class="price-display-standard hidden">
+                <p class="text-lg font-bold text-gray-900">79.90€</p>
+                <p class="text-xs text-svb-accent cursor-pointer">Devenir VIP (-70%)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="group relative">
+          <div class="aspect-[4/5] bg-gray-200 rounded-lg overflow-hidden relative shadow-md group-hover:shadow-2xl transition-all duration-500">
+            <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&auto=format&fit=crop" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur text-svb-main font-bold px-3 py-1 text-xs uppercase tracking-wider">
+              Nouveau
+            </div>
+            <div class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <button onclick="addToCart()" class="w-full bg-white text-svb-main font-bold py-3 rounded shadow-lg hover:bg-svb-main hover:text-white transition-colors flex items-center justify-center gap-2">
+                <i data-lucide="shopping-bag" class="w-4 h-4"></i> Ajouter au panier
+              </button>
+            </div>
+          </div>
+          <div class="mt-4 flex justify-between items-start">
+            <div>
+              <h3 class="text-lg font-medium text-gray-900">Sculpt Leggings</h3>
+              <p class="text-sm text-gray-500">Effet seconde peau</p>
+            </div>
+            <div class="text-right">
+              <div class="price-display-vip">
+                <p class="text-lg font-bold text-svb-accent">29.90€</p>
+                <p class="text-xs text-gray-400 line-through">99.90€</p>
+              </div>
+              <div class="price-display-standard hidden">
+                <p class="text-lg font-bold text-gray-900">99.90€</p>
+                <p class="text-xs text-svb-accent cursor-pointer">Devenir VIP (-70%)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="vip-program" class="py-24 bg-svb-main text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-20">
+        <span class="text-svb-accent font-bold tracking-widest uppercase text-sm">Fonctionnement</span>
+        <h2 class="text-4xl md:text-5xl font-serif font-bold mt-3 mb-6">Le Membership SVB</h2>
+        <p class="text-gray-300 max-w-2xl mx-auto text-lg">Un modèle d'abonnement flexible conçu pour votre style de vie. Sans contraintes cachées.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 relative">
+        <div class="hidden md:block absolute top-12 left-1/6 right-1/6 h-0.5 bg-white/10 z-0"></div>
+
+        <div class="relative z-10 text-center group">
+          <div class="w-24 h-24 bg-svb-dark border-2 border-svb-accent rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_30px_rgba(0,215,185,0.2)] group-hover:scale-110 transition-transform duration-300">
+            <span class="text-4xl font-bold text-svb-accent">1</span>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Prix VIP Garantis</h3>
+          <p class="text-gray-400 leading-relaxed px-4">
+            Bénéficiez instantanément de <span class="text-white font-bold">-20% à -70%</span> sur toutes nos collections, toute l'année.
+          </p>
+        </div>
+
+        <div class="relative z-10 text-center group">
+          <div class="w-24 h-24 bg-svb-dark border-2 border-white/20 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:border-svb-accent transition-colors duration-300">
+             <i data-lucide="calendar-check" class="w-10 h-10 text-white group-hover:text-svb-accent transition-colors"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Le 5 du Mois</h3>
+          <p class="text-gray-400 leading-relaxed px-4">
+            Connectez-vous avant le 5. Achetez une tenue, ou cliquez sur <span class="text-white font-bold border-b border-white">"Passer le mois"</span>.
+          </p>
+        </div>
+
+        <div class="relative z-10 text-center group">
+          <div class="w-24 h-24 bg-svb-dark border-2 border-white/20 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:border-svb-accent transition-colors duration-300">
+             <i data-lucide="credit-card" class="w-10 h-10 text-white group-hover:text-svb-accent transition-colors"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Crédit Membre</h3>
+          <p class="text-gray-400 leading-relaxed px-4">
+            Si vous ne passez pas le mois, 49,90€ sont convertis en crédit. <span class="text-white">Pas perdu</span>, utilisable quand vous voulez.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="py-20 bg-gradient-to-r from-[#002F6C] to-[#004999] text-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl md:text-5xl font-bold mb-6">Prêt à rejoindre SVB ?</h2>
-      <p class="text-xl text-gray-200 mb-8">
-        Profitez de -70% sur votre première commande en devenant Membre VIP dès aujourd'hui
-      </p>
-      <button class="bg-[#00D7B9] text-[#002F6C] px-10 py-5 rounded-lg font-semibold text-xl hover:bg-[#00c4a7] transition shadow-lg">
-        Commencer maintenant
-      </button>
-      <p class="text-sm text-gray-300 mt-6">Sans engagement après 3 mois · Résiliation en 1 clic</p>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-[#002F6C] text-white">
+  <footer class="bg-gray-900 text-gray-400 text-sm border-t border-gray-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      
       <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-        
-        <!-- About -->
-        <div>
-          <div class="flex items-center space-x-2 mb-6">
-            <div class="w-10 h-10 bg-[#00D7B9] rounded flex items-center justify-center">
-              <span class="text-[#002F6C] font-bold text-lg">S</span>
-            </div>
-            <span class="text-2xl font-semibold">SVB</span>
+        <div class="col-span-1 md:col-span-1">
+          <span class="text-2xl font-bold text-white tracking-tight mb-4 block">SVB</span>
+          <p class="mb-6">Performance & Élégance. La référence du vêtement technique premium accessible.</p>
+          <div class="flex space-x-4">
+            <i data-lucide="instagram" class="w-5 h-5 hover:text-white cursor-pointer"></i>
+            <i data-lucide="twitter" class="w-5 h-5 hover:text-white cursor-pointer"></i>
+            <i data-lucide="facebook" class="w-5 h-5 hover:text-white cursor-pointer"></i>
           </div>
-          <p class="text-gray-300 text-sm leading-relaxed">
-            Performance et élégance au service de votre bien-être. Des vêtements de sport premium pour repousser vos limites.
-          </p>
         </div>
 
-        <!-- Quick Links -->
         <div>
-          <h4 class="font-semibold text-lg mb-4">Liens Rapides</h4>
-          <ul class="space-y-3 text-sm">
-            <li><a href="#" class="text-gray-300 hover:text-[#00D7B9] transition">À propos</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-[#00D7B9] transition">Programme VIP</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-[#00D7B9] transition">Nos Produits</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-[#00D7B9] transition">Blog</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-[#00D7B9] transition">Carrières</a></li>
+          <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Aide</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="hover:text-svb-accent transition">Suivre ma commande</a></li>
+            <li><a href="#" class="hover:text-svb-accent transition">Retours & Échanges</a></li>
+            <li><a href="#" class="hover:text-svb-accent transition">Guide des tailles</a></li>
           </ul>
         </div>
 
-        <!-- Support -->
         <div>
-          <h4 class="font-semibold text-lg mb-4">Support Client</h4>
-          <ul class="space-y-3 text-sm">
-            <li><a href="#" class="text-gray-300 hover:text-[#00D7B9] transition">Centre d'Aide</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-[#00D7B9] transition">Livraison & Retours</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-[#00D7B9] transition">Guide des Tailles</a></li>
-            <li><a href="#" onclick="openModal('cgv')" class="text-gray-300 hover:text-[#00D7B9] transition cursor-pointer">CGV</a></li>
-            <li><a href="#" onclick="openModal('mentions')" class="text-gray-300 hover:text-[#00D7B9] transition cursor-pointer">Mentions Légales</a></li>
+          <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Légal</h4>
+          <ul class="space-y-3">
+            <li><button onclick="openModal('cgv')" class="hover:text-svb-accent transition text-left">Conditions Générales (CGV)</button></li>
+            <li><button onclick="openModal('mentions')" class="hover:text-svb-accent transition text-left">Mentions Légales</button></li>
+            <li><a href="#" class="hover:text-svb-accent transition">Politique de Confidentialité</a></li>
           </ul>
         </div>
 
-        <!-- Contact -->
         <div>
-          <h4 class="font-semibold text-lg mb-4">Contact</h4>
-          <ul class="space-y-4 text-sm">
-            <li class="flex items-start space-x-3">
-              <i data-lucide="map-pin" class="w-5 h-5 text-[#00D7B9] flex-shrink-0 mt-0.5"></i>
-              <span class="text-gray-300">1 Place de la Bourse<br/>75002 Paris, France</span>
-            </li>
-            <li class="flex items-center space-x-3">
-              <i data-lucide="phone" class="w-5 h-5 text-[#00D7B9] flex-shrink-0"></i>
-              <span class="text-gray-300">+33 1 23 45 67 89</span>
-            </li>
-            <li class="flex items-center space-x-3">
-              <i data-lucide="mail" class="w-5 h-5 text-[#00D7B9] flex-shrink-0"></i>
-              <span class="text-gray-300">contact@svb.com</span>
-            </li>
-          </ul>
+          <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Paiement Sécurisé</h4>
+          <div class="flex gap-2 mb-4">
+            <div class="bg-gray-800 px-2 py-1 rounded"><span class="font-bold text-white italic">VISA</span></div>
+            <div class="bg-gray-800 px-2 py-1 rounded"><span class="font-bold text-white italic">Mastercard</span></div>
+            <div class="bg-gray-800 px-2 py-1 rounded"><span class="font-bold text-white italic">PayPal</span></div>
+          </div>
+          <p class="text-xs">Transactions cryptées SSL 256-bit.</p>
         </div>
       </div>
-
-      <!-- Bottom Footer -->
-      <div class="border-t border-gray-700 pt-8">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-          <p class="text-gray-400 text-sm mb-4 md:mb-0">
-            © 2026 SVB. Tous droits réservés.
-          </p>
-          <div class="flex items-center space-x-6">
-            <a href="#" class="text-gray-400 hover:text-[#00D7B9] transition">
-              <i data-lucide="facebook" class="w-5 h-5"></i>
-            </a>
-            <a href="#" class="text-gray-400 hover:text-[#00D7B9] transition">
-              <i data-lucide="instagram" class="w-5 h-5"></i>
-            </a>
-            <a href="#" class="text-gray-400 hover:text-[#00D7B9] transition">
-              <i data-lucide="twitter" class="w-5 h-5"></i>
-            </a>
-          </div>
-        </div>
+      
+      <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p>&copy; 2026 SVB SAS. Tous droits réservés.</p>
+        <p class="mt-2 md:mt-0">Fabriqué avec passion à Paris.</p>
       </div>
     </div>
   </footer>
 
-  <!-- Modal -->
-  <div id="modal" class="hidden fixed inset-0 z-50 overflow-y-auto">
-    <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
-      <div class="fixed inset-0 transition-opacity bg-gray-900 bg-opacity-75" onclick="closeModal()"></div>
+  <div id="modal" class="hidden fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" aria-hidden="true" onclick="closeModal()"></div>
       
-      <div class="relative inline-block w-full max-w-4xl px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:p-8">
-        <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-          <i data-lucide="x" class="w-6 h-6"></i>
-        </button>
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+      <div class="relative inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full">
         
-        <div id="modal-content" class="max-h-[80vh] overflow-y-auto pr-4">
-          <!-- Content will be inserted here -->
+        <div class="bg-gray-50 px-4 py-3 sm:px-6 flex justify-between items-center border-b border-gray-200">
+          <h3 class="text-lg leading-6 font-medium text-svb-main" id="modal-title">Information Légale</h3>
+          <button type="button" class="text-gray-400 hover:text-gray-500 focus:outline-none" onclick="closeModal()">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
         </div>
         
-        <div class="mt-8 pt-6 border-t">
-          <button onclick="closeModal()" class="w-full bg-[#002F6C] text-white py-3 rounded-lg font-semibold hover:bg-[#001f4d] transition">
-            Fermer
+        <div id="modal-content" class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 max-h-[70vh] overflow-y-auto prose prose-blue max-w-none">
+          </div>
+        
+        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+          <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-svb-main text-base font-medium text-white hover:bg-svb-dark focus:outline-none sm:ml-3 sm:w-auto sm:text-sm" onclick="closeModal()">
+            J'ai compris
           </button>
         </div>
       </div>
@@ -526,162 +406,128 @@
   </div>
 
   <script>
-    // Initialize Lucide icons
+    // 1. Icons Init
     lucide.createIcons();
 
-    // Mobile menu toggle
+    // 2. Navbar Scroll Effect
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('main-header');
+      if (window.scrollY > 10) {
+        header.classList.add('shadow-md');
+        header.classList.replace('h-20', 'h-16');
+      } else {
+        header.classList.remove('shadow-md');
+        header.classList.replace('h-16', 'h-20');
+      }
+    });
+
+    // 3. Pricing Toggle Logic
+    function setPricing(mode) {
+      const standardBtn = document.getElementById('btn-standard');
+      const vipBtn = document.getElementById('btn-vip');
+      const vipPrices = document.querySelectorAll('.price-display-vip');
+      const standardPrices = document.querySelectorAll('.price-display-standard');
+
+      if (mode === 'vip') {
+        // Style Buttons
+        vipBtn.classList.add('bg-svb-main', 'text-white', 'shadow-md');
+        vipBtn.classList.remove('text-gray-500');
+        standardBtn.classList.remove('bg-svb-main', 'text-white', 'shadow-md');
+        standardBtn.classList.add('text-gray-500');
+
+        // Show/Hide Prices
+        vipPrices.forEach(el => el.classList.remove('hidden'));
+        standardPrices.forEach(el => el.classList.add('hidden'));
+      } else {
+        // Style Buttons
+        standardBtn.classList.add('bg-svb-main', 'text-white', 'shadow-md');
+        standardBtn.classList.remove('text-gray-500');
+        vipBtn.classList.remove('bg-svb-main', 'text-white', 'shadow-md');
+        vipBtn.classList.add('text-gray-500');
+
+        // Show/Hide Prices
+        vipPrices.forEach(el => el.classList.add('hidden'));
+        standardPrices.forEach(el => el.classList.remove('hidden'));
+      }
+    }
+
+    // 4. Cart Interaction
+    let count = 0;
+    function addToCart() {
+      count++;
+      const badge = document.getElementById('cart-count');
+      const icon = document.getElementById('cart-icon');
+      
+      badge.innerText = count;
+      badge.classList.remove('scale-0');
+      badge.classList.add('scale-100');
+      
+      // Animation bump
+      icon.classList.add('text-svb-accent');
+      setTimeout(() => icon.classList.remove('text-svb-accent'), 300);
+    }
+
+    // 5. Scroll to Products
+    function scrollToProducts() {
+      document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 6. Mobile Menu
     function toggleMenu() {
       const menu = document.getElementById('mobile-menu');
       menu.classList.toggle('hidden');
     }
 
-    // Modal functions
+    // 7. Modal Logic (CGV & Mentions)
     function openModal(type) {
       const modal = document.getElementById('modal');
       const content = document.getElementById('modal-content');
+      const title = document.getElementById('modal-title');
       
+      modal.classList.remove('hidden');
+
       if (type === 'cgv') {
+        title.innerText = "Conditions Générales de Vente (Abonnement VIP)";
         content.innerHTML = `
-          <div class="space-y-6">
-            <h2 class="text-2xl font-semibold text-[#002F6C]">Conditions Générales de Vente</h2>
-            
-            <section>
-              <h3 class="text-lg font-semibold text-[#002F6C] mb-2">Article 1 - Objet</h3>
-              <p class="text-sm text-gray-700 leading-relaxed">
-                Les présentes Conditions Générales de Vente (ci-après "CGV") régissent les relations contractuelles entre SVB SAS, société par actions simplifiée au capital de 500.000€, immatriculée au RCS de Paris sous le numéro 123 456 789, dont le siège social est situé au 1 Place de la Bourse, 75002 Paris (ci-après "SVB" ou "le Vendeur"), et toute personne physique ou morale souhaitant procéder à un achat via le site internet www.svb.com (ci-après "le Client").
-              </p>
-            </section>
-
-            <section>
-              <h3 class="text-lg font-semibold text-[#002F6C] mb-2">Article 2 - Programme Membre VIP</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                2.1. Le programme Membre VIP est un service d'abonnement mensuel donnant accès à des tarifs préférentiels sur l'ensemble du catalogue SVB.
-              </p>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                2.2. En adhérant au programme Membre VIP, le Client autorise SVB à prélever mensuellement la somme de 49,90€ TTC sur le moyen de paiement enregistré. Ce prélèvement intervient le 5 de chaque mois.
-              </p>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                2.3. Le montant prélevé est automatiquement converti en crédit utilisable sur le site SVB, valable 12 mois à compter de son émission.
-              </p>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                2.4. Le Client dispose d'une option "Passer le mois" lui permettant d'annuler le prélèvement mensuel. Cette option doit être activée entre le 1er et le 5 du mois en cours via l'espace client. Passé ce délai, le prélèvement sera effectué.
-              </p>
-              <p class="text-sm text-gray-700 leading-relaxed">
-                2.5. L'adhésion au programme Membre VIP engage le Client pour une durée minimale de 3 mois. À l'issue de cette période, le Client peut résilier son abonnement à tout moment via son espace client, avec effet au terme du mois en cours.
-              </p>
-            </section>
-
-            <section>
-              <h3 class="text-lg font-semibold text-[#002F6C] mb-2">Article 3 - Prix et modalités de paiement</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                3.1. Les prix affichés sont en euros toutes taxes comprises (TTC). SVB se réserve le droit de modifier ses prix à tout moment, étant toutefois entendu que le prix figurant au catalogue le jour de la commande sera le seul applicable au Client.
-              </p>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                3.2. Deux tarifications sont proposées : le "Prix Standard" applicable à tous et le "Prix VIP" réservé exclusivement aux Membres VIP actifs.
-              </p>
-              <p class="text-sm text-gray-700 leading-relaxed">
-                3.3. Le paiement peut s'effectuer par carte bancaire, PayPal ou utilisation de crédits SVB pour les Membres VIP.
-              </p>
-            </section>
-
-            <section>
-              <h3 class="text-lg font-semibold text-[#002F6C] mb-2">Article 4 - Droit de rétractation</h3>
-              <p class="text-sm text-gray-700 leading-relaxed mb-3">
-                4.1. Conformément à l'article L221-18 du Code de la consommation, le Client dispose d'un délai de quatorze (14) jours à compter de la réception des produits pour exercer son droit de rétractation sans avoir à justifier de motifs ni à payer de pénalité.
-              </p>
-              <p class="text-sm text-gray-700 leading-relaxed">
-                4.2. Pour les services d'abonnement, le droit de rétractation s'applique dans les 14 jours suivant la souscription, sauf si le Client a expressément demandé l'exécution immédiate du service.
-              </p>
-            </section>
-
-            <section>
-              <h3 class="text-lg font-semibold text-[#002F6C] mb-2">Article 5 - Livraison</h3>
-              <p class="text-sm text-gray-700 leading-relaxed">
-                Les délais de livraison sont de 3 à 7 jours ouvrés pour la France métropolitaine. Les frais de livraison sont offerts pour toute commande supérieure à 50€. En deçà, des frais de 4,90€ s'appliquent.
-              </p>
-            </section>
-
-            <section>
-              <h3 class="text-lg font-semibold text-[#002F6C] mb-2">Article 6 - Garanties</h3>
-              <p class="text-sm text-gray-700 leading-relaxed">
-                Tous les produits vendus bénéficient de la garantie légale de conformité (articles L217-4 et suivants du Code de la consommation) et de la garantie contre les vices cachés (articles 1641 et suivants du Code civil).
-              </p>
-            </section>
-
-            <section>
-              <h3 class="text-lg font-semibold text-[#002F6C] mb-2">Article 7 - Données personnelles</h3>
-              <p class="text-sm text-gray-700 leading-relaxed">
-                Les données personnelles collectées font l'objet d'un traitement informatique destiné à la gestion des commandes et de la relation client. Conformément au RGPD, le Client dispose d'un droit d'accès, de rectification et de suppression des données le concernant en écrivant à contact@svb.com.
-              </p>
-            </section>
-
-            <section>
-              <h3 class="text-lg font-semibold text-[#002F6C] mb-2">Article 8 - Litiges</h3>
-              <p class="text-sm text-gray-700 leading-relaxed">
-                Les présentes CGV sont soumises au droit français. En cas de litige, une solution amiable sera recherchée avant toute action judiciaire. À défaut, les tribunaux français seront seuls compétents.
-              </p>
-            </section>
+          <h4 class="font-bold text-svb-main mb-2">1. Objet et Abonnement VIP</h4>
+          <p class="mb-4 text-sm text-gray-600">Le Service SVB VIP est un abonnement mensuel avec tacite reconduction. En validant votre commande au "Prix VIP", vous acceptez de devenir membre.</p>
+          
+          <h4 class="font-bold text-svb-main mb-2">2. Fonctionnement du Prélèvement (49,90€)</h4>
+          <p class="mb-4 text-sm text-gray-600">Le membre dispose d'une période d'option entre le 1er et le 5 de chaque mois. Durant cette période, il peut "Passer le mois" sans frais via son espace client. À défaut d'action, un prélèvement de 49,90€ est effectué le 6 du mois, transformé immédiatement en Crédit Boutique.</p>
+          
+          <h4 class="font-bold text-svb-main mb-2">3. Résiliation</h4>
+          <p class="mb-4 text-sm text-gray-600">L'abonnement peut être résilié à tout moment par téléphone ou via l'espace client en ligne. Si la résiliation intervient après le 5, elle prend effet le mois suivant.</p>
+          
+          <div class="bg-blue-50 p-4 rounded border border-blue-100 mt-4">
+            <p class="text-xs text-blue-800 font-medium">Note : Ceci est une démonstration. Les termes juridiques réels doivent être validés par un avocat.</p>
           </div>
         `;
       } else if (type === 'mentions') {
+        title.innerText = "Mentions Légales";
         content.innerHTML = `
-          <div class="space-y-6">
-            <h2 class="text-2xl font-semibold text-[#002F6C]">Mentions Légales</h2>
-            
-            <section>
-              <h3 class="text-lg font-semibold text-[#002F6C] mb-2">Éditeur du site</h3>
-              <p class="text-sm text-gray-700 leading-relaxed">
-                SVB SAS<br/>
-                Société par Actions Simplifiée au capital de 500.000€<br/>
-                Siège social : 1 Place de la Bourse, 75002 Paris<br/>
-                RCS Paris : 123 456 789<br/>
-                N° TVA intracommunautaire : FR12345678901<br/>
-                Directeur de la publication : Jean Dupont<br/>
-                Email : contact@svb.com<br/>
-                Téléphone : +33 1 23 45 67 89
-              </p>
-            </section>
-
-            <section>
-              <h3 class="text-lg font-semibold text-[#002F6C] mb-2">Hébergeur</h3>
-              <p class="text-sm text-gray-700 leading-relaxed">
-                Amazon Web Services EMEA SARL<br/>
-                38 Avenue John F. Kennedy, L-1855 Luxembourg<br/>
-                RCS Luxembourg : B186284
-              </p>
-            </section>
-
-            <section>
-              <h3 class="text-lg font-semibold text-[#002F6C] mb-2">Propriété intellectuelle</h3>
-              <p class="text-sm text-gray-700 leading-relaxed">
-                L'ensemble du contenu de ce site (textes, images, vidéos, logos, etc.) est la propriété exclusive de SVB SAS ou de ses partenaires. Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de SVB SAS.
-              </p>
-            </section>
-
-            <section>
-              <h3 class="text-lg font-semibold text-[#002F6C] mb-2">Protection des données personnelles</h3>
-              <p class="text-sm text-gray-700 leading-relaxed">
-                SVB SAS s'engage à respecter la confidentialité des données personnelles communiquées par les utilisateurs du site et à les traiter conformément au Règlement Général sur la Protection des Données (RGPD).
-              </p>
-            </section>
-
-            <section>
-              <h3 class="text-lg font-semibold text-[#002F6C] mb-2">Cookies</h3>
-              <p class="text-sm text-gray-700 leading-relaxed">
-                Ce site utilise des cookies pour améliorer l'expérience utilisateur et réaliser des statistiques de visite. L'utilisateur peut s'opposer à l'enregistrement de cookies en configurant son navigateur.
-              </p>
-            </section>
+          <div class="grid grid-cols-1 gap-4 text-sm">
+            <div>
+              <span class="font-bold text-gray-900">Éditeur :</span> SVB SAS, Capital de 500.000€
+            </div>
+            <div>
+              <span class="font-bold text-gray-900">Siège Social :</span> 1 Place de la Bourse, 75002 Paris
+            </div>
+            <div>
+              <span class="font-bold text-gray-900">RCS :</span> Paris B 123 456 789
+            </div>
+            <div>
+              <span class="font-bold text-gray-900">Directeur de la publication :</span> Jean Dupont
+            </div>
+            <div class="mt-4 pt-4 border-t">
+              <span class="font-bold text-gray-900">Hébergeur :</span> Netlify Inc.
+            </div>
           </div>
         `;
       }
-      
-      modal.classList.remove('hidden');
-      lucide.createIcons();
     }
 
     function closeModal() {
-      const modal = document.getElementById('modal');
-      modal.classList.add('hidden');
+      document.getElementById('modal').classList.add('hidden');
     }
   </script>
 </body>
