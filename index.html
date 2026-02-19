@@ -3,392 +3,439 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SVB — BEYOND LUXURY</title>
+  <title>SVB — Performance</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Manrope:wght@200;400;600&display=swap" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Manrope', 'sans-serif'],
-            serif: ['Cinzel', 'serif'],
-          },
-          colors: {
-            'svb-dark': '#0B0A09', 
-            'svb-gold': '#D4AF37',
-            'svb-cream': '#F3F2ED'
-          },
-          letterSpacing: { 'mega': '0.3em' }
-        }
-      }
-    }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    body { background-color: #0B0A09; color: #F3F2ED; overflow-x: hidden; cursor: none; } /* Curseur caché pour le custom */
-    
-    /* Custom Cursor */
-    #cursor {
-      width: 20px; height: 20px; border: 1px solid #F3F2ED;
-      border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999;
-      transition: transform 0.1s ease; mix-blend-mode: difference;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.3px;
     }
-    #cursor.hovered { transform: scale(3); background: rgba(255,255,255,0.1); border-color: transparent; }
+    
+    /* Smooth transitions */
+    .product-card img {
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
 
-    /* Marquee Animation */
-    .marquee-container { overflow: hidden; white-space: nowrap; }
-    .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
-    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-    /* Smooth Reveal Images */
-    .reveal-img { clip-path: inset(0 0 100% 0); transition: clip-path 1.5s cubic-bezier(0.77, 0, 0.175, 1); }
-    .reveal-img.visible { clip-path: inset(0 0 0 0); }
-
-    /* Loader */
-    #loader { position: fixed; inset: 0; background: #0B0A09; z-index: 100; display: flex; align-items: center; justify-content: center; }
-    .loader-line { width: 0%; height: 1px; background: #D4AF37; transition: width 1s ease; }
+    /* Hide scrollbar but keep functionality */
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
 </head>
 
-<body>
+<body class="bg-white text-black">
 
-  <div id="cursor"></div>
+  <!-- Header minimal comme Zara -->
+  <header class="sticky top-0 z-50 bg-white border-b border-gray-100">
+    <div class="px-4 lg:px-8 py-3">
+      <div class="flex items-center justify-between">
+        
+        <!-- Logo centré -->
+        <div class="flex-1 flex justify-start lg:justify-center">
+          <a href="#" class="text-sm font-normal tracking-[0.2em] uppercase">SVB</a>
+        </div>
 
-  <div id="loader">
-    <div class="text-center">
-      <span class="font-serif text-2xl tracking-mega mb-4 block">SVB</span>
-      <div class="w-64 h-[1px] bg-white/20 rounded-full overflow-hidden">
-        <div class="loader-line"></div>
+        <!-- Navigation desktop cachée sur mobile -->
+        <nav class="hidden lg:flex absolute left-1/2 -translate-x-1/2 space-x-8">
+          <a href="#femme" class="text-xs uppercase tracking-wider hover:underline">Femme</a>
+          <a href="#homme" class="text-xs uppercase tracking-wider hover:underline">Homme</a>
+          <a href="#vip" class="text-xs uppercase tracking-wider hover:underline">VIP</a>
+        </nav>
+
+        <!-- Icons -->
+        <div class="flex items-center space-x-4">
+          <button class="lg:hidden">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+          <button class="hidden lg:block">
+            <i data-lucide="search" class="w-4 h-4"></i>
+          </button>
+          <button>
+            <i data-lucide="user" class="w-4 h-4"></i>
+          </button>
+          <button class="relative">
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+            <span class="absolute -top-1 -right-1 w-2 h-2 bg-black rounded-full"></span>
+          </button>
+        </div>
       </div>
-    </div>
-  </div>
-
-  <header class="fixed top-0 w-full z-40 px-8 py-6 flex justify-between items-center mix-blend-difference text-white">
-    <div class="hidden md:flex space-x-8 text-xs uppercase tracking-mega">
-      <a href="femme.html" class="hover-trigger">Femme</a>
-      <a href="homme.html" class="hover-trigger">Homme</a>
-    </div>
-    
-    <a href="index.html" class="font-serif text-3xl tracking-widest absolute left-1/2 -translate-x-1/2 hover-trigger">SVB</a>
-    
-    <div class="flex items-center space-x-8">
-      <a href="login.html" class="text-xs uppercase tracking-mega hover-trigger hidden md:block">Compte</a>
-      <button onclick="toggleCart()" class="hover-trigger flex items-center gap-2">
-        <span class="text-xs uppercase tracking-mega">Panier</span>
-        <span id="cart-count" class="text-[10px] bg-svb-gold text-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
-      </button>
     </div>
   </header>
 
-  <section class="relative h-screen w-full overflow-hidden">
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-60">
-      <source src="https://cdn.coverr.co/videos/coverr-models-walking-on-runway-2426/1080p.mp4" type="video/mp4">
-    </video>
+  <!-- Hero Section ultra-minimal -->
+  <section class="relative h-[70vh] lg:h-screen">
+    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=2400&auto=format&fit=crop" 
+         class="absolute inset-0 w-full h-full object-cover" 
+         alt="Hero">
     
-    <div class="absolute inset-0 flex flex-col justify-center items-center text-center z-10 px-4">
-      <p class="text-xs text-svb-gold uppercase tracking-[0.5em] mb-4 overflow-hidden"><span class="hero-anim block translate-y-full">Private Circle</span></p>
-      <h1 class="text-6xl md:text-9xl font-serif tracking-widest mb-8 overflow-hidden">
-        <span class="hero-anim block translate-y-full">SILENCE</span>
+    <div class="absolute inset-0 bg-black/5"></div>
+
+    <div class="absolute bottom-12 left-4 lg:left-12 text-white">
+      <h1 class="text-5xl lg:text-7xl font-extralight mb-4 tracking-tight">
+        Collection<br/>Printemps 2026
       </h1>
-      <div class="overflow-hidden">
-        <button onclick="scrollToContent()" class="hero-anim translate-y-full border border-white/30 px-12 py-4 text-xs uppercase tracking-mega hover:bg-white hover:text-black transition duration-500 hover-trigger">
-          Entrer dans le Club
-        </button>
-      </div>
+      <a href="#" class="inline-block text-xs uppercase tracking-wider border-b border-white pb-1 mt-6 hover:opacity-70 transition">
+        Découvrir
+      </a>
     </div>
   </section>
 
-  <div class="bg-white text-black py-4 border-y border-gray-200 overflow-hidden">
-    <div class="marquee-container">
-      <div class="marquee-content font-serif text-4xl md:text-6xl italic tracking-tighter">
-        NO MIDDLEMEN — PREMIUM QUALITY — CLUB PRICES — EXCLUSIVE ACCESS — NO MIDDLEMEN — PREMIUM QUALITY — CLUB PRICES — EXCLUSIVE ACCESS —
-      </div>
-    </div>
+  <!-- Barre promo comme Zara -->
+  <div class="bg-black text-white py-2 px-4 text-center">
+    <p class="text-xs tracking-wide">MEMBRE VIP · JUSQU'À -70% · 49.90€/MOIS</p>
   </div>
 
-  <section id="content" class="py-32 px-8 max-w-[1800px] mx-auto">
-    <div class="flex flex-col md:flex-row gap-20 items-center">
-      <div class="w-full md:w-1/2 reveal-trigger">
-        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070" class="reveal-img w-full h-[600px] object-cover grayscale hover:grayscale-0 transition duration-1000">
+  <!-- Grille produits style Zara -->
+  <section class="py-12 lg:py-16">
+    <div class="px-4 lg:px-8">
+      
+      <!-- Titre minimaliste -->
+      <div class="mb-8">
+        <h2 class="text-xs uppercase tracking-wider text-gray-500 mb-2">Nouveautés</h2>
       </div>
-      <div class="w-full md:w-1/2 space-y-8">
-        <span class="text-svb-gold text-xs uppercase tracking-mega">Le Manifeste</span>
-        <h2 class="text-4xl md:text-6xl font-serif leading-tight">L'ÉLÉGANCE<br>SANS L'ÉTIQUETTE</h2>
-        <p class="text-gray-400 font-light text-lg leading-relaxed max-w-md">
-          Nous avons brisé les règles du luxe. En supprimant les intermédiaires, nous vous offrons la qualité des grandes maisons au prix de l'atelier.
-        </p>
-        <div class="grid grid-cols-2 gap-8 border-t border-white/10 pt-8 mt-8">
-          <div>
-            <span class="block text-4xl font-serif text-white">-70%</span>
-            <span class="text-xs text-gray-500 uppercase tracking-widest">Avantage Membre</span>
+
+      <!-- Grid 2 colonnes mobile, 4 desktop -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        
+        <!-- Product 1 -->
+        <div class="product-card group">
+          <div class="relative overflow-hidden bg-gray-50 mb-3">
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&auto=format&fit=crop" 
+                 alt="Product"
+                 class="w-full aspect-[3/4] object-cover">
+            
+            <!-- Badge VIP subtil -->
+            <div class="absolute top-2 left-2 bg-white px-2 py-1 text-[10px] uppercase tracking-wider">
+              VIP
+            </div>
           </div>
-          <div>
-            <span class="block text-4xl font-serif text-white">0€</span>
-            <span class="text-xs text-gray-500 uppercase tracking-widest">Si vous passez le mois</span>
+          
+          <div class="space-y-1">
+            <p class="text-xs text-gray-600">T-shirt Performance</p>
+            <div class="flex items-center space-x-2">
+              <span class="text-sm font-light line-through text-gray-400">89.90€</span>
+              <span class="text-sm font-normal">24.90€</span>
+            </div>
           </div>
         </div>
+
+        <!-- Product 2 -->
+        <div class="product-card group">
+          <div class="relative overflow-hidden bg-gray-50 mb-3">
+            <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=800&auto=format&fit=crop" 
+                 alt="Product"
+                 class="w-full aspect-[3/4] object-cover">
+            
+            <div class="absolute top-2 left-2 bg-white px-2 py-1 text-[10px] uppercase tracking-wider">
+              VIP
+            </div>
+          </div>
+          
+          <div class="space-y-1">
+            <p class="text-xs text-gray-600">Short Training</p>
+            <div class="flex items-center space-x-2">
+              <span class="text-sm font-light line-through text-gray-400">79.90€</span>
+              <span class="text-sm font-normal">19.90€</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card group">
+          <div class="relative overflow-hidden bg-gray-50 mb-3">
+            <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&auto=format&fit=crop" 
+                 alt="Product"
+                 class="w-full aspect-[3/4] object-cover">
+            
+            <div class="absolute top-2 left-2 bg-white px-2 py-1 text-[10px] uppercase tracking-wider">
+              VIP
+            </div>
+          </div>
+          
+          <div class="space-y-1">
+            <p class="text-xs text-gray-600">Legging Premium</p>
+            <div class="flex items-center space-x-2">
+              <span class="text-sm font-light line-through text-gray-400">99.90€</span>
+              <span class="text-sm font-normal">29.90€</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card group">
+          <div class="relative overflow-hidden bg-gray-50 mb-3">
+            <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&auto=format&fit=crop" 
+                 alt="Product"
+                 class="w-full aspect-[3/4] object-cover">
+            
+            <div class="absolute top-2 left-2 bg-white px-2 py-1 text-[10px] uppercase tracking-wider">
+              VIP
+            </div>
+          </div>
+          
+          <div class="space-y-1">
+            <p class="text-xs text-gray-600">Hoodie Tech</p>
+            <div class="flex items-center space-x-2">
+              <span class="text-sm font-light line-through text-gray-400">129.90€</span>
+              <span class="text-sm font-normal">39.90€</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card group">
+          <div class="relative overflow-hidden bg-gray-50 mb-3">
+            <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=800&auto=format&fit=crop" 
+                 alt="Product"
+                 class="w-full aspect-[3/4] object-cover">
+            
+            <div class="absolute top-2 left-2 bg-white px-2 py-1 text-[10px] uppercase tracking-wider">
+              VIP
+            </div>
+          </div>
+          
+          <div class="space-y-1">
+            <p class="text-xs text-gray-600">Tank Compression</p>
+            <div class="flex items-center space-x-2">
+              <span class="text-sm font-light line-through text-gray-400">69.90€</span>
+              <span class="text-sm font-normal">19.90€</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card group">
+          <div class="relative overflow-hidden bg-gray-50 mb-3">
+            <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&auto=format&fit=crop" 
+                 alt="Product"
+                 class="w-full aspect-[3/4] object-cover">
+            
+            <div class="absolute top-2 left-2 bg-white px-2 py-1 text-[10px] uppercase tracking-wider">
+              VIP
+            </div>
+          </div>
+          
+          <div class="space-y-1">
+            <p class="text-xs text-gray-600">Jogger Performance</p>
+            <div class="flex items-center space-x-2">
+              <span class="text-sm font-light line-through text-gray-400">119.90€</span>
+              <span class="text-sm font-normal">34.90€</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product-card group">
+          <div class="relative overflow-hidden bg-gray-50 mb-3">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&auto=format&fit=crop" 
+                 alt="Product"
+                 class="w-full aspect-[3/4] object-cover">
+            
+            <div class="absolute top-2 left-2 bg-white px-2 py-1 text-[10px] uppercase tracking-wider">
+              VIP
+            </div>
+          </div>
+          
+          <div class="space-y-1">
+            <p class="text-xs text-gray-600">Veste Running</p>
+            <div class="flex items-center space-x-2">
+              <span class="text-sm font-light line-through text-gray-400">149.90€</span>
+              <span class="text-sm font-normal">44.90€</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product-card group">
+          <div class="relative overflow-hidden bg-gray-50 mb-3">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&auto=format&fit=crop" 
+                 alt="Product"
+                 class="w-full aspect-[3/4] object-cover">
+            
+            <div class="absolute top-2 left-2 bg-white px-2 py-1 text-[10px] uppercase tracking-wider">
+              VIP
+            </div>
+          </div>
+          
+          <div class="space-y-1">
+            <p class="text-xs text-gray-600">Polo Sport</p>
+            <div class="flex items-center space-x-2">
+              <span class="text-sm font-light line-through text-gray-400">59.90€</span>
+              <span class="text-sm font-normal">17.90€</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <section class="py-24 bg-svb-cream text-svb-dark overflow-hidden">
-    <div class="px-8 mb-12 flex justify-between items-end">
-      <h2 class="text-4xl font-serif">La Sélection</h2>
+  <!-- VIP Section -->
+  <section id="vip" class="bg-gray-50 py-16 lg:py-24">
+    <div class="max-w-4xl mx-auto px-4 lg:px-8 text-center">
+      <h2 class="text-2xl lg:text-3xl font-light mb-6 tracking-tight">Programme Membre VIP</h2>
+      <p class="text-sm text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+        Accédez à des prix exclusifs sur toute notre collection. 
+        49.90€ par mois convertis en crédit utilisable librement.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-8 text-left mb-12">
+        <div>
+          <div class="text-3xl font-extralight mb-2">01</div>
+          <h3 class="text-sm font-normal mb-2">Abonnez-vous</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">49.90€/mois se transforment en crédit</p>
+        </div>
+        <div>
+          <div class="text-3xl font-extralight mb-2">02</div>
+          <h3 class="text-sm font-normal mb-2">Achetez</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">Utilisez vos crédits quand vous voulez</p>
+        </div>
+        <div>
+          <div class="text-3xl font-extralight mb-2">03</div>
+          <h3 class="text-sm font-normal mb-2">Passez le mois</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">Du 1er au 5, annulez le prélèvement</p>
+        </div>
+      </div>
+
+      <a href="#" class="inline-block bg-black text-white px-8 py-3 text-xs uppercase tracking-wider hover:bg-gray-800 transition">
+        Devenir VIP
+      </a>
       
-      <div class="flex items-center gap-4">
-        <span class="text-[10px] uppercase tracking-widest opacity-50" id="lbl-public">Public</span>
-        <div class="relative w-12 h-6 cursor-pointer hover-trigger" onclick="togglePrice()">
-          <div class="w-full h-full bg-gray-300 rounded-full"></div>
-          <div id="switch-dot" class="absolute top-1 left-1 w-4 h-4 bg-black rounded-full transition-all duration-300 translate-x-6"></div>
-        </div>
-        <span class="text-[10px] uppercase tracking-widest font-bold" id="lbl-member">Membre</span>
-      </div>
-    </div>
-
-    <div class="flex space-x-8 px-8 overflow-x-auto pb-10 scrollbar-hide">
-      
-      <div class="min-w-[300px] md:min-w-[400px] group cursor-pointer hover-trigger relative" onclick="addToCart('Le Trench', 350, 110)">
-        <div class="aspect-[3/4] overflow-hidden mb-4 relative">
-          <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1769" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-            <span class="text-white text-xs uppercase tracking-mega border border-white px-6 py-3">Ajouter</span>
-          </div>
-        </div>
-        <div class="flex justify-between items-start">
-          <h3 class="font-serif text-xl">Le Trench</h3>
-          <div class="text-right">
-            <span class="price-public hidden text-sm">350€</span>
-            <div class="price-member">
-              <span class="text-xs line-through opacity-50">350€</span>
-              <span class="block font-bold text-lg">110€</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="min-w-[300px] md:min-w-[400px] group cursor-pointer hover-trigger relative" onclick="addToCart('Blazer Oversize', 280, 89)">
-        <div class="aspect-[3/4] overflow-hidden mb-4 relative">
-          <img src="https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=1964" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-            <span class="text-white text-xs uppercase tracking-mega border border-white px-6 py-3">Ajouter</span>
-          </div>
-        </div>
-        <div class="flex justify-between items-start">
-          <h3 class="font-serif text-xl">Blazer Oversize</h3>
-          <div class="text-right">
-            <span class="price-public hidden text-sm">280€</span>
-            <div class="price-member">
-              <span class="text-xs line-through opacity-50">280€</span>
-              <span class="block font-bold text-lg">89€</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="min-w-[300px] md:min-w-[400px] group cursor-pointer hover-trigger relative" onclick="addToCart('Chemise Soie', 150, 49)">
-        <div class="aspect-[3/4] overflow-hidden mb-4 relative">
-          <img src="https://images.unsplash.com/photo-1598554747436-c9293d5a5a2f?q=80&w=1770" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-            <span class="text-white text-xs uppercase tracking-mega border border-white px-6 py-3">Ajouter</span>
-          </div>
-        </div>
-        <div class="flex justify-between items-start">
-          <h3 class="font-serif text-xl">Chemise Soie</h3>
-          <div class="text-right">
-            <span class="price-public hidden text-sm">150€</span>
-            <div class="price-member">
-              <span class="text-xs line-through opacity-50">150€</span>
-              <span class="block font-bold text-lg">49€</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <p class="text-xs text-gray-500 mt-4">Engagement 3 mois · Résiliation libre ensuite</p>
     </div>
   </section>
 
-  <footer class="bg-svb-dark text-white py-20 px-8 border-t border-white/10">
-    <div class="max-w-[1800px] mx-auto flex flex-col md:flex-row justify-between items-start">
-      <div>
-        <span class="text-[10vw] font-serif leading-none opacity-20">SVB</span>
+  <!-- Footer style Zara -->
+  <footer class="bg-white border-t border-gray-100 py-12 lg:py-16">
+    <div class="px-4 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
+        
+        <div>
+          <h4 class="text-xs uppercase tracking-wider mb-4 font-normal">Aide</h4>
+          <ul class="space-y-2 text-xs text-gray-600">
+            <li><a href="#" class="hover:underline">Service Client</a></li>
+            <li><a href="#" class="hover:underline">Livraison</a></li>
+            <li><a href="#" class="hover:underline">Retours</a></li>
+            <li><a href="#" class="hover:underline">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs uppercase tracking-wider mb-4 font-normal">Société</h4>
+          <ul class="space-y-2 text-xs text-gray-600">
+            <li><a href="#" class="hover:underline">À propos</a></li>
+            <li><a href="#" class="hover:underline">Carrières</a></li>
+            <li><a href="#" class="hover:underline">Magasins</a></li>
+            <li><a href="#" onclick="openModal('cgv')" class="hover:underline cursor-pointer">CGV</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs uppercase tracking-wider mb-4 font-normal">Suivez-nous</h4>
+          <ul class="space-y-2 text-xs text-gray-600">
+            <li><a href="#" class="hover:underline">Instagram</a></li>
+            <li><a href="#" class="hover:underline">Facebook</a></li>
+            <li><a href="#" class="hover:underline">Twitter</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs uppercase tracking-wider mb-4 font-normal">Newsletter</h4>
+          <div class="flex border-b border-black pb-2">
+            <input type="email" placeholder="Email" class="flex-1 bg-transparent text-xs focus:outline-none">
+            <button class="text-xs uppercase">→</button>
+          </div>
+        </div>
+
       </div>
-      <div class="grid grid-cols-2 gap-12 text-sm font-light mt-10 md:mt-0">
-        <ul class="space-y-4">
-          <li><a href="femme.html" class="hover:text-svb-gold transition hover-trigger">Femme</a></li>
-          <li><a href="homme.html" class="hover:text-svb-gold transition hover-trigger">Homme</a></li>
-          <li><a href="#concept" class="hover:text-svb-gold transition hover-trigger">Le Club</a></li>
-        </ul>
-        <ul class="space-y-4">
-          <li><a href="login.html" class="hover:text-svb-gold transition hover-trigger">Mon Compte</a></li>
-          <li><a href="#" class="hover:text-svb-gold transition hover-trigger">Mentions Légales</a></li>
-          <li><a href="#" class="hover:text-svb-gold transition hover-trigger">Contact</a></li>
-        </ul>
+
+      <div class="border-t border-gray-100 pt-8 flex flex-col lg:flex-row justify-between items-center text-xs text-gray-500">
+        <p>© 2026 SVB</p>
+        <p class="mt-4 lg:mt-0">France</p>
       </div>
     </div>
   </footer>
 
-  <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full md:w-[500px] bg-[#F3F2ED] text-black z-50 transform translate-x-full transition-transform duration-500 flex flex-col shadow-2xl">
-    <div class="p-8 flex justify-between items-center border-b border-black/10">
-      <h2 class="font-serif text-2xl">Panier</h2>
-      <button onclick="toggleCart()" class="hover-trigger"><i data-lucide="x" class="w-6 h-6"></i></button>
-    </div>
-    <div id="cart-items" class="flex-1 p-8 overflow-y-auto">
-      <p class="text-center opacity-50 mt-10">Votre panier est vide.</p>
-    </div>
-    <div class="p-8 border-t border-black/10 bg-white">
-      <div class="flex justify-between mb-4 text-xl font-serif">
-        <span>Total Club</span>
-        <span id="cart-total">0€</span>
+  <!-- Modal CGV -->
+  <div id="modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/50">
+    <div class="min-h-screen px-4 flex items-center justify-center">
+      <div class="bg-white w-full max-w-3xl p-8 lg:p-12 relative">
+        <button onclick="closeModal()" class="absolute top-4 right-4">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        
+        <div id="modal-content" class="max-h-[70vh] overflow-y-auto pr-4">
+          <!-- Content inserted by JS -->
+        </div>
       </div>
-      <button onclick="checkout()" class="w-full bg-black text-white py-4 text-xs uppercase tracking-mega hover:bg-svb-gold transition duration-300 hover-trigger">
-        Commander
-      </button>
     </div>
   </div>
 
   <script>
     lucide.createIcons();
 
-    // --- 1. GSAP ANIMATIONS ---
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Loader Animation
-    window.addEventListener('load', () => {
-      const line = document.querySelector('.loader-line');
-      line.style.width = "100%";
+    function openModal(type) {
+      const modal = document.getElementById('modal');
+      const content = document.getElementById('modal-content');
       
-      setTimeout(() => {
-        gsap.to('#loader', { y: '-100%', duration: 1, ease: 'power4.inOut' });
-        // Hero Text Animation after loader
-        gsap.to('.hero-anim', { y: 0, duration: 1, stagger: 0.2, delay: 0.5, ease: 'power3.out' });
-      }, 1000);
-    });
+      if (type === 'cgv') {
+        content.innerHTML = `
+          <h2 class="text-2xl font-light mb-8 tracking-tight">Conditions Générales de Vente</h2>
+          
+          <div class="space-y-6 text-sm text-gray-700 leading-relaxed">
+            <section>
+              <h3 class="text-base font-normal mb-3">Article 1 - Objet</h3>
+              <p>Les présentes Conditions Générales de Vente régissent les relations entre SVB SAS et toute personne procédant à un achat via www.svb.com.</p>
+            </section>
 
-    // Reveal Image on Scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) {
-          entry.target.querySelector('.reveal-img').classList.add('visible');
-        }
-      });
-    });
-    document.querySelectorAll('.reveal-trigger').forEach(el => observer.observe(el));
+            <section>
+              <h3 class="text-base font-normal mb-3">Article 2 - Programme Membre VIP</h3>
+              <p class="mb-3">2.1. Le programme Membre VIP est un service d'abonnement mensuel donnant accès à des tarifs préférentiels.</p>
+              <p class="mb-3">2.2. En adhérant, le Client autorise SVB à prélever 49,90€ TTC mensuellement le 5 de chaque mois.</p>
+              <p class="mb-3">2.3. Le montant est converti en crédit valable 12 mois.</p>
+              <p class="mb-3">2.4. Option "Passer le mois" disponible du 1er au 5 de chaque mois.</p>
+              <p>2.5. Engagement minimum 3 mois, résiliation libre ensuite.</p>
+            </section>
 
-    // --- 2. CUSTOM CURSOR ---
-    const cursor = document.getElementById('cursor');
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
-    
-    document.querySelectorAll('.hover-trigger').forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-    });
+            <section>
+              <h3 class="text-base font-normal mb-3">Article 3 - Prix</h3>
+              <p>Prix Standard et Prix VIP (exclusif Membres actifs). Paiement par CB, PayPal ou crédits SVB.</p>
+            </section>
 
-    // --- 3. SHOPPING LOGIC ---
-    let isMember = true;
-    let cart = [];
+            <section>
+              <h3 class="text-base font-normal mb-3">Article 4 - Droit de rétractation</h3>
+              <p>14 jours à compter de la réception des produits (article L221-18 du Code de la consommation).</p>
+            </section>
 
-    function togglePrice() {
-      isMember = !isMember;
-      const dot = document.getElementById('switch-dot');
-      const publicPrices = document.querySelectorAll('.price-public');
-      const memberPrices = document.querySelectorAll('.price-member');
-      const lblPub = document.getElementById('lbl-public');
-      const lblMem = document.getElementById('lbl-member');
-
-      if(!isMember) {
-        dot.style.transform = "translateX(2px)";
-        publicPrices.forEach(el => el.classList.remove('hidden'));
-        memberPrices.forEach(el => el.classList.add('hidden'));
-        lblPub.classList.add('font-bold', 'opacity-100');
-        lblPub.classList.remove('opacity-50');
-        lblMem.classList.remove('font-bold');
-        lblMem.classList.add('opacity-50');
-      } else {
-        dot.style.transform = "translateX(24px)";
-        publicPrices.forEach(el => el.classList.add('hidden'));
-        memberPrices.forEach(el => el.classList.remove('hidden'));
-        lblMem.classList.add('font-bold');
-        lblMem.classList.remove('opacity-50');
-        lblPub.classList.remove('font-bold', 'opacity-100');
-        lblPub.classList.add('opacity-50');
-      }
-    }
-
-    function addToCart(name, pub, mem) {
-      cart.push({name, pub, mem});
-      updateCartUI();
-      toggleCart();
-    }
-
-    function updateCartUI() {
-      const container = document.getElementById('cart-items');
-      document.getElementById('cart-count').innerText = cart.length;
-      
-      if(cart.length === 0) {
-        container.innerHTML = '<p class="text-center opacity-50 mt-10">Vide.</p>';
-        return;
-      }
-
-      let total = 0;
-      container.innerHTML = cart.map(item => {
-        total += item.mem;
-        return `
-        <div class="flex justify-between items-center mb-4 border-b border-gray-200 pb-2">
-          <div>
-            <h4 class="font-serif">${item.name}</h4>
-            <span class="text-xs opacity-50">Taille: M</span>
+            <section>
+              <h3 class="text-base font-normal mb-3">Article 5 - Livraison</h3>
+              <p>3 à 7 jours ouvrés. Gratuite au-dessus de 50€, sinon 4,90€.</p>
+            </section>
           </div>
-          <div class="text-right">
-            <span class="block font-bold">${item.mem}€</span>
-            <span class="text-xs line-through opacity-50">${item.pub}€</span>
-          </div>
-        </div>`;
-      }).join('');
-      
-      document.getElementById('cart-total').innerText = total + "€";
-    }
-
-    function checkout() {
-      if(cart.length === 0) return;
-      
-      const order = {
-        id: 'ORD-' + Math.floor(Math.random() * 10000),
-        date: new Date().toLocaleDateString(),
-        items: cart,
-        total: document.getElementById('cart-total').innerText,
-        savings: "BEAUCOUP" 
-      };
-      
-      let history = JSON.parse(localStorage.getItem('svb_orders')) || [];
-      history.unshift(order);
-      localStorage.setItem('svb_orders', JSON.stringify(history));
-      
-      window.location.href = 'compte.html';
-    }
-
-    function toggleCart() {
-      const drawer = document.getElementById('cart-drawer');
-      if(drawer.classList.contains('translate-x-full')) {
-        drawer.classList.remove('translate-x-full');
-      } else {
-        drawer.classList.add('translate-x-full');
+        `;
       }
+      
+      modal.classList.remove('hidden');
+      lucide.createIcons();
     }
 
-    function scrollToContent() {
-      document.getElementById('content').scrollIntoView({behavior: 'smooth'});
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
     }
   </script>
 </body>
