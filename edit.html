@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L'Edit de mai — Entre deux saisons · SVB Apparel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .edit-hero {
+      display: grid; grid-template-columns: 1fr 1fr; min-height: 70vh;
+    }
+    .edit-hero__texte {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px 60px;
+    }
+    .edit-hero__media img {
+      width: 100%; height: 100%; object-fit: cover; min-height: 60vh;
+    }
+    .edit-hero__date {
+      font-size: 10.5px; letter-spacing: 0.28em; text-transform: uppercase;
+      opacity: 0.65; margin-bottom: 22px;
+    }
+    .edit-hero__titre {
+      font-family: 'GT Sectra', Georgia, serif; font-style: italic;
+      font-size: clamp(40px, 6vw, 88px); line-height: 1.02; letter-spacing: -0.02em;
+      margin-bottom: 30px;
+    }
+    .edit-hero__sous {
+      font-family: 'GT Sectra', Georgia, serif; font-style: italic;
+      font-size: 18px; line-height: 1.6; max-width: 440px; margin-bottom: 30px;
+    }
+    .edit-hero__compteur {
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      padding-top: 22px; border-top: 1px solid rgba(31,31,26,0.15);
+      display: inline-block; opacity: 0.7;
+    }
+
+    .edit-recit {
+      padding: 110px 36px; max-width: 760px; margin: 0 auto; text-align: center;
+    }
+    .edit-recit p {
+      font-family: 'GT Sectra', Georgia, serif; font-style: italic;
+      font-size: clamp(20px, 2.2vw, 28px); line-height: 1.5; margin-bottom: 24px;
+    }
+
+    .edit-pieces { padding: 0 36px 110px; }
+    .edit-piece-deux {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      margin-bottom: 90px; align-items: center;
+    }
+    .edit-piece-deux:nth-child(even) > div:first-child { order: 2; }
+    .edit-piece-deux img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+    .edit-piece-deux__numero {
+      font-family: 'GT Sectra', Georgia, serif; font-style: italic;
+      font-size: 72px; opacity: 0.25; line-height: 0.9;
+    }
+    .edit-piece-deux__nom {
+      font-family: 'GT Sectra', Georgia, serif; font-style: italic;
+      font-size: clamp(28px, 3.6vw, 44px); margin: 14px 0 16px;
+    }
+    .edit-piece-deux__code {
+      font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+      opacity: 0.6; margin-bottom: 22px;
+    }
+    .edit-piece-deux__texte {
+      font-family: 'GT Sectra', Georgia, serif; font-style: italic;
+      font-size: 16px; line-height: 1.65; margin-bottom: 26px; max-width: 440px;
+    }
+    .edit-piece-deux__prix { font-size: 16px; margin-bottom: 24px; }
+
+    .edit-archive {
+      padding: 80px 36px;
+      border-top: 1px solid rgba(31,31,26,0.12);
+    }
+
+    @media (max-width: 880px) {
+      .edit-hero { grid-template-columns: 1fr; }
+      .edit-hero__texte { padding: 50px 20px; }
+      .edit-recit { padding: 60px 20px; }
+      .edit-pieces { padding: 0 20px 60px; }
+      .edit-piece-deux { grid-template-columns: 1fr; gap: 24px; margin-bottom: 50px; }
+      .edit-piece-deux:nth-child(even) > div:first-child { order: 0; }
+      .edit-archive { padding: 50px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="maison-header">
+    <div class="maison-header__inner">
+      <nav class="maison-header__nav">
+        <a href="boutique.html">Boutique</a>
+        <a href="lookbook.html">Lookbook</a>
+        <a href="campagne.html">Campagne</a>
+        <a href="journal.html">Journal</a>
+        <a href="maison.html">Maison</a>
+      </nav>
+      <a href="index.html" class="maison-header__monogram">SVB</a>
+      <div class="maison-header__icons">
+        <a href="recherche.html">Recherche</a>
+        <a href="compte.html">Compte</a>
+        <a href="panier.html">Panier · 0</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="chapitre-bar">
+    <span>L'Edit · Mai 2026 · Disponible jusqu'au 31 mai</span>
+  </div>
+
+  <section class="edit-hero">
+    <div class="edit-hero__texte">
+      <span class="edit-hero__date">L'Edit · Mai 2026 · Éphémère</span>
+      <h1 class="edit-hero__titre">Entre deux saisons.</h1>
+      <p class="edit-hero__sous">
+        Trois pièces choisies pour la transition. Le mat de cinq heures,
+        le lin sous la veste à midi, la sueur de dix-huit heures.
+        Cet édit disparaît le premier juin.
+      </p>
+      <span class="edit-hero__compteur">— 13 jours · 4 heures · 22 minutes</span>
+    </div>
+    <div class="edit-hero__media">
+      <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=1800&auto=format&fit=crop" alt="L'Edit de mai">
+    </div>
+  </section>
+
+  <section class="chaux edit-recit">
+    <p>
+      « Le printemps tient en équilibre entre deux états : la matière qui
+      respire le matin, celle qui retient à la nuit tombée. »
+    </p>
+    <p style="font-size: 13px; opacity: 0.6;">— Notes de la directrice de collection</p>
+  </section>
+
+  <section class="edit-pieces">
+    <article class="edit-piece-deux">
+      <div>
+        <a href="produit.html"><img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=1200&auto=format&fit=crop" alt="Veste Lou"></a>
+      </div>
+      <div>
+        <span class="edit-piece-deux__numero">01</span>
+        <h2 class="edit-piece-deux__nom">Veste Lou.</h2>
+        <div class="edit-piece-deux__code">SVB · 26 · CREAM · 11 · 168 €</div>
+        <p class="edit-piece-deux__texte">
+          Le coton lin écru, légèrement froissé. Sur la brassière au studio,
+          ouverte sur la rue au déjeuner. La pièce qui fait traverser la journée.
+        </p>
+        <a href="produit.html" class="bouton">Voir la pièce</a>
+      </div>
+    </article>
+
+    <article class="edit-piece-deux">
+      <div>
+        <a href="produit.html"><img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=1200&auto=format&fit=crop" alt="Pantalon Anjou"></a>
+      </div>
+      <div>
+        <span class="edit-piece-deux__numero">02</span>
+        <h2 class="edit-piece-deux__nom">Pantalon Anjou.</h2>
+        <div class="edit-piece-deux__code">SVB · 26 · INK · 09 · 178 €</div>
+        <p class="edit-piece-deux__texte">
+          Une coupe droite, taille haute, jersey lourd qui drape sans tomber.
+          Du repos après le studio, et tout ce qui suit le repos.
+        </p>
+        <a href="produit.html" class="bouton">Voir la pièce</a>
+      </div>
+    </article>
+
+    <article class="edit-piece-deux">
+      <div>
+        <a href="produit.html"><img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=1200&auto=format&fit=crop" alt="Bralette Salin"></a>
+      </div>
+      <div>
+        <span class="edit-piece-deux__numero">03</span>
+        <h2 class="edit-piece-deux__nom">Bralette Salin.</h2>
+        <div class="edit-piece-deux__code">SVB · 26 · SAGE · 06 · 84 €</div>
+        <p class="edit-piece-deux__texte">
+          Maintien doux, dos nu, coutures plates. Pensée pour le Reformer,
+          adoptée dans le quotidien — sous une chemise crue, à l'oblique.
+        </p>
+        <a href="produit.html" class="bouton">Voir la pièce</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="chaux edit-archive">
+    <div style="display: flex; justify-content: space-between; align-items: end; margin-bottom: 40px;">
+      <div>
+        <span class="kicker">L'Edit · Archive</span>
+        <h2 class="titre-section" style="font-size: clamp(28px, 3.4vw, 40px);">Les édits passés.</h2>
+      </div>
+      <a href="archives.html" class="lien-fin">Voir toutes les archives</a>
+    </div>
+
+    <div class="grille-4">
+      <a href="#" class="piece">
+        <div class="piece__media" style="aspect-ratio: 3/4;"><img class="base" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=700&auto=format&fit=crop" alt="Avril"></div>
+        <div class="piece__info"><span class="piece__cat">Avril 2026</span><span class="piece__nom">Premiers gestes</span></div>
+      </a>
+      <a href="#" class="piece">
+        <div class="piece__media" style="aspect-ratio: 3/4;"><img class="base" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=700&auto=format&fit=crop" alt="Mars"></div>
+        <div class="piece__info"><span class="piece__cat">Mars 2026</span><span class="piece__nom">Sortir du studio</span></div>
+      </a>
+      <a href="#" class="piece">
+        <div class="piece__media" style="aspect-ratio: 3/4;"><img class="base" src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=700&auto=format&fit=crop" alt="Février"></div>
+        <div class="piece__info"><span class="piece__cat">Février 2026</span><span class="piece__nom">Le bleu d'hiver</span></div>
+      </a>
+      <a href="#" class="piece">
+        <div class="piece__media" style="aspect-ratio: 3/4;"><img class="base" src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=700&auto=format&fit=crop" alt="Janvier"></div>
+        <div class="piece__info"><span class="piece__cat">Janvier 2026</span><span class="piece__nom">Recommencer</span></div>
+      </a>
+    </div>
+  </section>
+
+  <footer class="maison-footer">
+    <div class="maison-footer__grid">
+      <div><div class="maison-footer__monogram">SVB</div><p class="maison-footer__manifeste">Une maison de vêtements de pratique. Pilates, yoga, training. Conçue à Paris, tissée au Portugal.</p></div>
+      <div><h4>Maison</h4><ul><li><a href="maison.html">Notre maison</a></li><li><a href="savoir-faire.html">Savoir-faire</a></li><li><a href="matieres.html">Nos matières</a></li><li><a href="archives.html">Archives</a></li><li><a href="agenda.html">Agenda</a></li></ul></div>
+      <div><h4>Boutique</h4><ul><li><a href="boutique.html">Toutes les pièces</a></li><li><a href="edit.html">L'Edit du mois</a></li><li><a href="lookbook.html">Lookbook</a></li><li><a href="campagne.html">Campagne</a></li><li><a href="tailles.html">Guide des tailles</a></li></ul></div>
+      <div><h4>Service</h4><ul><li><a href="contact.html">Contact</a></li><li><a href="livraison.html">Livraison & retours</a></li><li><a href="faq.html">Questions fréquentes</a></li><li><a href="compte.html">Mon compte</a></li><li><a href="legal.html">Mentions légales</a></li></ul></div>
+      <div class="maison-footer__newsletter"><h4>Lettre de maison</h4><p style="font-family: 'GT Sectra', Georgia, serif; font-style: italic; font-size: 12px; opacity: 0.7; margin-bottom: 14px;">Un envoi par chapitre. Jamais davantage.</p><form action="newsletter.html" method="get"><input type="email" placeholder="votre@email.com"><button type="submit">S'inscrire →</button></form></div>
+    </div>
+    <div class="maison-footer__bas"><span>© SVB Apparel · 2026 · Conçue à Paris</span><span>Tissé au Portugal · Confectionné en Europe</span></div>
+  </footer>
+
+</body>
+</html>
