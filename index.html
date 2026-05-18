@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SVB Apparel</title>
+  <meta name="description" content="SVB Apparel — Tennis, Yoga, Training, Voyage. Des essentiels pour le mouvement.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="entete">
+    <div class="entete__inner">
+      <div class="entete__gauche">
+        <a href="index.html" class="logo">svb</a>
+        <nav class="entete__nav">
+          <a href="boutique.html?cat=femme">Femme</a>
+          <a href="boutique.html?cat=homme">Homme</a>
+          <a href="boutique.html?cat=accessoires">Accessoires</a>
+          <a href="boutique.html?cat=chaussures">Chaussures</a>
+        </nav>
+      </div>
+      <div class="entete__droite">
+        <a href="recherche.html" aria-label="Recherche"><span class="ic ic-loupe"></span></a>
+        <a href="compte.html" class="entete__rewards">
+          <span class="ic ic-rewards"></span>
+          <span>Se connecter · Rejoindre le Club</span>
+        </a>
+        <a href="wishlist.html" aria-label="Favoris"><span class="ic ic-coeur"></span></a>
+        <a href="panier.html" aria-label="Panier"><span class="ic ic-sac"></span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <img class="hero__img" src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=2400&auto=format&fit=crop" alt="Nouvelle collection tennis">
+    <div class="hero__voile"></div>
+    <div class="hero__date">04 / 07</div>
+
+    <div class="hero__contenu">
+      <h1 class="hero__titre serif">
+        <span>NOUVEAU</span>
+        <span>SUR LE COURT</span>
+      </h1>
+    </div>
+
+    <div class="hero__sous">C'est la saison<br>de la robe de tennis</div>
+
+    <div class="hero__cta">
+      <a href="boutique.html?cat=tennis" class="btn-blanc">Découvrir tennis</a>
+    </div>
+
+    <div class="hero__fleches">
+      <button class="hero__fleche" aria-label="Précédent">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="hero__fleche" aria-label="Suivant">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== TENDANCES DU MOMENT ===== -->
+  <h2 class="section-titre">Tendances du moment</h2>
+
+  <section class="tendances">
+    <div class="tendances__grille">
+      <a href="boutique.html?cat=ensembles" class="tendance">
+        <div class="tendance__img">
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&auto=format&fit=crop" alt="Ensembles coordonnés">
+        </div>
+        <div class="tendance__label">Ensembles coordonnés</div>
+      </a>
+      <a href="boutique.html?cat=bestsellers" class="tendance">
+        <div class="tendance__img">
+          <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=900&auto=format&fit=crop" alt="Best-sellers">
+        </div>
+        <div class="tendance__label">Best-sellers</div>
+      </a>
+      <a href="boutique.html?cat=nouveautes" class="tendance">
+        <div class="tendance__img">
+          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=900&auto=format&fit=crop" alt="Nouveautés">
+        </div>
+        <div class="tendance__label">Nouveautés</div>
+      </a>
+      <a href="boutique.html?cat=shorts" class="tendance">
+        <div class="tendance__img">
+          <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=900&auto=format&fit=crop" alt="Shorts">
+        </div>
+        <div class="tendance__label">Shorts</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== ÉTAT D'ESPRIT ESTIVAL ===== -->
+  <section class="banniere-double">
+    <div class="banniere-double__img">
+      <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=1400&auto=format&fit=crop" alt="État d'esprit estival">
+    </div>
+    <div class="banniere-double__img">
+      <img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=1400&auto=format&fit=crop" alt="Voyage">
+      <div class="banniere-double__mini">Ne pas déranger</div>
+    </div>
+    <h2 class="banniere-double__titre serif">État d'esprit estival</h2>
+    <div class="banniere-double__cta">
+      <a href="boutique.html?cat=voyage" class="btn-blanc">Découvrir voyage</a>
+    </div>
+  </section>
+
+  <!-- ===== DERNIÈRES TOUCHES ===== -->
+  <div class="section-titre--gauche">
+    <h2 style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500;">Dernières touches</h2>
+    <a href="boutique.html?cat=accessoires" class="lien">Voir les accessoires</a>
+  </div>
+
+  <section class="touches">
+    <div class="touches__grille">
+      <a href="produit.html" class="touche">
+        <div class="touche__img">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&auto=format&fit=crop" alt="Sneaker Recovery">
+        </div>
+        <div class="touche__nom">Sneaker Recovery — Blanc / Crème</div>
+        <div class="touche__prix">180 €</div>
+      </a>
+      <a href="produit.html" class="touche">
+        <div class="touche__img">
+          <img src="https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600&auto=format&fit=crop" alt="Casquette Off-Duty Rouge">
+        </div>
+        <div class="touche__nom">Casquette Off-Duty — Rouge brique</div>
+        <div class="touche__prix">58 €</div>
+      </a>
+      <a href="produit.html" class="touche">
+        <div class="touche__img">
+          <img src="https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?w=600&auto=format&fit=crop" alt="Chaussettes Throwback Blanc">
+        </div>
+        <div class="touche__nom">Chaussettes Throwback — Blanc / Noir</div>
+        <div class="touche__prix">14 €</div>
+      </a>
+      <a href="produit.html" class="touche">
+        <div class="touche__img">
+          <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600&auto=format&fit=crop" alt="Casquette Off-Duty Noir">
+        </div>
+        <div class="touche__nom">Casquette Off-Duty — Noir</div>
+        <div class="touche__prix">58 €</div>
+      </a>
+      <a href="produit.html" class="touche">
+        <div class="touche__img">
+          <img src="https://images.unsplash.com/photo-1542219550-37153d387c27?w=600&auto=format&fit=crop" alt="Chaussettes Throwback Rouge">
+        </div>
+        <div class="touche__nom">Chaussettes Throwback — Rouge / Blanc</div>
+        <div class="touche__prix">14 €</div>
+      </a>
+
+      <button class="touches__fleche" aria-label="Voir plus">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== PAR ACTIVITÉ ===== -->
+  <h2 class="section-titre">Par activité</h2>
+
+  <section class="activites">
+    <div class="activites__grille">
+      <a href="boutique.html?pratique=yoga" class="activite">
+        <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=700&auto=format&fit=crop" alt="Yoga">
+        <div class="activite__voile"></div>
+        <div class="activite__label">Yoga</div>
+      </a>
+      <a href="boutique.html?pratique=lifestyle" class="activite">
+        <img src="https://images.unsplash.com/photo-1591291621164-2c6367723315?w=700&auto=format&fit=crop" alt="Lifestyle">
+        <div class="activite__voile"></div>
+        <div class="activite__label">Lifestyle</div>
+      </a>
+      <a href="boutique.html?pratique=pilates" class="activite">
+        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=700&auto=format&fit=crop" alt="Pilates">
+        <div class="activite__voile"></div>
+        <div class="activite__label">Pilates</div>
+      </a>
+      <a href="boutique.html?pratique=tennis" class="activite">
+        <img src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=700&auto=format&fit=crop" alt="Tennis">
+        <div class="activite__voile"></div>
+        <div class="activite__label">Tennis</div>
+      </a>
+      <a href="boutique.html?pratique=voyage" class="activite">
+        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=700&auto=format&fit=crop" alt="Voyage">
+        <div class="activite__voile"></div>
+        <div class="activite__label">Voyage</div>
+      </a>
+      <a href="boutique.html?pratique=training" class="activite">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&auto=format&fit=crop" alt="Training">
+        <div class="activite__voile"></div>
+        <div class="activite__label">Training</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== ENGAGEMENT CLUB ===== -->
+  <section class="engagement">
+    <h2>Rejoindre le Club SVB.</h2>
+    <p>Accès anticipé aux nouvelles collections, événements privés, livraison express offerte sur chaque commande. Gratuit et sans engagement.</p>
+    <a href="compte.html" class="btn-noir">Rejoindre le Club</a>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+
+    <div class="footer__newsletter">
+      <h3>Inscrivez-vous à la lettre SVB</h3>
+      <p>Recevez nos lancements, événements et offres privées en avant-première.</p>
+      <form action="newsletter.html">
+        <input type="email" placeholder="Votre adresse email">
+        <button type="submit">S'inscrire</button>
+      </form>
+    </div>
+
+    <div class="footer__grille">
+      <div>
+        <h4>Acheter</h4>
+        <ul>
+          <li><a href="boutique.html?cat=femme">Femme</a></li>
+          <li><a href="boutique.html?cat=homme">Homme</a></li>
+          <li><a href="boutique.html?cat=accessoires">Accessoires</a></li>
+          <li><a href="boutique.html?cat=chaussures">Chaussures</a></li>
+          <li><a href="boutique.html?cat=nouveautes">Nouveautés</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Service client</h4>
+        <ul>
+          <li><a href="contact.html">Nous contacter</a></li>
+          <li><a href="livraison.html">Livraison</a></li>
+          <li><a href="livraison.html">Retours</a></li>
+          <li><a href="tailles.html">Guide des tailles</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Maison</h4>
+        <ul>
+          <li><a href="maison.html">Notre histoire</a></li>
+          <li><a href="savoir-faire.html">Engagement</a></li>
+          <li><a href="contact.html">Carrières</a></li>
+          <li><a href="contact.html">Boutiques</a></li>
+          <li><a href="contact.html">Presse</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Compte</h4>
+        <ul>
+          <li><a href="compte.html">Mon compte</a></li>
+          <li><a href="commandes.html">Mes commandes</a></li>
+          <li><a href="wishlist.html">Ma wishlist</a></li>
+          <li><a href="compte.html">Le Club SVB</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Suivez-nous</h4>
+        <ul>
+          <li><a href="#">@svb.apparel</a></li>
+          <li><a href="#">Inspirer · Bouger · Relier</a></li>
+        </ul>
+        <div class="footer__socials">
+          <a href="#" class="so-ig" aria-label="Instagram"></a>
+          <a href="#" class="so-pin" aria-label="Pinterest"></a>
+          <a href="#" class="so-tt" aria-label="TikTok"></a>
+          <a href="#" class="so-yt" aria-label="YouTube"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bas">
+      <span>© 2026 SVB Apparel · Tous droits réservés</span>
+      <span>FR · EUR</span>
+    </div>
+
+  </footer>
+
+</body>
+</html>
