@@ -3,414 +3,323 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SVB Apparel · Maison</title>
-  <meta name="description" content="SVB Apparel — Une maison de vêtements de pratique. Pilates, Yoga, Training. Conçue à Paris.">
+  <title>SVB Apparel · Bouger Sublimement</title>
+  <meta name="description" content="SVB Apparel — Des essentiels pensés pour le mouvement moderne. Pilates, Yoga, Training.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ===== HEADER ===== -->
+  <!-- Bandeau promo -->
+  <div class="bandeau-promo">
+    Livraison express offerte dès 150 €
+  </div>
+
+  <!-- Header -->
   <header class="maison-header">
     <div class="maison-header__inner">
       <nav class="maison-header__nav">
-        <a href="boutique.html">Boutique</a>
-        <a href="lookbook.html">Lookbook</a>
-        <a href="campagne.html">Campagne</a>
+        <a href="boutique.html?cat=femme">Femme</a>
+        <a href="boutique.html?cat=homme">Homme</a>
+        <a href="boutique.html?cat=nouveautes">Nouveautés</a>
+        <a href="lookbook.html">Collections</a>
         <a href="journal.html">Journal</a>
         <a href="maison.html">Maison</a>
       </nav>
-      <a href="index.html" class="maison-header__monogram">SVB</a>
+      <a href="index.html" class="maison-header__logo">
+        <span class="svb">SVB</span>
+        <span class="apparel">APPAREL</span>
+      </a>
       <div class="maison-header__icons">
-        <a href="recherche.html" aria-label="Recherche">Recherche</a>
-        <a href="compte.html" aria-label="Compte">Compte</a>
-        <a href="panier.html" aria-label="Panier">Panier · 0</a>
+        <a href="recherche.html"><span class="icone icone-loupe"></span>Recherche</a>
+        <a href="compte.html" aria-label="Compte"><span class="icone icone-user"></span></a>
+        <a href="wishlist.html" aria-label="Wishlist"><span class="icone icone-coeur"></span></a>
+        <a href="panier.html"><span class="icone icone-sac"></span>Panier (0)</a>
       </div>
     </div>
   </header>
 
-  <!-- ===== §2 BANDEAU CHAPITRE ===== -->
-  <div class="chapitre-bar">
-    <span>Chapitre I · Printemps 26 · Disponible</span>
-  </div>
-
-  <!-- ===== §1 HERO ===== -->
-  <section class="hero">
-    <div class="hero__media">
-      <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=2400&auto=format&fit=crop"
-           alt="Maison SVB — Chapitre I">
+  <!-- ===== HERO ===== -->
+  <section class="hero-accueil">
+    <div class="hero-accueil__media">
+      <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=2400&auto=format&fit=crop" alt="Pilates au coucher du soleil">
     </div>
-    <div class="hero__overlay"></div>
-    <div class="hero__bas">
-      <div class="hero__monogram">SVB</div>
-      <div class="hero__legende">
-        Chapitre I · Tenir<br>
-        SVB · 26 · SAGE · 01
+    <div class="hero-accueil__overlay"></div>
+    <div class="hero-accueil__contenu">
+      <h1 class="hero-accueil__titre">
+        Bouger
+        <em>Sublimement.</em>
+      </h1>
+      <p class="hero-accueil__sous">
+        Des essentiels pensés pour<br>le mouvement moderne.
+      </p>
+      <div class="hero-accueil__ctas">
+        <a href="boutique.html?cat=femme" class="btn-pleine">Boutique femme</a>
+        <a href="boutique.html?cat=homme" class="btn-vide">Boutique homme</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== §3 MANIFESTE ===== -->
-  <section class="bloc chaux">
-    <div class="container" style="text-align: center;">
-      <span class="kicker">Collection 26 · Chapitre I</span>
-      <h2 class="titre-section" style="max-width: 1100px; margin: 0 auto;">
-        Le mouvement comme langage.<br>
-        La matière comme promesse.<br>
-        La durée comme engagement.
-      </h2>
-      <hr class="filet-peche" style="margin: 60px auto 0;">
+  <!-- ===== PIÈCES PHARES ===== -->
+  <section class="section-phares">
+    <div class="section-phares__tete">
+      <span class="section-phares__titre">Pièces phares</span>
+      <a href="boutique.html" class="section-phares__lien">Tout voir</a>
+    </div>
+
+    <div class="section-phares__grille">
+
+      <a href="produit.html" class="carte-piece">
+        <div class="carte-piece__image">
+          <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=900&auto=format&fit=crop" alt="Brassière Iris">
+        </div>
+        <div class="carte-piece__couleurs">
+          <span class="puce pastille-ivoire"></span>
+          <span class="puce pastille-sauge"></span>
+          <span class="puce pastille-noir"></span>
+        </div>
+        <div class="carte-piece__nom">Brassière Iris sans couture</div>
+        <div class="carte-piece__couleur">Ivoire</div>
+        <div class="carte-piece__prix">68 €</div>
+        <div class="carte-piece__etoiles"><span class="etoiles">★★★★★</span><span>(128)</span></div>
+      </a>
+
+      <a href="produit.html" class="carte-piece">
+        <div class="carte-piece__image">
+          <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=900&auto=format&fit=crop" alt="Legging Adèle">
+        </div>
+        <div class="carte-piece__couleurs">
+          <span class="puce pastille-sauge"></span>
+          <span class="puce pastille-noir"></span>
+          <span class="puce pastille-espresso"></span>
+        </div>
+        <div class="carte-piece__nom">Legging Adèle sculptant</div>
+        <div class="carte-piece__couleur">Sauge</div>
+        <div class="carte-piece__prix">98 €</div>
+        <div class="carte-piece__etoiles"><span class="etoiles">★★★★★</span><span>(249)</span></div>
+      </a>
+
+      <a href="produit.html" class="carte-piece">
+        <div class="carte-piece__image">
+          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=900&auto=format&fit=crop" alt="T-shirt Mahé performance">
+        </div>
+        <div class="carte-piece__couleurs">
+          <span class="puce pastille-noir"></span>
+          <span class="puce pastille-ivoire"></span>
+          <span class="puce pastille-sauge"></span>
+        </div>
+        <div class="carte-piece__nom">T-shirt Mahé performance</div>
+        <div class="carte-piece__couleur">Encre</div>
+        <div class="carte-piece__prix">58 €</div>
+        <div class="carte-piece__etoiles"><span class="etoiles">★★★★★</span><span>(86)</span></div>
+      </a>
+
+      <a href="produit.html" class="carte-piece">
+        <div class="carte-piece__image">
+          <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=900&auto=format&fit=crop" alt="Brassière Cassia dos croisé">
+        </div>
+        <div class="carte-piece__couleurs">
+          <span class="puce pastille-espresso"></span>
+          <span class="puce pastille-noir"></span>
+          <span class="puce pastille-ivoire"></span>
+        </div>
+        <div class="carte-piece__nom">Brassière Cassia dos croisé</div>
+        <div class="carte-piece__couleur">Espresso</div>
+        <div class="carte-piece__prix">64 €</div>
+        <div class="carte-piece__etoiles"><span class="etoiles">★★★★★</span><span>(193)</span></div>
+      </a>
+
+      <a href="produit.html" class="carte-piece">
+        <div class="carte-piece__image">
+          <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=900&auto=format&fit=crop" alt="Sweat Sereine signature">
+        </div>
+        <div class="carte-piece__couleurs">
+          <span class="puce pastille-sauge"></span>
+          <span class="puce pastille-ivoire"></span>
+          <span class="puce pastille-noir"></span>
+        </div>
+        <div class="carte-piece__nom">Sweat Sereine signature</div>
+        <div class="carte-piece__couleur">Sauge</div>
+        <div class="carte-piece__prix">108 €</div>
+        <div class="carte-piece__etoiles"><span class="etoiles">★★★★★</span><span>(76)</span></div>
+      </a>
+
     </div>
   </section>
 
-  <!-- ===== §4 TROIS PORTES ===== -->
-  <section class="bloc">
-    <div class="container">
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px;">
+  <!-- ===== BANDES CATÉGORIES ===== -->
+  <section class="bandes-categories">
+
+    <a href="boutique.html?pratique=pilates" class="bande-cat">
+      <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&auto=format&fit=crop" alt="Pilates">
+      <div class="bande-cat__voile"></div>
+      <div class="bande-cat__contenu">
+        <div class="bande-cat__titre">Pilates</div>
+        <span class="bande-cat__lien">Découvrir</span>
+      </div>
+    </a>
+
+    <a href="boutique.html?pratique=training" class="bande-cat">
+      <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&auto=format&fit=crop" alt="Training">
+      <div class="bande-cat__voile"></div>
+      <div class="bande-cat__contenu">
+        <div class="bande-cat__titre">Training</div>
+        <span class="bande-cat__lien">Découvrir</span>
+      </div>
+    </a>
+
+    <a href="boutique.html?pratique=yoga" class="bande-cat">
+      <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=900&auto=format&fit=crop" alt="Yoga">
+      <div class="bande-cat__voile"></div>
+      <div class="bande-cat__contenu">
+        <div class="bande-cat__titre">Yoga</div>
+        <span class="bande-cat__lien">Découvrir</span>
+      </div>
+    </a>
+
+    <a href="boutique.html?pratique=repos" class="bande-cat">
+      <img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=900&auto=format&fit=crop" alt="Repos">
+      <div class="bande-cat__voile"></div>
+      <div class="bande-cat__contenu">
+        <div class="bande-cat__titre">Repos</div>
+        <span class="bande-cat__lien">Découvrir</span>
+      </div>
+    </a>
+
+    <a href="boutique.html?pratique=villegiature" class="bande-cat">
+      <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=900&auto=format&fit=crop" alt="Villégiature">
+      <div class="bande-cat__voile"></div>
+      <div class="bande-cat__contenu">
+        <div class="bande-cat__titre">Villégiature</div>
+        <span class="bande-cat__lien">Découvrir</span>
+      </div>
+    </a>
+
+  </section>
+
+  <!-- ===== PILIERS ===== -->
+  <section class="piliers">
+    <div class="piliers__grille">
+      <div class="pilier">
+        <div class="pilier__icone pilier-fibre"></div>
         <div>
-          <span class="kicker">Trois disciplines</span>
-          <h3 class="titre-section" style="font-size: clamp(28px, 3.4vw, 44px);">Choisir son geste.</h3>
+          <div class="pilier__titre">Matières techniques</div>
+          <p class="pilier__texte">L'innovation textile au service du confort.</p>
         </div>
-        <a href="boutique.html" class="lien-fin">Toute la boutique</a>
       </div>
-
-      <div class="grille-3">
-        <a href="boutique.html?pratique=pilates" class="piece">
-          <div class="piece__media">
-            <img class="base" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1000&auto=format&fit=crop" alt="Pilates">
-            <img class="hover" src="https://images.unsplash.com/photo-1591291621164-2c6367723315?w=1000&auto=format&fit=crop" alt="Pilates lifestyle">
-          </div>
-          <div class="piece__info">
-            <span class="piece__cat">Pilates</span>
-            <span class="piece__nom">Legging Adèle</span>
-            <div class="piece__meta"><span>SVB · 26 · SAGE · 01</span><span>148 €</span></div>
-          </div>
-        </a>
-
-        <a href="boutique.html?pratique=yoga" class="piece">
-          <div class="piece__media">
-            <img class="base" src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1000&auto=format&fit=crop" alt="Yoga">
-            <img class="hover" src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=1000&auto=format&fit=crop" alt="Yoga lifestyle">
-          </div>
-          <div class="piece__info">
-            <span class="piece__cat">Yoga</span>
-            <span class="piece__nom">Brassière Iris</span>
-            <div class="piece__meta"><span>SVB · 26 · CREAM · 04</span><span>92 €</span></div>
-          </div>
-        </a>
-
-        <a href="boutique.html?pratique=training" class="piece">
-          <div class="piece__media">
-            <img class="base" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1000&auto=format&fit=crop" alt="Training">
-            <img class="hover" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1000&auto=format&fit=crop" alt="Training lifestyle">
-          </div>
-          <div class="piece__info">
-            <span class="piece__cat">Training</span>
-            <span class="piece__nom">Short Mahé</span>
-            <div class="piece__meta"><span>SVB · 26 · INK · 07</span><span>118 €</span></div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== §5 ÉDITO CAMPAGNE (asymétrie Prada) ===== -->
-  <section class="chaux bloc">
-    <div class="asym-grille">
-      <div>
-        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=1800&auto=format&fit=crop"
-             alt="Édito campagne SVB" style="width: 100%; aspect-ratio: 4/5; object-fit: cover;">
-      </div>
-      <div class="bloc-texte">
-        <span class="kicker">Campagne · Tenir</span>
-        <h3 class="titre-section" style="font-size: clamp(28px, 3.6vw, 48px);">
-          Des essentiels pensés pour le geste quotidien.
-        </h3>
-        <p class="intro" style="margin-top: 28px;">
-          Une dizaine de pièces, étudiées à Paris, fabriquées au Portugal et en
-          Italie. Chacune répond à une question : tenir, respirer, durer.
-        </p>
-        <a href="campagne.html" class="lien-fin" style="margin-top: 40px;">Voir la campagne</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== §6 PIÈCES PHARES ===== -->
-  <section class="bloc">
-    <div class="container">
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px;">
+      <div class="pilier">
+        <div class="pilier__icone pilier-corps"></div>
         <div>
-          <span class="kicker">Pièces phares · Chapitre I</span>
-          <h3 class="titre-section" style="font-size: clamp(28px, 3.4vw, 44px);">La rotation essentielle.</h3>
+          <div class="pilier__titre">Coupe sculptante</div>
+          <p class="pilier__texte">Pensée pour épouser et soutenir chaque geste.</p>
         </div>
       </div>
-
-      <div class="grille-4">
-        <a href="produit.html" class="piece">
-          <div class="piece__media" style="background: var(--sauge);">
-            <img class="base" src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=900&auto=format&fit=crop" alt="Legging Adèle Sauge">
-            <img class="hover" src="https://images.unsplash.com/photo-1591291621164-2c6367723315?w=900&auto=format&fit=crop" alt="Adèle porté">
-          </div>
-          <div class="piece__info">
-            <span class="piece__cat">Pilates · Mat</span>
-            <span class="piece__nom">Legging Adèle</span>
-            <div class="piece__meta"><span><span class="couleur-pastille pastille-sauge"></span> Sauge</span><span>148 €</span></div>
-          </div>
-        </a>
-
-        <a href="produit.html" class="piece">
-          <div class="piece__media" style="background: var(--creme);">
-            <img class="base" src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=900&auto=format&fit=crop" alt="Brassière Iris Crème">
-            <img class="hover" src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=900&auto=format&fit=crop" alt="Iris porté">
-          </div>
-          <div class="piece__info">
-            <span class="piece__cat">Yoga · Doux</span>
-            <span class="piece__nom">Brassière Iris</span>
-            <div class="piece__meta"><span><span class="couleur-pastille pastille-creme"></span> Crème</span><span>92 €</span></div>
-          </div>
-        </a>
-
-        <a href="produit.html" class="piece">
-          <div class="piece__media" style="background: var(--encre);">
-            <img class="base" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=900&auto=format&fit=crop" alt="Tank Mahé Encre">
-            <img class="hover" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=900&auto=format&fit=crop" alt="Mahé porté">
-          </div>
-          <div class="piece__info">
-            <span class="piece__cat">Training · Cardio</span>
-            <span class="piece__nom">Débardeur Mahé</span>
-            <div class="piece__meta"><span><span class="couleur-pastille pastille-encre"></span> Encre</span><span>82 €</span></div>
-          </div>
-        </a>
-
-        <a href="produit.html" class="piece">
-          <div class="piece__media" style="background: var(--indigo);">
-            <img class="base" src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=900&auto=format&fit=crop" alt="Sweat Sereine Indigo">
-            <img class="hover" src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=900&auto=format&fit=crop" alt="Sereine porté">
-          </div>
-          <div class="piece__info">
-            <span class="piece__cat">Studio · Repos</span>
-            <span class="piece__nom">Sweat Sereine</span>
-            <div class="piece__meta"><span><span class="couleur-pastille pastille-indigo"></span> Indigo nuit</span><span>198 €</span></div>
-          </div>
-        </a>
-      </div>
-
-      <div style="text-align: center; margin-top: 60px;">
-        <a href="boutique.html" class="bouton">Voir toute la boutique</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== §7 EDIT DU MOIS (Dfyne) ===== -->
-  <section class="bloc--court chaux">
-    <div class="container">
-      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: center;">
+      <div class="pilier">
+        <div class="pilier__icone pilier-cercle"></div>
         <div>
-          <span class="kicker">L'Edit de mai · Éphémère</span>
-          <h3 class="titre-section" style="font-size: clamp(28px, 3.2vw, 40px);">
-            Entre deux saisons.
-          </h3>
-          <p class="intro" style="margin-top: 22px;">
-            Trois pièces choisies pour la transition. Mat le matin, lin sous
-            la veste à midi, sueur à six heures. Cet édit disparaît le 1er juin.
-          </p>
-          <a href="edit.html" class="lien-fin" style="margin-top: 30px;">Voir l'édit complet</a>
+          <div class="pilier__titre">Dessin intemporel</div>
+          <p class="pilier__texte">Minimal, élevé, conçu pour durer.</p>
         </div>
-
-        <div class="grille-3">
-          <a href="produit.html" class="piece">
-            <div class="piece__media"><img class="base" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=700&auto=format&fit=crop" alt="Édit pièce 1"></div>
-            <div class="piece__info">
-              <span class="piece__cat">Yoga</span>
-              <span class="piece__nom">Veste Lou</span>
-              <div class="piece__meta"><span>SVB · 26 · CREAM · 11</span><span>168 €</span></div>
-            </div>
-          </a>
-          <a href="produit.html" class="piece">
-            <div class="piece__media"><img class="base" src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=700&auto=format&fit=crop" alt="Édit pièce 2"></div>
-            <div class="piece__info">
-              <span class="piece__cat">Studio</span>
-              <span class="piece__nom">Pantalon Anjou</span>
-              <div class="piece__meta"><span>SVB · 26 · INK · 09</span><span>178 €</span></div>
-            </div>
-          </a>
-          <a href="produit.html" class="piece">
-            <div class="piece__media"><img class="base" src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=700&auto=format&fit=crop" alt="Édit pièce 3"></div>
-            <div class="piece__info">
-              <span class="piece__cat">Pilates · Reformer</span>
-              <span class="piece__nom">Bralette Salin</span>
-              <div class="piece__meta"><span>SVB · 26 · SAGE · 06</span><span>84 €</span></div>
-            </div>
-          </a>
+      </div>
+      <div class="pilier">
+        <div class="pilier__icone pilier-feuille"></div>
+        <div>
+          <div class="pilier__titre">Fabrication responsable</div>
+          <p class="pilier__texte">Une production éthique pour demain.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== §8 LOOKBOOK TEASER ===== -->
-  <section class="bloc">
-    <div class="container">
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;">
-        <div>
-          <span class="kicker">Lookbook · Printemps 26</span>
-          <h3 class="titre-section" style="font-size: clamp(28px, 3.4vw, 44px);">Six gestes, six pièces.</h3>
-        </div>
-        <a href="lookbook.html" class="lien-fin">Voir le lookbook</a>
-      </div>
+  <!-- ===== JOURNAL ===== -->
+  <section class="journal-bloc">
+    <div class="journal-bloc__texte">
+      <div class="journal-bloc__cat">Le Journal</div>
+      <h2 class="journal-bloc__titre">Rituels du<br>mouvement</h2>
+      <a href="journal.html" class="journal-bloc__lien">Lire →</a>
     </div>
-
-    <div class="carrousel" style="padding: 0 36px 30px;">
-      <div>
-        <img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=800&auto=format&fit=crop" alt="Look 01" style="aspect-ratio: 3/4; object-fit: cover; width: 100%;">
-        <div class="piece__meta" style="padding-top: 12px;"><span>Printemps 26 · 01/06</span><span>SVB · 26 · CREAM · 04</span></div>
-      </div>
-      <div>
-        <img src="https://images.unsplash.com/photo-1601925268193-12c4dc9aa31f?w=800&auto=format&fit=crop" alt="Look 02" style="aspect-ratio: 3/4; object-fit: cover; width: 100%;">
-        <div class="piece__meta" style="padding-top: 12px;"><span>Printemps 26 · 02/06</span><span>SVB · 26 · SAGE · 02</span></div>
-      </div>
-      <div>
-        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&auto=format&fit=crop" alt="Look 03" style="aspect-ratio: 3/4; object-fit: cover; width: 100%;">
-        <div class="piece__meta" style="padding-top: 12px;"><span>Printemps 26 · 03/06</span><span>SVB · 26 · INK · 07</span></div>
-      </div>
-      <div>
-        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&auto=format&fit=crop" alt="Look 04" style="aspect-ratio: 3/4; object-fit: cover; width: 100%;">
-        <div class="piece__meta" style="padding-top: 12px;"><span>Printemps 26 · 04/06</span><span>SVB · 26 · CREAM · 11</span></div>
-      </div>
-      <div>
-        <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&auto=format&fit=crop" alt="Look 05" style="aspect-ratio: 3/4; object-fit: cover; width: 100%;">
-        <div class="piece__meta" style="padding-top: 12px;"><span>Printemps 26 · 05/06</span><span>SVB · 26 · INDIGO · 09</span></div>
-      </div>
-      <div>
-        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&auto=format&fit=crop" alt="Look 06" style="aspect-ratio: 3/4; object-fit: cover; width: 100%;">
-        <div class="piece__meta" style="padding-top: 12px;"><span>Printemps 26 · 06/06</span><span>SVB · 26 · INK · 08</span></div>
-      </div>
+    <div class="journal-bloc__media">
+      <img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=2000&auto=format&fit=crop" alt="Rituels du mouvement">
     </div>
   </section>
 
-  <!-- ===== §9 SAVOIR-FAIRE TEASER ===== -->
-  <section class="chaux bloc">
-    <div class="container">
-      <div class="grille-2" style="align-items: center;">
-        <div>
-          <img src="https://images.unsplash.com/photo-1605812860427-4024433a70fd?w=1400&auto=format&fit=crop"
-               alt="Atelier SVB" style="aspect-ratio: 4/5; object-fit: cover; width: 100%;">
-        </div>
-        <div>
-          <span class="kicker">Savoir-faire</span>
-          <h3 class="titre-section" style="font-size: clamp(28px, 3.4vw, 46px);">
-            Tissé au Portugal.<br>Pensé à Paris.
-          </h3>
-          <p class="intro" style="margin-top: 28px;">
-            Nos tissus naissent dans une filature familiale du nord du Portugal,
-            travaillée depuis quatre générations. Le coton bio est filé long,
-            le polyamide recyclé tient le geste. Chaque chaîne reçoit son code.
-          </p>
-          <div class="fiche">
-            <dt>Filature</dt><dd>Famalicão · Portugal</dd>
-            <dt>Confection</dt><dd>Barcelos · Italie · Paris</dd>
-            <dt>Première coupe</dt><dd>Mars 2024</dd>
-            <dt>Engagement</dt><dd>Atelier 5 ans minimum</dd>
-          </div>
-          <a href="savoir-faire.html" class="bouton" style="margin-top: 40px;">Voir le savoir-faire</a>
-        </div>
-      </div>
+  <!-- ===== INSTAGRAM ===== -->
+  <section class="instagram">
+    <div class="instagram__texte">
+      <div class="instagram__h">Rejoignez le mouvement</div>
+      <div class="instagram__handle">@svb.apparel</div>
+      <div class="instagram__tagline">Inspirer. Bouger. Relier.</div>
+      <div class="instagram__tag">#bougersublimement</div>
     </div>
-  </section>
-
-  <!-- ===== §10 JOURNAL TEASER ===== -->
-  <section class="bloc">
-    <div class="container">
-      <span class="kicker">Journal · Mai</span>
-      <h3 class="titre-section" style="font-size: clamp(28px, 3.4vw, 44px); margin-bottom: 50px;">Trois lectures.</h3>
-
-      <div class="grille-3">
-        <a href="article.html" class="piece">
-          <div class="piece__media" style="aspect-ratio: 4/5;">
-            <img class="base" src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&auto=format&fit=crop" alt="Article 1">
-          </div>
-          <div class="piece__info">
-            <span class="piece__cat">Conversation · 8 min</span>
-            <span class="piece__nom">La respiration comme architecture</span>
-          </div>
-        </a>
-        <a href="article.html" class="piece">
-          <div class="piece__media" style="aspect-ratio: 4/5;">
-            <img class="base" src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=800&auto=format&fit=crop" alt="Article 2">
-          </div>
-          <div class="piece__info">
-            <span class="piece__cat">Atelier · 5 min</span>
-            <span class="piece__nom">Comment naît un tissu</span>
-          </div>
-        </a>
-        <a href="article.html" class="piece">
-          <div class="piece__media" style="aspect-ratio: 4/5;">
-            <img class="base" src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=800&auto=format&fit=crop" alt="Article 3">
-          </div>
-          <div class="piece__info">
-            <span class="piece__cat">Maison · 12 min</span>
-            <span class="piece__nom">Le modernisme caribéen, et nous</span>
-          </div>
-        </a>
-      </div>
+    <div class="instagram__grille">
+      <a href="#"><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&auto=format&fit=crop" alt="Instagram 1"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=400&auto=format&fit=crop" alt="Instagram 2"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1591291621164-2c6367723315?w=400&auto=format&fit=crop" alt="Instagram 3"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&auto=format&fit=crop" alt="Instagram 4"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&auto=format&fit=crop" alt="Instagram 5"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=400&auto=format&fit=crop" alt="Instagram 6"></a>
     </div>
   </section>
 
   <!-- ===== FOOTER ===== -->
   <footer class="maison-footer">
-    <div class="maison-footer__grid">
+    <div class="maison-footer__top">
       <div>
-        <div class="maison-footer__monogram">SVB</div>
+        <div class="maison-footer__logo">
+          <div class="svb">SVB</div>
+          <div class="apparel">APPAREL</div>
+        </div>
         <p class="maison-footer__manifeste">
-          Une maison de vêtements de pratique. Pilates, yoga, training.
-          Conçue à Paris, tissée au Portugal.
+          Des essentiels pensés pour le mouvement moderne. Conçus à Paris, tissés au Portugal.
         </p>
-      </div>
-      <div>
-        <h4>Maison</h4>
-        <ul>
-          <li><a href="maison.html">Notre maison</a></li>
-          <li><a href="savoir-faire.html">Savoir-faire</a></li>
-          <li><a href="matieres.html">Nos matières</a></li>
-          <li><a href="archives.html">Archives</a></li>
-          <li><a href="agenda.html">Agenda</a></li>
-        </ul>
       </div>
       <div>
         <h4>Boutique</h4>
         <ul>
-          <li><a href="boutique.html">Toutes les pièces</a></li>
-          <li><a href="edit.html">L'Edit du mois</a></li>
-          <li><a href="lookbook.html">Lookbook</a></li>
-          <li><a href="campagne.html">Campagne</a></li>
+          <li><a href="boutique.html?cat=femme">Femme</a></li>
+          <li><a href="boutique.html?cat=homme">Homme</a></li>
+          <li><a href="boutique.html?cat=nouveautes">Nouveautés</a></li>
+          <li><a href="boutique.html">Pièces phares</a></li>
+          <li><a href="lookbook.html">Collections</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Maison</h4>
+        <ul>
+          <li><a href="maison.html">Notre histoire</a></li>
+          <li><a href="savoir-faire.html">Engagement</a></li>
+          <li><a href="contact.html">Carrières</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Aide</h4>
+        <ul>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="livraison.html">Livraison</a></li>
+          <li><a href="livraison.html">Retours</a></li>
           <li><a href="tailles.html">Guide des tailles</a></li>
         </ul>
       </div>
       <div>
-        <h4>Service</h4>
-        <ul>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="livraison.html">Livraison & retours</a></li>
-          <li><a href="faq.html">Questions fréquentes</a></li>
-          <li><a href="compte.html">Mon compte</a></li>
-          <li><a href="legal.html">Mentions légales</a></li>
-        </ul>
-      </div>
-      <div class="maison-footer__newsletter">
-        <h4>Lettre de maison</h4>
-        <p style="font-family: 'GT Sectra', Georgia, serif; font-style: italic; font-size: 12px; opacity: 0.7; margin-bottom: 14px;">
-          Un envoi par chapitre. Jamais davantage.
-        </p>
-        <form action="newsletter.html" method="get">
-          <input type="email" placeholder="votre@email.com">
-          <button type="submit">S'inscrire →</button>
+        <h4>Rester en contact</h4>
+        <form action="newsletter.html" method="get" class="maison-footer__news">
+          <input type="email" placeholder="Votre adresse email">
+          <button type="submit" aria-label="S'inscrire">→</button>
         </form>
+        <div class="maison-footer__socials">
+          <a href="#" class="social-ig" aria-label="Instagram"></a>
+          <a href="#" class="social-pin" aria-label="Pinterest"></a>
+          <a href="#" class="social-tt" aria-label="TikTok"></a>
+          <a href="#" class="social-yt" aria-label="YouTube"></a>
+        </div>
       </div>
     </div>
     <div class="maison-footer__bas">
-      <span>© SVB Apparel · 2026 · Conçue à Paris</span>
-      <span>Tissé au Portugal · Confectionné en Europe</span>
+      <span>© SVB Apparel · 2026</span>
+      <span>Conçue à Paris · Tissée au Portugal</span>
     </div>
   </footer>
 
