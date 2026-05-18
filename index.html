@@ -7,7 +7,7 @@
   <meta name="description" content="SVB Apparel — Des essentiels pensés pour le mouvement moderne. Pilates, Yoga, Training.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,262 +18,249 @@
   </div>
 
   <!-- Header -->
-  <header class="maison-header">
-    <div class="maison-header__inner">
-      <nav class="maison-header__nav">
+  <header class="entete">
+    <div class="entete__inner">
+      <nav class="entete__nav">
         <a href="boutique.html?cat=femme">Femme</a>
         <a href="boutique.html?cat=homme">Homme</a>
         <a href="boutique.html?cat=nouveautes">Nouveautés</a>
         <a href="lookbook.html">Collections</a>
         <a href="journal.html">Journal</a>
-        <a href="maison.html">Maison</a>
+        <a href="maison.html">À propos</a>
       </nav>
-      <a href="index.html" class="maison-header__logo">
-        <span class="svb">SVB</span>
-        <span class="apparel">APPAREL</span>
+      <a href="index.html" class="logo">
+        <span class="logo__svb">SVB</span>
+        <span class="logo__apparel">APPAREL</span>
       </a>
-      <div class="maison-header__icons">
-        <a href="recherche.html"><span class="icone icone-loupe"></span>Recherche</a>
-        <a href="compte.html" aria-label="Compte"><span class="icone icone-user"></span></a>
-        <a href="wishlist.html" aria-label="Wishlist"><span class="icone icone-coeur"></span></a>
-        <a href="panier.html"><span class="icone icone-sac"></span>Panier (0)</a>
+      <div class="entete__icones">
+        <a href="recherche.html"><span class="ic ic-loupe"></span>Recherche</a>
+        <a href="compte.html" aria-label="Compte"><span class="ic ic-user"></span></a>
+        <a href="wishlist.html" aria-label="Favoris"><span class="ic ic-coeur"></span></a>
+        <a href="panier.html"><span class="ic ic-sac"></span>Panier (0)</a>
       </div>
     </div>
   </header>
 
   <!-- ===== HERO ===== -->
-  <section class="hero-accueil">
-    <div class="hero-accueil__media">
-      <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=2400&auto=format&fit=crop" alt="Pilates au coucher du soleil">
-    </div>
-    <div class="hero-accueil__overlay"></div>
-    <div class="hero-accueil__contenu">
-      <h1 class="hero-accueil__titre">
+  <section class="hero">
+    <img class="hero__img" src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=2400&auto=format&fit=crop" alt="Pilates au coucher du soleil">
+    <div class="hero__voile"></div>
+    <div class="hero__contenu">
+      <h1 class="hero__titre">
         Bouger
-        <em>Sublimement.</em>
+        <span class="hero__titre--it">Sublimement.</span>
       </h1>
-      <p class="hero-accueil__sous">
+      <p class="hero__sous">
         Des essentiels pensés pour<br>le mouvement moderne.
       </p>
-      <div class="hero-accueil__ctas">
-        <a href="boutique.html?cat=femme" class="btn-pleine">Boutique femme</a>
-        <a href="boutique.html?cat=homme" class="btn-vide">Boutique homme</a>
+      <div class="hero__ctas">
+        <a href="boutique.html?cat=femme" class="btn btn--creme">Boutique femme</a>
+        <a href="boutique.html?cat=homme" class="btn btn--noir">Boutique homme</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== PIÈCES PHARES ===== -->
-  <section class="section-phares">
-    <div class="section-phares__tete">
-      <span class="section-phares__titre">Pièces phares</span>
-      <a href="boutique.html" class="section-phares__lien">Tout voir</a>
+  <!-- ===== BEST SELLERS ===== -->
+  <section class="phares">
+    <div class="section-tete">
+      <span class="section-tete__titre">Pièces phares</span>
+      <a href="boutique.html" class="section-tete__lien">Tout voir →</a>
     </div>
 
-    <div class="section-phares__grille">
+    <div class="phares__grille">
 
-      <a href="produit.html" class="carte-piece">
-        <div class="carte-piece__image">
-          <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=900&auto=format&fit=crop" alt="Brassière Iris">
+      <a href="produit.html" class="produit">
+        <div class="produit__img">
+          <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=900&auto=format&fit=crop" alt="Brassière Iris sans couture">
         </div>
-        <div class="carte-piece__couleurs">
-          <span class="puce pastille-ivoire"></span>
-          <span class="puce pastille-sauge"></span>
-          <span class="puce pastille-noir"></span>
+        <div class="produit__couleurs">
+          <span class="dot-ivoire"></span>
+          <span class="dot-sauge"></span>
+          <span class="dot-noir"></span>
         </div>
-        <div class="carte-piece__nom">Brassière Iris sans couture</div>
-        <div class="carte-piece__couleur">Ivoire</div>
-        <div class="carte-piece__prix">68 €</div>
-        <div class="carte-piece__etoiles"><span class="etoiles">★★★★★</span><span>(128)</span></div>
+        <div class="produit__nom">Brassière Iris sans couture</div>
+        <div class="produit__coul">Ivoire</div>
+        <div class="produit__prix">68 €</div>
+        <div class="produit__etoiles"><span class="e">★★★★★</span><span>(128)</span></div>
       </a>
 
-      <a href="produit.html" class="carte-piece">
-        <div class="carte-piece__image">
-          <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=900&auto=format&fit=crop" alt="Legging Adèle">
+      <a href="produit.html" class="produit">
+        <div class="produit__img">
+          <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=900&auto=format&fit=crop" alt="Legging Adèle sculptant">
         </div>
-        <div class="carte-piece__couleurs">
-          <span class="puce pastille-sauge"></span>
-          <span class="puce pastille-noir"></span>
-          <span class="puce pastille-espresso"></span>
+        <div class="produit__couleurs">
+          <span class="dot-sauge"></span>
+          <span class="dot-noir"></span>
+          <span class="dot-espresso"></span>
         </div>
-        <div class="carte-piece__nom">Legging Adèle sculptant</div>
-        <div class="carte-piece__couleur">Sauge</div>
-        <div class="carte-piece__prix">98 €</div>
-        <div class="carte-piece__etoiles"><span class="etoiles">★★★★★</span><span>(249)</span></div>
+        <div class="produit__nom">Legging Adèle sculptant</div>
+        <div class="produit__coul">Sauge</div>
+        <div class="produit__prix">98 €</div>
+        <div class="produit__etoiles"><span class="e">★★★★★</span><span>(249)</span></div>
       </a>
 
-      <a href="produit.html" class="carte-piece">
-        <div class="carte-piece__image">
+      <a href="produit.html" class="produit">
+        <div class="produit__img">
           <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=900&auto=format&fit=crop" alt="T-shirt Mahé performance">
         </div>
-        <div class="carte-piece__couleurs">
-          <span class="puce pastille-noir"></span>
-          <span class="puce pastille-ivoire"></span>
-          <span class="puce pastille-sauge"></span>
+        <div class="produit__couleurs">
+          <span class="dot-noir"></span>
+          <span class="dot-ivoire"></span>
+          <span class="dot-sauge"></span>
         </div>
-        <div class="carte-piece__nom">T-shirt Mahé performance</div>
-        <div class="carte-piece__couleur">Encre</div>
-        <div class="carte-piece__prix">58 €</div>
-        <div class="carte-piece__etoiles"><span class="etoiles">★★★★★</span><span>(86)</span></div>
+        <div class="produit__nom">T-shirt Mahé performance</div>
+        <div class="produit__coul">Encre</div>
+        <div class="produit__prix">58 €</div>
+        <div class="produit__etoiles"><span class="e">★★★★★</span><span>(86)</span></div>
       </a>
 
-      <a href="produit.html" class="carte-piece">
-        <div class="carte-piece__image">
+      <a href="produit.html" class="produit">
+        <div class="produit__img">
           <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=900&auto=format&fit=crop" alt="Brassière Cassia dos croisé">
         </div>
-        <div class="carte-piece__couleurs">
-          <span class="puce pastille-espresso"></span>
-          <span class="puce pastille-noir"></span>
-          <span class="puce pastille-ivoire"></span>
+        <div class="produit__couleurs">
+          <span class="dot-espresso"></span>
+          <span class="dot-noir"></span>
+          <span class="dot-ivoire"></span>
         </div>
-        <div class="carte-piece__nom">Brassière Cassia dos croisé</div>
-        <div class="carte-piece__couleur">Espresso</div>
-        <div class="carte-piece__prix">64 €</div>
-        <div class="carte-piece__etoiles"><span class="etoiles">★★★★★</span><span>(193)</span></div>
+        <div class="produit__nom">Brassière Cassia dos croisé</div>
+        <div class="produit__coul">Espresso</div>
+        <div class="produit__prix">64 €</div>
+        <div class="produit__etoiles"><span class="e">★★★★★</span><span>(193)</span></div>
       </a>
 
-      <a href="produit.html" class="carte-piece">
-        <div class="carte-piece__image">
+      <a href="produit.html" class="produit">
+        <div class="produit__img">
           <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=900&auto=format&fit=crop" alt="Sweat Sereine signature">
         </div>
-        <div class="carte-piece__couleurs">
-          <span class="puce pastille-sauge"></span>
-          <span class="puce pastille-ivoire"></span>
-          <span class="puce pastille-noir"></span>
+        <div class="produit__couleurs">
+          <span class="dot-sauge"></span>
+          <span class="dot-ivoire"></span>
+          <span class="dot-noir"></span>
         </div>
-        <div class="carte-piece__nom">Sweat Sereine signature</div>
-        <div class="carte-piece__couleur">Sauge</div>
-        <div class="carte-piece__prix">108 €</div>
-        <div class="carte-piece__etoiles"><span class="etoiles">★★★★★</span><span>(76)</span></div>
+        <div class="produit__nom">Sweat Sereine signature</div>
+        <div class="produit__coul">Sauge</div>
+        <div class="produit__prix">108 €</div>
+        <div class="produit__etoiles"><span class="e">★★★★★</span><span>(76)</span></div>
       </a>
 
     </div>
   </section>
 
-  <!-- ===== BANDES CATÉGORIES ===== -->
-  <section class="bandes-categories">
-
-    <a href="boutique.html?pratique=pilates" class="bande-cat">
+  <!-- ===== CATÉGORIES ===== -->
+  <section class="categs">
+    <a href="boutique.html?pratique=pilates" class="categ">
       <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&auto=format&fit=crop" alt="Pilates">
-      <div class="bande-cat__voile"></div>
-      <div class="bande-cat__contenu">
-        <div class="bande-cat__titre">Pilates</div>
-        <span class="bande-cat__lien">Découvrir</span>
+      <div class="categ__voile"></div>
+      <div class="categ__txt">
+        <div class="categ__titre">Pilates</div>
+        <span class="categ__lien">Découvrir</span>
       </div>
     </a>
-
-    <a href="boutique.html?pratique=training" class="bande-cat">
+    <a href="boutique.html?pratique=training" class="categ">
       <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&auto=format&fit=crop" alt="Training">
-      <div class="bande-cat__voile"></div>
-      <div class="bande-cat__contenu">
-        <div class="bande-cat__titre">Training</div>
-        <span class="bande-cat__lien">Découvrir</span>
+      <div class="categ__voile"></div>
+      <div class="categ__txt">
+        <div class="categ__titre">Training</div>
+        <span class="categ__lien">Découvrir</span>
       </div>
     </a>
-
-    <a href="boutique.html?pratique=yoga" class="bande-cat">
+    <a href="boutique.html?pratique=yoga" class="categ">
       <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=900&auto=format&fit=crop" alt="Yoga">
-      <div class="bande-cat__voile"></div>
-      <div class="bande-cat__contenu">
-        <div class="bande-cat__titre">Yoga</div>
-        <span class="bande-cat__lien">Découvrir</span>
+      <div class="categ__voile"></div>
+      <div class="categ__txt">
+        <div class="categ__titre">Yoga</div>
+        <span class="categ__lien">Découvrir</span>
       </div>
     </a>
-
-    <a href="boutique.html?pratique=repos" class="bande-cat">
+    <a href="boutique.html?pratique=repos" class="categ">
       <img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=900&auto=format&fit=crop" alt="Repos">
-      <div class="bande-cat__voile"></div>
-      <div class="bande-cat__contenu">
-        <div class="bande-cat__titre">Repos</div>
-        <span class="bande-cat__lien">Découvrir</span>
+      <div class="categ__voile"></div>
+      <div class="categ__txt">
+        <div class="categ__titre">Repos</div>
+        <span class="categ__lien">Découvrir</span>
       </div>
     </a>
-
-    <a href="boutique.html?pratique=villegiature" class="bande-cat">
+    <a href="boutique.html?pratique=villegiature" class="categ">
       <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=900&auto=format&fit=crop" alt="Villégiature">
-      <div class="bande-cat__voile"></div>
-      <div class="bande-cat__contenu">
-        <div class="bande-cat__titre">Villégiature</div>
-        <span class="bande-cat__lien">Découvrir</span>
+      <div class="categ__voile"></div>
+      <div class="categ__txt">
+        <div class="categ__titre">Villégiature</div>
+        <span class="categ__lien">Découvrir</span>
       </div>
     </a>
-
   </section>
 
   <!-- ===== PILIERS ===== -->
   <section class="piliers">
     <div class="piliers__grille">
       <div class="pilier">
-        <div class="pilier__icone pilier-fibre"></div>
+        <div class="pilier__ic ic-tissu"></div>
         <div>
           <div class="pilier__titre">Matières techniques</div>
-          <p class="pilier__texte">L'innovation textile au service du confort.</p>
+          <p class="pilier__texte">L'innovation textile au service du confort ultime.</p>
         </div>
       </div>
       <div class="pilier">
-        <div class="pilier__icone pilier-corps"></div>
+        <div class="pilier__ic ic-corps"></div>
         <div>
           <div class="pilier__titre">Coupe sculptante</div>
-          <p class="pilier__texte">Pensée pour épouser et soutenir chaque geste.</p>
+          <p class="pilier__texte">Pensée pour épouser le mouvement et soutenir le geste.</p>
         </div>
       </div>
       <div class="pilier">
-        <div class="pilier__icone pilier-cercle"></div>
+        <div class="pilier__ic ic-cercle"></div>
         <div>
           <div class="pilier__titre">Dessin intemporel</div>
           <p class="pilier__texte">Minimal, élevé, conçu pour durer.</p>
         </div>
       </div>
       <div class="pilier">
-        <div class="pilier__icone pilier-feuille"></div>
+        <div class="pilier__ic ic-feuille"></div>
         <div>
           <div class="pilier__titre">Fabrication responsable</div>
-          <p class="pilier__texte">Une production éthique pour demain.</p>
+          <p class="pilier__texte">Une production éthique pour un avenir meilleur.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===== JOURNAL ===== -->
-  <section class="journal-bloc">
-    <div class="journal-bloc__texte">
-      <div class="journal-bloc__cat">Le Journal</div>
-      <h2 class="journal-bloc__titre">Rituels du<br>mouvement</h2>
-      <a href="journal.html" class="journal-bloc__lien">Lire →</a>
+  <section class="journal">
+    <div class="journal__txt">
+      <div class="journal__cat">Le Journal</div>
+      <h2 class="journal__titre">Rituels du<br>mouvement</h2>
+      <a href="journal.html" class="journal__lien">Lire l'article →</a>
     </div>
-    <div class="journal-bloc__media">
+    <div class="journal__img">
       <img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=2000&auto=format&fit=crop" alt="Rituels du mouvement">
     </div>
   </section>
 
-  <!-- ===== INSTAGRAM ===== -->
+  <!-- ===== JOIN THE MOVEMENT ===== -->
   <section class="instagram">
-    <div class="instagram__texte">
-      <div class="instagram__h">Rejoignez le mouvement</div>
+    <div class="instagram__txt">
+      <div class="instagram__top">Rejoignez le mouvement</div>
       <div class="instagram__handle">@svb.apparel</div>
-      <div class="instagram__tagline">Inspirer. Bouger. Relier.</div>
+      <div class="instagram__line">Inspirer · Bouger · Relier</div>
       <div class="instagram__tag">#bougersublimement</div>
     </div>
     <div class="instagram__grille">
-      <a href="#"><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&auto=format&fit=crop" alt="Instagram 1"></a>
-      <a href="#"><img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=400&auto=format&fit=crop" alt="Instagram 2"></a>
-      <a href="#"><img src="https://images.unsplash.com/photo-1591291621164-2c6367723315?w=400&auto=format&fit=crop" alt="Instagram 3"></a>
-      <a href="#"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&auto=format&fit=crop" alt="Instagram 4"></a>
-      <a href="#"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&auto=format&fit=crop" alt="Instagram 5"></a>
-      <a href="#"><img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=400&auto=format&fit=crop" alt="Instagram 6"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=500&auto=format&fit=crop" alt="@svb.apparel"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=500&auto=format&fit=crop" alt="@svb.apparel"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1591291621164-2c6367723315?w=500&auto=format&fit=crop" alt="@svb.apparel"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=500&auto=format&fit=crop" alt="@svb.apparel"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&auto=format&fit=crop" alt="@svb.apparel"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=500&auto=format&fit=crop" alt="@svb.apparel"></a>
     </div>
   </section>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="maison-footer">
-    <div class="maison-footer__top">
-      <div>
-        <div class="maison-footer__logo">
-          <div class="svb">SVB</div>
-          <div class="apparel">APPAREL</div>
-        </div>
-        <p class="maison-footer__manifeste">
-          Des essentiels pensés pour le mouvement moderne. Conçus à Paris, tissés au Portugal.
-        </p>
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__logo">
+        <div class="svb">SVB</div>
+        <div class="apparel">APPAREL</div>
       </div>
       <div>
         <h4>Boutique</h4>
@@ -286,7 +273,7 @@
         </ul>
       </div>
       <div>
-        <h4>Maison</h4>
+        <h4>À propos</h4>
         <ul>
           <li><a href="maison.html">Notre histoire</a></li>
           <li><a href="savoir-faire.html">Engagement</a></li>
@@ -305,20 +292,20 @@
       </div>
       <div>
         <h4>Rester en contact</h4>
-        <form action="newsletter.html" method="get" class="maison-footer__news">
+        <form class="footer__newsletter" action="newsletter.html">
           <input type="email" placeholder="Votre adresse email">
           <button type="submit" aria-label="S'inscrire">→</button>
         </form>
-        <div class="maison-footer__socials">
-          <a href="#" class="social-ig" aria-label="Instagram"></a>
-          <a href="#" class="social-pin" aria-label="Pinterest"></a>
-          <a href="#" class="social-tt" aria-label="TikTok"></a>
-          <a href="#" class="social-yt" aria-label="YouTube"></a>
+        <div class="footer__socials">
+          <a href="#" class="so-ig" aria-label="Instagram"></a>
+          <a href="#" class="so-pin" aria-label="Pinterest"></a>
+          <a href="#" class="so-tt" aria-label="TikTok"></a>
+          <a href="#" class="so-yt" aria-label="YouTube"></a>
         </div>
       </div>
     </div>
-    <div class="maison-footer__bas">
-      <span>© SVB Apparel · 2026</span>
+    <div class="footer__bas">
+      <span>© 2026 SVB Apparel · Tous droits réservés</span>
       <span>Conçue à Paris · Tissée au Portugal</span>
     </div>
   </footer>
