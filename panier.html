@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panier · SVB Apparel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="entete">
+    <div class="entete__inner">
+      <div class="entete__gauche">
+        <a href="index.html" class="logo">svb</a>
+        <nav class="entete__nav">
+          <a href="boutique.html?cat=femme">Femme</a>
+          <a href="boutique.html?cat=homme">Homme</a>
+          <a href="boutique.html?cat=accessoires">Accessoires</a>
+          <a href="boutique.html?cat=chaussures">Chaussures</a>
+        </nav>
+      </div>
+      <div class="entete__droite">
+        <a href="recherche.html" aria-label="Recherche"><span class="ic ic-loupe"></span></a>
+        <a href="compte.html" class="entete__rewards"><span class="ic ic-rewards"></span><span>Se connecter</span></a>
+        <a href="wishlist.html" aria-label="Favoris"><span class="ic ic-coeur"></span></a>
+        <a href="panier.html" aria-label="Panier"><span class="ic ic-sac"></span></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="panier-tete">
+    <h1>Votre panier.</h1>
+    <p style="font-size: 13px; color: var(--gris-tx); margin-top: 14px;">3 pièces réservées 60 minutes le temps de votre commande.</p>
+  </div>
+
+  <section class="panier-mise-en-page">
+    <div>
+      <div class="ligne-panier">
+        <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=300&auto=format&fit=crop" alt="Iris">
+        <div>
+          <div class="ligne-panier__nom">Brassière Iris sans couture</div>
+          <div class="ligne-panier__var">Ivoire · Taille S</div>
+          <div class="ligne-panier__qty">
+            <button>−</button><span>1</span><button>+</button>
+          </div>
+        </div>
+        <div>
+          <div class="ligne-panier__prix">68 €</div>
+          <button style="font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gris-tx); margin-top: 10px;">Retirer</button>
+        </div>
+      </div>
+
+      <div class="ligne-panier">
+        <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=300&auto=format&fit=crop" alt="Adèle">
+        <div>
+          <div class="ligne-panier__nom">Legging Adèle sculptant</div>
+          <div class="ligne-panier__var">Sauge · Taille S</div>
+          <div class="ligne-panier__qty">
+            <button>−</button><span>1</span><button>+</button>
+          </div>
+        </div>
+        <div>
+          <div class="ligne-panier__prix">98 €</div>
+          <button style="font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gris-tx); margin-top: 10px;">Retirer</button>
+        </div>
+      </div>
+
+      <div class="ligne-panier">
+        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=300&auto=format&fit=crop" alt="Lou">
+        <div>
+          <div class="ligne-panier__nom">Veste Lou cropped</div>
+          <div class="ligne-panier__var">Crème · Taille M</div>
+          <div class="ligne-panier__qty">
+            <button>−</button><span>1</span><button>+</button>
+          </div>
+        </div>
+        <div>
+          <div class="ligne-panier__prix">168 €</div>
+          <button style="font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gris-tx); margin-top: 10px;">Retirer</button>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; padding: 30px 0; align-items: center;">
+        <a href="boutique.html" class="btn-link">← Continuer mes achats</a>
+        <span style="font-size: 12px; color: var(--gris-tx);">Code promo · Carte cadeau</span>
+      </div>
+    </div>
+
+    <aside class="recap">
+      <h3>Récapitulatif</h3>
+      <div class="recap__ligne"><span>Sous-total</span><span>334 €</span></div>
+      <div class="recap__ligne"><span>Livraison express</span><span>Offerte</span></div>
+      <div class="recap__ligne"><span>TVA (20% incluse)</span><span>55,67 €</span></div>
+      <div class="recap__total"><span>Total</span><span>334 €</span></div>
+
+      <a href="checkout.html" class="recap__cta">Passer commande</a>
+
+      <p style="font-size: 12px; color: var(--gris-tx); line-height: 1.6; margin-top: 20px;">
+        Paiement 3× ou 4× sans frais disponible dès 100 €.
+        Livraison express offerte. Retour libre sous 30 jours.
+      </p>
+
+      <div style="display: flex; gap: 8px; margin-top: 20px; font-size: 11px; color: var(--gris-tx); flex-wrap: wrap;">
+        <span>Visa</span><span>·</span><span>Mastercard</span><span>·</span><span>Amex</span><span>·</span><span>PayPal</span><span>·</span><span>Apple Pay</span>
+      </div>
+    </aside>
+  </section>
+
+  <section style="padding: 60px 28px; background: var(--creme);">
+    <h2 class="bloc-titre" style="text-align: center;">Souvent ajouté avec ces pièces.</h2>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1240px; margin: 30px auto 0;">
+      <a href="produit.html" class="tendance">
+        <div class="tendance__img"><img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=700&auto=format&fit=crop" alt="Cassia"></div>
+        <div class="touche__nom" style="text-align: center;">Brassière Cassia</div>
+        <div class="touche__prix" style="text-align: center;">64 €</div>
+      </a>
+      <a href="produit.html" class="tendance">
+        <div class="tendance__img"><img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=700&auto=format&fit=crop" alt="Mahé"></div>
+        <div class="touche__nom" style="text-align: center;">Short Mahé</div>
+        <div class="touche__prix" style="text-align: center;">78 €</div>
+      </a>
+      <a href="produit.html" class="tendance">
+        <div class="tendance__img"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700&auto=format&fit=crop" alt="Sneaker"></div>
+        <div class="touche__nom" style="text-align: center;">Sneaker Recovery</div>
+        <div class="touche__prix" style="text-align: center;">180 €</div>
+      </a>
+      <a href="produit.html" class="tendance">
+        <div class="tendance__img"><img src="https://images.unsplash.com/photo-1521369909029-2afed882baee?w=700&auto=format&fit=crop" alt="Casquette"></div>
+        <div class="touche__nom" style="text-align: center;">Casquette Off-Duty</div>
+        <div class="touche__prix" style="text-align: center;">58 €</div>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__newsletter"><h3>Inscrivez-vous à la lettre SVB</h3><p>Recevez nos lancements, événements et offres privées en avant-première.</p><form action="newsletter.html"><input type="email" placeholder="Votre adresse email"><button type="submit">S'inscrire</button></form></div>
+    <div class="footer__grille">
+      <div><h4>Acheter</h4><ul><li><a href="boutique.html?cat=femme">Femme</a></li><li><a href="boutique.html?cat=homme">Homme</a></li><li><a href="boutique.html?cat=accessoires">Accessoires</a></li><li><a href="boutique.html?cat=chaussures">Chaussures</a></li><li><a href="boutique.html?cat=nouveautes">Nouveautés</a></li></ul></div>
+      <div><h4>Service client</h4><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="livraison.html#retours">Retours</a></li><li><a href="tailles.html">Guide des tailles</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+      <div><h4>Maison</h4><ul><li><a href="maison.html">Notre histoire</a></li><li><a href="engagement.html">Engagement</a></li><li><a href="carrieres.html">Carrières</a></li><li><a href="boutiques.html">Boutiques</a></li><li><a href="presse.html">Presse</a></li></ul></div>
+      <div><h4>Compte</h4><ul><li><a href="compte.html">Mon compte</a></li><li><a href="commandes.html">Mes commandes</a></li><li><a href="wishlist.html">Ma wishlist</a></li><li><a href="compte.html">Le Club SVB</a></li></ul></div>
+      <div><h4>Suivez-nous</h4><ul><li><a href="#">@svb.apparel</a></li><li><a href="#">Inspirer · Bouger · Relier</a></li></ul><div class="footer__socials"><a href="#" class="so-ig" aria-label="Instagram"></a><a href="#" class="so-pin" aria-label="Pinterest"></a><a href="#" class="so-tt" aria-label="TikTok"></a><a href="#" class="so-yt" aria-label="YouTube"></a></div></div>
+    </div>
+    <div class="footer__bas"><span>© 2026 SVB Apparel · Tous droits réservés</span><span>FR · EUR</span></div>
+  </footer>
+
+</body>
+</html>
