@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panier · SVB Apparel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .panier-mise-en-page {
+      display: grid; grid-template-columns: 1.6fr 1fr; gap: 80px;
+      padding: 60px 36px 110px; align-items: start;
+    }
+    .panier-tete { margin-bottom: 40px; }
+    .panier-tete h1 {
+      font-family: 'GT Sectra', Georgia, serif; font-style: italic;
+      font-size: clamp(40px, 5vw, 64px); line-height: 1;
+    }
+    .panier-tete p {
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      opacity: 0.6; margin-top: 14px;
+    }
+
+    .ligne-panier {
+      display: grid; grid-template-columns: 120px 1fr auto; gap: 24px;
+      padding: 30px 0; border-bottom: 1px solid rgba(31,31,26,0.12);
+      align-items: start;
+    }
+    .ligne-panier img { width: 120px; aspect-ratio: 3/4; object-fit: cover; background: var(--chaux); }
+    .ligne-panier__detail { display: flex; flex-direction: column; gap: 6px; }
+    .ligne-panier__cat { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.6; }
+    .ligne-panier__nom {
+      font-family: 'GT Sectra', Georgia, serif; font-style: italic; font-size: 22px;
+    }
+    .ligne-panier__code { font-size: 10.5px; letter-spacing: 0.18em; opacity: 0.55; margin-top: 2px; }
+    .ligne-panier__var {
+      display: flex; gap: 14px; font-size: 11px; letter-spacing: 0.14em;
+      text-transform: uppercase; opacity: 0.75; margin-top: 10px;
+    }
+    .ligne-panier__var span { padding: 4px 10px; border: 1px solid rgba(31,31,26,0.2); }
+    .ligne-panier__actions {
+      display: flex; align-items: center; gap: 18px; margin-top: 14px;
+    }
+    .ligne-panier__qty {
+      display: flex; align-items: center; gap: 14px;
+      border: 1px solid rgba(31,31,26,0.25); padding: 6px 12px;
+    }
+    .ligne-panier__qty button { font-size: 16px; }
+    .ligne-panier__qty span { font-family: 'GT Sectra', Georgia, serif; font-style: italic; font-size: 16px; }
+    .ligne-panier__sup {
+      font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;
+      opacity: 0.55; cursor: pointer;
+    }
+    .ligne-panier__sup:hover { opacity: 1; color: var(--peche); }
+    .ligne-panier__prix {
+      font-family: 'GT Sectra', Georgia, serif; font-style: italic; font-size: 22px;
+      text-align: right;
+    }
+
+    .recap {
+      position: sticky; top: 110px;
+      border: 1px solid rgba(31,31,26,0.15);
+      padding: 36px;
+      background: var(--creme);
+    }
+    .recap h3 {
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      opacity: 0.7; margin-bottom: 24px;
+    }
+    .recap__ligne {
+      display: flex; justify-content: space-between;
+      padding: 10px 0; font-size: 13px;
+    }
+    .recap__ligne span:last-child { font-family: 'GT Sectra', Georgia, serif; font-style: italic; }
+    .recap__total {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding-top: 18px; margin-top: 18px;
+      border-top: 1px solid rgba(31,31,26,0.15);
+    }
+    .recap__total span:first-child { font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.65; }
+    .recap__total span:last-child {
+      font-family: 'GT Sectra', Georgia, serif; font-style: italic;
+      font-size: 32px;
+    }
+    .recap__cta {
+      display: block; width: 100%; padding: 20px;
+      background: var(--encre); color: var(--creme);
+      font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
+      margin-top: 24px; text-align: center;
+    }
+    .recap__cta:hover { background: transparent; color: var(--encre); border: 1px solid var(--encre); }
+    .recap__note {
+      font-family: 'GT Sectra', Georgia, serif; font-style: italic;
+      font-size: 12px; opacity: 0.65; margin-top: 18px; line-height: 1.55;
+    }
+
+    .panier-pictos {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+      margin-top: 30px;
+    }
+    .panier-pictos div { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.7; line-height: 1.5; }
+
+    @media (max-width: 980px) {
+      .panier-mise-en-page { grid-template-columns: 1fr; gap: 40px; padding: 40px 20px 60px; }
+      .recap { position: static; padding: 26px; }
+      .ligne-panier { grid-template-columns: 90px 1fr; }
+      .ligne-panier img { width: 90px; }
+      .ligne-panier__prix { grid-column: 1 / -1; text-align: left; padding-top: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="maison-header">
+    <div class="maison-header__inner">
+      <nav class="maison-header__nav">
+        <a href="boutique.html">Boutique</a>
+        <a href="lookbook.html">Lookbook</a>
+        <a href="campagne.html">Campagne</a>
+        <a href="journal.html">Journal</a>
+        <a href="maison.html">Maison</a>
+      </nav>
+      <a href="index.html" class="maison-header__monogram">SVB</a>
+      <div class="maison-header__icons">
+        <a href="recherche.html">Recherche</a>
+        <a href="compte.html">Compte</a>
+        <a href="panier.html" style="opacity: 1; font-weight: 400;">Panier · 3</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="panier-mise-en-page">
+    <div>
+      <div class="panier-tete">
+        <span class="kicker">Votre panier</span>
+        <h1>Trois pièces.</h1>
+        <p>Sous-total · 398 € · Réservées 60 minutes</p>
+      </div>
+
+      <article class="ligne-panier">
+        <a href="produit.html"><img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=400&auto=format&fit=crop" alt="Adèle"></a>
+        <div class="ligne-panier__detail">
+          <span class="ligne-panier__cat">Pilates · Mat</span>
+          <span class="ligne-panier__nom">Legging Adèle</span>
+          <span class="ligne-panier__code">SVB · 26 · SAGE · 01</span>
+          <div class="ligne-panier__var">
+            <span>Sauge</span><span>Taille S</span>
+          </div>
+          <div class="ligne-panier__actions">
+            <div class="ligne-panier__qty">
+              <button>−</button><span>1</span><button>+</button>
+            </div>
+            <span class="ligne-panier__sup">Retirer</span>
+          </div>
+        </div>
+        <div class="ligne-panier__prix">148 €</div>
+      </article>
+
+      <article class="ligne-panier">
+        <a href="produit.html"><img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=400&auto=format&fit=crop" alt="Iris"></a>
+        <div class="ligne-panier__detail">
+          <span class="ligne-panier__cat">Yoga · Doux</span>
+          <span class="ligne-panier__nom">Brassière Iris</span>
+          <span class="ligne-panier__code">SVB · 26 · CREAM · 04</span>
+          <div class="ligne-panier__var">
+            <span>Crème</span><span>Taille S</span>
+          </div>
+          <div class="ligne-panier__actions">
+            <div class="ligne-panier__qty">
+              <button>−</button><span>1</span><button>+</button>
+            </div>
+            <span class="ligne-panier__sup">Retirer</span>
+          </div>
+        </div>
+        <div class="ligne-panier__prix">92 €</div>
+      </article>
+
+      <article class="ligne-panier">
+        <a href="produit.html"><img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&auto=format&fit=crop" alt="Lou"></a>
+        <div class="ligne-panier__detail">
+          <span class="ligne-panier__cat">Studio · Transition</span>
+          <span class="ligne-panier__nom">Veste Lou</span>
+          <span class="ligne-panier__code">SVB · 26 · CREAM · 11</span>
+          <div class="ligne-panier__var">
+            <span>Crème</span><span>Taille M</span>
+          </div>
+          <div class="ligne-panier__actions">
+            <div class="ligne-panier__qty">
+              <button>−</button><span>1</span><button>+</button>
+            </div>
+            <span class="ligne-panier__sup">Retirer</span>
+          </div>
+        </div>
+        <div class="ligne-panier__prix">168 €</div>
+      </article>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 40px 0;">
+        <a href="boutique.html" class="lien-fin">← Continuer ses pièces</a>
+        <span style="font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.55;">Code promo · Carte cadeau</span>
+      </div>
+    </div>
+
+    <aside class="recap">
+      <h3>Récapitulatif</h3>
+      <div class="recap__ligne"><span>Sous-total</span><span>398 €</span></div>
+      <div class="recap__ligne"><span>Livraison express</span><span>Offerte</span></div>
+      <div class="recap__ligne"><span>TVA (incluse)</span><span>66,33 €</span></div>
+      <div class="recap__total"><span>Total</span><span>398 €</span></div>
+
+      <a href="checkout.html" class="recap__cta">Commander · 398 €</a>
+
+      <p class="recap__note">
+        « Vos pièces sont coupées sur commande dans notre atelier de Barcelos.
+        Comptez quatre à six jours ouvrés. »
+      </p>
+
+      <div class="panier-pictos">
+        <div>Livraison<br>offerte dès 120 €</div>
+        <div>Retour libre<br>30 jours</div>
+        <div>Paiement<br>3× sans frais</div>
+        <div>Service client<br>par message</div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="chaux bloc--court">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: end; margin-bottom: 40px;">
+        <div>
+          <span class="kicker">Souvent associé</span>
+          <h2 class="titre-section" style="font-size: clamp(24px, 3vw, 36px);">Pour compléter la rotation.</h2>
+        </div>
+      </div>
+      <div class="grille-4">
+        <a href="produit.html" class="piece">
+          <div class="piece__media" style="background: var(--sauge);"><img class="base" src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=600&auto=format&fit=crop" alt="Salin"></div>
+          <div class="piece__info"><span class="piece__cat">Pilates · Reformer</span><span class="piece__nom">Bralette Salin</span><div class="piece__meta"><span>SVB · 26 · SAGE · 06</span><span>84 €</span></div></div>
+        </a>
+        <a href="produit.html" class="piece">
+          <div class="piece__media" style="background: var(--indigo);"><img class="base" src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=600&auto=format&fit=crop" alt="Anjou"></div>
+          <div class="piece__info"><span class="piece__cat">Studio</span><span class="piece__nom">Pantalon Anjou</span><div class="piece__meta"><span>SVB · 26 · INDIGO · 09</span><span>178 €</span></div></div>
+        </a>
+        <a href="produit.html" class="piece">
+          <div class="piece__media" style="background: var(--encre);"><img class="base" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&auto=format&fit=crop" alt="Mahé"></div>
+          <div class="piece__info"><span class="piece__cat">Training</span><span class="piece__nom">Débardeur Mahé</span><div class="piece__meta"><span>SVB · 26 · INK · 07</span><span>82 €</span></div></div>
+        </a>
+        <a href="produit.html" class="piece">
+          <div class="piece__media" style="background: var(--creme);"><img class="base" src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600&auto=format&fit=crop" alt="Cassia"></div>
+          <div class="piece__info"><span class="piece__cat">Yoga · Vinyasa</span><span class="piece__nom">Brassière Cassia</span><div class="piece__meta"><span>SVB · 26 · CREAM · 04</span><span>96 €</span></div></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="maison-footer">
+    <div class="maison-footer__grid">
+      <div><div class="maison-footer__monogram">SVB</div><p class="maison-footer__manifeste">Une maison de vêtements de pratique. Pilates, yoga, training. Conçue à Paris, tissée au Portugal.</p></div>
+      <div><h4>Maison</h4><ul><li><a href="maison.html">Notre maison</a></li><li><a href="savoir-faire.html">Savoir-faire</a></li><li><a href="matieres.html">Nos matières</a></li><li><a href="archives.html">Archives</a></li><li><a href="agenda.html">Agenda</a></li></ul></div>
+      <div><h4>Boutique</h4><ul><li><a href="boutique.html">Toutes les pièces</a></li><li><a href="edit.html">L'Edit du mois</a></li><li><a href="lookbook.html">Lookbook</a></li><li><a href="campagne.html">Campagne</a></li><li><a href="tailles.html">Guide des tailles</a></li></ul></div>
+      <div><h4>Service</h4><ul><li><a href="contact.html">Contact</a></li><li><a href="livraison.html">Livraison & retours</a></li><li><a href="faq.html">Questions fréquentes</a></li><li><a href="compte.html">Mon compte</a></li><li><a href="legal.html">Mentions légales</a></li></ul></div>
+      <div class="maison-footer__newsletter"><h4>Lettre de maison</h4><p style="font-family: 'GT Sectra', Georgia, serif; font-style: italic; font-size: 12px; opacity: 0.7; margin-bottom: 14px;">Un envoi par chapitre. Jamais davantage.</p><form action="newsletter.html" method="get"><input type="email" placeholder="votre@email.com"><button type="submit">S'inscrire →</button></form></div>
+    </div>
+    <div class="maison-footer__bas"><span>© SVB Apparel · 2026 · Conçue à Paris</span><span>Tissé au Portugal · Confectionné en Europe</span></div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commande confirmée · SVB Apparel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .conf-hero {
+      padding: 100px 36px 80px;
+      text-align: center;
+      max-width: 720px; margin: 0 auto;
+    }
+    .conf-numero {
+      font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+      opacity: 0.65; margin-bottom: 30px;
+    }
+    .conf-titre {
+      font-family: 'GT Sectra', Georgia, serif; font-style: italic;
+      font-size: clamp(46px, 6.5vw, 92px); line-height: 1; letter-spacing: -0.015em;
+      margin-bottom: 40px;
+    }
+    .conf-sous {
+      font-family: 'GT Sectra', Georgia, serif; font-style: italic;
+      font-size: clamp(18px, 2.2vw, 24px); line-height: 1.55;
+      max-width: 540px; margin: 0 auto;
+    }
+    .conf-filet {
+      height: 1px; background: var(--peche); width: 64px;
+      margin: 50px auto 0; border: 0;
+    }
+
+    .conf-detail {
+      padding: 80px 36px;
+      background: var(--chaux);
+    }
+    .conf-detail__grille {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .conf-detail h2 {
+      font-size: 10.5px; letter-spacing: 0.24em; text-transform: uppercase;
+      opacity: 0.6; margin-bottom: 22px;
+    }
+    .conf-detail p {
+      font-family: 'GT Sectra', Georgia, serif; font-style: italic;
+      font-size: 16px; line-height: 1.6;
+    }
+    .conf-detail__num {
+      font-family: 'GT Sectra', Georgia, serif; font-style: italic;
+      font-size: 28px; margin-bottom: 10px;
+    }
+
+    .conf-pieces {
+      padding: 80px 36px;
+      max-width: 920px; margin: 0 auto;
+    }
+    .conf-pieces h2 {
+      font-family: 'GT Sectra', Georgia, serif; font-style: italic;
+      font-size: clamp(28px, 3.2vw, 40px); margin-bottom: 30px;
+    }
+    .ligne-conf {
+      display: grid; grid-template-columns: 90px 1fr auto; gap: 24px;
+      padding: 24px 0; border-bottom: 1px solid rgba(31,31,26,0.12);
+      align-items: center;
+    }
+    .ligne-conf img { width: 90px; aspect-ratio: 3/4; object-fit: cover; }
+    .ligne-conf__nom { font-family: 'GT Sectra', Georgia, serif; font-style: italic; font-size: 18px; }
+    .ligne-conf__sous { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.6; margin-top: 6px; }
+    .ligne-conf__prix { font-family: 'GT Sectra', Georgia, serif; font-style: italic; font-size: 18px; }
+
+    .conf-totaux {
+      max-width: 920px; margin: 30px auto 0; padding: 0 36px;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+    }
+    .conf-totaux > div {
+      display: flex; gap: 60px; font-size: 13px;
+    }
+    .conf-totaux > div span:last-child { font-family: 'GT Sectra', Georgia, serif; font-style: italic; min-width: 100px; text-align: right; }
+    .conf-totaux .total {
+      padding-top: 18px; margin-top: 14px;
+      border-top: 1px solid rgba(31,31,26,0.2);
+      width: 320px; justify-content: space-between;
+    }
+    .conf-totaux .total span:first-child { font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.7; }
+    .conf-totaux .total span:last-child { font-size: 28px; }
+
+    .conf-actions {
+      display: flex; gap: 18px; justify-content: center;
+      padding: 70px 36px 110px;
+    }
+
+    @media (max-width: 880px) {
+      .conf-hero { padding: 60px 20px 40px; }
+      .conf-detail { padding: 50px 20px; }
+      .conf-detail__grille { grid-template-columns: 1fr; gap: 30px; }
+      .conf-pieces { padding: 50px 20px; }
+      .conf-actions { flex-direction: column; padding: 40px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="maison-header">
+    <div class="maison-header__inner">
+      <nav class="maison-header__nav">
+        <a href="boutique.html">Boutique</a>
+        <a href="lookbook.html">Lookbook</a>
+        <a href="campagne.html">Campagne</a>
+        <a href="journal.html">Journal</a>
+        <a href="maison.html">Maison</a>
+      </nav>
+      <a href="index.html" class="maison-header__monogram">SVB</a>
+      <div class="maison-header__icons">
+        <a href="recherche.html">Recherche</a>
+        <a href="compte.html">Compte</a>
+        <a href="panier.html">Panier · 0</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="conf-hero">
+    <div class="conf-numero">Commande · SVB · 26 · 04812</div>
+    <h1 class="conf-titre">Merci.</h1>
+    <p class="conf-sous">
+      Vos pièces sont prises en main par notre atelier de Barcelos. Vous recevrez
+      un message lorsqu'elles seront en route — entre le 9 et le 13 mai.
+    </p>
+    <hr class="conf-filet">
+  </section>
+
+  <section class="conf-detail">
+    <div class="conf-detail__grille">
+      <div>
+        <h2>Livraison</h2>
+        <div class="conf-detail__num">Camille Renaud</div>
+        <p>
+          14 rue de la Verrerie · Apt 4<br>
+          75004 Paris · France<br>
+          +33 6 12 34 56 78
+        </p>
+      </div>
+      <div>
+        <h2>Méthode & paiement</h2>
+        <div class="conf-detail__num">Livraison express · offerte</div>
+        <p>
+          Colissimo signature · 2 jours ouvrés<br>
+          Visa · 4012 · solde réglé<br>
+          Facture envoyée à camille@maison.com
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="conf-pieces">
+    <h2>Vos trois pièces.</h2>
+
+    <div class="ligne-conf">
+      <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=300&auto=format&fit=crop" alt="Adèle">
+      <div>
+        <div class="ligne-conf__nom">Legging Adèle</div>
+        <div class="ligne-conf__sous">SVB · 26 · SAGE · 01 · Sauge · S</div>
+      </div>
+      <div class="ligne-conf__prix">148 €</div>
+    </div>
+
+    <div class="ligne-conf">
+      <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=300&auto=format&fit=crop" alt="Iris">
+      <div>
+        <div class="ligne-conf__nom">Brassière Iris</div>
+        <div class="ligne-conf__sous">SVB · 26 · CREAM · 04 · Crème · S</div>
+      </div>
+      <div class="ligne-conf__prix">92 €</div>
+    </div>
+
+    <div class="ligne-conf">
+      <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=300&auto=format&fit=crop" alt="Lou">
+      <div>
+        <div class="ligne-conf__nom">Veste Lou</div>
+        <div class="ligne-conf__sous">SVB · 26 · CREAM · 11 · Crème · M</div>
+      </div>
+      <div class="ligne-conf__prix">168 €</div>
+    </div>
+  </section>
+
+  <div class="conf-totaux">
+    <div><span>Sous-total</span><span>408 €</span></div>
+    <div><span>Livraison</span><span>Offerte</span></div>
+    <div><span>TVA incluse</span><span>68,00 €</span></div>
+    <div class="total"><span>Total réglé</span><span>408 €</span></div>
+  </div>
+
+  <div class="conf-actions">
+    <a href="commandes.html" class="bouton bouton--encre">Suivre ma commande</a>
+    <a href="boutique.html" class="bouton">Retour à la boutique</a>
+  </div>
+
+  <section class="chaux bloc--court">
+    <div class="container" style="text-align: center;">
+      <span class="kicker">Notre engagement</span>
+      <p class="intro" style="margin: 0 auto;">
+        « Chaque pièce reçue est passée par dix-sept mains entre la filature
+        et votre porte. Si quelque chose ne va pas, écrivez-nous. »
+      </p>
+      <a href="contact.html" class="lien-fin" style="margin-top: 30px; display: inline-block;">contact@svb-maison.com</a>
+    </div>
+  </section>
+
+  <footer class="maison-footer">
+    <div class="maison-footer__grid">
+      <div><div class="maison-footer__monogram">SVB</div><p class="maison-footer__manifeste">Une maison de vêtements de pratique. Pilates, yoga, training. Conçue à Paris, tissée au Portugal.</p></div>
+      <div><h4>Maison</h4><ul><li><a href="maison.html">Notre maison</a></li><li><a href="savoir-faire.html">Savoir-faire</a></li><li><a href="matieres.html">Nos matières</a></li><li><a href="archives.html">Archives</a></li><li><a href="agenda.html">Agenda</a></li></ul></div>
+      <div><h4>Boutique</h4><ul><li><a href="boutique.html">Toutes les pièces</a></li><li><a href="edit.html">L'Edit du mois</a></li><li><a href="lookbook.html">Lookbook</a></li><li><a href="campagne.html">Campagne</a></li><li><a href="tailles.html">Guide des tailles</a></li></ul></div>
+      <div><h4>Service</h4><ul><li><a href="contact.html">Contact</a></li><li><a href="livraison.html">Livraison & retours</a></li><li><a href="faq.html">Questions fréquentes</a></li><li><a href="compte.html">Mon compte</a></li><li><a href="legal.html">Mentions légales</a></li></ul></div>
+      <div class="maison-footer__newsletter"><h4>Lettre de maison</h4><p style="font-family: 'GT Sectra', Georgia, serif; font-style: italic; font-size: 12px; opacity: 0.7; margin-bottom: 14px;">Un envoi par chapitre. Jamais davantage.</p><form action="newsletter.html" method="get"><input type="email" placeholder="votre@email.com"><button type="submit">S'inscrire →</button></form></div>
+    </div>
+    <div class="maison-footer__bas"><span>© SVB Apparel · 2026 · Conçue à Paris</span><span>Tissé au Portugal · Confectionné en Europe</span></div>
+  </footer>
+
+</body>
+</html>
