@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commande · SVB Apparel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header style="display: flex; justify-content: space-between; align-items: center; padding: 22px 28px; border-bottom: 1px solid var(--gris-fin);">
+    <a href="index.html" class="logo">svb</a>
+    <span style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gris-tx);">Commande sécurisée · SSL</span>
+  </header>
+
+  <section class="panier-mise-en-page" style="padding-top: 50px;">
+    <div>
+      <div style="display: flex; gap: 40px; padding-bottom: 40px; margin-bottom: 50px; border-bottom: 1px solid var(--gris-fin);">
+        <div style="display: flex; gap: 14px; align-items: baseline;">
+          <span style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 28px;">01</span>
+          <span style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;">Livraison</span>
+        </div>
+        <div style="display: flex; gap: 14px; align-items: baseline; opacity: 0.4;">
+          <span style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 28px;">02</span>
+          <span style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;">Paiement</span>
+        </div>
+        <div style="display: flex; gap: 14px; align-items: baseline; opacity: 0.4;">
+          <span style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 28px;">03</span>
+          <span style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;">Confirmation</span>
+        </div>
+      </div>
+
+      <h2 class="bloc-titre">Contact.</h2>
+      <div class="champ pleine"><label>Adresse email</label><input type="email" placeholder="prenom@email.com"></div>
+
+      <h2 class="bloc-titre" style="margin-top: 40px;">Adresse de livraison.</h2>
+      <div class="form-grille">
+        <div class="champ"><label>Prénom</label><input type="text"></div>
+        <div class="champ"><label>Nom</label><input type="text"></div>
+        <div class="champ pleine"><label>Adresse</label><input type="text"></div>
+        <div class="champ pleine"><label>Complément</label><input type="text" placeholder="Appartement, étage, code"></div>
+        <div class="champ"><label>Code postal</label><input type="text"></div>
+        <div class="champ"><label>Ville</label><input type="text"></div>
+        <div class="champ pleine"><label>Pays</label><select><option>France</option><option>Belgique</option><option>Suisse</option><option>Luxembourg</option><option>Allemagne</option><option>Italie</option></select></div>
+        <div class="champ pleine"><label>Téléphone</label><input type="tel"></div>
+      </div>
+
+      <h2 class="bloc-titre" style="margin-top: 40px;">Mode de livraison.</h2>
+
+      <div style="border: 1px solid var(--texte); padding: 20px; margin-bottom: 12px; display: flex; gap: 18px; align-items: center;">
+        <div style="width: 18px; height: 18px; border: 1px solid var(--texte); border-radius: 50%; position: relative;"><div style="position: absolute; inset: 3px; background: var(--texte); border-radius: 50%;"></div></div>
+        <div style="flex: 1;">
+          <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 18px;">Express · 1 à 2 jours ouvrés</div>
+          <div style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris-tx); margin-top: 4px;">Colissimo signature</div>
+        </div>
+        <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 18px;">Offerte</div>
+      </div>
+
+      <div style="border: 1px solid var(--gris-fin); padding: 20px; margin-bottom: 12px; display: flex; gap: 18px; align-items: center;">
+        <div style="width: 18px; height: 18px; border: 1px solid var(--gris-fin); border-radius: 50%;"></div>
+        <div style="flex: 1;">
+          <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 18px;">Standard · 3 à 5 jours</div>
+          <div style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris-tx); margin-top: 4px;">Colissimo</div>
+        </div>
+        <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 18px;">4,90 €</div>
+      </div>
+
+      <div style="border: 1px solid var(--gris-fin); padding: 20px; margin-bottom: 30px; display: flex; gap: 18px; align-items: center;">
+        <div style="width: 18px; height: 18px; border: 1px solid var(--gris-fin); border-radius: 50%;"></div>
+        <div style="flex: 1;">
+          <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 18px;">Point relais</div>
+          <div style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris-tx); margin-top: 4px;">Mondial Relay</div>
+        </div>
+        <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 18px;">Offerte</div>
+      </div>
+
+      <a href="confirmation.html" class="recap__cta" style="display: inline-block; padding: 18px 40px; width: auto;">Continuer vers le paiement →</a>
+    </div>
+
+    <aside class="recap">
+      <h3>Récapitulatif</h3>
+
+      <div style="display: grid; grid-template-columns: 60px 1fr auto; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--gris-fin); align-items: center;">
+        <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=200&auto=format&fit=crop" alt="Iris" style="width: 60px; aspect-ratio: 3/4; object-fit: cover;">
+        <div>
+          <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 14px;">Brassière Iris</div>
+          <div style="font-size: 10.5px; color: var(--gris-tx); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px;">Ivoire · S</div>
+        </div>
+        <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;">68 €</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 60px 1fr auto; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--gris-fin); align-items: center;">
+        <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=200&auto=format&fit=crop" alt="Adèle" style="width: 60px; aspect-ratio: 3/4; object-fit: cover;">
+        <div>
+          <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 14px;">Legging Adèle</div>
+          <div style="font-size: 10.5px; color: var(--gris-tx); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px;">Sauge · S</div>
+        </div>
+        <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;">98 €</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 60px 1fr auto; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--gris-fin); align-items: center;">
+        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=200&auto=format&fit=crop" alt="Lou" style="width: 60px; aspect-ratio: 3/4; object-fit: cover;">
+        <div>
+          <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 14px;">Veste Lou</div>
+          <div style="font-size: 10.5px; color: var(--gris-tx); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px;">Crème · M</div>
+        </div>
+        <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;">168 €</div>
+      </div>
+
+      <div style="padding-top: 18px;">
+        <div class="recap__ligne"><span>Sous-total</span><span>334 €</span></div>
+        <div class="recap__ligne"><span>Livraison</span><span>Offerte</span></div>
+        <div class="recap__ligne"><span>TVA incluse</span><span>55,67 €</span></div>
+        <div class="recap__total"><span>Total</span><span>334 €</span></div>
+      </div>
+    </aside>
+  </section>
+
+</body>
+</html>

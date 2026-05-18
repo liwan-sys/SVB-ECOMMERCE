@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guide des tailles · SVB Apparel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="entete">
+    <div class="entete__inner">
+      <div class="entete__gauche">
+        <a href="index.html" class="logo">svb</a>
+        <nav class="entete__nav">
+          <a href="boutique.html?cat=femme">Femme</a>
+          <a href="boutique.html?cat=homme">Homme</a>
+          <a href="boutique.html?cat=accessoires">Accessoires</a>
+          <a href="boutique.html?cat=chaussures">Chaussures</a>
+        </nav>
+      </div>
+      <div class="entete__droite">
+        <a href="recherche.html" aria-label="Recherche"><span class="ic ic-loupe"></span></a>
+        <a href="compte.html" class="entete__rewards"><span class="ic ic-rewards"></span><span>Se connecter · Rejoindre le Club</span></a>
+        <a href="wishlist.html" aria-label="Favoris"><span class="ic ic-coeur"></span></a>
+        <a href="panier.html" aria-label="Panier"><span class="ic ic-sac"></span></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="fil-ariane"><a href="index.html">Accueil</a><span>/</span>Service client<span>/</span>Guide des tailles</div>
+
+  <section class="page-hero">
+    <div class="page-hero__kicker">Service client</div>
+    <h1 class="page-hero__titre">Guide des tailles.</h1>
+    <p class="page-hero__intro">Comment prendre vos mesures, comment lire nos tableaux, comment choisir entre deux tailles.</p>
+  </section>
+
+  <div class="tailles-onglets">
+    <button class="actif" data-tab="femme">Femme</button>
+    <button data-tab="homme">Homme</button>
+    <button data-tab="chaussures">Chaussures</button>
+    <button data-tab="mesures">Comment se mesurer</button>
+  </div>
+
+  <section class="tailles-tableau" id="tab-femme">
+    <h2 class="bloc-titre" style="text-align: center;">Tableau femme.</h2>
+    <table>
+      <thead>
+        <tr><th>Taille SVB</th><th>FR</th><th>UK</th><th>US</th><th>Poitrine (cm)</th><th>Taille (cm)</th><th>Hanches (cm)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>XS</td><td>34</td><td>6</td><td>2</td><td>82–86</td><td>62–66</td><td>88–92</td></tr>
+        <tr><td>S</td><td>36</td><td>8</td><td>4</td><td>86–90</td><td>66–70</td><td>92–96</td></tr>
+        <tr><td>M</td><td>38</td><td>10</td><td>6</td><td>90–94</td><td>70–74</td><td>96–100</td></tr>
+        <tr><td>L</td><td>40</td><td>12</td><td>8</td><td>94–98</td><td>74–78</td><td>100–104</td></tr>
+        <tr><td>XL</td><td>42</td><td>14</td><td>10</td><td>98–104</td><td>78–84</td><td>104–110</td></tr>
+        <tr><td>XXL</td><td>44</td><td>16</td><td>12</td><td>104–110</td><td>84–90</td><td>110–116</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="tailles-tableau" id="tab-homme" style="display: none;">
+    <h2 class="bloc-titre" style="text-align: center;">Tableau homme.</h2>
+    <table>
+      <thead>
+        <tr><th>Taille SVB</th><th>FR</th><th>UK / US</th><th>Poitrine (cm)</th><th>Taille (cm)</th><th>Hanches (cm)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>S</td><td>44</td><td>34</td><td>90–94</td><td>76–80</td><td>92–96</td></tr>
+        <tr><td>M</td><td>46</td><td>36</td><td>94–98</td><td>80–84</td><td>96–100</td></tr>
+        <tr><td>L</td><td>48</td><td>38</td><td>98–102</td><td>84–88</td><td>100–104</td></tr>
+        <tr><td>XL</td><td>50</td><td>40</td><td>102–108</td><td>88–94</td><td>104–110</td></tr>
+        <tr><td>XXL</td><td>52</td><td>42</td><td>108–114</td><td>94–100</td><td>110–116</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="tailles-tableau" id="tab-chaussures" style="display: none;">
+    <h2 class="bloc-titre" style="text-align: center;">Tableau chaussures.</h2>
+    <table>
+      <thead>
+        <tr><th>Pointure EU</th><th>UK</th><th>US Femme</th><th>US Homme</th><th>Longueur (cm)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>36</td><td>3.5</td><td>5.5</td><td>—</td><td>23.0</td></tr>
+        <tr><td>37</td><td>4.5</td><td>6.5</td><td>—</td><td>23.5</td></tr>
+        <tr><td>38</td><td>5</td><td>7</td><td>6</td><td>24.0</td></tr>
+        <tr><td>39</td><td>6</td><td>8</td><td>7</td><td>24.5</td></tr>
+        <tr><td>40</td><td>6.5</td><td>8.5</td><td>7.5</td><td>25.5</td></tr>
+        <tr><td>41</td><td>7.5</td><td>9.5</td><td>8.5</td><td>26.0</td></tr>
+        <tr><td>42</td><td>8</td><td>10</td><td>9</td><td>27.0</td></tr>
+        <tr><td>43</td><td>9</td><td>—</td><td>10</td><td>27.5</td></tr>
+        <tr><td>44</td><td>9.5</td><td>—</td><td>10.5</td><td>28.5</td></tr>
+        <tr><td>45</td><td>10.5</td><td>—</td><td>11.5</td><td>29.0</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="tailles-tableau" id="tab-mesures" style="display: none;">
+    <h2 class="bloc-titre" style="text-align: center;">Comment se mesurer.</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; padding-top: 30px;">
+      <div>
+        <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 28px; margin-bottom: 14px;">Poitrine</div>
+        <p style="font-size: 14px; color: var(--gris-tx); line-height: 1.7;">Mesurez à l'horizontale, sous les bras, à l'endroit le plus fort. Gardez le mètre souple, ne serrez pas.</p>
+      </div>
+      <div>
+        <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 28px; margin-bottom: 14px;">Taille</div>
+        <p style="font-size: 14px; color: var(--gris-tx); line-height: 1.7;">Mesurez la partie la plus étroite de votre torse, généralement deux ou trois doigts au-dessus du nombril.</p>
+      </div>
+      <div>
+        <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 28px; margin-bottom: 14px;">Hanches</div>
+        <p style="font-size: 14px; color: var(--gris-tx); line-height: 1.7;">Mesurez à l'endroit le plus fort des hanches, à l'horizontale, en gardant les pieds joints.</p>
+      </div>
+      <div>
+        <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 28px; margin-bottom: 14px;">Pieds</div>
+        <p style="font-size: 14px; color: var(--gris-tx); line-height: 1.7;">En fin de journée, posez le pied à plat sur une feuille blanche et tracez le contour. Mesurez du talon à l'orteil le plus long.</p>
+      </div>
+    </div>
+
+    <div class="note-info" style="margin-top: 50px;">
+      <strong>Entre deux tailles ?</strong> Pour les leggings et brassières, prenez la taille inférieure pour un maintien sculptant. Pour les sweats et vestes, prenez la taille supérieure pour une coupe plus ample.
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__newsletter"><h3>Inscrivez-vous à la lettre SVB</h3><p>Recevez nos lancements, événements et offres privées en avant-première.</p><form action="newsletter.html"><input type="email" placeholder="Votre adresse email"><button type="submit">S'inscrire</button></form></div>
+    <div class="footer__grille">
+      <div><h4>Acheter</h4><ul><li><a href="boutique.html?cat=femme">Femme</a></li><li><a href="boutique.html?cat=homme">Homme</a></li><li><a href="boutique.html?cat=accessoires">Accessoires</a></li><li><a href="boutique.html?cat=chaussures">Chaussures</a></li><li><a href="boutique.html?cat=nouveautes">Nouveautés</a></li></ul></div>
+      <div><h4>Service client</h4><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="livraison.html#retours">Retours</a></li><li><a href="tailles.html">Guide des tailles</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+      <div><h4>Maison</h4><ul><li><a href="maison.html">Notre histoire</a></li><li><a href="engagement.html">Engagement</a></li><li><a href="carrieres.html">Carrières</a></li><li><a href="boutiques.html">Boutiques</a></li><li><a href="presse.html">Presse</a></li></ul></div>
+      <div><h4>Compte</h4><ul><li><a href="compte.html">Mon compte</a></li><li><a href="commandes.html">Mes commandes</a></li><li><a href="wishlist.html">Ma wishlist</a></li><li><a href="compte.html">Le Club SVB</a></li></ul></div>
+      <div><h4>Suivez-nous</h4><ul><li><a href="#">@svb.apparel</a></li><li><a href="#">Inspirer · Bouger · Relier</a></li></ul><div class="footer__socials"><a href="#" class="so-ig" aria-label="Instagram"></a><a href="#" class="so-pin" aria-label="Pinterest"></a><a href="#" class="so-tt" aria-label="TikTok"></a><a href="#" class="so-yt" aria-label="YouTube"></a></div></div>
+    </div>
+    <div class="footer__bas"><span>© 2026 SVB Apparel · Tous droits réservés</span><span>FR · EUR</span></div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.tailles-onglets button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tailles-onglets button').forEach(b => b.classList.remove('actif'));
+        btn.classList.add('actif');
+        document.querySelectorAll('.tailles-tableau').forEach(t => t.style.display = 'none');
+        document.getElementById('tab-' + btn.dataset.tab).style.display = 'block';
+      });
+    });
+  </script>
+
+</body>
+</html>
