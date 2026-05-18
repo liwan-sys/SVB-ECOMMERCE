@@ -3,448 +3,416 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SVB</title>
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  
+  <title>SVB Apparel · Maison</title>
+  <meta name="description" content="SVB Apparel — Une maison de vêtements de pratique. Pilates, Yoga, Training. Conçue à Paris.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
-
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { 
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      -webkit-font-smoothing: antialiased;
-    }
-    
-    .product-img {
-      transition: opacity 0.3s ease;
-    }
-    .product-card:hover .product-img {
-      opacity: 0.8;
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
+<body>
 
-<body class="bg-white">
-
-  <!-- Header exactement comme Zara -->
-  <header class="sticky top-0 z-50 bg-white">
-    <!-- Top bar avec menu -->
-    <div class="border-b border-gray-200">
-      <div class="flex items-center justify-between px-4 py-4">
-        
-        <!-- Menu hamburger -->
-        <button class="lg:hidden">
-          <i data-lucide="menu" class="w-5 h-5"></i>
-        </button>
-
-        <!-- Logo -->
-        <a href="#" class="absolute left-1/2 -translate-x-1/2 lg:relative lg:left-0 lg:translate-x-0">
-          <h1 class="text-lg lg:text-xl tracking-[0.2em] font-light">SVB</h1>
-        </a>
-
-        <!-- Desktop nav -->
-        <nav class="hidden lg:flex space-x-6 absolute left-1/2 -translate-x-1/2">
-          <a href="#" class="text-[11px] uppercase tracking-wider hover:underline">Femme</a>
-          <a href="#" class="text-[11px] uppercase tracking-wider hover:underline">Homme</a>
-          <a href="#" class="text-[11px] uppercase tracking-wider hover:underline">Programme VIP</a>
-        </nav>
-
-        <!-- Right icons -->
-        <div class="flex items-center space-x-4">
-          <button class="hidden lg:block">
-            <i data-lucide="search" class="w-[18px] h-[18px]"></i>
-          </button>
-          <button>
-            <i data-lucide="user" class="w-[18px] h-[18px]"></i>
-          </button>
-          <button>
-            <i data-lucide="shopping-bag" class="w-[18px] h-[18px]"></i>
-          </button>
-        </div>
+  <!-- ===== HEADER ===== -->
+  <header class="maison-header">
+    <div class="maison-header__inner">
+      <nav class="maison-header__nav">
+        <a href="boutique.html">Boutique</a>
+        <a href="lookbook.html">Lookbook</a>
+        <a href="campagne.html">Campagne</a>
+        <a href="journal.html">Journal</a>
+        <a href="maison.html">Maison</a>
+      </nav>
+      <a href="index.html" class="maison-header__monogram">SVB</a>
+      <div class="maison-header__icons">
+        <a href="recherche.html" aria-label="Recherche">Recherche</a>
+        <a href="compte.html" aria-label="Compte">Compte</a>
+        <a href="panier.html" aria-label="Panier">Panier · 0</a>
       </div>
     </div>
   </header>
 
-  <!-- Hero full width -->
-  <section class="relative">
-    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=2400&auto=format&fit=crop" 
-         class="w-full h-[60vh] lg:h-[85vh] object-cover" 
-         alt="Hero">
-    
-    <div class="absolute bottom-8 left-4 lg:bottom-16 lg:left-12 text-white">
-      <p class="text-xs lg:text-sm uppercase tracking-wider mb-2">Nouvelle Collection</p>
-      <h2 class="text-4xl lg:text-6xl font-extralight mb-4">Performance</h2>
-      <button class="text-xs uppercase tracking-wider border-b border-white pb-1 hover:opacity-70 transition">
-        Voir
-      </button>
-    </div>
-  </section>
-
-  <!-- Barre info VIP -->
-  <div class="bg-black text-white text-center py-2">
-    <p class="text-[10px] lg:text-xs tracking-widest">MEMBRE VIP · -70% SUR TOUTE LA COLLECTION</p>
+  <!-- ===== §2 BANDEAU CHAPITRE ===== -->
+  <div class="chapitre-bar">
+    <span>Chapitre I · Printemps 26 · Disponible</span>
   </div>
 
-  <!-- Grid produits EXACTEMENT comme Zara -->
-  <section class="px-4 lg:px-6 py-8 lg:py-12">
-    
-    <!-- Titre simple -->
-    <div class="mb-6">
-      <h3 class="text-[10px] lg:text-xs uppercase tracking-wider text-gray-500">Nouveautés</h3>
+  <!-- ===== §1 HERO ===== -->
+  <section class="hero">
+    <div class="hero__media">
+      <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=2400&auto=format&fit=crop"
+           alt="Maison SVB — Chapitre I">
     </div>
-
-    <!-- Grid responsive : 2 cols mobile, 4 cols desktop -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-      
-      <!-- Produit 1 -->
-      <a href="#" class="product-card block">
-        <div class="relative mb-2">
-          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&auto=format&fit=crop" 
-               alt="Product"
-               class="product-img w-full aspect-[2/3] object-cover bg-gray-100">
-          
-          <!-- Badge prix VIP style Zara -->
-          <div class="absolute top-2 left-2 bg-white text-black px-2 py-1">
-            <span class="text-[9px] font-normal">VIP 24.90€</span>
-          </div>
-        </div>
-        
-        <div>
-          <p class="text-[11px] lg:text-xs mb-1">T-shirt performance pro</p>
-          <div class="text-[11px] lg:text-xs">
-            <span class="line-through text-gray-400 mr-2">89.90 EUR</span>
-            <span class="font-normal">24.90 EUR</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Produit 2 -->
-      <a href="#" class="product-card block">
-        <div class="relative mb-2">
-          <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=600&auto=format&fit=crop" 
-               alt="Product"
-               class="product-img w-full aspect-[2/3] object-cover bg-gray-100">
-          
-          <div class="absolute top-2 left-2 bg-white text-black px-2 py-1">
-            <span class="text-[9px] font-normal">VIP 19.90€</span>
-          </div>
-        </div>
-        
-        <div>
-          <p class="text-[11px] lg:text-xs mb-1">Short training elite</p>
-          <div class="text-[11px] lg:text-xs">
-            <span class="line-through text-gray-400 mr-2">79.90 EUR</span>
-            <span class="font-normal">19.90 EUR</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Produit 3 -->
-      <a href="#" class="product-card block">
-        <div class="relative mb-2">
-          <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=600&auto=format&fit=crop" 
-               alt="Product"
-               class="product-img w-full aspect-[2/3] object-cover bg-gray-100">
-          
-          <div class="absolute top-2 left-2 bg-white text-black px-2 py-1">
-            <span class="text-[9px] font-normal">VIP 29.90€</span>
-          </div>
-        </div>
-        
-        <div>
-          <p class="text-[11px] lg:text-xs mb-1">Legging premium</p>
-          <div class="text-[11px] lg:text-xs">
-            <span class="line-through text-gray-400 mr-2">99.90 EUR</span>
-            <span class="font-normal">29.90 EUR</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Produit 4 -->
-      <a href="#" class="product-card block">
-        <div class="relative mb-2">
-          <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&auto=format&fit=crop" 
-               alt="Product"
-               class="product-img w-full aspect-[2/3] object-cover bg-gray-100">
-          
-          <div class="absolute top-2 left-2 bg-white text-black px-2 py-1">
-            <span class="text-[9px] font-normal">VIP 39.90€</span>
-          </div>
-        </div>
-        
-        <div>
-          <p class="text-[11px] lg:text-xs mb-1">Hoodie tech</p>
-          <div class="text-[11px] lg:text-xs">
-            <span class="line-through text-gray-400 mr-2">129.90 EUR</span>
-            <span class="font-normal">39.90 EUR</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Produit 5 -->
-      <a href="#" class="product-card block">
-        <div class="relative mb-2">
-          <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=600&auto=format&fit=crop" 
-               alt="Product"
-               class="product-img w-full aspect-[2/3] object-cover bg-gray-100">
-          
-          <div class="absolute top-2 left-2 bg-white text-black px-2 py-1">
-            <span class="text-[9px] font-normal">VIP 19.90€</span>
-          </div>
-        </div>
-        
-        <div>
-          <p class="text-[11px] lg:text-xs mb-1">Tank compression</p>
-          <div class="text-[11px] lg:text-xs">
-            <span class="line-through text-gray-400 mr-2">69.90 EUR</span>
-            <span class="font-normal">19.90 EUR</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Produit 6 -->
-      <a href="#" class="product-card block">
-        <div class="relative mb-2">
-          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&auto=format&fit=crop" 
-               alt="Product"
-               class="product-img w-full aspect-[2/3] object-cover bg-gray-100">
-          
-          <div class="absolute top-2 left-2 bg-white text-black px-2 py-1">
-            <span class="text-[9px] font-normal">VIP 34.90€</span>
-          </div>
-        </div>
-        
-        <div>
-          <p class="text-[11px] lg:text-xs mb-1">Jogger performance</p>
-          <div class="text-[11px] lg:text-xs">
-            <span class="line-through text-gray-400 mr-2">119.90 EUR</span>
-            <span class="font-normal">34.90 EUR</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Produit 7 -->
-      <a href="#" class="product-card block">
-        <div class="relative mb-2">
-          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop" 
-               alt="Product"
-               class="product-img w-full aspect-[2/3] object-cover bg-gray-100">
-          
-          <div class="absolute top-2 left-2 bg-white text-black px-2 py-1">
-            <span class="text-[9px] font-normal">VIP 44.90€</span>
-          </div>
-        </div>
-        
-        <div>
-          <p class="text-[11px] lg:text-xs mb-1">Veste running</p>
-          <div class="text-[11px] lg:text-xs">
-            <span class="line-through text-gray-400 mr-2">149.90 EUR</span>
-            <span class="font-normal">44.90 EUR</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Produit 8 -->
-      <a href="#" class="product-card block">
-        <div class="relative mb-2">
-          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&auto=format&fit=crop" 
-               alt="Product"
-               class="product-img w-full aspect-[2/3] object-cover bg-gray-100">
-          
-          <div class="absolute top-2 left-2 bg-white text-black px-2 py-1">
-            <span class="text-[9px] font-normal">VIP 17.90€</span>
-          </div>
-        </div>
-        
-        <div>
-          <p class="text-[11px] lg:text-xs mb-1">Polo sport</p>
-          <div class="text-[11px] lg:text-xs">
-            <span class="line-through text-gray-400 mr-2">59.90 EUR</span>
-            <span class="font-normal">17.90 EUR</span>
-          </div>
-        </div>
-      </a>
-
+    <div class="hero__overlay"></div>
+    <div class="hero__bas">
+      <div class="hero__monogram">SVB</div>
+      <div class="hero__legende">
+        Chapitre I · Tenir<br>
+        SVB · 26 · SAGE · 01
+      </div>
     </div>
   </section>
 
-  <!-- Section VIP épurée -->
-  <section class="bg-gray-50 py-16 lg:py-24">
-    <div class="max-w-5xl mx-auto px-4 lg:px-6">
-      
-      <div class="text-center mb-12">
-        <h2 class="text-2xl lg:text-3xl font-extralight mb-4">Programme Membre VIP</h2>
-        <p class="text-xs lg:text-sm text-gray-600 max-w-2xl mx-auto">
-          Bénéficiez de prix exclusifs sur toute la collection. 
-          49.90€ par mois se transforment en crédit à utiliser librement.
+  <!-- ===== §3 MANIFESTE ===== -->
+  <section class="bloc chaux">
+    <div class="container" style="text-align: center;">
+      <span class="kicker">Collection 26 · Chapitre I</span>
+      <h2 class="titre-section" style="max-width: 1100px; margin: 0 auto;">
+        Le mouvement comme langage.<br>
+        La matière comme promesse.<br>
+        La durée comme engagement.
+      </h2>
+      <hr class="filet-peche" style="margin: 60px auto 0;">
+    </div>
+  </section>
+
+  <!-- ===== §4 TROIS PORTES ===== -->
+  <section class="bloc">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px;">
+        <div>
+          <span class="kicker">Trois disciplines</span>
+          <h3 class="titre-section" style="font-size: clamp(28px, 3.4vw, 44px);">Choisir son geste.</h3>
+        </div>
+        <a href="boutique.html" class="lien-fin">Toute la boutique</a>
+      </div>
+
+      <div class="grille-3">
+        <a href="boutique.html?pratique=pilates" class="piece">
+          <div class="piece__media">
+            <img class="base" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1000&auto=format&fit=crop" alt="Pilates">
+            <img class="hover" src="https://images.unsplash.com/photo-1591291621164-2c6367723315?w=1000&auto=format&fit=crop" alt="Pilates lifestyle">
+          </div>
+          <div class="piece__info">
+            <span class="piece__cat">Pilates</span>
+            <span class="piece__nom">Legging Adèle</span>
+            <div class="piece__meta"><span>SVB · 26 · SAGE · 01</span><span>148 €</span></div>
+          </div>
+        </a>
+
+        <a href="boutique.html?pratique=yoga" class="piece">
+          <div class="piece__media">
+            <img class="base" src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1000&auto=format&fit=crop" alt="Yoga">
+            <img class="hover" src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=1000&auto=format&fit=crop" alt="Yoga lifestyle">
+          </div>
+          <div class="piece__info">
+            <span class="piece__cat">Yoga</span>
+            <span class="piece__nom">Brassière Iris</span>
+            <div class="piece__meta"><span>SVB · 26 · CREAM · 04</span><span>92 €</span></div>
+          </div>
+        </a>
+
+        <a href="boutique.html?pratique=training" class="piece">
+          <div class="piece__media">
+            <img class="base" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1000&auto=format&fit=crop" alt="Training">
+            <img class="hover" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1000&auto=format&fit=crop" alt="Training lifestyle">
+          </div>
+          <div class="piece__info">
+            <span class="piece__cat">Training</span>
+            <span class="piece__nom">Short Mahé</span>
+            <div class="piece__meta"><span>SVB · 26 · INK · 07</span><span>118 €</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §5 ÉDITO CAMPAGNE (asymétrie Prada) ===== -->
+  <section class="chaux bloc">
+    <div class="asym-grille">
+      <div>
+        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=1800&auto=format&fit=crop"
+             alt="Édito campagne SVB" style="width: 100%; aspect-ratio: 4/5; object-fit: cover;">
+      </div>
+      <div class="bloc-texte">
+        <span class="kicker">Campagne · Tenir</span>
+        <h3 class="titre-section" style="font-size: clamp(28px, 3.6vw, 48px);">
+          Des essentiels pensés pour le geste quotidien.
+        </h3>
+        <p class="intro" style="margin-top: 28px;">
+          Une dizaine de pièces, étudiées à Paris, fabriquées au Portugal et en
+          Italie. Chacune répond à une question : tenir, respirer, durer.
+        </p>
+        <a href="campagne.html" class="lien-fin" style="margin-top: 40px;">Voir la campagne</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §6 PIÈCES PHARES ===== -->
+  <section class="bloc">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px;">
+        <div>
+          <span class="kicker">Pièces phares · Chapitre I</span>
+          <h3 class="titre-section" style="font-size: clamp(28px, 3.4vw, 44px);">La rotation essentielle.</h3>
+        </div>
+      </div>
+
+      <div class="grille-4">
+        <a href="produit.html" class="piece">
+          <div class="piece__media" style="background: var(--sauge);">
+            <img class="base" src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=900&auto=format&fit=crop" alt="Legging Adèle Sauge">
+            <img class="hover" src="https://images.unsplash.com/photo-1591291621164-2c6367723315?w=900&auto=format&fit=crop" alt="Adèle porté">
+          </div>
+          <div class="piece__info">
+            <span class="piece__cat">Pilates · Mat</span>
+            <span class="piece__nom">Legging Adèle</span>
+            <div class="piece__meta"><span><span class="couleur-pastille pastille-sauge"></span> Sauge</span><span>148 €</span></div>
+          </div>
+        </a>
+
+        <a href="produit.html" class="piece">
+          <div class="piece__media" style="background: var(--creme);">
+            <img class="base" src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=900&auto=format&fit=crop" alt="Brassière Iris Crème">
+            <img class="hover" src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=900&auto=format&fit=crop" alt="Iris porté">
+          </div>
+          <div class="piece__info">
+            <span class="piece__cat">Yoga · Doux</span>
+            <span class="piece__nom">Brassière Iris</span>
+            <div class="piece__meta"><span><span class="couleur-pastille pastille-creme"></span> Crème</span><span>92 €</span></div>
+          </div>
+        </a>
+
+        <a href="produit.html" class="piece">
+          <div class="piece__media" style="background: var(--encre);">
+            <img class="base" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=900&auto=format&fit=crop" alt="Tank Mahé Encre">
+            <img class="hover" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=900&auto=format&fit=crop" alt="Mahé porté">
+          </div>
+          <div class="piece__info">
+            <span class="piece__cat">Training · Cardio</span>
+            <span class="piece__nom">Débardeur Mahé</span>
+            <div class="piece__meta"><span><span class="couleur-pastille pastille-encre"></span> Encre</span><span>82 €</span></div>
+          </div>
+        </a>
+
+        <a href="produit.html" class="piece">
+          <div class="piece__media" style="background: var(--indigo);">
+            <img class="base" src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=900&auto=format&fit=crop" alt="Sweat Sereine Indigo">
+            <img class="hover" src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=900&auto=format&fit=crop" alt="Sereine porté">
+          </div>
+          <div class="piece__info">
+            <span class="piece__cat">Studio · Repos</span>
+            <span class="piece__nom">Sweat Sereine</span>
+            <div class="piece__meta"><span><span class="couleur-pastille pastille-indigo"></span> Indigo nuit</span><span>198 €</span></div>
+          </div>
+        </a>
+      </div>
+
+      <div style="text-align: center; margin-top: 60px;">
+        <a href="boutique.html" class="bouton">Voir toute la boutique</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §7 EDIT DU MOIS (Dfyne) ===== -->
+  <section class="bloc--court chaux">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: center;">
+        <div>
+          <span class="kicker">L'Edit de mai · Éphémère</span>
+          <h3 class="titre-section" style="font-size: clamp(28px, 3.2vw, 40px);">
+            Entre deux saisons.
+          </h3>
+          <p class="intro" style="margin-top: 22px;">
+            Trois pièces choisies pour la transition. Mat le matin, lin sous
+            la veste à midi, sueur à six heures. Cet édit disparaît le 1er juin.
+          </p>
+          <a href="edit.html" class="lien-fin" style="margin-top: 30px;">Voir l'édit complet</a>
+        </div>
+
+        <div class="grille-3">
+          <a href="produit.html" class="piece">
+            <div class="piece__media"><img class="base" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=700&auto=format&fit=crop" alt="Édit pièce 1"></div>
+            <div class="piece__info">
+              <span class="piece__cat">Yoga</span>
+              <span class="piece__nom">Veste Lou</span>
+              <div class="piece__meta"><span>SVB · 26 · CREAM · 11</span><span>168 €</span></div>
+            </div>
+          </a>
+          <a href="produit.html" class="piece">
+            <div class="piece__media"><img class="base" src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=700&auto=format&fit=crop" alt="Édit pièce 2"></div>
+            <div class="piece__info">
+              <span class="piece__cat">Studio</span>
+              <span class="piece__nom">Pantalon Anjou</span>
+              <div class="piece__meta"><span>SVB · 26 · INK · 09</span><span>178 €</span></div>
+            </div>
+          </a>
+          <a href="produit.html" class="piece">
+            <div class="piece__media"><img class="base" src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=700&auto=format&fit=crop" alt="Édit pièce 3"></div>
+            <div class="piece__info">
+              <span class="piece__cat">Pilates · Reformer</span>
+              <span class="piece__nom">Bralette Salin</span>
+              <div class="piece__meta"><span>SVB · 26 · SAGE · 06</span><span>84 €</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §8 LOOKBOOK TEASER ===== -->
+  <section class="bloc">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;">
+        <div>
+          <span class="kicker">Lookbook · Printemps 26</span>
+          <h3 class="titre-section" style="font-size: clamp(28px, 3.4vw, 44px);">Six gestes, six pièces.</h3>
+        </div>
+        <a href="lookbook.html" class="lien-fin">Voir le lookbook</a>
+      </div>
+    </div>
+
+    <div class="carrousel" style="padding: 0 36px 30px;">
+      <div>
+        <img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=800&auto=format&fit=crop" alt="Look 01" style="aspect-ratio: 3/4; object-fit: cover; width: 100%;">
+        <div class="piece__meta" style="padding-top: 12px;"><span>Printemps 26 · 01/06</span><span>SVB · 26 · CREAM · 04</span></div>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1601925268193-12c4dc9aa31f?w=800&auto=format&fit=crop" alt="Look 02" style="aspect-ratio: 3/4; object-fit: cover; width: 100%;">
+        <div class="piece__meta" style="padding-top: 12px;"><span>Printemps 26 · 02/06</span><span>SVB · 26 · SAGE · 02</span></div>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&auto=format&fit=crop" alt="Look 03" style="aspect-ratio: 3/4; object-fit: cover; width: 100%;">
+        <div class="piece__meta" style="padding-top: 12px;"><span>Printemps 26 · 03/06</span><span>SVB · 26 · INK · 07</span></div>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&auto=format&fit=crop" alt="Look 04" style="aspect-ratio: 3/4; object-fit: cover; width: 100%;">
+        <div class="piece__meta" style="padding-top: 12px;"><span>Printemps 26 · 04/06</span><span>SVB · 26 · CREAM · 11</span></div>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&auto=format&fit=crop" alt="Look 05" style="aspect-ratio: 3/4; object-fit: cover; width: 100%;">
+        <div class="piece__meta" style="padding-top: 12px;"><span>Printemps 26 · 05/06</span><span>SVB · 26 · INDIGO · 09</span></div>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&auto=format&fit=crop" alt="Look 06" style="aspect-ratio: 3/4; object-fit: cover; width: 100%;">
+        <div class="piece__meta" style="padding-top: 12px;"><span>Printemps 26 · 06/06</span><span>SVB · 26 · INK · 08</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §9 SAVOIR-FAIRE TEASER ===== -->
+  <section class="chaux bloc">
+    <div class="container">
+      <div class="grille-2" style="align-items: center;">
+        <div>
+          <img src="https://images.unsplash.com/photo-1605812860427-4024433a70fd?w=1400&auto=format&fit=crop"
+               alt="Atelier SVB" style="aspect-ratio: 4/5; object-fit: cover; width: 100%;">
+        </div>
+        <div>
+          <span class="kicker">Savoir-faire</span>
+          <h3 class="titre-section" style="font-size: clamp(28px, 3.4vw, 46px);">
+            Tissé au Portugal.<br>Pensé à Paris.
+          </h3>
+          <p class="intro" style="margin-top: 28px;">
+            Nos tissus naissent dans une filature familiale du nord du Portugal,
+            travaillée depuis quatre générations. Le coton bio est filé long,
+            le polyamide recyclé tient le geste. Chaque chaîne reçoit son code.
+          </p>
+          <div class="fiche">
+            <dt>Filature</dt><dd>Famalicão · Portugal</dd>
+            <dt>Confection</dt><dd>Barcelos · Italie · Paris</dd>
+            <dt>Première coupe</dt><dd>Mars 2024</dd>
+            <dt>Engagement</dt><dd>Atelier 5 ans minimum</dd>
+          </div>
+          <a href="savoir-faire.html" class="bouton" style="margin-top: 40px;">Voir le savoir-faire</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §10 JOURNAL TEASER ===== -->
+  <section class="bloc">
+    <div class="container">
+      <span class="kicker">Journal · Mai</span>
+      <h3 class="titre-section" style="font-size: clamp(28px, 3.4vw, 44px); margin-bottom: 50px;">Trois lectures.</h3>
+
+      <div class="grille-3">
+        <a href="article.html" class="piece">
+          <div class="piece__media" style="aspect-ratio: 4/5;">
+            <img class="base" src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&auto=format&fit=crop" alt="Article 1">
+          </div>
+          <div class="piece__info">
+            <span class="piece__cat">Conversation · 8 min</span>
+            <span class="piece__nom">La respiration comme architecture</span>
+          </div>
+        </a>
+        <a href="article.html" class="piece">
+          <div class="piece__media" style="aspect-ratio: 4/5;">
+            <img class="base" src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=800&auto=format&fit=crop" alt="Article 2">
+          </div>
+          <div class="piece__info">
+            <span class="piece__cat">Atelier · 5 min</span>
+            <span class="piece__nom">Comment naît un tissu</span>
+          </div>
+        </a>
+        <a href="article.html" class="piece">
+          <div class="piece__media" style="aspect-ratio: 4/5;">
+            <img class="base" src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=800&auto=format&fit=crop" alt="Article 3">
+          </div>
+          <div class="piece__info">
+            <span class="piece__cat">Maison · 12 min</span>
+            <span class="piece__nom">Le modernisme caribéen, et nous</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="maison-footer">
+    <div class="maison-footer__grid">
+      <div>
+        <div class="maison-footer__monogram">SVB</div>
+        <p class="maison-footer__manifeste">
+          Une maison de vêtements de pratique. Pilates, yoga, training.
+          Conçue à Paris, tissée au Portugal.
         </p>
       </div>
-
-      <div class="grid md:grid-cols-3 gap-8 mb-12">
-        <div class="text-center">
-          <div class="text-5xl font-extralight text-gray-300 mb-3">01</div>
-          <h3 class="text-xs uppercase tracking-wider mb-2">Abonnez-vous</h3>
-          <p class="text-xs text-gray-600">49.90€/mois convertis en crédit</p>
-        </div>
-        <div class="text-center">
-          <div class="text-5xl font-extralight text-gray-300 mb-3">02</div>
-          <h3 class="text-xs uppercase tracking-wider mb-2">Achetez</h3>
-          <p class="text-xs text-gray-600">Utilisez vos crédits comme vous voulez</p>
-        </div>
-        <div class="text-center">
-          <div class="text-5xl font-extralight text-gray-300 mb-3">03</div>
-          <h3 class="text-xs uppercase tracking-wider mb-2">Gérez</h3>
-          <p class="text-xs text-gray-600">Passez le mois entre le 1er et le 5</p>
-        </div>
+      <div>
+        <h4>Maison</h4>
+        <ul>
+          <li><a href="maison.html">Notre maison</a></li>
+          <li><a href="savoir-faire.html">Savoir-faire</a></li>
+          <li><a href="matieres.html">Nos matières</a></li>
+          <li><a href="archives.html">Archives</a></li>
+          <li><a href="agenda.html">Agenda</a></li>
+        </ul>
       </div>
-
-      <div class="text-center">
-        <button class="bg-black text-white px-8 py-3 text-[10px] uppercase tracking-widest hover:bg-gray-800 transition">
-          Devenir membre VIP
-        </button>
-        <p class="text-[10px] text-gray-500 mt-4">Engagement 3 mois · Résiliable à tout moment après</p>
+      <div>
+        <h4>Boutique</h4>
+        <ul>
+          <li><a href="boutique.html">Toutes les pièces</a></li>
+          <li><a href="edit.html">L'Edit du mois</a></li>
+          <li><a href="lookbook.html">Lookbook</a></li>
+          <li><a href="campagne.html">Campagne</a></li>
+          <li><a href="tailles.html">Guide des tailles</a></li>
+        </ul>
       </div>
-
+      <div>
+        <h4>Service</h4>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="livraison.html">Livraison & retours</a></li>
+          <li><a href="faq.html">Questions fréquentes</a></li>
+          <li><a href="compte.html">Mon compte</a></li>
+          <li><a href="legal.html">Mentions légales</a></li>
+        </ul>
+      </div>
+      <div class="maison-footer__newsletter">
+        <h4>Lettre de maison</h4>
+        <p style="font-family: 'GT Sectra', Georgia, serif; font-style: italic; font-size: 12px; opacity: 0.7; margin-bottom: 14px;">
+          Un envoi par chapitre. Jamais davantage.
+        </p>
+        <form action="newsletter.html" method="get">
+          <input type="email" placeholder="votre@email.com">
+          <button type="submit">S'inscrire →</button>
+        </form>
+      </div>
     </div>
-  </section>
-
-  <!-- Footer Zara-style -->
-  <footer class="bg-white py-12 lg:py-16 border-t border-gray-200">
-    <div class="px-4 lg:px-6">
-      
-      <!-- Grid footer -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
-        
-        <div>
-          <h4 class="text-[10px] uppercase tracking-widest mb-4 font-normal">Aide</h4>
-          <ul class="space-y-2">
-            <li><a href="#" class="text-xs text-gray-600 hover:underline">Contact</a></li>
-            <li><a href="#" class="text-xs text-gray-600 hover:underline">Livraison</a></li>
-            <li><a href="#" class="text-xs text-gray-600 hover:underline">Retours</a></li>
-            <li><a href="#" class="text-xs text-gray-600 hover:underline">FAQ</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="text-[10px] uppercase tracking-widest mb-4 font-normal">Entreprise</h4>
-          <ul class="space-y-2">
-            <li><a href="#" class="text-xs text-gray-600 hover:underline">À propos</a></li>
-            <li><a href="#" class="text-xs text-gray-600 hover:underline">Magasins</a></li>
-            <li><a href="#" class="text-xs text-gray-600 hover:underline">Carrières</a></li>
-            <li><a href="#" onclick="openModal()" class="text-xs text-gray-600 hover:underline cursor-pointer">CGV</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="text-[10px] uppercase tracking-widest mb-4 font-normal">Réseaux</h4>
-          <ul class="space-y-2">
-            <li><a href="#" class="text-xs text-gray-600 hover:underline">Instagram</a></li>
-            <li><a href="#" class="text-xs text-gray-600 hover:underline">Facebook</a></li>
-            <li><a href="#" class="text-xs text-gray-600 hover:underline">Twitter</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="text-[10px] uppercase tracking-widest mb-4 font-normal">Newsletter</h4>
-          <div class="flex border-b border-black pb-1">
-            <input type="email" placeholder="Votre email" 
-                   class="flex-1 text-xs bg-transparent focus:outline-none placeholder-gray-400">
-            <button class="text-xs">→</button>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Bottom bar -->
-      <div class="border-t border-gray-200 pt-8 flex flex-col lg:flex-row justify-between items-center">
-        <p class="text-[10px] text-gray-500">© 2026 SVB · Tous droits réservés</p>
-        <p class="text-[10px] text-gray-500 mt-4 lg:mt-0">France</p>
-      </div>
-
+    <div class="maison-footer__bas">
+      <span>© SVB Apparel · 2026 · Conçue à Paris</span>
+      <span>Tissé au Portugal · Confectionné en Europe</span>
     </div>
   </footer>
-
-  <!-- Modal CGV -->
-  <div id="cgv-modal" class="hidden fixed inset-0 z-50 bg-white overflow-y-auto">
-    <div class="min-h-screen p-4 lg:p-12">
-      
-      <button onclick="closeModal()" class="absolute top-4 right-4 lg:top-8 lg:right-8">
-        <i data-lucide="x" class="w-6 h-6"></i>
-      </button>
-
-      <div class="max-w-3xl mx-auto pt-12">
-        <h2 class="text-2xl font-light mb-8">Conditions Générales de Vente</h2>
-        
-        <div class="space-y-6 text-xs text-gray-700 leading-relaxed">
-          
-          <section>
-            <h3 class="text-sm font-normal mb-2">Article 1 - Objet</h3>
-            <p>Les présentes CGV régissent les ventes entre SVB SAS, au capital de 500.000€, RCS Paris 123 456 789, 1 Place de la Bourse, 75002 Paris, et tout client sur www.svb.com.</p>
-          </section>
-
-          <section>
-            <h3 class="text-sm font-normal mb-2">Article 2 - Programme Membre VIP</h3>
-            <p class="mb-2">2.1. Service d'abonnement mensuel donnant accès à des tarifs préférentiels.</p>
-            <p class="mb-2">2.2. Prélèvement mensuel de 49,90€ TTC le 5 de chaque mois.</p>
-            <p class="mb-2">2.3. Montant converti en crédit valable 12 mois.</p>
-            <p class="mb-2">2.4. Option "Passer le mois" disponible du 1er au 5.</p>
-            <p>2.5. Engagement 3 mois minimum, résiliation libre ensuite.</p>
-          </section>
-
-          <section>
-            <h3 class="text-sm font-normal mb-2">Article 3 - Prix</h3>
-            <p>Prix Standard et Prix VIP. Paiement par CB, PayPal ou crédits SVB.</p>
-          </section>
-
-          <section>
-            <h3 class="text-sm font-normal mb-2">Article 4 - Rétractation</h3>
-            <p>14 jours à réception (L221-18 Code consommation).</p>
-          </section>
-
-          <section>
-            <h3 class="text-sm font-normal mb-2">Article 5 - Livraison</h3>
-            <p>3-7 jours ouvrés. Gratuite >50€, sinon 4,90€.</p>
-          </section>
-
-          <section>
-            <h3 class="text-sm font-normal mb-2">Article 6 - Garanties</h3>
-            <p>Garantie légale de conformité et vices cachés.</p>
-          </section>
-
-          <section>
-            <h3 class="text-sm font-normal mb-2">Article 7 - Données</h3>
-            <p>Traitement RGPD. Droits : contact@svb.com</p>
-          </section>
-
-        </div>
-
-        <div class="mt-12 pt-8 border-t">
-          <button onclick="closeModal()" class="bg-black text-white px-8 py-3 text-[10px] uppercase tracking-widest w-full lg:w-auto">
-            Fermer
-          </button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <script>
-    lucide.createIcons();
-
-    function openModal() {
-      document.getElementById('cgv-modal').classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      document.getElementById('cgv-modal').classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }
-  </script>
 
 </body>
 </html>
