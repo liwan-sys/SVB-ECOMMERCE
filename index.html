@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SVB Apparel · Bouger Sublimement</title>
-  <meta name="description" content="SVB Apparel — Des essentiels pensés pour le mouvement moderne. Pilates, Yoga, Training.">
+  <title>SVB Apparel · Maison de mouvement</title>
+  <meta name="description" content="SVB Apparel — Une maison française de vêtements de pratique. Pilates, yoga, training. Conçue à Paris, tissée au Portugal.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -12,12 +12,30 @@
 </head>
 <body>
 
-  <!-- Bandeau promo -->
+  <!-- ===== BANDEAU PROMO ===== -->
   <div class="bandeau-promo">
     Livraison express offerte dès 150 €
   </div>
 
-  <!-- Header -->
+  <!-- ===== MARQUEE TICKER ===== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__rail">
+      <span>Conçue à Paris</span><span class="marquee__sep">✦</span>
+      <span>Tissée au Portugal</span><span class="marquee__sep">✦</span>
+      <span>Confection Europe uniquement</span><span class="marquee__sep">✦</span>
+      <span>Retour libre 30 jours</span><span class="marquee__sep">✦</span>
+      <span>Paiement 3× sans frais</span><span class="marquee__sep">✦</span>
+      <span>Chapitre I · Printemps 26</span><span class="marquee__sep">✦</span>
+      <span>Conçue à Paris</span><span class="marquee__sep">✦</span>
+      <span>Tissée au Portugal</span><span class="marquee__sep">✦</span>
+      <span>Confection Europe uniquement</span><span class="marquee__sep">✦</span>
+      <span>Retour libre 30 jours</span><span class="marquee__sep">✦</span>
+      <span>Paiement 3× sans frais</span><span class="marquee__sep">✦</span>
+      <span>Chapitre I · Printemps 26</span><span class="marquee__sep">✦</span>
+    </div>
+  </div>
+
+  <!-- ===== HEADER ===== -->
   <header class="entete">
     <div class="entete__inner">
       <nav class="entete__nav">
@@ -26,7 +44,7 @@
         <a href="boutique.html?cat=nouveautes">Nouveautés</a>
         <a href="lookbook.html">Collections</a>
         <a href="journal.html">Journal</a>
-        <a href="maison.html">À propos</a>
+        <a href="maison.html">Maison</a>
       </nav>
       <a href="index.html" class="logo">
         <span class="logo__svb">SVB</span>
@@ -41,11 +59,12 @@
     </div>
   </header>
 
-  <!-- ===== HERO ===== -->
+  <!-- ===== HERO CINÉMATIQUE ===== -->
   <section class="hero">
     <img class="hero__img" src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=2400&auto=format&fit=crop" alt="Pilates au coucher du soleil">
     <div class="hero__voile"></div>
     <div class="hero__contenu">
+      <div class="hero__kicker">Chapitre I · Printemps 26</div>
       <h1 class="hero__titre">
         Bouger
         <span class="hero__titre--it">Sublimement.</span>
@@ -58,141 +77,234 @@
         <a href="boutique.html?cat=homme" class="btn btn--noir">Boutique homme</a>
       </div>
     </div>
+    <div class="hero__numero">SVB · 26 · 01</div>
   </section>
 
-  <!-- ===== BEST SELLERS ===== -->
-  <section class="phares">
-    <div class="section-tete">
-      <span class="section-tete__titre">Pièces phares</span>
-      <a href="boutique.html" class="section-tete__lien">Tout voir →</a>
+  <!-- ===== PIÈCES PHARES — section 01 ===== -->
+  <section class="reveal">
+    <div class="chapitre-tete">
+      <span class="chapitre-tete__num">01.</span>
+      <h2 class="chapitre-tete__titre">Pièces phares.</h2>
+      <a href="boutique.html" class="chapitre-tete__lien">Tout voir →</a>
     </div>
 
-    <div class="phares__grille">
+    <div class="phares">
+      <div class="phares__grille">
 
-      <a href="produit.html" class="produit">
-        <div class="produit__img">
-          <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=900&auto=format&fit=crop" alt="Brassière Iris sans couture">
-        </div>
-        <div class="produit__couleurs">
-          <span class="dot-ivoire"></span>
-          <span class="dot-sauge"></span>
-          <span class="dot-noir"></span>
-        </div>
-        <div class="produit__nom">Brassière Iris sans couture</div>
-        <div class="produit__coul">Ivoire</div>
-        <div class="produit__prix">68 €</div>
-        <div class="produit__etoiles"><span class="e">★★★★★</span><span>(128)</span></div>
-      </a>
+        <a href="produit.html" class="produit">
+          <div class="produit__img">
+            <span class="produit__nouveau">Nouveau</span>
+            <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=900&auto=format&fit=crop" alt="Brassière Iris sans couture">
+          </div>
+          <div class="produit__couleurs">
+            <span class="dot-ivoire"></span>
+            <span class="dot-sauge"></span>
+            <span class="dot-noir"></span>
+          </div>
+          <div class="produit__nom">Brassière Iris sans couture</div>
+          <div class="produit__coul">Ivoire</div>
+          <div class="produit__prix">68 €</div>
+          <div class="produit__etoiles"><span>★★★★★</span><span>(128)</span></div>
+        </a>
 
-      <a href="produit.html" class="produit">
-        <div class="produit__img">
-          <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=900&auto=format&fit=crop" alt="Legging Adèle sculptant">
-        </div>
-        <div class="produit__couleurs">
-          <span class="dot-sauge"></span>
-          <span class="dot-noir"></span>
-          <span class="dot-espresso"></span>
-        </div>
-        <div class="produit__nom">Legging Adèle sculptant</div>
-        <div class="produit__coul">Sauge</div>
-        <div class="produit__prix">98 €</div>
-        <div class="produit__etoiles"><span class="e">★★★★★</span><span>(249)</span></div>
-      </a>
+        <a href="produit.html" class="produit">
+          <div class="produit__img">
+            <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=900&auto=format&fit=crop" alt="Legging Adèle sculptant">
+          </div>
+          <div class="produit__couleurs">
+            <span class="dot-sauge"></span>
+            <span class="dot-noir"></span>
+            <span class="dot-espresso"></span>
+          </div>
+          <div class="produit__nom">Legging Adèle sculptant</div>
+          <div class="produit__coul">Sauge</div>
+          <div class="produit__prix">98 €</div>
+          <div class="produit__etoiles"><span>★★★★★</span><span>(249)</span></div>
+        </a>
 
-      <a href="produit.html" class="produit">
-        <div class="produit__img">
-          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=900&auto=format&fit=crop" alt="T-shirt Mahé performance">
-        </div>
-        <div class="produit__couleurs">
-          <span class="dot-noir"></span>
-          <span class="dot-ivoire"></span>
-          <span class="dot-sauge"></span>
-        </div>
-        <div class="produit__nom">T-shirt Mahé performance</div>
-        <div class="produit__coul">Encre</div>
-        <div class="produit__prix">58 €</div>
-        <div class="produit__etoiles"><span class="e">★★★★★</span><span>(86)</span></div>
-      </a>
+        <a href="produit.html" class="produit">
+          <div class="produit__img">
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=900&auto=format&fit=crop" alt="T-shirt Mahé performance">
+          </div>
+          <div class="produit__couleurs">
+            <span class="dot-noir"></span>
+            <span class="dot-ivoire"></span>
+            <span class="dot-sauge"></span>
+          </div>
+          <div class="produit__nom">T-shirt Mahé performance</div>
+          <div class="produit__coul">Encre</div>
+          <div class="produit__prix">58 €</div>
+          <div class="produit__etoiles"><span>★★★★★</span><span>(86)</span></div>
+        </a>
 
-      <a href="produit.html" class="produit">
-        <div class="produit__img">
-          <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=900&auto=format&fit=crop" alt="Brassière Cassia dos croisé">
-        </div>
-        <div class="produit__couleurs">
-          <span class="dot-espresso"></span>
-          <span class="dot-noir"></span>
-          <span class="dot-ivoire"></span>
-        </div>
-        <div class="produit__nom">Brassière Cassia dos croisé</div>
-        <div class="produit__coul">Espresso</div>
-        <div class="produit__prix">64 €</div>
-        <div class="produit__etoiles"><span class="e">★★★★★</span><span>(193)</span></div>
-      </a>
+        <a href="produit.html" class="produit">
+          <div class="produit__img">
+            <span class="produit__nouveau">Nouveau</span>
+            <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=900&auto=format&fit=crop" alt="Brassière Cassia dos croisé">
+          </div>
+          <div class="produit__couleurs">
+            <span class="dot-espresso"></span>
+            <span class="dot-noir"></span>
+            <span class="dot-ivoire"></span>
+          </div>
+          <div class="produit__nom">Brassière Cassia dos croisé</div>
+          <div class="produit__coul">Espresso</div>
+          <div class="produit__prix">64 €</div>
+          <div class="produit__etoiles"><span>★★★★★</span><span>(193)</span></div>
+        </a>
 
-      <a href="produit.html" class="produit">
-        <div class="produit__img">
-          <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=900&auto=format&fit=crop" alt="Sweat Sereine signature">
-        </div>
-        <div class="produit__couleurs">
-          <span class="dot-sauge"></span>
-          <span class="dot-ivoire"></span>
-          <span class="dot-noir"></span>
-        </div>
-        <div class="produit__nom">Sweat Sereine signature</div>
-        <div class="produit__coul">Sauge</div>
-        <div class="produit__prix">108 €</div>
-        <div class="produit__etoiles"><span class="e">★★★★★</span><span>(76)</span></div>
-      </a>
+        <a href="produit.html" class="produit">
+          <div class="produit__img">
+            <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=900&auto=format&fit=crop" alt="Sweat Sereine signature">
+          </div>
+          <div class="produit__couleurs">
+            <span class="dot-sauge"></span>
+            <span class="dot-ivoire"></span>
+            <span class="dot-noir"></span>
+          </div>
+          <div class="produit__nom">Sweat Sereine signature</div>
+          <div class="produit__coul">Sauge</div>
+          <div class="produit__prix">108 €</div>
+          <div class="produit__etoiles"><span>★★★★★</span><span>(76)</span></div>
+        </a>
 
+      </div>
     </div>
   </section>
 
-  <!-- ===== CATÉGORIES ===== -->
-  <section class="categs">
-    <a href="boutique.html?pratique=pilates" class="categ">
-      <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&auto=format&fit=crop" alt="Pilates">
-      <div class="categ__voile"></div>
-      <div class="categ__txt">
-        <div class="categ__titre">Pilates</div>
-        <span class="categ__lien">Découvrir</span>
+  <!-- ===== CAMPAGNE ASYMÉTRIQUE — section 02 ===== -->
+  <section class="campagne reveal">
+    <div class="campagne__media">
+      <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=1400&auto=format&fit=crop" alt="Campagne Printemps 26 — Tenir">
+    </div>
+    <div class="campagne__txt">
+      <div class="campagne__num">02. La campagne · Printemps 26</div>
+      <h2 class="campagne__titre">Tenir,<br>respirer,<br>durer.</h2>
+      <p class="campagne__intro">
+        Notre première campagne photographiée à Saint-Eustache. Onze pièces, trois
+        gestes, une promesse — celle de l'essentiel qui ne se démode pas.
+      </p>
+      <a href="campagne.html" class="campagne__cta">Voir la campagne →</a>
+    </div>
+  </section>
+
+  <!-- ===== CATÉGORIES — section 03 ===== -->
+  <section class="reveal">
+    <div class="chapitre-tete">
+      <span class="chapitre-tete__num">03.</span>
+      <h2 class="chapitre-tete__titre">Cinq pratiques.</h2>
+      <a href="boutique.html" class="chapitre-tete__lien">Toutes les disciplines →</a>
+    </div>
+
+    <div class="categs">
+      <a href="boutique.html?pratique=pilates" class="categ">
+        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&auto=format&fit=crop" alt="Pilates">
+        <div class="categ__voile"></div>
+        <div class="categ__txt">
+          <div class="categ__numero">01</div>
+          <div class="categ__titre">Pilates</div>
+          <span class="categ__lien">Découvrir</span>
+        </div>
+      </a>
+      <a href="boutique.html?pratique=training" class="categ">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&auto=format&fit=crop" alt="Training">
+        <div class="categ__voile"></div>
+        <div class="categ__txt">
+          <div class="categ__numero">02</div>
+          <div class="categ__titre">Training</div>
+          <span class="categ__lien">Découvrir</span>
+        </div>
+      </a>
+      <a href="boutique.html?pratique=yoga" class="categ">
+        <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=900&auto=format&fit=crop" alt="Yoga">
+        <div class="categ__voile"></div>
+        <div class="categ__txt">
+          <div class="categ__numero">03</div>
+          <div class="categ__titre">Yoga</div>
+          <span class="categ__lien">Découvrir</span>
+        </div>
+      </a>
+      <a href="boutique.html?pratique=repos" class="categ">
+        <img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=900&auto=format&fit=crop" alt="Repos">
+        <div class="categ__voile"></div>
+        <div class="categ__txt">
+          <div class="categ__numero">04</div>
+          <div class="categ__titre">Repos</div>
+          <span class="categ__lien">Découvrir</span>
+        </div>
+      </a>
+      <a href="boutique.html?pratique=villegiature" class="categ">
+        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=900&auto=format&fit=crop" alt="Villégiature">
+        <div class="categ__voile"></div>
+        <div class="categ__txt">
+          <div class="categ__numero">05</div>
+          <div class="categ__titre">Villégiature</div>
+          <span class="categ__lien">Découvrir</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== LOOKBOOK — section 04 ===== -->
+  <section class="lookbook reveal">
+    <div class="lookbook__tete">
+      <div>
+        <span class="chapitre-tete__num">04.</span>
       </div>
-    </a>
-    <a href="boutique.html?pratique=training" class="categ">
-      <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&auto=format&fit=crop" alt="Training">
-      <div class="categ__voile"></div>
-      <div class="categ__txt">
-        <div class="categ__titre">Training</div>
-        <span class="categ__lien">Découvrir</span>
-      </div>
-    </a>
-    <a href="boutique.html?pratique=yoga" class="categ">
-      <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=900&auto=format&fit=crop" alt="Yoga">
-      <div class="categ__voile"></div>
-      <div class="categ__txt">
-        <div class="categ__titre">Yoga</div>
-        <span class="categ__lien">Découvrir</span>
-      </div>
-    </a>
-    <a href="boutique.html?pratique=repos" class="categ">
-      <img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=900&auto=format&fit=crop" alt="Repos">
-      <div class="categ__voile"></div>
-      <div class="categ__txt">
-        <div class="categ__titre">Repos</div>
-        <span class="categ__lien">Découvrir</span>
-      </div>
-    </a>
-    <a href="boutique.html?pratique=villegiature" class="categ">
-      <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=900&auto=format&fit=crop" alt="Villégiature">
-      <div class="categ__voile"></div>
-      <div class="categ__txt">
-        <div class="categ__titre">Villégiature</div>
-        <span class="categ__lien">Découvrir</span>
-      </div>
-    </a>
+      <h2 class="chapitre-tete__titre" style="margin: 0;">Lookbook<br>Printemps 26.</h2>
+      <p class="lookbook__sous">
+        Six gestes, six pièces, photographiés entre Saint-Eustache et le studio
+        de Barbès — par Camille Vivier.
+      </p>
+    </div>
+
+    <div class="lookbook__grille">
+      <a href="lookbook.html" class="lookbook__bloc">
+        <img src="https://images.unsplash.com/photo-1591291621164-2c6367723315?w=1400&auto=format&fit=crop" alt="Look 01">
+        <div class="lookbook__legende">
+          <h3>Tenir</h3>
+          <span>Look 01 / 06</span>
+        </div>
+      </a>
+      <a href="lookbook.html" class="lookbook__bloc">
+        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=1400&auto=format&fit=crop" alt="Look 02">
+        <div class="lookbook__legende">
+          <h3>Respirer</h3>
+          <span>Look 02 / 06</span>
+        </div>
+      </a>
+      <a href="lookbook.html" class="lookbook__bloc">
+        <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=1400&auto=format&fit=crop" alt="Look 03">
+        <div class="lookbook__legende">
+          <h3>Durer</h3>
+          <span>Look 03 / 06</span>
+        </div>
+      </a>
+      <a href="lookbook.html" class="lookbook__bloc">
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1400&auto=format&fit=crop" alt="Look 04">
+        <div class="lookbook__legende">
+          <h3>Traverser</h3>
+          <span>Look 04 / 06</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== PRESSE ===== -->
+  <section class="presse">
+    <div class="presse__titre">Vue par la presse</div>
+    <div class="presse__rang">
+      <span class="presse__logo">Vogue</span>
+      <span class="presse__logo--bold">Cereal</span>
+      <span class="presse__logo">The Gentlewoman</span>
+      <span class="presse__logo--bold">Marie Claire</span>
+      <span class="presse__logo">Madame Figaro</span>
+      <span class="presse__logo--bold">Numéro</span>
+    </div>
   </section>
 
   <!-- ===== PILIERS ===== -->
-  <section class="piliers">
+  <section class="piliers reveal">
     <div class="piliers__grille">
       <div class="pilier">
         <div class="pilier__ic ic-tissu"></div>
@@ -225,11 +337,25 @@
     </div>
   </section>
 
+  <!-- ===== CITATION ÉDITORIALE ===== -->
+  <section class="citation reveal">
+    <div class="citation__guillemet">"</div>
+    <p class="citation__texte">
+      Le luxe véritable n'est pas dans l'ostentation, mais dans la justesse —
+      la matière exacte, la coupe exacte, le geste exact.
+    </p>
+    <div class="citation__auteur">— Soraya van Buren · Directrice de collection</div>
+  </section>
+
   <!-- ===== JOURNAL ===== -->
-  <section class="journal">
+  <section class="journal reveal">
     <div class="journal__txt">
-      <div class="journal__cat">Le Journal</div>
-      <h2 class="journal__titre">Rituels du<br>mouvement</h2>
+      <div class="journal__cat">Le Journal · Lecture 8 min</div>
+      <h2 class="journal__titre">Rituels du<br>mouvement.</h2>
+      <p class="journal__intro">
+        Trois pratiquantes, trois manières de commencer la journée. Une matinée
+        à Paris, racontée à hauteur de geste.
+      </p>
       <a href="journal.html" class="journal__lien">Lire l'article →</a>
     </div>
     <div class="journal__img">
@@ -237,10 +363,10 @@
     </div>
   </section>
 
-  <!-- ===== JOIN THE MOVEMENT ===== -->
+  <!-- ===== INSTAGRAM ===== -->
   <section class="instagram">
     <div class="instagram__txt">
-      <div class="instagram__top">Rejoignez le mouvement</div>
+      <div class="instagram__top">Rejoignez la maison</div>
       <div class="instagram__handle">@svb.apparel</div>
       <div class="instagram__line">Inspirer · Bouger · Relier</div>
       <div class="instagram__tag">#bougersublimement</div>
@@ -258,9 +384,14 @@
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="footer__top">
-      <div class="footer__logo">
-        <div class="svb">SVB</div>
-        <div class="apparel">APPAREL</div>
+      <div>
+        <div class="footer__logo">
+          <div class="svb">SVB</div>
+          <div class="apparel">APPAREL</div>
+        </div>
+        <p class="footer__manifeste">
+          Une maison française de vêtements de pratique. Conçue à Paris, tissée au Portugal.
+        </p>
       </div>
       <div>
         <h4>Boutique</h4>
@@ -273,11 +404,11 @@
         </ul>
       </div>
       <div>
-        <h4>À propos</h4>
+        <h4>Maison</h4>
         <ul>
           <li><a href="maison.html">Notre histoire</a></li>
-          <li><a href="savoir-faire.html">Engagement</a></li>
-          <li><a href="contact.html">Carrières</a></li>
+          <li><a href="savoir-faire.html">Savoir-faire</a></li>
+          <li><a href="campagne.html">Campagne</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
@@ -285,13 +416,13 @@
         <h4>Aide</h4>
         <ul>
           <li><a href="faq.html">FAQ</a></li>
-          <li><a href="livraison.html">Livraison</a></li>
-          <li><a href="livraison.html">Retours</a></li>
+          <li><a href="livraison.html">Livraison & retours</a></li>
           <li><a href="tailles.html">Guide des tailles</a></li>
+          <li><a href="contact.html">Service client</a></li>
         </ul>
       </div>
       <div>
-        <h4>Rester en contact</h4>
+        <h4>Lettre de maison</h4>
         <form class="footer__newsletter" action="newsletter.html">
           <input type="email" placeholder="Votre adresse email">
           <button type="submit" aria-label="S'inscrire">→</button>
@@ -306,9 +437,25 @@
     </div>
     <div class="footer__bas">
       <span>© 2026 SVB Apparel · Tous droits réservés</span>
-      <span>Conçue à Paris · Tissée au Portugal</span>
+      <div class="footer__paiements">
+        <span>Visa</span><span>Mastercard</span><span>Amex</span><span>PayPal</span><span>Apple Pay</span>
+      </div>
+      <span>FR · EUR</span>
     </div>
   </footer>
+
+  <script>
+    // Reveal au scroll
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
 
 </body>
 </html>
