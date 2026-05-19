@@ -39,22 +39,22 @@
     <div class="galerie">
       <div class="galerie__principale">
         <!-- Image principale : remplacer par images/produits/sweat-sereine-sauge/352061B6-83B2-4F24-8A35-C52FD7307480.PNG -->
-        <img src="images/produits/sweat-sereine-sauge/352061B6-83B2-4F24-8A35-C52FD7307480.PNG"
+        <img id="gal-face" src="images/produits/sweat-sereine-sauge/352061B6-83B2-4F24-8A35-C52FD7307480.PNG"
              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=1200&auto=format&fit=crop'"
              alt="Sweat à capuche Sereine sauge — vue de face">
       </div>
       <div class="galerie__autre">
-        <img src="images/produits/sweat-sereine-sauge/8E25ADAE-59A7-458D-9DA9-AE370A120B7C.PNG"
+        <img id="gal-logo" src="images/produits/sweat-sereine-sauge/8E25ADAE-59A7-458D-9DA9-AE370A120B7C.PNG"
              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=700&auto=format&fit=crop'"
              alt="Sweat Sereine — détail logo SVB brodé">
       </div>
       <div class="galerie__autre">
-        <img src="images/produits/sweat-sereine-sauge/6F053DE7-B5DB-4263-A95A-624BBE10453D.PNG"
+        <img id="gal-profil" src="images/produits/sweat-sereine-sauge/6F053DE7-B5DB-4263-A95A-624BBE10453D.PNG"
              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=700&auto=format&fit=crop'"
              alt="Sweat Sereine — vue de profil">
       </div>
       <div class="galerie__autre">
-        <img src="images/produits/sweat-sereine-sauge/BFD73503-A396-45E1-A67F-4F904F570BA8.PNG"
+        <img id="gal-dos" src="images/produits/sweat-sereine-sauge/BFD73503-A396-45E1-A67F-4F904F570BA8.PNG"
              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1599447421416-3414500d18a5?w=700&auto=format&fit=crop'"
              alt="Sweat Sereine — vue de dos">
       </div>
@@ -73,12 +73,12 @@
         Sweat à capuche oversized en coton bio brossé, logo SVB brodé ton sur ton sur la poitrine. Cordon de serrage à embouts métalliques, poche kangourou, finitions côtelées aux poignets et à la taille. Pensé pour la transition studio – ville.
       </p>
 
-      <div class="selecteur-titre">Couleur · Sauge</div>
+      <div class="selecteur-titre">Couleur · <span id="couleur-active">Sauge</span></div>
       <div class="selecteur-couleurs">
-        <button class="puce-couleur actif" style="background: #B5C0AB;" aria-label="Sauge"></button>
-        <button class="puce-couleur" style="background: #F0E7D6;" aria-label="Ivoire"></button>
-        <button class="puce-couleur" style="background: #1A1A1A;" aria-label="Noir"></button>
-        <button class="puce-couleur" style="background: #4A352B;" aria-label="Espresso"></button>
+        <button class="puce-couleur actif" style="background: #B5C0AB;" data-color="sauge" aria-label="Sauge"></button>
+        <button class="puce-couleur" style="background: #D9CBB5;" data-color="beige" aria-label="Beige"></button>
+        <button class="puce-couleur" style="background: #F5F2EE;" data-color="blanc" aria-label="Blanc"></button>
+        <button class="puce-couleur" style="background: #9B9B95;" data-color="gris" aria-label="Gris"></button><button class="puce-couleur" style="background: #1A1A1A;" data-color="noir" aria-label="Noir"></button>
       </div>
 
       <div class="selecteur-titre">Taille</div>
@@ -149,7 +149,7 @@
     <div class="footer__bas"><span>© 2026 SVB Apparel · Tous droits réservés</span><span>FR · EUR</span></div>
   </footer>
 
-  <script>
+  <script>window.couleurImages={sauge:{face:'images/produits/sweat-sereine-sauge/352061B6-83B2-4F24-8A35-C52FD7307480.PNG',logo:'images/produits/sweat-sereine-sauge/8E25ADAE-59A7-458D-9DA9-AE370A120B7C.PNG',profil:'images/produits/sweat-sereine-sauge/6F053DE7-B5DB-4263-A95A-624BBE10453D.PNG',dos:'images/produits/sweat-sereine-sauge/BFD73503-A396-45E1-A67F-4F904F570BA8.PNG'},beige:{face:'images/produits/sweat-sereine-beige/SVB_hoodie_beige_face.png',logo:'images/produits/sweat-sereine-beige/SVB_hoodie_beige_logo.png',profil:'images/produits/sweat-sereine-beige/SVB_hoodie_beige_profil.png',dos:'images/produits/sweat-sereine-beige/SVB_hoodie_beige_dos.png'},blanc:{face:'images/produits/sweat-sereine-blanc/SVB_hoodie_blanc_face.png',logo:'images/produits/sweat-sereine-blanc/SVB_hoodie_blanc_logo.png',profil:'images/produits/sweat-sereine-blanc/SVB_hoodie_blanc_logo.png',dos:'images/produits/sweat-sereine-blanc/SVB_hoodie_blanc_dos.png'},gris:{face:'images/produits/sweat-sereine-gris/SVB_hoodie_gris_face.png',logo:'images/produits/sweat-sereine-gris/SVB_hoodie_gris_logo.png',profil:'images/produits/sweat-sereine-gris/SVB_hoodie_gris_logo.png',dos:'images/produits/sweat-sereine-gris/SVB_hoodie_gris_dos.png'},noir:{face:'images/produits/sweat-sereine-noir/SVB_hoodie_noir_face.png',logo:'images/produits/sweat-sereine-noir/SVB_hoodie_noir_logo.png',profil:'images/produits/sweat-sereine-noir/SVB_hoodie_noir_logo.png',dos:'images/produits/sweat-sereine-noir/SVB_hoodie_noir_dos.png'}};document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.puce-couleur').forEach(function(b){b.addEventListener('click',function(){var c=b.dataset.color;if(c&&window.couleurImages&&window.couleurImages[c]){var i=window.couleurImages[c];var f=document.getElementById('gal-face');if(f)f.src=i.face;var l=document.getElementById('gal-logo');if(l)l.src=i.logo;var p=document.getElementById('gal-profil');if(p)p.src=i.profil;var d=document.getElementById('gal-dos');if(d)d.src=i.dos;var t=document.getElementById('couleur-active');if(t)t.textContent=b.getAttribute('aria-label');}});});});
     document.querySelectorAll('.puce-couleur').forEach(b => b.addEventListener('click', () => {
       document.querySelectorAll('.puce-couleur').forEach(x => x.classList.remove('actif'));
       b.classList.add('actif');
